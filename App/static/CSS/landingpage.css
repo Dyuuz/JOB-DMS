@@ -239,25 +239,166 @@ color: #4CAF50;
 
 /* Responsive Design */
 @media (max-width: 768px) {
-.blog-nav-links {
-    display: none;
+    .blog-nav-links {
+        display: none;
+    }
+
+    .blog-nav-toggle {
+        display: block;
+    }
+
+    .blog-hero-title {
+        font-size: 36px;
+    }
+
+    .blog-hero-subtitle {
+        font-size: 18px;
+    }
+
+    .blog-features-title,
+    .blog-posts-title,
+    .blog-cta-title {
+        font-size: 28px;
+    }
 }
 
-.blog-nav-toggle {
-    display: block;
+/* Learn More Section */
+.dms-learn-more {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
 }
 
-.blog-hero-title {
-    font-size: 36px;
+.dms-learn-more-container {
+max-width: 1200px;
+margin: 0 auto;
+text-align: center;
 }
 
-.blog-hero-subtitle {
+.dms-learn-more-title {
+font-size: 36px;
+margin-bottom: 20px;
+color: #2c3e50;
+}
+
+.dms-learn-more-subtitle {
+font-size: 20px;
+margin-bottom: 40px;
+color: #555;
+}
+
+.dms-learn-more-card {
+background-color: white;
+padding: 20px;
+border-radius: 10px;
+margin-bottom: 20px;
+text-align: left;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease;
+}
+
+.dms-learn-more-card:hover {
+transform: translateY(-5px);
+}
+
+.dms-learn-more-card-title {
+font-size: 24px;
+margin-bottom: 15px;
+color: #2c3e50;
+}
+
+.dms-learn-more-card-description {
+font-size: 16px;
+color: #555;
+line-height: 1.6;
+}
+
+.dms-learn-more-list {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.dms-learn-more-list li {
+font-size: 16px;
+color: #555;
+margin-bottom: 10px;
+padding-left: 20px;
+position: relative;
+line-height: 1.6;
+}
+
+.dms-learn-more-list li::before {
+content: "•";
+color: #4CAF50;
+font-size: 20px;
+position: absolute;
+left: 0;
+top: 0;
+}
+
+.dms-learn-more-list ol {
+counter-reset: item;
+padding-left: 20px;
+}
+
+.dms-learn-more-list ol li {
+counter-increment: item;
+margin-bottom: 10px;
+}
+
+.dms-learn-more-list ol li::before {
+content: counter(item) ".";
+color: #4CAF50;
+font-weight: bold;
+margin-right: 10px;
+}
+
+.dms-learn-more-cta {
+margin-top: 40px;
+}
+
+.dms-learn-more-cta-text {
+font-size: 20px;
+margin-bottom: 20px;
+color: #2c3e50;
+}
+
+.dms-learn-more-cta-button {
+padding: 12px 24px;
+font-size: 16px;
+background-color: #4CAF50;
+color: white;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+text-decoration: none;
+transition: background-color 0.3s ease;
+}
+
+.dms-learn-more-cta-button:hover {
+background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.dms-learn-more-title {
+    font-size: 28px;
+}
+
+.dms-learn-more-subtitle {
     font-size: 18px;
 }
 
-.blog-features-title,
-.blog-posts-title,
-.blog-cta-title {
-    font-size: 28px;
+.dms-learn-more-card-title {
+    font-size: 22px;
+}
+
+.dms-learn-more-card-description,
+.dms-learn-more-list li {
+    font-size: 14px;
+}
+
+.dms-learn-more-cta-text {
+    font-size: 18px;
 }
 }

@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Application DMS</title>
-  <link rel="stylesheet" href="{% static 'CSS/styles3.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/styles98.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/landingpage.css' %}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -23,7 +23,7 @@
         <ul class="nav-links">
             <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Jobs Available</a></li>
-            <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Jobs Applied For</a></li>
+            <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Track Jobs</a></li>
             <li><a href="{% url 'documents' %}"><i class="fas fa-folder-open"></i> Documents</a></li>
             <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
@@ -45,34 +45,116 @@
             <div class="blog-hero-container">
             <h1 class="blog-hero-title">Manage, Apply, Succeed</h1>
             <p class="blog-hero-subtitle">Streamline your digital management processes with our comprehensive platform.</p>
-            <a href="#features" class="blog-hero-cta">Learn More</a>
+            <a href="#learn-more" class="blog-hero-cta">Learn More</a>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="blog-features" id="features">
-            <div class="blog-features-container">
-            <h2 class="blog-features-title">Why Choose JOBDMS?</h2>
-            <div class="blog-features-grid">
-                <div class="blog-feature-card">
-                <i class="fas fa-file-alt blog-feature-icon"></i>
-                <h3 class="blog-feature-title">Efficient Form Handling</h3>
-                <p class="blog-feature-description">Easily create, manage, and process digital forms.</p>
-                </div>
-                <div class="blog-feature-card">
-                <i class="fas fa-briefcase blog-feature-icon"></i>
-                <h3 class="blog-feature-title">Job Application Management</h3>
-                <p class="blog-feature-description">Streamline your recruitment process with our job application tools.</p>
-                </div>
-                <div class="blog-feature-card">
-                <i class="fas fa-users blog-feature-icon"></i>
-                <h3 class="blog-feature-title">User Engagement</h3>
-                <p class="blog-feature-description">Enhance user interaction and engagement with our platform.</p>
-                </div>
+        <!-- Learn More Section -->
+        <section class="dms-learn-more" id="learn-more">
+            <div class="dms-learn-more-container">
+            <h2 class="dms-learn-more-title">Learn More About JobDMS</h2>
+            <p class="dms-learn-more-subtitle">Discover how JobDMS can revolutionize your job application management process.</p>
+
+            <!-- Overview -->
+            <div class="dms-learn-more-card">
+                <h3 class="dms-learn-more-card-title">What is JobDMS?</h3>
+                <p class="dms-learn-more-card-description">
+                JobDMS is a cutting-edge Document Management System designed specifically for job seekers and recruiters. It simplifies the process of organizing, tracking, and managing job applications, ensuring you never miss an opportunity.
+                </p>
             </div>
+
+            <!-- Key Features -->
+            <div class="dms-learn-more-card">
+                <h3 class="dms-learn-more-card-title">Key Features</h3>
+                <ul class="dms-learn-more-list">
+                <li><strong>Centralized Document Storage:</strong> Upload and store all your job-related documents in one secure location.</li>
+                <li><strong>Smart Search:</strong> Quickly find documents using advanced search filters.</li>
+                <li><strong>Application Tracking:</strong> Track the status of your job applications in real-time.</li>
+                <li><strong>Customizable Folders:</strong> Organize your documents into folders for easy access.</li>
+                <li><strong>Secure Cloud Storage:</strong> Your data is safe with our encrypted cloud storage.</li>
+                </ul>
+            </div>
+
+            <!-- Features Section -->
+            <section class="blog-features" id="features">
+                <div class="blog-features-container">
+                    <h2 class="blog-features-title">Why Choose JOBDMS?</h2>
+                    <div class="blog-features-grid">
+                        <div class="blog-feature-card">
+                            <i class="fas fa-file-alt blog-feature-icon"></i>
+                            <h3 class="blog-feature-title">Efficient Form Handling</h3>
+                            <p class="blog-feature-description">Easily create, manage, and process digital forms.</p>
+                        </div>
+                        <div class="blog-feature-card">
+                            <i class="fas fa-briefcase blog-feature-icon"></i>
+                            <h3 class="blog-feature-title">Job Application Management</h3>
+                            <p class="blog-feature-description">Streamline your recruitment process with our job application tools.</p>
+                        </div>
+                            <div class="blog-feature-card">
+                            <i class="fas fa-users blog-feature-icon"></i>
+                            <h3 class="blog-feature-title">Save Time</h3>
+                            <p class="blog-feature-description">No more digging through emails or folders to find documents.</p>
+                        </div>
+                        <div class="blog-feature-card">
+                            <i class="fas fa-users blog-feature-icon"></i>
+                            <h3 class="blog-feature-title">User Engagement</h3>
+                            <p class="blog-feature-description">Enhance user interaction and engagement with our platform.</p>
+                        </div>
+                        <div class="blog-feature-card">
+                            <i class="fas fa-users blog-feature-icon"></i>
+                            <h3 class="blog-feature-title">Stay Organized</h3>
+                            <p class="blog-feature-description">Keep all your job application materials in one place.</p>
+                        </div>
+                        <div class="blog-feature-card">
+                            <i class="fas fa-users blog-feature-icon"></i>
+                            <h3 class="blog-feature-title">Boost Productivity</h3>
+                            <p class="blog-feature-description">Focus on applying for jobs, not managing files.</p>
+                        </div>
+                        <div class="blog-feature-card">
+                            <i class="fas fa-users blog-feature-icon"></i>
+                            <h3 class="blog-feature-title">Data Security</h3>
+                            <p class="blog-feature-description">Your documents are protected with industry-standard encryption.</p>
+                        </div>
+                        <div class="blog-feature-card">
+                            <i class="fas fa-users blog-feature-icon"></i>
+                            <h3 class="blog-feature-title">User-Friendly Interface</h3>
+                            <p class="blog-feature-description">Designed for ease of use, even for non-tech-savvy users.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits -->
+            <!-- <div class="dms-learn-more-card">
+                <h3 class="dms-learn-more-card-title">Why Choose JobDMS?</h3>
+                <ul class="dms-learn-more-list">
+                <li><strong>Save Time:</strong> No more digging through emails or folders to find documents.</li>
+                <li><strong>Stay Organized:</strong> Keep all your job application materials in one place.</li>
+                <li><strong>Boost Productivity:</strong> Focus on applying for jobs, not managing files.</li>
+                <li><strong>Data Security:</strong> Your documents are protected with industry-standard encryption.</li>
+                <li><strong>User-Friendly Interface:</strong> Designed for ease of use, even for non-tech-savvy users.</li>
+                </ul>
+            </div> -->
+
+            <!-- Call-to-Action -->
+            <!-- <div class="dms-learn-more-cta">
+                <p class="dms-learn-more-cta-text">Ready to take control of your job application process?</p>
+                <a href="#signup" class="dms-learn-more-cta-button">Sign Up Now</a>
+            </div>
+            </div> -->
+
+            <!-- How It Works -->
+            <div class="dms-learn-more-card">
+                <h3 class="dms-learn-more-card-title">How It Works</h3>
+                <ol class="dms-learn-more-list">
+                <li><strong>Sign Up:</strong> Create your free JobDMS account in minutes.</li>
+                <li><strong>Upload Documents:</strong> Add your resumes, cover letters, and other job-related files.</li>
+                <li><strong>Organize:</strong> Use folders and tags to keep everything tidy.</li>
+                <li><strong>Track Applications:</strong> Monitor the status of your job applications in one dashboard.</li>
+                <li><strong>Stay Updated:</strong> Receive notifications for deadlines and updates.</li>
+                </ol>
             </div>
         </section>
-
 
         <!-- Call-to-Action Section -->
         <section class="blog-cta">
