@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application DMS</title>
+  <link rel="stylesheet" href="{% static 'CSS/styles3.css' %}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="arrowleft-button">
+                <i class="fas fa-arrow-left arrowleft"></i>
+            </button>
+            <div class="logo">JobDMS</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Jobs Available</a></li>
+            <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Jobs Applied For</a></li>
+            <li><a href="{% url 'documents' %}"><i class="fas fa-folder-open"></i> Documents</a></li>
+            <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Navigation Button for Smaller Screens -->
+        <button class="nav-toggle" id="nav-toggle">
+        <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Homepage Content -->
+        {% block dynamicpage %}
+        <section class="homepage" id="home">
+            <div class="container">
+                <h1>Welcome to JobDMS</h1>
+                <p>Manage your job applications efficiently and effectively.</p>
+                <button class="cta-button">Get Started</button>
+            </div>
+        </section>
+        {% endblock  %}
+    </main>
+
+  <script src="{% static 'JS/script1.js' %}"></script>
+</body>
+</html>
