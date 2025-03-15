@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Application DMS</title>
   <link rel="stylesheet" href="{% static 'CSS/styles3.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/landingpage.css' %}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -39,13 +40,59 @@
 
         <!-- Homepage Content -->
         {% block dynamicpage %}
-        <section class="homepage" id="home">
-            <div class="container">
-                <h1>Welcome to JobDMS</h1>
-                <p>Manage your job applications efficiently and effectively.</p>
-                <button class="cta-button">Get Started</button>
+        <!-- Hero Section -->
+        <section class="blog-hero">
+            <div class="blog-hero-container">
+            <h1 class="blog-hero-title">Manage, Apply, Succeed</h1>
+            <p class="blog-hero-subtitle">Streamline your digital management processes with our comprehensive platform.</p>
+            <a href="#features" class="blog-hero-cta">Learn More</a>
             </div>
         </section>
+
+        <!-- Features Section -->
+        <section class="blog-features" id="features">
+            <div class="blog-features-container">
+            <h2 class="blog-features-title">Why Choose JOBDMS?</h2>
+            <div class="blog-features-grid">
+                <div class="blog-feature-card">
+                <i class="fas fa-file-alt blog-feature-icon"></i>
+                <h3 class="blog-feature-title">Efficient Form Handling</h3>
+                <p class="blog-feature-description">Easily create, manage, and process digital forms.</p>
+                </div>
+                <div class="blog-feature-card">
+                <i class="fas fa-briefcase blog-feature-icon"></i>
+                <h3 class="blog-feature-title">Job Application Management</h3>
+                <p class="blog-feature-description">Streamline your recruitment process with our job application tools.</p>
+                </div>
+                <div class="blog-feature-card">
+                <i class="fas fa-users blog-feature-icon"></i>
+                <h3 class="blog-feature-title">User Engagement</h3>
+                <p class="blog-feature-description">Enhance user interaction and engagement with our platform.</p>
+                </div>
+            </div>
+            </div>
+        </section>
+
+
+        <!-- Call-to-Action Section -->
+        <section class="blog-cta">
+            <div class="blog-cta-container">
+            <h2 class="blog-cta-title">Get Started with JOBDMS Today</h2>
+            <p class="blog-cta-subtitle">Join thousands of users who are optimizing their digital management processes.</p>
+            <a href="#contact" class="blog-cta-button">Sign Up Now</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="blog-footer">
+            <div class="blog-footer-container">
+            <p class="blog-footer-text">&copy; 2023 JOBDMS. All rights reserved.</p>
+            <ul class="blog-footer-links">
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#terms">Terms of Service</a></li>
+            </ul>
+            </div>
+        </footer>
         {% endblock  %}
     </main>
 
