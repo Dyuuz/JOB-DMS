@@ -6,10 +6,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Application DMS</title>
-  <link rel="stylesheet" href="{% static 'CSS/styles98.css' %}">
-  <link rel="stylesheet" href="{% static 'CSS/landingpage.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/styles11.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/landingpage2.css' %}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
 </head>
 <body>
     <!-- Sidebar Navigation -->
@@ -21,13 +22,23 @@
             <div class="logo">JobDMS</div>
         </div>
         <ul class="nav-links">
+            {% if request.user.is_authenticated %}
             <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Jobs Available</a></li>
-            <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Track Jobs</a></li>
+            <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Track Applications</a></li>
             <li><a href="{% url 'documents' %}"><i class="fas fa-folder-open"></i> Documents</a></li>
             <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
             <li><a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            {% else %}
+            <li ><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li ><a href="" class="ordered-list" onclick="NoAuthUser(event)"><i class="fas fa-briefcase"></i> Jobs Available</a></li>
+            <li ><a href="" class="ordered-list" onclick="NoAuthUser(event)"><i class="fas fa-file-alt"></i> Track Applications</a></li>
+            <li ><a href="" class="ordered-list" onclick="NoAuthUser(event)"><i class="fas fa-folder-open"></i> Documents</a></li>
+            <li ><a href="" class="ordered-list" onclick="NoAuthUser(event)"><i class="fas fa-user"></i> Profile</a></li>
+            <li ><a href="" class="ordered-list" onclick="NoAuthUser(event)"><i class="fas fa-cog"></i> Settings</a></li>
+            <li ><a href="" ><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            {% endif %}
         </ul>
     </nav>
 
@@ -35,7 +46,7 @@
     <main class="main-content" id="main-content">
         <!-- Navigation Button for Smaller Screens -->
         <button class="nav-toggle" id="nav-toggle">
-        <i class="fas fa-bars"></i>
+        <i class="fas fa-bars iconmenu"></i>
         </button>
 
         <!-- Homepage Content -->
@@ -90,8 +101,8 @@
                             <h3 class="blog-feature-title">Job Application Management</h3>
                             <p class="blog-feature-description">Streamline your recruitment process with our job application tools.</p>
                         </div>
-                            <div class="blog-feature-card">
-                            <i class="fas fa-users blog-feature-icon"></i>
+                        <div class="blog-feature-card">
+                            <i class="fas fa-clock blog-feature-icon"></i>
                             <h3 class="blog-feature-title">Save Time</h3>
                             <p class="blog-feature-description">No more digging through emails or folders to find documents.</p>
                         </div>
@@ -101,22 +112,22 @@
                             <p class="blog-feature-description">Enhance user interaction and engagement with our platform.</p>
                         </div>
                         <div class="blog-feature-card">
-                            <i class="fas fa-users blog-feature-icon"></i>
+                            <i class="fas fa-folder blog-feature-icon"></i>
                             <h3 class="blog-feature-title">Stay Organized</h3>
                             <p class="blog-feature-description">Keep all your job application materials in one place.</p>
                         </div>
                         <div class="blog-feature-card">
-                            <i class="fas fa-users blog-feature-icon"></i>
+                            <i class="fas fa-tachometer-alt blog-feature-icon"></i>
                             <h3 class="blog-feature-title">Boost Productivity</h3>
                             <p class="blog-feature-description">Focus on applying for jobs, not managing files.</p>
                         </div>
                         <div class="blog-feature-card">
-                            <i class="fas fa-users blog-feature-icon"></i>
+                            <i class="fas fa-lock blog-feature-icon"></i>
                             <h3 class="blog-feature-title">Data Security</h3>
                             <p class="blog-feature-description">Your documents are protected with industry-standard encryption.</p>
                         </div>
                         <div class="blog-feature-card">
-                            <i class="fas fa-users blog-feature-icon"></i>
+                            <i class="fas fa-smile blog-feature-icon"></i>
                             <h3 class="blog-feature-title">User-Friendly Interface</h3>
                             <p class="blog-feature-description">Designed for ease of use, even for non-tech-savvy users.</p>
                         </div>
@@ -178,6 +189,11 @@
         {% endblock  %}
     </main>
 
-  <script src="{% static 'JS/script1.js' %}"></script>
+    <script src="{% static 'JS/script1.js' %}"></script>
+    <script src="{% static 'JS/NavMenu167.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 </body>
 </html>

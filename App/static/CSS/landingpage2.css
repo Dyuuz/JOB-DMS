@@ -42,6 +42,9 @@ background-color: #f4f4f4;
 .blog-features {
 padding: 80px 20px;
 background-color: white;
+border-radius: 10px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+margin-bottom: 20px;
 }
 
 .blog-features-container {

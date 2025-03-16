@@ -172,10 +172,12 @@ background-color: #45a049;
     background-color: #4CAF50;
     color: white;
     border: none;
+    width:50px;
+    height:50px;
     padding: 10px;
     cursor: pointer;
     z-index: 1000;
-    border-radius: 5px;
+    border-radius: 50%;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     transform: perspective(500px) rotateX(0deg) rotateY(0deg);
@@ -185,6 +187,10 @@ background-color: #45a049;
     background-color: #45a049;
     transform: perspective(500px) rotateX(10deg) rotateY(10deg);
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.iconmenu{
+    font-size: 18px;
 }
 
 /* Responsive Design */
@@ -212,4 +218,14 @@ background-color: #45a049;
     .sidebar-header{
         padding-left: 10px;
     }
+}
+
+/* Remove box shadow */
+.toast {
+    box-shadow: none !important;
+}
+
+/* Increase red color opacity for error toasts */
+.toast-error {
+    background-color: rgba(255, 0, 0, 0.867) !important; /* Adjust the alpha value (0.9) for opacity */
 }
