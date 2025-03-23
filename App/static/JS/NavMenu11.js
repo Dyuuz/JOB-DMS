@@ -12,15 +12,16 @@ toastr.options = {
   "extendedTimeOut": "1000",
   "showEasing": "swing",
   "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
+  "showMethod": "slideDown",
+  "hideMethod": "fadeOut",
 };
 
-function NoAuthUser(event, num) {
-    const navpage = document.querySelector(`.ordered-list-${num}`).getAttribute('data-cnt');
-    // const navpage = String(navbtn.getAttribute('data-cnt'));
-
+function NoAuthUser(event, id) {
+    const navpage = document.querySelector(`.ordered-list-${id}`).getAttribute('data-cnt');
     toastr.options.preventDuplicates = true;
+    toastr.clear();
+    // toastr.options.progressBar = true;
+
 
     if (navpage === 'jobs-available') {
       toastr.error("Please login to access available jobs.");

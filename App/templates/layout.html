@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Application DMS</title>
   <link rel="stylesheet" href="{% static 'CSS/styles76.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/application1.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/landingpage2.css' %}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -33,8 +34,9 @@
             {% else %}
             <li ><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
             <li ><a href="" class="ordered-list-1" onclick="NoAuthUser(event, 1)" data-cnt="jobs-available"><i class="fas fa-briefcase"></i> Jobs Available</a></li>
+            <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Jobs Available</a></li>
             <li ><a href="" class="ordered-list-2" onclick="NoAuthUser(event, 2)" data-cnt="track-application"><i class="fas fa-file-alt"></i> Track Applications</a></li>
-            <li ><a href="" class="ordered-list-3" onclick="NoAuthUser(event,3)" data-cnt="documents"><i class="fas fa-folder-open"></i> Documents</a></li>
+            <li ><a href="" class="ordered-list-3" onclick="NoAuthUser(event, 3)" data-cnt="documents"><i class="fas fa-folder-open"></i> Documents</a></li>
             <li ><a href="" class="ordered-list-4" onclick="NoAuthUser(event, 4)" data-cnt="profile"><i class="fas fa-user"></i> Profile</a></li>
             <li ><a href="" class="ordered-list-5" onclick="NoAuthUser(event, 5)" data-cnt="settings"><i class="fas fa-cog"></i> Settings</a></li>
             <li ><a href="" ><i class="fas fa-sign-in-alt"></i> Login</a></li>
@@ -186,11 +188,13 @@
             </ul>
             </div>
         </footer>
-        {% endblock  %}
+        {% endblock %}
     </main>
 
     <script src="{% static 'JS/script1.js' %}"></script>
-    <script src="{% static 'JS/NavMenu22.js' %}"></script>
+    <script src="{% static 'JS/NavMenu11.js' %}"></script>
+    <script src="{% static 'JS/application1.js' %}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
