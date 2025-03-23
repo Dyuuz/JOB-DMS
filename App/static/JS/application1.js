@@ -69,6 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!isValid) {
             toastr.options.preventDuplicates = true;
+            toastr.options.timeOut = "2000";
+            toastr.options.showEasing = "swing";
+            toastr.options.hideEasing = "linear";
             toastr.clear();
             toastr.error("Please fill out all fields before proceeding.");
             // alert();
