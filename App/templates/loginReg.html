@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+<div class="loginRegBody">
+    <div class="auth-container">
+        <!-- Tabs for Login/Register -->
+        <div class="auth-header">
+        <div class="auth-tab active" id="login-tab">Login</div>
+        <div class="auth-tab" id="register-tab">Register</div>
+        </div>
+
+        <!-- Forms Container -->
+        <div class="auth-forms">
+        <!-- Login Form -->
+        <div class="auth-form active" id="login-form">
+            <h2 class="form-title">Welcome Back</h2>
+            <form>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember" class="remember-me-text">Remember me</label>
+                    </div>
+                    <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
+            </form>
+
+            <div class="social-login">
+            <p>Or login with</p>
+            <div class="social-icons">
+                <div class="social-icon facebook">
+                <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-icon google">
+                <i class="fab fa-google"></i>
+                </div>
+                <div class="social-icon linkedin">
+                <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+            </div>
+
+            <div class="switch-form">
+            Don't have an account? <a href="#" id="switch-to-register">Register here</a>
+            </div>
+        </div>
+
+        <!-- Register Form -->
+        <div class="auth-form" id="register-form">
+            <h2 class="form-title">Create Account</h2>
+            <form>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="auth-btn">Register</button>
+            </form>
+
+            <div class="social-login">
+            <p>Or register with</p>
+            <div class="social-icons">
+                <div class="social-icon facebook">
+                <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-icon google">
+                <i class="fab fa-google"></i>
+                </div>
+                <div class="social-icon linkedin">
+                <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+            </div>
+
+            <div class="switch-form">
+            Already have an account? <a href="#" id="switch-to-login">Login here</a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock dynamicpage %}

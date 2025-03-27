@@ -48,3 +48,10 @@ class SettingsView(View):
     def get(self, request, *args, **kwargs):
 
         return render(request, self.template_name)
+
+class LoginRegView(View):
+    template_name = 'loginReg.html'
+
+    def get(self, request, *args, **kwargs):
+
+        return render(request, self.template_name)

@@ -6,9 +6,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Application DMS</title>
-  <link rel="stylesheet" href="{% static 'CSS/styles76.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/styles13.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/application1.css' %}">
-  <link rel="stylesheet" href="{% static 'CSS/landingpage2.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/landingpage45.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/loginReg.css' %}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
@@ -39,9 +40,23 @@
             <li ><a href="" class="ordered-list-3" onclick="NoAuthUser(event, 3)" data-cnt="documents"><i class="fas fa-folder-open"></i> Documents</a></li>
             <li ><a href="" class="ordered-list-4" onclick="NoAuthUser(event, 4)" data-cnt="profile"><i class="fas fa-user"></i> Profile</a></li>
             <li ><a href="" class="ordered-list-5" onclick="NoAuthUser(event, 5)" data-cnt="settings"><i class="fas fa-cog"></i> Settings</a></li>
-            <li ><a href="" ><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li ><a href="{% url 'auth' %}" ><i class="fas fa-sign-in-alt"></i> Login</a></li>
             {% endif %}
         </ul>
+        <div class="nav-foot">
+            Follow on Socials
+            <div class="social-icons">
+                <div class="social-icon twitter">
+                <i class="fab fa-twitter"></i>
+                </div>
+                <div class="social-icon google">
+                <i class="fab fa-instagram"></i>
+                </div>
+                <div class="social-icon linkedin">
+                <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+        </div>
     </nav>
 
     <!-- Main Content -->
@@ -191,8 +206,9 @@
         {% endblock %}
     </main>
 
-    <script src="{% static 'JS/script1.js' %}"></script>
+    <script src="{% static 'JS/script9.js' %}"></script>
     <script src="{% static 'JS/NavMenu11.js' %}"></script>
+    <script src="{% static 'JS/loginReg.js' %}"></script>
     <script src="{% static 'JS/application1.js' %}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

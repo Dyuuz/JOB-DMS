@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from App.views import HomeView, JobsAvailableView, JobsAppliedView, DocumentView, ProfileView, SettingsView
+from App.views import HomeView, JobsAvailableView, JobsAppliedView, DocumentView, ProfileView, SettingsView, LoginRegView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -10,6 +10,7 @@ urlpatterns = [
     path('documents', DocumentView.as_view(), name='documents'),
     path('profile', ProfileView.as_view(), name='profile'),
     path('settings', SettingsView.as_view(), name='settings'),
+    path('auth', LoginRegView.as_view(), name='auth'),
 ]
 
 if settings.DEBUG:

@@ -10,10 +10,7 @@ navToggle.addEventListener('click', () => {
 
 // Close Sidebar When Clicking Outside on Smaller Screens
 document.addEventListener('click', (event) => {
-  const isClickInsideSidebar = sidebar.contains(event.target);
-  const isClickOnNavToggle = navToggle.contains(event.target);
-
-  if (!isClickInsideSidebar && !isClickOnNavToggle && window.innerWidth <= 768) {
+  if (!sidebar.contains(event.target) && window.innerWidth <= 768) {
     sidebar.classList.remove('active');
     mainContent.classList.remove('active');
   }
