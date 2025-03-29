@@ -11,8 +11,9 @@ class Client(AbstractUser):
 class DocumentForm(models.Model):
     document = models.FileField(upload_to='documents/')
     description = models.TextField()
+    description_DUP = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.description
+        return self.pk

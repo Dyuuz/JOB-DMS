@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,6 +79,16 @@ TEMPLATES = [
         },
     },
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Tech Scape",
+    "site_header": "Tech Scape Admin",
+    "site_brand": "Tech Scape",
+    "welcome_sign": "Welcome to Tech Scape",
+    "copyright": "Tech Scape",
+    "search_model": "auth.User",
+    "user_avatar": None,
+}
 
 WSGI_APPLICATION = 'DocumentManagementSystem.wsgi.application'
 
@@ -131,7 +142,7 @@ AUTH_USER_MODEL = 'App.Client'
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
+STATICFILES_DIRS = [BASE_DIR / 'App/static']
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'App/media/')
 
