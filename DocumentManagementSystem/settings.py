@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -81,9 +82,9 @@ TEMPLATES = [
 ]
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Tech Scape",
-    "site_header": "Tech Scape Admin",
-    "site_brand": "Tech Scape",
+    "site_title": "Digital Management System",
+    "site_header": "Digital Management System",
+    "site_brand": "Digital Management System",
     "welcome_sign": "Welcome to Tech Scape",
     "copyright": "Tech Scape",
     "search_model": "auth.User",
@@ -97,12 +98,13 @@ WSGI_APPLICATION = 'DocumentManagementSystem.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
 
+AUTH_USER_MODEL = 'App.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -133,9 +135,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-AUTH_USER_MODEL = 'App.Client'
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
