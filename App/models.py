@@ -1,19 +1,103 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
-class Client(AbstractUser):
-    is_verified = models.BooleanField(default=False)
+# Custom User model with roles for job seekers and companies
+class CustomUser(AbstractUser):
+    ROLE_CHOICES = (
+        ('user', 'Job Seeker'),
+        ('company', 'Company'),
+    )
+    full_name =  models.CharField(max_length=255)
+    username = models.CharField(max_length=255, unique=True, blank=True, null=True)
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
+
+    def is_company(self):
+        return self.role == 'company'
+
+    def is_user(self):
+        return self.role == 'user'
 
     def __str__(self):
-        return self.username
+        return self.full_name
 
-class DocumentForm(models.Model):
-    document = models.FileField(upload_to='documents/')
+# Company profile model for additional company details
+class CompanyProfile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    company_name = models.CharField(max_length=255)
+    industry = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.company_name
+
+# User profile model for job seekers' additional information
+class UserProfile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=20, blank=True)
+    bio = models.CharField(max_length=255)
+    availability = models.BooleanField(default=True)
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
+    country = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.user.username
+
+# Company model to store company details
+class Company(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)  # Link to CustomUser (for Company role)
+    email = models.EmailField(unique=True)
+    address = models.TextField()
+    country = models.CharField(max_length=255)
+    industry = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username  # Linked to user
+
+# Job model for storing job listings posted by companies
+class Job(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='jobs')
+    title = models.CharField(max_length=255)
     description = models.TextField()
-    description_DUP = models.TextField(blank=True, null=True)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    location = models.CharField(max_length=255)
+    job_type = models.CharField(max_length=50)
+    deadline = models.DateField()
+    is_public = models.BooleanField(default=False)  # Visibility control
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.pk
+        return f"{self.title} at {self.company.user.username}"
+
+# Application model for job applications submitted by job seekers
+class Application(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='applications')  # Link to CustomUser
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
+    status = models.CharField(max_length=50, default='pending')
+    resume_version = models.FileField(upload_to='resume_versions/', null=True, blank=True)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.job.title}"
+
+# Document model for storing documents uploaded by users and companies
+class Document(models.Model):
+    owner_user = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
+    owner_company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='documents')  # Linked to Job model
+    name = models.CharField(max_length=255)
+    file_type = models.CharField(max_length=50)
+    file = models.FileField(upload_to='documents/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+# Feedback model for company feedback on applications
+class Feedback(models.Model):
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='feedbacks')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback for {self.application.user.full_name}"

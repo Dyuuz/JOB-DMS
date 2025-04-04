@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.views import View
-from .models import Client
+from .models import CustomUser, CompanyProfile, UserProfile, Company, Job, Application, Feedback
 
 
 # Create your views here.
