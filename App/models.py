@@ -23,12 +23,12 @@ class CustomUser(AbstractUser):
 # Company profile model for additional company details
 class CompanyProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    company_name = models.CharField(max_length=255)
+    company_id = models.CharField(max_length=255)
     industry = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.company_name
+        return self.user.full_name
 
 # User profile model for job seekers' additional information
 class UserProfile(models.Model):
@@ -40,7 +40,7 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.user.username
+        return self.user.full_name
 
 # Company model to store company details
 class Company(models.Model):
@@ -52,7 +52,7 @@ class Company(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username  # Linked to user
+        return self.user.full_name  # Linked to user
 
 # Job model for storing job listings posted by companies
 class Job(models.Model):
@@ -63,10 +63,11 @@ class Job(models.Model):
     job_type = models.CharField(max_length=50)
     deadline = models.DateField()
     is_public = models.BooleanField(default=False)  # Visibility control
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.title} at {self.company.user.username}"
+        return f"{self.title} at {self.company.user.full_name}"
 
 # Application model for job applications submitted by job seekers
 class Application(models.Model):
@@ -77,7 +78,7 @@ class Application(models.Model):
     submitted_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.job.title}"
+        return f"{self.user.full_name} - {self.job.title}"
 
 # Document model for storing documents uploaded by users and companies
 class Document(models.Model):
