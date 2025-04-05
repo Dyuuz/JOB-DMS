@@ -24,7 +24,7 @@ class CustomUser(AbstractUser):
 class CompanyProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     company_id = models.CharField(max_length=255)
-    industry = models.CharField(max_length=100)
+    industry = models.CharField(max_length=100, blank=True)
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -34,7 +34,17 @@ class CompanyProfile(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, blank=True)
-    bio = models.CharField(max_length=255)
+    DOB = models.DateField(null=True, blank=True)
+    street_address = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    state = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=100, blank=True)
+    highest_education_level = models.CharField(max_length=100, blank=True)
+    occupation = models.CharField(max_length=100, blank=True)
+    years_of_experience = models.IntegerField(null=True, blank=True)
+    skills = models.TextField(blank=True, null=True)
+    certifications = models.TextField(blank=True, null=True)
+    bio = models.TextField(max_length=255)
     availability = models.BooleanField(default=True)
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     country = models.CharField(max_length=255)
