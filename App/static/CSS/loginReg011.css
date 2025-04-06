@@ -239,7 +239,7 @@ font-weight: 600;
     display: flex;
     color: rgb(231, 20, 20);
     font-size: 14px;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     /* background-color: #0077b5; */
     align-self:flex-start;
 }
