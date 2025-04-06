@@ -235,6 +235,20 @@ font-weight: 600;
     color: #555;
     transition: all 0.3s ease;
 }
+.error-messages{
+    display: flex;
+    color: rgb(231, 20, 20);
+    font-size: 14px;
+    margin-top: 5px;
+    /* background-color: #0077b5; */
+    align-self:flex-start;
+}
+.error-messages li{
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    align-self: flex-start;
+}
 
 @media (max-width: 480px) {
 .auth-container {

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{% static 'CSS/styles13.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/application1.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/landingpage45.css' %}">
-  <link rel="stylesheet" href="{% static 'CSS/loginReg67.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/loginReg011.css' %}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
@@ -189,7 +189,7 @@
             <div class="blog-cta-container">
             <h2 class="blog-cta-title">Get Started with JOBDMS Today</h2>
             <p class="blog-cta-subtitle">Join thousands of users who are optimizing their digital management processes.</p>
-            <a href="#contact" class="blog-cta-button">Sign Up Now</a>
+            <a href="{% url 'auth-register' %}" class="blog-cta-button">Sign Up Now</a>
             </div>
         </section>
 
