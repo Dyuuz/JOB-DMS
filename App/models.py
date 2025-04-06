@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Custom User model with roles for job seekers and companies
 class CustomUser(AbstractUser):
     ROLE_CHOICES = (
-        ('user', 'Job Seeker'),
+        ('user', 'Jobholder'),
         ('company', 'Company'),
     )
     full_name =  models.CharField(max_length=255)

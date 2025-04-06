@@ -5,37 +5,22 @@
     <div class="auth-container">
         <!-- Tabs for Login/Register -->
         <div class="auth-header">
-            <div class="auth-tab active" id="login-tab">Register</div>
-            <!-- <div class="auth-tab" id="register-tab">Register</div> -->
+            <div class="auth-tab active" id="login-tab">Login</div>
         </div>
 
         <!-- Forms Container -->
         <div class="auth-forms">
         <!-- Login Form -->
         <div class="auth-form active" id="login-form">
-            <h2 class="form-title">Create Account</h2>
-            <form method="post">
-                {% csrf_token %}
-
-                <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    {{ form.full_name }}
-                </div>
+            <h2 class="form-title">Welcome Back</h2>
+            <form>
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    {{ form.email }}
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-user-tag"></i>
-                    {{ form.role }}
+                    <input type="email" placeholder="Email" required>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    {{ form.password1 }}
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    {{ form.password2 }}
+                    <input type="password" placeholder="Password" required>
                 </div>
                 {% if form.errors %}
                     <ul class="error-messages">
@@ -44,11 +29,20 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
-                <button type="submit" class="auth-btn">Register</button>
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember" class="remember-me-text">Remember me</label>
+                    </div>
+                    <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
             </form>
 
             <div class="social-login">
-            <p>Or register with</p>
+            <p>Or login with</p>
             <div class="social-icons">
                 <div class="social-icon facebook">
                 <i class="fab fa-facebook-f"></i>
@@ -63,14 +57,13 @@
             </div>
 
             <div class="switch-form">
-            Already have an account? <a href="{% url 'auth-login' %}" id="switch-to-login">Login here</a>
+            Don't have an account? <a href="{% url 'auth-register' %}" id="switch-to-register">Register here</a>
             </div>
         </div>
 
         <!-- Register Form -->
         <div class="auth-form" id="register-form">
 
-        </div>
         </div>
     </div>
 </div>
