@@ -40,10 +40,8 @@ class LoginForm(forms.Form):
         widget=forms.EmailInput(attrs={'placeholder': 'Enter email'})
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Enter password', })
+        widget=forms.PasswordInput(attrs={'placeholder': 'Enter password'})
     )
-    class Meta:
-        fields = ['email', 'password']
 
     def clean(self):
         cleaned_data = super().clean()
@@ -51,10 +49,10 @@ class LoginForm(forms.Form):
         password = cleaned_data.get('password')
 
         if email and password:
-            user = authenticate(email=email, password=password)
-            if not user:
-                raise forms.ValidationError("Invalid email or password")
-            self.user = user
+            # Authenticate the user using email as the username
+            self.user = authenticate(username=email, password=password)
+            if not self.user:
+                raise forms.ValidationError('Invalid email or password.')
         return cleaned_data
 
     def get_user(self):

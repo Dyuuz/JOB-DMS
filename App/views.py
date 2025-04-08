@@ -7,7 +7,7 @@ from .models import CustomUser, CompanyProfile, UserProfile, Company, Job, Appli
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 
@@ -80,21 +80,16 @@ class RegisterView(FormView):
         # Pass form errors to the template
         return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
 
-class LoginView(View):
+class LoginView(FormView):
+    form_class = LoginForm
     template_name = 'Login.html'  # Replace with your login template path
+    success_url = reverse_lazy('home')  # Redirect to home page after successful login
 
-    def get(self, request, *args, **kwargs):
-        # Render the login form
-        return render(request, self.template_name)
+    def form_valid(self, form):
+        # Log in the user
+        login(self.request, form.get_user())
+        return super().form_valid(form)
 
-    def post(self, request, *args, **kwargs):
-        # Handle login logic
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('home')  # Redirect to home page after successful login
-        else:
-            # Invalid credentials, pass error to the template
-            return render(request, self.template_name, {'error': 'Invalid username or password'})
+    def form_invalid(self, form):
+        # Pass form errors to the template
+        return self.render_to_response(self.get_context_data(form=form, errors=form.errors))

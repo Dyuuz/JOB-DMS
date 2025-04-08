@@ -13,14 +13,15 @@
         <!-- Login Form -->
         <div class="auth-form active" id="login-form">
             <h2 class="form-title">Welcome Back</h2>
-            <form>
+            <form method="post">
+                {% csrf_token %}
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="Email" required>
+                    {{ form.email }}
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Password" required>
+                    {{ form.password }}
                 </div>
                 {% if form.errors %}
                     <ul class="error-messages">
