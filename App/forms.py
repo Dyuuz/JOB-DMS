@@ -52,7 +52,7 @@ class LoginForm(forms.Form):
             # Authenticate the user using email as the username
             self.user = authenticate(username=email, password=password)
             if not self.user:
-                raise forms.ValidationError('Invalid email or password.')
+                self.add_error(None, 'Invalid login credentials')
         return cleaned_data
 
     def get_user(self):

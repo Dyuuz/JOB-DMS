@@ -4,7 +4,7 @@ from App.models import CustomUser, CompanyProfile, UserProfile, Company, Job, Ap
 
 # Register your models here.
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('full_name',)
+    list_display = ('full_name','email',)
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(CompanyProfile)

@@ -37,12 +37,19 @@
                     <i class="fas fa-lock"></i>
                     {{ form.password2 }}
                 </div>
-                {% if form.errors %}
+                <!-- {% if form.errors %}
                     <ul class="error-messages">
                         {% for field, errors in form.errors.items %}
                             <li>{{ field }}: {{ errors|join:", " }}</li>
                         {% endfor %}
                     </ul>
+                {% endif %} -->
+                {% if form.errors %}
+                <!-- <div class="error-mess"> -->
+                    {% for field, errors in form.errors.items %}
+                        <h2 class="error-response">{{ errors|join:", " }}</h2>
+                    {% endfor %}
+                <!-- </div> -->
                 {% endif %}
                 <button type="submit" class="auth-btn">Register</button>
             </form>

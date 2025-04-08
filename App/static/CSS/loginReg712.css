@@ -235,19 +235,21 @@ font-weight: 600;
     color: #555;
     transition: all 0.3s ease;
 }
-.error-messages{
+.error-mess{
     display: flex;
     color: rgb(231, 20, 20);
-    font-size: 14px;
+    width: fit-content;
     /* margin-top: 5px; */
-    /* background-color: #0077b5; */
-    align-self:flex-start;
+    /* background-color: #7acbf6; */
+    /* padding-left: 10px; */
+    padding: 0px;
 }
-.error-messages li{
-    display: flex;
-    text-decoration: none;
-    list-style: none;
-    align-self: flex-start;
+.error-response {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(231, 20, 20);
+    font-style: normal;
+    padding: 0px;
 }
 
 @media (max-width: 480px) {

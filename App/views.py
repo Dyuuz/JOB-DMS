@@ -62,7 +62,7 @@ class LogoutView(View):
 
 class RegisterView(FormView):
     form_class = CustomUserCreationForm
-    template_name = 'loginReg.html'  # Replace with your template path
+    template_name = 'loginReg.html'
     success_url = reverse_lazy('auth-login')  # Redirect to login page after successful signup
 
     def form_valid(self, form):
@@ -82,7 +82,7 @@ class RegisterView(FormView):
 
 class LoginView(FormView):
     form_class = LoginForm
-    template_name = 'Login.html'  # Replace with your login template path
+    template_name = 'Login.html'
     success_url = reverse_lazy('home')  # Redirect to home page after successful login
 
     def form_valid(self, form):
