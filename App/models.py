@@ -55,7 +55,7 @@ class UserProfile(models.Model):
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     ready_to_work = models.BooleanField(default=True)
 
-    bio = models.TextField(max_length=255)
+    bio = models.TextField(max_length=255, blank=True, null=True)
     skills = models.TextField(blank=True, null=True)
     certifications = models.TextField(blank=True, null=True)
 

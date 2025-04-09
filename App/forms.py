@@ -1,7 +1,7 @@
 # forms.py
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser
+from .models import CustomUser, UserProfile
 from django.contrib.auth import authenticate
 
 class CustomUserCreationForm(UserCreationForm):
@@ -57,3 +57,29 @@ class LoginForm(forms.Form):
 
     def get_user(self):
         return getattr(self, 'user', None)
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [
+            'phone', 'DOB', 'company_name', 'job_title', 'start_date', 'end_date',
+            'employment_type', 'highest_education_level', 'work_field', 'work_experience',
+            'resume', 'ready_to_work', 'bio', 'skills', 'certifications'
+        ]
+        widgets = {
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter phone number'}),
+            'DOB': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'company_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'job_title': forms.TextInput(attrs={'class': 'form-control'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'employment_type': forms.Select(attrs={'class': 'form-control'}),
+            'highest_education_level': forms.TextInput(attrs={'class': 'form-control'}),
+            'work_field': forms.TextInput(attrs={'class': 'form-control'}),
+            'work_experience': forms.NumberInput(attrs={'class': 'form-control'}),
+            'resume': forms.FileInput(attrs={'class': 'form-control'}),
+            'ready_to_work': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'skills': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+            'certifications': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+        }

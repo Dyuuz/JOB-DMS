@@ -5,9 +5,9 @@ from rest_framework import status
 from django.views import View
 from .models import CustomUser, CompanyProfile, UserProfile, Company, Job, Application, Feedback
 from django.urls import reverse_lazy
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm, LoginForm
+from .forms import CustomUserCreationForm, LoginForm, UserProfileForm
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -42,27 +42,29 @@ class DocumentView(View):
 
         return render(request, self.template_name)
 
-class ProfileView(View):
+class ProfileView(UpdateView):
+    model = UserProfile
+    form_class = UserProfileForm
     template_name = 'Profile.html'
+    success_url = reverse_lazy('profile')
 
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            if request.user.is_company():
-                company_role = True
-            else:
-                company_role = False
-
+    def get_object(self, queryset=None):
+        # Return the profile for the currently logged-in user
+        if self.request.user.is_authenticated:
             try:
-                user_profile = UserProfile.objects.get(user=request.user)
-                # Check if the user is a company or a job seeker
-
-                context = {'user_profile': user_profile, 'company_role': company_role}
+                return UserProfile.objects.get(user=self.request.user)
             except UserProfile.DoesNotExist:
-                context = {'company_role': company_role}
-        else:
-            return redirect('auth-login')  # Redirect to login if user is not authenticated
+                return None
+        return redirect('auth-login')
 
-        return render(request, self.template_name, context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['company_role'] = self.request.user.is_company() if self.request.user.is_authenticated else False
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Ensure the profile is linked
+        return super().form_valid(form)
 
 class SettingsView(View):
     template_name = 'Settings.html'
