@@ -42,10 +42,10 @@ class DocumentView(View):
 
         return render(request, self.template_name)
 
-class ProfileView(UpdateView):
+class ProfileUpdateView(UpdateView):
     model = UserProfile
     form_class = UserProfileForm
-    template_name = 'Profile.html'
+    template_name = 'ProfileUpdate.html'
     success_url = reverse_lazy('profile')
 
     def get_object(self, queryset=None):
@@ -60,6 +60,7 @@ class ProfileView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['company_role'] = self.request.user.is_company() if self.request.user.is_authenticated else False
+        context['user_profile'] = self.get_object()
         return context
 
     def get_form_kwargs(self):
@@ -75,6 +76,22 @@ class ProfileView(UpdateView):
     def form_invalid(self, form):
         # Pass form errors to the template
         return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
+
+class ProfileView(View):
+    template_name = 'Profile.html'
+
+    def get(self,  request, *args, **kwargs):
+        if request.user.is_authenticated:
+            try:
+                user_profile = UserProfile.objects.filter(user=request.user).first()
+                company_role = request.user.is_company() if request.user.is_authenticated else False
+
+                if not user_profile:
+                    return redirect('profile-update')
+
+                return render(request, self.template_name, locals())
+            except UserProfile.DoesNotExist:
+                return redirect('profile-update')
 
 class SettingsView(View):
     template_name = 'Settings.html'

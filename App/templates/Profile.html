@@ -10,142 +10,16 @@
             <p>Start Date: {{ company_role.description }}</p>
         {% else %}
         <div class="profile-container">
-            <h2>{{ user_profile.name }}</h2>
-            <p>Email: {{ user_profile.email }}</p>
+            <h2>{{ user_profile.user.full_name }}</h2>
+            <p>Email: {{ user_profile.user.email }}</p>
             <p>Phone: {{ user_profile.phone }}</p>
+            <p>DOB: {{ user_profile.DOB }}</p>
+            <p>Work Field: {{ user_profile.work_field }}</p>
+            <p>Bio: {{ user_profile.bio }}</p>
+            <p>Skills: {{ user_profile.skills }}</p>
+
         </div>
-        {% endif %}
-    {% else %}
-        {% if company_role %}
-        <div class="company-role-form">
-            <h2>Company Role Information</h2>
-            <form method="post">
-                {% csrf_token %}
-                <label for="role-name">Role Name:</label>
-                <input type="text" id="role-name" name="role_name" class="input-field" placeholder="Enter role name" required>
-
-                <label for="department">Department:</label>
-                <input type="text" id="department" name="department" class="input-field" placeholder="Enter department" required>
-
-                <label for="responsibilities">Responsibilities:</label>
-                <textarea id="responsibilities" name="responsibilities" class="input-field" placeholder="List responsibilities" required></textarea>
-
-                <label for="start-date">Start Date:</label>
-                <input type="date" id="start-date" name="start_date" class="input-field" required>
-
-                <label for="end-date">End Date (if applicable):</label>
-                <input type="date" id="end-date" name="end_date" class="input-field">
-
-                <div class="button-container">
-                    <button type="submit" class="submit-btn">Save Role</button>
-                </div>
-            </form>
-        </div>
-        {% else %}
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-body">
-                <div class="form-container">
-                    <!-- Progress Bar -->
-                    <div class="progress-bar">
-                        <div class="progress" id="progress"></div>
-                    </div>
-
-                    <!-- Page 1 -->
-                    <div class="form-page page-1 active">
-                        <h2>Complete your profile</h2>
-                        <label for="name">Full Name:</label>
-                        {{ form.existing_full_name }}
-
-                        <label for="email">Email Address:</label>
-                        {{ form.existing_email }}
-
-                        <label for="phone">Phone Number:</label>
-                        {{ form.phone }}
-
-                        <label for="dob">Date of Birth:</label>
-                        {{ form.DOB }}
-
-                        <div class="button-container">
-                            <button class="next-btn">Next</button>
-                        </div>
-                    </div>
-
-                    <!-- Page 2 -->
-                    <div class="form-page page-2">
-                        <h2>Most Recent Work Experience</h2>
-                        <label for="company">Company Name:</label>
-                        {{ form.company_name }}
-
-                        <label for="job-title">Job Title:</label>
-                        {{ form.job_title }}
-
-                        <label for="start-date">Start Date:</label>
-                        {{ form.start_date }}
-
-                        <label for="start-date">End Date:</label>
-                        {{ form.end_date }}
-
-                        <label for="employment-type">Employment Type:</label>
-                        {{ form.employment_type }}
-
-                        <div class="button-container">
-                            <button class="prev-btn">Previous</button>
-                            <button class="next-btn">Next</button>
-                        </div>
-                    </div>
-
-                    <!-- Page 3 -->
-                    <div class="form-page page-3">
-                        <h2>Education & Employment</h2>
-                        <label for="education">Highest Education Level:</label>
-                        {{ form.highest_education_level }}
-
-                        <label for="occupation">Work field:</label>
-                        {{ form.job_title }}
-
-                        <label for="experience">Work Experience:</label>
-                        {{ form.work_experience }}
-
-                        <label for="resume">Upload Resume:</label>
-                        {{ form.resume }}
-
-                        <label for="ready-to-work">Ready to Work:</label>
-                        {{ form.ready_to_work }}
-
-                        <div class="button-container">
-                            <button class="prev-btn">Previous</button>
-                            <button class="next-btn">Next</button>
-                        </div>
-                    </div>
-
-                    <!-- Page 4 -->
-                    <div class="form-page page-4">
-                        <h2>Additional Information</h2>
-                        <label for="comments">Bio:</label>
-                        {{ form.bio }}
-
-                        <label for="skills">Skills:</label>
-                        {{ form.skills }}
-
-                        <label for="certifications">Certifications:</label>
-                        {{ form.certifications }}
-
-                        <div class="button-container">
-                            <button class="prev-btn">Previous</button>
-                            <button class="submit-btn">Submit</button>
-                        </div>
-                    </div>
-
-                    <!-- Page Number Indicator -->
-                    <div class="page-indicator">
-                        Page <span id="current-page">1</span> of <span id="total-pages">4</span>
-                    </div>
-                </div>
-
-                <script src="script.js"></script>
-            </div>
-        </form>
+        <button><a href="{% url 'profile-update' %}">Edit Profile</a></button>
         {% endif %}
     {% endif %}
 {% endblock dynamicpage %}

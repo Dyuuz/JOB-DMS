@@ -72,7 +72,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = [
-            'existing_full_name', 'existing_email','phone', 'DOB', 'company_name', 'job_title', 'start_date', 'end_date',
+            'existing_full_name','phone', 'DOB', 'company_name', 'job_title', 'start_date', 'end_date',
             'employment_type', 'highest_education_level', 'work_field', 'work_experience',
             'resume', 'ready_to_work', 'bio', 'skills', 'certifications'
         ]
@@ -89,7 +89,7 @@ class UserProfileForm(forms.ModelForm):
             'work_experience': forms.NumberInput(attrs={'class': 'input-field', 'placeholder': 'Enter work experience'}),
             'resume': forms.FileInput(attrs={'class': 'input-field', 'placeholder': 'Upload resume'}),
             'ready_to_work': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Check if ready to work'}),
-            'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter bio'}),
+            'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter career summary'}),
             'skills': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter skills'}),
             'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications'}),
         }
