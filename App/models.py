@@ -55,7 +55,7 @@ class UserProfile(models.Model):
     end_date = models.DateField(null=True, blank=True)
     employment_type = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE, blank=True)
 
-    highest_education_level = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE, blank=True)
+    highest_education_level = models.CharField(max_length=20, choices=EDUCATION_LEVEL, blank=True)
     work_field = models.CharField(max_length=100, blank=True)
     work_experience = models.IntegerField(null=True, blank=True)
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
