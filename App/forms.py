@@ -59,27 +59,45 @@ class LoginForm(forms.Form):
         return getattr(self, 'user', None)
 
 class UserProfileForm(forms.ModelForm):
+    # This is a non-model field
+    existing_email = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'readonly': 'readonly',
+        'class': 'input-field',
+    }))
+    existing_full_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'readonly': 'readonly',
+        'class': 'input-field',
+    }))
+
     class Meta:
         model = UserProfile
         fields = [
-            'phone', 'DOB', 'company_name', 'job_title', 'start_date', 'end_date',
+            'existing_full_name', 'existing_email','phone', 'DOB', 'company_name', 'job_title', 'start_date', 'end_date',
             'employment_type', 'highest_education_level', 'work_field', 'work_experience',
             'resume', 'ready_to_work', 'bio', 'skills', 'certifications'
         ]
         widgets = {
-            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter phone number'}),
-            'DOB': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'company_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'job_title': forms.TextInput(attrs={'class': 'form-control'}),
-            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'employment_type': forms.Select(attrs={'class': 'form-control'}),
-            'highest_education_level': forms.TextInput(attrs={'class': 'form-control'}),
-            'work_field': forms.TextInput(attrs={'class': 'form-control'}),
-            'work_experience': forms.NumberInput(attrs={'class': 'form-control'}),
-            'resume': forms.FileInput(attrs={'class': 'form-control'}),
-            'ready_to_work': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'skills': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
-            'certifications': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+            'phone': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter phone number'}),
+            'DOB': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Enter date of birth'}),
+            'company_name': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter phone number'}),
+            'job_title': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter job title'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select start date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select end date'}),
+            'employment_type': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select employment type'}),
+            'highest_education_level': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Select education level'}),
+            'work_field': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter work field'}),
+            'work_experience': forms.NumberInput(attrs={'class': 'input-field', 'placeholder': 'Enter work experience'}),
+            'resume': forms.FileInput(attrs={'class': 'input-field', 'placeholder': 'Upload resume'}),
+            'ready_to_work': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Check if ready to work'}),
+            'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter bio'}),
+            'skills': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter skills'}),
+            'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Catch the user from the view
+        super().__init__(*args, **kwargs)
+
+        if user:
+            self.fields['existing_email'].initial = user.email
+            self.fields['existing_full_name'].initial = user.full_name

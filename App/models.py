@@ -38,6 +38,12 @@ class UserProfile(models.Model):
         ('full_time', 'Full Time'),
         ('contract', 'Contract'),
     )
+    EDUCATION_LEVEL = (
+        ('high_school', 'High School'),
+        ('bachelor', "Bachelor's Degree"),
+        ('master', "Master's Degree"),
+        ('phd', 'PhD'),
+    )
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, blank=True)
@@ -47,9 +53,9 @@ class UserProfile(models.Model):
     job_title = models.CharField(max_length=100, blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    employment_type = models.CharField(max_length=10, choices=EMPLOYMENT_TYPE, blank=True)
+    employment_type = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE, blank=True)
 
-    highest_education_level = models.CharField(max_length=100, blank=True)
+    highest_education_level = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE, blank=True)
     work_field = models.CharField(max_length=100, blank=True)
     work_experience = models.IntegerField(null=True, blank=True)
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)

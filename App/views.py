@@ -62,9 +62,19 @@ class ProfileView(UpdateView):
         context['company_role'] = self.request.user.is_company() if self.request.user.is_authenticated else False
         return context
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user  # Pass user to form
+        return kwargs
+
+
     def form_valid(self, form):
         form.instance.user = self.request.user  # Ensure the profile is linked
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Pass form errors to the template
+        return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
 
 class SettingsView(View):
     template_name = 'Settings.html'
