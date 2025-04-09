@@ -10,6 +10,7 @@ from django.contrib.auth import login
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 
 # Create your views here.
@@ -73,7 +74,11 @@ class RegisterView(FormView):
             return self.form_invalid(form)
 
         user = form.save()
-        login(self.request, user)  # Log in the user
+        # login(self.request, user)  # Log in the user
+
+        # Set a temporary message for a successful login
+        messages.success(self.request, f"You can now proceed to login")
+
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -87,7 +92,11 @@ class LoginView(FormView):
 
     def form_valid(self, form):
         # Log in the user
-        login(self.request, form.get_user())
+        login(self.request, form.get_user(), backend='App.backends.EmailAuthBackend')
+
+        # Set a temporary message for a successful login
+        messages.success(self.request, f"Welcome back, {form.get_user().full_name}!")
+
         return super().form_valid(form)
 
     def form_invalid(self, form):

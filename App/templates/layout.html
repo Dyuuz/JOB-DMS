@@ -77,6 +77,12 @@
             </div>
         </section>
 
+        {% if messages %}
+            {% for message in messages %}
+                <div class="msg-auth" data-id="{{ message }}"></div>
+            {% endfor %}
+        {% endif %}
+
         <!-- Learn More Section -->
         <section class="dms-learn-more" id="learn-more">
             <div class="dms-learn-more-container">
@@ -215,5 +221,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+    <script>
+        window.onload = function () {
+            const msg = document.querySelectorAll(".msg-auth");
+            msg.forEach(function (message) {
+                const messageText = message.getAttribute("data-id");
+                toastr.success(messageText, "Success", {
+                    closeButton: true,
+                    progressBar: true,
+                    positionClass: "toast-top-right",
+                    timeOut: 3000
+                });
+            });
+          };
+    </script>
 </body>
 </html>

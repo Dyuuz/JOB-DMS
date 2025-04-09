@@ -7,7 +7,11 @@
         <div class="auth-header">
             <div class="auth-tab active" id="login-tab">Login</div>
         </div>
-
+        {% if messages %}
+            {% for message in messages %}
+                <div class="msg-auth" data-id="{{ message }}"></div>
+            {% endfor %}
+        {% endif %}
         <!-- Forms Container -->
         <div class="auth-forms">
         <!-- Login Form -->
@@ -68,5 +72,19 @@
 
         </div>
     </div>
+    <script>
+        window.onload = function () {
+            const msg = document.querySelectorAll(".msg-auth");
+            msg.forEach(function (message) {
+                const messageText = message.getAttribute("data-id");
+                toastr.success(messageText, "Successful Registration", {
+                    closeButton: true,
+                    progressBar: true,
+                    positionClass: "toast-middle-center",
+                    timeOut: 4000
+                });
+            });
+          };
+    </script>
 </div>
 {% endblock dynamicpage %}

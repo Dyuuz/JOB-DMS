@@ -383,6 +383,10 @@ transition: background-color 0.3s ease;
 background-color: #45a049;
 }
 
+.msg{
+    display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
 .dms-learn-more-title {
