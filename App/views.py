@@ -47,11 +47,18 @@ class ProfileView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
+            if request.user.is_company():
+                company_role = True
+            else:
+                company_role = False
+
             try:
                 user_profile = UserProfile.objects.get(user=request.user)
-                context = {'user_profile': user_profile}
+                # Check if the user is a company or a job seeker
+
+                context = {'user_profile': user_profile, 'company_role': company_role}
             except UserProfile.DoesNotExist:
-                context = {'error': 'User profile does not exist.'}
+                context = {'company_role': company_role}
         else:
             return redirect('auth-login')  # Redirect to login if user is not authenticated
 
