@@ -50,8 +50,8 @@ class UserProfile(models.Model):
     employment_type = models.CharField(max_length=10, choices=EMPLOYMENT_TYPE, blank=True)
 
     highest_education_level = models.CharField(max_length=100, blank=True)
-    occupation = models.CharField(max_length=100, blank=True)
-    years_of_experience = models.IntegerField(null=True, blank=True)
+    work_field = models.CharField(max_length=100, blank=True)
+    work_experience = models.IntegerField(null=True, blank=True)
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     ready_to_work = models.BooleanField(default=True)
 
