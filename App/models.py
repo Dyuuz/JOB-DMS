@@ -32,22 +32,32 @@ class CompanyProfile(models.Model):
 
 # User profile model for job seekers' additional information
 class UserProfile(models.Model):
+    EMPLOYMENT_TYPE = (
+        ('internship', 'Internship'),
+        ('part_time', 'Part Time'),
+        ('full_time', 'Full Time'),
+        ('contract', 'Contract'),
+    )
+
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, blank=True)
     DOB = models.DateField(null=True, blank=True)
-    street_address = models.CharField(max_length=100, blank=True)
-    city = models.CharField(max_length=100, blank=True)
-    state = models.CharField(max_length=100, blank=True)
-    country = models.CharField(max_length=100, blank=True)
+
+    company_name = models.CharField(max_length=100, blank=True)
+    job_title = models.CharField(max_length=100, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    employment_type = models.CharField(max_length=10, choices=EMPLOYMENT_TYPE, blank=True)
+
     highest_education_level = models.CharField(max_length=100, blank=True)
     occupation = models.CharField(max_length=100, blank=True)
     years_of_experience = models.IntegerField(null=True, blank=True)
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
+    ready_to_work = models.BooleanField(default=True)
+
+    bio = models.TextField(max_length=255)
     skills = models.TextField(blank=True, null=True)
     certifications = models.TextField(blank=True, null=True)
-    bio = models.TextField(max_length=255)
-    availability = models.BooleanField(default=True)
-    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
-    country = models.CharField(max_length=255)
 
     def __str__(self):
         return self.user.full_name

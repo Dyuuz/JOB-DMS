@@ -46,8 +46,16 @@ class ProfileView(View):
     template_name = 'Profile.html'
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            try:
+                user_profile = UserProfile.objects.get(user=request.user)
+                context = {'user_profile': user_profile}
+            except UserProfile.DoesNotExist:
+                context = {'error': 'User profile does not exist.'}
+        else:
+            return redirect('auth-login')  # Redirect to login if user is not authenticated
 
-        return render(request, self.template_name)
+        return render(request, self.template_name, context)
 
 class SettingsView(View):
     template_name = 'Settings.html'
