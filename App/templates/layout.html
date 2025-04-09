@@ -222,7 +222,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <script>
-        window.onload = function () {
+        $(document).ready(function() {
             const msg = document.querySelectorAll(".msg-auth");
             msg.forEach(function (message) {
                 const messageText = message.getAttribute("data-id");
@@ -233,7 +233,7 @@
                     timeOut: 3000
                 });
             });
-          };
+        });
     </script>
 </body>
 </html>

@@ -94,8 +94,11 @@ class LoginView(FormView):
         # Log in the user
         login(self.request, form.get_user(), backend='App.backends.EmailAuthBackend')
 
+        # Get user's first name
+        first_name = form.get_user().full_name.split()[0]
+
         # Set a temporary message for a successful login
-        messages.success(self.request, f"Welcome back, {form.get_user().full_name}!")
+        messages.success(self.request, f"Welcome back, {first_name}!")
 
         return super().form_valid(form)
 
