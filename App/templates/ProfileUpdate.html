@@ -2,11 +2,11 @@
 
 {% block dynamicpage %}
     {% if company_role %}
-    {% if user_profile %}
-    <h2>Edit your profile</h2>
-    {% else %}
-    <h2>Complete your profile</h2>
-    {% endif %}
+        {% if user_profile %}
+        <h2>Edit your profile</h2>
+        {% else %}
+        <h2>Complete your profile</h2>
+        {% endif %}
     <div class="company-role-form">
         <h2>Company Role Information</h2>
         <form method="post">
@@ -75,7 +75,7 @@
 
                 <!-- Page 2 -->
                 <div class="form-page page-2">
-                    <h2>Most Recent Work Experience</h2>
+                    <h2>Recent Work Experience</h2>
                     <label for="company">Company Name:</label>
                     {{ form.company_name }}
 
@@ -112,7 +112,7 @@
                     {{ form.highest_education_level }}
 
                     <label for="occupation">Work field:</label>
-                    {{ form.job_title }}
+                    {{ form.work_field }}
 
                     <label for="experience">Work Experience:</label>
                     {{ form.work_experience }}
@@ -126,7 +126,7 @@
                     {% if form.errors %}
                     <!-- <div class="error-mess"> -->
                         {% for field, errors in form.errors.items %}
-                            <h2 class="error-response">{{ errors|join:", " }}</h2>
+                            <h2 class="error-response">{{ field }}: {{ errors|join:", " }}</h2>
                         {% endfor %}
                     <!-- </div> -->
                     {% endif %}
@@ -152,7 +152,7 @@
                     {% if form.errors %}
                     <!-- <div class="error-mess"> -->
                         {% for field, errors in form.errors.items %}
-                            <h2 class="error-response">{{ errors|join:", " }}</h2>
+                            <h2 class="error-response">{{ field }}: {{ errors|join:", " }}</h2>
                         {% endfor %}
                     <!-- </div> -->
                     {% endif %}

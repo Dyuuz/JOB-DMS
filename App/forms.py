@@ -1,7 +1,7 @@
 # forms.py
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser, UserProfile
+from .models import CustomUser, UserProfile, CompanyProfile
 from django.contrib.auth import authenticate
 
 class CustomUserCreationForm(UserCreationForm):
@@ -88,10 +88,40 @@ class UserProfileForm(forms.ModelForm):
             'work_field': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter work field'}),
             'work_experience': forms.NumberInput(attrs={'class': 'input-field', 'placeholder': 'Enter work experience'}),
             'resume': forms.FileInput(attrs={'class': 'input-field', 'placeholder': 'Upload resume'}),
-            'ready_to_work': forms.CheckboxInput(attrs={'class': 'form-check-input', 'placeholder': 'Check if ready to work'}),
+            'ready_to_work': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Check if ready to work'}),
             'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter career summary'}),
             'skills': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter skills'}),
             'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Catch the user from the view
+        super().__init__(*args, **kwargs)
+
+        if user:
+            self.fields['existing_email'].initial = user.email
+            self.fields['existing_full_name'].initial = user.full_name
+
+class CompanyProfileForm(forms.ModelForm):
+    # This is a non-model field
+    existing_email = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'readonly': 'readonly',
+        'class': 'input-field',
+    }))
+    existing_full_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'readonly': 'readonly',
+        'class': 'input-field',
+    }))
+
+    class Meta:
+        model = CompanyProfile
+        fields = [
+            'existing_full_name', 'existing_email','address', 'country', 'industry'
+        ]
+        widgets = {
+            'address': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter phone number'}),
+            'country': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Enter country'}),
+            'address': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter company name'}),
         }
 
     def __init__(self, *args, **kwargs):

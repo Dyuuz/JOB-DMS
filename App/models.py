@@ -22,10 +22,19 @@ class CustomUser(AbstractUser):
 
 # Company profile model for additional company details
 class CompanyProfile(models.Model):
+    COUNTRY = (
+        ('Nigeria', 'Nigeria'),
+        ('Ghana', 'Ghana'),
+        ('Kenya', 'Kenya'),
+        ('South Africa', 'South Africa'),
+    )
+
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    company_id = models.CharField(max_length=255)
-    industry = models.CharField(max_length=100, blank=True)
+    company_id = models.CharField(max_length=255, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    industry = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=255, choices=COUNTRY, blank=True)
 
     def __str__(self):
         return self.user.full_name
@@ -44,6 +53,10 @@ class UserProfile(models.Model):
         ('master', "Master's Degree"),
         ('phd', 'PhD'),
     )
+    START_DATE_READY = (
+        ('Available immediately', 'Available immediately'),
+        ('Requires notice period', 'Requires notice period'),
+    )
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, blank=True)
@@ -58,8 +71,8 @@ class UserProfile(models.Model):
     highest_education_level = models.CharField(max_length=20, choices=EDUCATION_LEVEL, blank=True)
     work_field = models.CharField(max_length=100, blank=True)
     work_experience = models.IntegerField(null=True, blank=True)
-    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
-    ready_to_work = models.BooleanField(default=True)
+    resume = models.FileField(upload_to='media/', blank=True, null=True)
+    ready_to_work = models.CharField(max_length=50, choices=START_DATE_READY, blank=True)
 
     bio = models.TextField(max_length=255, blank=True, null=True)
     skills = models.TextField(blank=True, null=True)
@@ -68,21 +81,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.full_name
 
-# Company model to store company details
-class Company(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)  # Link to CustomUser (for Company role)
-    email = models.EmailField(unique=True)
-    address = models.TextField()
-    country = models.CharField(max_length=255)
-    industry = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user.full_name  # Linked to user
-
 # Job model for storing job listings posted by companies
 class Job(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='jobs')
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name='jobs')
     title = models.CharField(max_length=255)
     description = models.TextField()
     location = models.CharField(max_length=255)
@@ -109,7 +110,7 @@ class Application(models.Model):
 # Document model for storing documents uploaded by users and companies
 class Document(models.Model):
     owner_user = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
-    owner_company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
+    owner_company = models.ForeignKey(CompanyProfile, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='documents')  # Linked to Job model
     name = models.CharField(max_length=255)
     file_type = models.CharField(max_length=50)
@@ -122,7 +123,7 @@ class Document(models.Model):
 # Feedback model for company feedback on applications
 class Feedback(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='feedbacks')
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

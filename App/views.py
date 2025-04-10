@@ -3,11 +3,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.views import View
-from .models import CustomUser, CompanyProfile, UserProfile, Company, Job, Application, Feedback
+from .models import CustomUser, CompanyProfile, UserProfile, Job, Application, Feedback
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView, UpdateView
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm, LoginForm, UserProfileForm
+from .forms import CustomUserCreationForm, LoginForm, UserProfileForm, CompanyProfileForm
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -42,9 +42,8 @@ class DocumentView(View):
 
         return render(request, self.template_name)
 
-class ProfileUpdateView(UpdateView):
+class UserProfileUpdateView(UpdateView):
     model = UserProfile
-    form_class = UserProfileForm
     template_name = 'ProfileUpdate.html'
     success_url = reverse_lazy('profile')
 
@@ -68,9 +67,20 @@ class ProfileUpdateView(UpdateView):
         kwargs['user'] = self.request.user  # Pass user to form
         return kwargs
 
+    def get_form_class(self):
+        if self.request.user.is_authenticated:
+            try:
+                custom_user = CustomUser.objects.get(user=self.request.user)
+                if custom_user.role == 'user':
+                    return UserProfileForm
+                return CompanyProfileForm
+            except CustomUser.DoesNotExist:
+                pass
+        return super().get_form_class()
 
     def form_valid(self, form):
         form.instance.user = self.request.user  # Ensure the profile is linked
+        messages.success(self.request, f"Your profile has been updated.")
         return super().form_valid(form)
 
     def form_invalid(self, form):

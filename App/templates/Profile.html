@@ -8,6 +8,8 @@
             <p>Department: {{ company_role.company_id }}</p>
             <p>Responsibilities: {{ company_role.industry }}</p>
             <p>Start Date: {{ company_role.description }}</p>
+        </div>
+        <button><a href="{% url 'profile-update' %}">Edit Profile</a></button>
         {% else %}
         <div class="profile-container">
             <h2>{{ user_profile.user.full_name }}</h2>
@@ -15,11 +17,32 @@
             <p>Phone: {{ user_profile.phone }}</p>
             <p>DOB: {{ user_profile.DOB }}</p>
             <p>Work Field: {{ user_profile.work_field }}</p>
+            <p>Work Experience: {{ user_profile.work_experience }} year</p>
             <p>Bio: {{ user_profile.bio }}</p>
             <p>Skills: {{ user_profile.skills }}</p>
-
+            <p>Resume: {{ user_profile.resume }}</p>
+            <p>Ready to work: {{ user_profile.ready_to_work }}</p>
         </div>
         <button><a href="{% url 'profile-update' %}">Edit Profile</a></button>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="msg-auth" data-id="{{ message }}"></div>
+            {% endfor %}
+        {% endif %}
+        <script>
+            $(document).ready(function() {
+                const msg = document.querySelectorAll(".msg-auth");
+                msg.forEach(function (message) {
+                    const messageText = message.getAttribute("data-id");
+                    toastr.success(messageText, "Success", {
+                        closeButton: true,
+                        progressBar: true,
+                        positionClass: "toast-top-right",
+                        timeOut: 3000
+                    });
+                });
+            });
+        </script>
         {% endif %}
     {% endif %}
 {% endblock dynamicpage %}
