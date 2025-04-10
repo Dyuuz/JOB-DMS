@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -59,7 +59,7 @@ class UserProfileUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['company_role'] = self.request.user.is_company() if self.request.user.is_authenticated else False
-        context['user_profile'] = self.get_object()
+        context['user_profile'] = self.request.user.is_user() if self.request.user.is_authenticated else False
         return context
 
     def get_form_kwargs(self):
@@ -93,15 +93,19 @@ class ProfileView(View):
     def get(self,  request, *args, **kwargs):
         if request.user.is_authenticated:
             try:
+                user_auth = CustomUser.objects.get(email=request.user.email)
                 user_profile = UserProfile.objects.filter(user=request.user).first()
-                company_role = request.user.is_company() if request.user.is_authenticated else False
+                company_role = CompanyProfile.objects.filter(user=request.user).first()
 
-                if not user_profile:
-                    return redirect('profile-update')
+                if user_profile or company_role:
+                    if company_role:
+                        return render(request, self.template_name, {'company_role': company_role, 'user_auth': user_auth,})
+                    elif user_profile:
+                        return render(request, self.template_name, {'user_profile': user_profile, 'user_auth': user_auth,})
 
-                return render(request, self.template_name, locals())
-            except UserProfile.DoesNotExist:
                 return redirect('profile-update')
+            except UserProfile.DoesNotExist:
+                return HttpResponse("User profile does not exist.")
 
 class SettingsView(View):
     template_name = 'Settings.html'

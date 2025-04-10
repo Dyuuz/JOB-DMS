@@ -7,30 +7,41 @@
         {% else %}
         <h2>Complete your profile</h2>
         {% endif %}
-    <div class="company-role-form">
-        <h2>Company Role Information</h2>
-        <form method="post">
-            {% csrf_token %}
-            <label for="role-name">Role Name:</label>
-            <input type="text" id="role-name" name="role_name" class="input-field" placeholder="Enter role name" required>
+        <div class="auth-forms">
+            <!-- Login Form -->
+            <div class="auth-form active" id="login-form">
+                <h2 class="form-title">Welcome Back</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        {{ form.email }}
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        {{ form.password }}
+                    </div>
 
-            <label for="department">Department:</label>
-            <input type="text" id="department" name="department" class="input-field" placeholder="Enter department" required>
-
-            <label for="responsibilities">Responsibilities:</label>
-            <textarea id="responsibilities" name="responsibilities" class="input-field" placeholder="List responsibilities" required></textarea>
-
-            <label for="start-date">Start Date:</label>
-            <input type="date" id="start-date" name="start_date" class="input-field" required>
-
-            <label for="end-date">End Date (if applicable):</label>
-            <input type="date" id="end-date" name="end_date" class="input-field">
-
-            <div class="button-container">
-                <button type="submit" class="submit-btn">Save Role</button>
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember" class="remember-me-text">Remember me</label>
+                        </div>
+                        <div class="forgot-password">
+                        <a href="#">Forgot password?</a>
+                        </div>
+                    </div>
+                    {% if form.errors %}
+                    <!-- <div class="error-mess"> -->
+                        {% for field, errors in form.errors.items %}
+                            <h2 class="error-response">{{ errors|join:", " }}</h2>
+                        {% endfor %}
+                    <!-- </div> -->
+                    {% endif %}
+                    <button type="submit" class="auth-btn">Login</button>
+                </form>
             </div>
-        </form>
-    </div>
+        </div>
     {% else %}
     <form method="post">
         {% csrf_token %}

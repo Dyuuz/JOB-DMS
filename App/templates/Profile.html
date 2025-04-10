@@ -1,17 +1,20 @@
 {% extends "layout.html" %}
 
 {% block dynamicpage %}
-    {% if user_profile %}
+    {% if user_auth %}
         {% if company_role %}
         <div class="company-role-container">
-            <h2>{{ company_role.user.full_name }}</h2>
+            <!-- <h2>{{ company_role.user.full_name }}</h2>
             <p>Department: {{ company_role.company_id }}</p>
             <p>Responsibilities: {{ company_role.industry }}</p>
-            <p>Start Date: {{ company_role.description }}</p>
+            <p>Start Date: {{ company_role.description }}</p> -->
+            <p>Start Date: {{ company_role.email }}</p>
+            <h1>User Profile</h2>
         </div>
         <button><a href="{% url 'profile-update' %}">Edit Profile</a></button>
         {% else %}
         <div class="profile-container">
+            <h1>User Profile</h2>
             <h2>{{ user_profile.user.full_name }}</h2>
             <p>Email: {{ user_profile.user.email }}</p>
             <p>Phone: {{ user_profile.phone }}</p>
@@ -22,13 +25,9 @@
             <p>Skills: {{ user_profile.skills }}</p>
             <p>Resume: {{ user_profile.resume }}</p>
             <p>Ready to work: {{ user_profile.ready_to_work }}</p>
+            <p>Custom User Instance: {{ user.role }}</p>
         </div>
         <button><a href="{% url 'profile-update' %}">Edit Profile</a></button>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="msg-auth" data-id="{{ message }}"></div>
-            {% endfor %}
-        {% endif %}
         <script>
             $(document).ready(function() {
                 const msg = document.querySelectorAll(".msg-auth");
@@ -43,6 +42,11 @@
                 });
             });
         </script>
+        {% endif %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="msg-auth" data-id="{{ message }}"></div>
+            {% endfor %}
         {% endif %}
     {% endif %}
 {% endblock dynamicpage %}

@@ -14,62 +14,58 @@
         {% endif %}
         <!-- Forms Container -->
         <div class="auth-forms">
-        <!-- Login Form -->
-        <div class="auth-form active" id="login-form">
-            <h2 class="form-title">Welcome Back</h2>
-            <form method="post">
-                {% csrf_token %}
-                <div class="input-group">
-                    <i class="fas fa-envelope"></i>
-                    {{ form.email }}
-                </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    {{ form.password }}
-                </div>
-
-                <div class="remember-forgot">
-                    <div class="remember-me">
-                    <input type="checkbox" id="remember">
-                    <label for="remember" class="remember-me-text">Remember me</label>
+            <!-- Login Form -->
+            <div class="auth-form active" id="login-form">
+                <h2 class="form-title">Welcome Back</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        {{ form.email }}
                     </div>
-                    <div class="forgot-password">
-                    <a href="#">Forgot password?</a>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        {{ form.password }}
+                    </div>
+
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember" class="remember-me-text">Remember me</label>
+                        </div>
+                        <div class="forgot-password">
+                        <a href="#">Forgot password?</a>
+                        </div>
+                    </div>
+                    {% if form.errors %}
+                    <!-- <div class="error-mess"> -->
+                        {% for field, errors in form.errors.items %}
+                            <h2 class="error-response">{{ errors|join:", " }}</h2>
+                        {% endfor %}
+                    <!-- </div> -->
+                    {% endif %}
+                    <button type="submit" class="auth-btn">Login</button>
+                </form>
+
+                <div class="social-login">
+                <p>Or login with</p>
+                <div class="social-icons">
+                    <div class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-icon google">
+                    <i class="fab fa-google"></i>
+                    </div>
+                    <div class="social-icon linkedin">
+                    <i class="fab fa-linkedin-in"></i>
                     </div>
                 </div>
-                {% if form.errors %}
-                <!-- <div class="error-mess"> -->
-                    {% for field, errors in form.errors.items %}
-                        <h2 class="error-response">{{ errors|join:", " }}</h2>
-                    {% endfor %}
-                <!-- </div> -->
-                {% endif %}
-                <button type="submit" class="auth-btn">Login</button>
-            </form>
+                </div>
 
-            <div class="social-login">
-            <p>Or login with</p>
-            <div class="social-icons">
-                <div class="social-icon facebook">
-                <i class="fab fa-facebook-f"></i>
-                </div>
-                <div class="social-icon google">
-                <i class="fab fa-google"></i>
-                </div>
-                <div class="social-icon linkedin">
-                <i class="fab fa-linkedin-in"></i>
+                <div class="switch-form">
+                Don't have an account? <a href="{% url 'auth-register' %}" id="switch-to-register">Register here</a>
                 </div>
             </div>
-            </div>
-
-            <div class="switch-form">
-            Don't have an account? <a href="{% url 'auth-register' %}" id="switch-to-register">Register here</a>
-            </div>
-        </div>
-
-        <!-- Register Form -->
-        <div class="auth-form" id="register-form">
-
         </div>
     </div>
     <script>
