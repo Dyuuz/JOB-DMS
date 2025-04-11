@@ -73,9 +73,14 @@ class UserProfileUpdateView(UpdateView):
             try:
                 # Try to get CompanyProfile if user is company
                 if hasattr(self.request.user, 'role') and self.request.user.role == 'company':
-                    return self.request.user.companyprofile
+                    if CompanyProfile.objects.filter(user=self.request.user).exists():
+                        return self.request.user.companyprofile
+                    return None
                 # Otherwise get UserProfile
-                return self.request.user.userprofile
+                if hasattr(self.request.user, 'role') and self.request.user.role == 'user':
+                    if UserProfile.objects.filter(user=self.request.user).exists():
+                        return self.request.user.userprofile
+                    return None
             except AttributeError:
                 return self.form_invalid(self.form)
         return redirect('auth-login')
