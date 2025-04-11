@@ -75,6 +75,8 @@
     object-fit: cover;
     border: 2px solid white;
     margin-bottom: 1.5rem;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.034); */
+    animation: pulse-green 10s infinite ease-in-out;
     /* background: linear-gradient(135deg, #3B82F6, #EC4899); */
     /* background-color: red; */
 }
@@ -89,12 +91,14 @@
 .profile-title {
     font-size: 1.2rem;
     color: var(--light-text);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .profile-contact {
     display: flex;
+    flex-wrap: wrap;
     gap: 1.5rem;
+    justify-content: center;
     margin-bottom: 1.5rem;
 }
 
@@ -103,19 +107,110 @@
     align-items: center;
     gap: 0.5rem;
     color: var(--light-text);
+    font-size: 0.95rem;
 }
 
-/* Main Content Grid */
+.contact-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.status-dot-text {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.662);
+    font-weight: 3000;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .profile-contact {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .contact-item {
+        width: 100%;
+    }
+
+    .contact-text {
+        max-width: 100%;
+    }
+
+    .profile-title {
+        font-size: 1.1rem;
+    }
+
+    .profile-name {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-item {
+        font-size: 0.95rem;
+    }
+    .contact-text {
+        white-space: normal;
+    }
+
+    .profile-title {
+        font-size: 1.1rem;
+    }
+
+    .profile-name {
+        font-size: 1.5rem;
+    }
+}
+
+/* Main Content Grid - Enhanced Responsive Version */
 .profile-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 2rem;
+    transition: all 0.3s ease-in-out;
 }
 
+@media (max-width: 1024px) {
+    .profile-grid {
+      grid-template-columns: 1fr; /* Slightly adjust ratio */
+      gap: 1.75rem;
+    }
+}
+
+/* Small Desktop (880px and below) - Vertical split begins */
+@media (max-width: 880px) {
+    .profile-grid {
+        grid-template-columns: 1fr; /* More balanced columns */
+        gap: 1.5rem;
+    }
+}
+
+/* Tablet View (768px and below) */
 @media (max-width: 768px) {
     .profile-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
+}
+
+/* Mobile View (480px and below) */
+@media (max-width: 480px) {
+    .profile-grid {
+        gap: 1rem;
+    }
+
+}
+
+/* Small Mobile View (360px and below) */
+@media (max-width: 360px) {
+    .profile-grid {
+        gap: 0.75rem;
+    }
+
+
 }
 
 /* Sidebar */
@@ -222,6 +317,22 @@
     height: 10px;
     border-radius: 50%;
     background-color: #04a752;
+    animation: pulse-green 10s infinite ease-in-out;
+}
+
+@keyframes pulse-green {
+    0% {
+        background-color: #04a752; /* Original green */
+        box-shadow: 0 0 0 0 rgba(4, 167, 82, 0.4);
+    }
+    50% {
+        background-color: #0bd166; /* Brighter green */
+        box-shadow: 0 0 0 4px rgba(11, 209, 102, 0);
+    }
+    100% {
+        background-color: #04a752; /* Back to original */
+        box-shadow: 0 0 0 0 rgba(4, 167, 82, 0);
+    }
 }
 
 .ready-status .status-dot1 {

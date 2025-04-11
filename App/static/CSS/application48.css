@@ -5,17 +5,26 @@
     align-items: center;
     height: 100vh;
     margin: 0;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .form-container {
     background-color: white;
-    padding: 30px;
+    /* padding: 30px; */
+    padding-top: 0px;
     border-radius: 12px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
     margin: 20px;
     animation: fadeIn 0.5s ease-in-out;
+}
+form{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 @keyframes fadeIn {
@@ -25,9 +34,11 @@
 
 .progress-bar {
     width: 100%;
-    height: 8px;
+    height: 4px;
     background-color: #e0e0e0;
     border-radius: 4px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     margin-bottom: 20px;
     overflow: hidden;
 }
@@ -36,13 +47,30 @@
     height: 100%;
     width: 0;
     background-color: #27a133;
-    border-radius: 4px;
+    border-radius: 8px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     transition: width 0.3s ease;
 }
 
 .form-page {
     display: none;
 }
+
+.page-content {
+    /* background-color: red; */
+    max-height: 45vh;
+    overflow-y: auto;
+    padding-right: 15px;
+    padding: 30px;
+    padding-top: 0px;
+}
+
+.page-btns {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
 
 .form-page.active {
     display: block;
@@ -121,6 +149,7 @@ button:hover {
 }
 
 .page-indicator {
+    margin-bottom: 10px;
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
@@ -129,8 +158,14 @@ button:hover {
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    .form-container {
+    .form-content {
         padding: 20px;
+        /* padding-top: 0px; */
+    }
+    .form-btns {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 0px;
     }
 
     h2 {

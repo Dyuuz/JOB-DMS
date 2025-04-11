@@ -23,45 +23,32 @@
                 <img src="https://ui-avatars.com/api/?name={{user_profile.user.full_name}}&background=10B981&color=FFF&size=150"  class="profile-avatar">
                 <h1 class="profile-name">{{ user_profile.user.full_name }}</h1>
                 <p class="profile-title">{{ user_profile.job_title }} at {{ user_profile.company_name }}</p>
+
                 <div class="profile-contact">
                     <span class="contact-item">
                         <i class="fas fa-birthday-cake"></i>
-                        <span>{{ user_profile.DOB }}</span>
+                        <span class="contact-text">{{ user_profile.DOB | date:"F j, Y" }}</span>
                     </span>
-                </div>
-                <div class="profile-contact">
                     <span class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>{{ user_profile.phone }}</span>
+                        <span class="contact-text">{{ user_profile.phone }}</span>
                     </span>
                     <span class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <span>{{ user_profile.user.email }}</span>
+                        <span class="contact-text">{{ user_profile.user.email }}</span>
                     </span>
                     <span class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>{{ user_profile.user_country }}</span>
+                        <span class="contact-text">{{ user_profile.user_country }}</span>
                     </span>
                 </div>
-                <!-- <div class="profile-contact">
-                    <span class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>{{ user_profile.user.email }}</span>
-                    </span>
-                </div>
-                <div class="profile-contact">
-                    <span class="contact-item">
-                        <i class="fas fa-location-dot"></i>
-                        <span>{{ user_profile.user_country }}</span>
-                    </span>
-                </div> -->
                 <div class="ready-status">
                     {% if ready_to_work  %}
                     <span class="status-dot"></span>
-                    <span>{{ user_profile.ready_to_work }}</span>
+                    <span class="status-dot-text">{{ user_profile.ready_to_work }}</span>
                     {% else %}
                     <span class="status-dot1"></span>
-                    <span>{{ user_profile.ready_to_work }}</span>
+                    <span class="status-dot-text">{{ user_profile.ready_to_work }}</span>
                     {% endif %}
                 </div>
             </div>
@@ -127,7 +114,7 @@
 
                         <div class="profile-field-group">
                             <p class="profile-label">Date of Birth</p>
-                            <p class="profile-value">{{ user_profile.DOB }}</p>
+                            <p class="profile-value">{{ user_profile.DOB | date:"F j,Y" }}</p>
                         </div>
 
                         <div class="profile-field-group">
