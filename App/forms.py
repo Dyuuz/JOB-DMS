@@ -72,23 +72,29 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = [
-            'existing_full_name','phone', 'DOB', 'company_name', 'job_title', 'start_date', 'end_date',
-            'employment_type', 'highest_education_level', 'work_field', 'work_experience',
+            'existing_full_name','phone', 'DOB', 'user_country', 'company_name', 'job_title', 'job_description', 'start_date', 'end_date',
+            'employment_type', 'job_location', 'highest_education_level', 'work_field', 'work_experience',
             'resume', 'ready_to_work', 'bio', 'skills', 'certifications'
         ]
         widgets = {
             'phone': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter phone number'}),
             'DOB': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Enter date of birth'}),
+            'user_country': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter your country'}),
+
             'company_name': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter company name'}),
             'job_title': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter job title'}),
+            'job_description': forms.Textarea(attrs={'class': 'input-field' , 'rows': 2, 'placeholder': 'Enter job description'}),
             'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select start date'}),
             'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select end date'}),
             'employment_type': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select employment type'}),
+            'job_location': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter job location'}),
+
             'highest_education_level': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select education level'}),
             'work_field': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter work field'}),
             'work_experience': forms.NumberInput(attrs={'class': 'input-field', 'placeholder': 'Enter work experience'}),
             'resume': forms.FileInput(attrs={'class': 'input-field', 'placeholder': 'Upload resume'}),
             'ready_to_work': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Check if ready to work'}),
+
             'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter career summary'}),
             'skills': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter skills'}),
             'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications'}),
