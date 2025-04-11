@@ -115,18 +115,35 @@
                         </div>
 
                         <div class="profile-field-group">
+                            <p class="profile-label">Company Mail</p>
+                            <p class="profile-value">{{ company_role.user.email }}</p>
+                        </div>
+
+                        <div class="profile-field-group">
                             <p class="profile-label">Work Type</p>
+                            {% if company_role.work_mode  %}
                             <p class="profile-value">{{ company_role.work_mode }}</p>
+                            {% else %}
+                            <p class="profile-value">-</p>
+                            {% endif %}
                         </div>
 
                         <div class="profile-field-group">
                             <p class="profile-label">Founded</p>
-                            <p class="profile-value">{{ user_profile.DOB | date:"F j,Y" }}</p>
+                            {% if company_role.founded  %}
+                            <p class="profile-value">{{ company_role.founded }}</p>
+                            {% else %}
+                            <p class="profile-value">-</p>
+                            {% endif %}
                         </div>
 
                         <div class="profile-field-group">
                             <p class="profile-label">Parent Company</p>
-                            <p class="profile-value">{{ user_profile.DOB | date:"F j,Y" }}</p>
+                            {% if company_role.parent_company  %}
+                            <p class="profile-value">{{ company_role.parent_company }}</p>
+                            {% else %}
+                            <p class="profile-value">-</p>
+                            {% endif %}
                         </div>
 
                         <div class="profile-field-group">
@@ -365,8 +382,8 @@
                         </div>
 
                         <div class="experience-tab">
-                            <h3 class="">Experience</h3>
-                            <a href="{% url 'profile-update' %}" class="">
+                            <h3>Experience</h3>
+                            <a href="{% url 'profile-update' %}" class="edit-profile-btn">
                                 <i class="fas fa-edit"></i> Add Experience
                             </a>
                         </div>
