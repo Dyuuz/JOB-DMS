@@ -140,12 +140,9 @@ class ProfileView(View):
                         return render(request, self.template_name, {'company_role': company_role, 'user_auth': user_auth,})
 
                     elif user_profile:
-                        ready_to_work = user_profile.ready_to_work
-
-                        if ready_to_work == 'Available immediately':
-                            ready_to_work = True
-                        else:
-                            ready_to_work = False
+                        # Provided a variable to avoid hardcoding strings
+                        available_immediately = 'Available immediately'
+                        ready_to_work = (user_profile.ready_to_work == available_immediately) if user_profile.ready_to_work else False
                         return render(request, self.template_name, {'user_profile': user_profile, 'user_auth': user_auth, 'ready_to_work': ready_to_work,})
 
                 return redirect('profile-update')
