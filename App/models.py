@@ -34,7 +34,6 @@ class CompanyProfile(models.Model):
         ('On site', 'On Site'),
     )
 
-
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     company_id = models.CharField(max_length=255, blank=True, null=True)
     work_mode = models.TextField(choices=WORK_MODE, blank=True, null=True)
@@ -48,16 +47,16 @@ class CompanyProfile(models.Model):
 # User profile model for job seekers' additional information
 class UserProfile(models.Model):
     EMPLOYMENT_TYPE = (
-        ('internship', 'Internship'),
-        ('part_time', 'Part Time'),
-        ('full_time', 'Full Time'),
-        ('contract', 'Contract'),
+        ('Internship', 'Internship'),
+        ('Part Time', 'Part Time'),
+        ('Full Time', 'Full Time'),
+        ('Contract', 'Contract'),
     )
     EDUCATION_LEVEL = (
-        ('high_school', 'High School'),
-        ('bachelor', "Bachelor's Degree"),
-        ('master', "Master's Degree"),
-        ('phd', 'PhD'),
+        ('High School', 'High School'),
+        ("Bachelor's Degree", "Bachelor's Degree"),
+        ("Master's Degree", "Master's Degree"),
+        ('PhD', 'PhD'),
     )
     START_DATE_READY = (
         ('Available immediately', 'Available immediately'),
@@ -67,12 +66,15 @@ class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, blank=True)
     DOB = models.DateField(null=True, blank=True)
+    user_country = models.CharField(max_length=255, blank=True)
 
     company_name = models.CharField(max_length=100, blank=True)
     job_title = models.CharField(max_length=100, blank=True)
+    job_description = models.TextField(blank=True, null=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     employment_type = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE, blank=True)
+    job_location = models.CharField(max_length=255, blank=True)
 
     highest_education_level = models.CharField(max_length=20, choices=EDUCATION_LEVEL, blank=True)
     work_field = models.CharField(max_length=100, blank=True)

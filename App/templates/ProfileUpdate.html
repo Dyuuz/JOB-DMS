@@ -70,6 +70,9 @@
                     <label for="dob">Date of Birth:</label>
                     {{ form.DOB }}
 
+                    <label for="comments">Country:</label>
+                    {{ form.user_country }}
+
                     {% if form.errors %}
                     <!-- <div class="error-mess"> -->
                         {% for field, errors in form.errors.items %}
@@ -92,6 +95,9 @@
                     <label for="job-title">Job Title:</label>
                     {{ form.job_title }}
 
+                    <label for="job-description">Job description:</label>
+                    {{ form.job_description }}
+
                     <label for="start-date">Start Date:</label>
                     {{ form.start_date }}
 
@@ -100,6 +106,9 @@
 
                     <label for="employment-type">Employment Type:</label>
                     {{ form.employment_type }}
+
+                    <label for="Country">Country:</label>
+                    {{ form.job_location }}
 
                     {% if form.errors %}
                     <!-- <div class="error-mess"> -->
