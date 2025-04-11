@@ -79,6 +79,7 @@ class UserProfile(models.Model):
     highest_education_level = models.CharField(max_length=20, choices=EDUCATION_LEVEL, blank=True)
     work_field = models.CharField(max_length=100, blank=True)
     work_experience = models.IntegerField(null=True, blank=True)
+    project = models.CharField(max_length=100, blank=True)
     resume = models.FileField(upload_to='media/', blank=True, null=True)
     ready_to_work = models.CharField(max_length=50, choices=START_DATE_READY, blank=True)
 

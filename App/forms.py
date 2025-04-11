@@ -73,7 +73,7 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = [
             'existing_full_name','phone', 'DOB', 'user_country', 'company_name', 'job_title', 'job_description', 'start_date', 'end_date',
-            'employment_type', 'job_location', 'highest_education_level', 'work_field', 'work_experience',
+            'employment_type', 'job_location', 'highest_education_level', 'work_field', 'work_experience', 'project',
             'resume', 'ready_to_work', 'bio', 'skills', 'certifications'
         ]
         widgets = {
@@ -92,6 +92,7 @@ class UserProfileForm(forms.ModelForm):
             'highest_education_level': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select education level'}),
             'work_field': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter work field'}),
             'work_experience': forms.NumberInput(attrs={'class': 'input-field', 'placeholder': 'Enter work experience'}),
+            'project': forms.Textarea(attrs={'class': 'input-field', 'placeholder': 'Enter project names'}),
             'resume': forms.FileInput(attrs={'class': 'input-field', 'placeholder': 'Upload resume'}),
             'ready_to_work': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Check if ready to work'}),
 
