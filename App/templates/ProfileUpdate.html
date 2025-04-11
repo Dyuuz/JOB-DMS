@@ -2,35 +2,34 @@
 
 {% block dynamicpage %}
     {% if company_role %}
-        {% if user_profile %}
-        <h2>Edit your profile</h2>
-        {% else %}
-        <h2>Complete your profile</h2>
-        {% endif %}
-        <div class="auth-forms">
+        <div class="form-body">
             <!-- Login Form -->
-            <div class="auth-form active" id="login-form">
-                <h2 class="form-title">Welcome Back</h2>
+            <div class="form-container">
+                {% if user_profile %}
+                <h2>Edit your profile</h2>
+                {% else %}
+                <h2>Complete your profile</h2>
+                {% endif %}
                 <form method="post">
                     {% csrf_token %}
-                    <div class="input-group">
-                        <i class="fas fa-envelope"></i>
-                        {{ form.email }}
-                    </div>
-                    <div class="input-group">
-                        <i class="fas fa-lock"></i>
-                        {{ form.password }}
-                    </div>
+                    <label for="name">Full Name:</label>
+                    {{ form.existing_full_name }}
 
-                    <div class="remember-forgot">
-                        <div class="remember-me">
-                        <input type="checkbox" id="remember">
-                        <label for="remember" class="remember-me-text">Remember me</label>
-                        </div>
-                        <div class="forgot-password">
-                        <a href="#">Forgot password?</a>
-                        </div>
-                    </div>
+                    <label for="email">Email Address:</label>
+                    {{ form.existing_email }}
+
+                    <label for="dob">Work Mode:</label>
+                    {{ form.work_mode }}
+
+                    <label for="dob">Description:</label>
+                    {{ form.description }}
+
+                    <label for="dob">Industry:</label>
+                    {{ form.industry }}
+
+                    <label for="dob">Country:</label>
+                    {{ form.country }}
+
                     {% if form.errors %}
                     <!-- <div class="error-mess"> -->
                         {% for field, errors in form.errors.items %}

@@ -28,10 +28,16 @@ class CompanyProfile(models.Model):
         ('Kenya', 'Kenya'),
         ('South Africa', 'South Africa'),
     )
+    WORK_MODE = (
+        ('Remote', 'Remote'),
+        ('Hybrid', 'Hybrid'),
+        ('On site', 'On Site'),
+    )
+
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     company_id = models.CharField(max_length=255, blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
+    work_mode = models.TextField(choices=WORK_MODE, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     industry = models.CharField(max_length=100, blank=True)
     country = models.CharField(max_length=255, choices=COUNTRY, blank=True)

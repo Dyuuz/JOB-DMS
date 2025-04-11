@@ -4,12 +4,12 @@
     {% if user_auth %}
         {% if company_role %}
         <div class="company-role-container">
-            <!-- <h2>{{ company_role.user.full_name }}</h2>
-            <p>Department: {{ company_role.company_id }}</p>
-            <p>Responsibilities: {{ company_role.industry }}</p>
-            <p>Start Date: {{ company_role.description }}</p> -->
-            <p>Start Date: {{ company_role.email }}</p>
-            <h1>User Profile</h2>
+            <h2>{{ company_role.user.full_name }}</h2>
+            <p>Email: {{ company_role.user.email }}</p>
+            <p>Work Mode: {{ company_role.work_mode }}</p>
+            <p>Industry: {{ company_role.industry }}</p>
+            <p>Description: {{ company_role.description }}</p>
+            <p>Country: {{ company_role.country }}</p>
         </div>
         <button><a href="{% url 'profile-update' %}">Edit Profile</a></button>
         {% else %}

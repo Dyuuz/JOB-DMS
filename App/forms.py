@@ -116,12 +116,13 @@ class CompanyProfileForm(forms.ModelForm):
     class Meta:
         model = CompanyProfile
         fields = [
-            'existing_full_name', 'existing_email','address', 'country', 'industry'
+            'existing_full_name', 'existing_email','work_mode', 'description', 'country', 'industry'
         ]
         widgets = {
-            'address': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter phone number'}),
-            'country': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Enter country'}),
-            'address': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter company name'}),
+            'industry': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter industry'}),
+            'description': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter description'}),
+            'country': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Enter country'}),
+            'work_mode': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select work mode'}),
         }
 
     def __init__(self, *args, **kwargs):
