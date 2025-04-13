@@ -34,9 +34,9 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '192.168.29.42',
-    '192.168.59.42',
-    '192.168.46.42',
+    os.getenv('ipadd1'),
+    os.getenv('ipadd2'),
+    os.getenv('ipadd3'),
 ]
 
 
