@@ -1,103 +1,240 @@
 {% extends "layout.html" %}
 
 {% block dynamicpage %}
-<div class="form-body">
-    <div class="form-container">
-        <!-- Progress Bar -->
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
+<div class="jobsapp-body">
+    <div class="jb-container">
+        <header class="jb-header">
+            <h1 class="jb-title"><i class="fas fa-briefcase"></i> Available Jobs</h1>
+            <p class="jb-subtitle">Browse and apply to exciting opportunities from top companies around the world</p>
+        </header>
 
-        <!-- Page 1 -->
-        <div class="form-page page-1 active">
-            <h2>Personal Information</h2>
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" class="input-field" placeholder="Enter your full name" required>
-
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" class="input-field" placeholder="Enter your email" required>
-
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" class="input-field" placeholder="Enter your phone number" required>
-
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" class="input-field" required>
-
-            <div class="button-container">
-                <button class="next-btn">Next</button>
-            </div>
-        </div>
-
-        <!-- Page 2 -->
-        <div class="form-page page-2">
-            <h2>Address Information</h2>
-            <label for="address">Street Address:</label>
-            <input type="text" id="address" class="input-field" placeholder="Enter your street address" required>
-
-            <label for="city">City:</label>
-            <input type="text" id="city" class="input-field" placeholder="Enter your city" required>
-
-            <label for="state">State:</label>
-            <input type="text" id="state" class="input-field" placeholder="Enter your state" required>
-
-            <label for="zip">ZIP Code:</label>
-            <input type="text" id="zip" class="input-field" placeholder="Enter your ZIP code" required>
-
-            <div class="button-container">
-                <button class="prev-btn">Previous</button>
-                <button class="next-btn">Next</button>
-            </div>
-        </div>
-
-        <!-- Page 3 -->
-        <div class="form-page page-3">
-            <h2>Education & Employment</h2>
-            <label for="education">Highest Education Level:</label>
-            <select id="education" class="input-field" required>
-                <option value="">Select education level</option>
-                <option value="high-school">High School</option>
-                <option value="bachelor">Bachelor's Degree</option>
-                <option value="master">Master's Degree</option>
-                <option value="phd">PhD</option>
+        <div class="jb-search-filter">
+            <input type="text" class="jb-search-box" placeholder="Search jobs by title, company, or keywords...">
+            <select class="jb-filter-dropdown">
+                <option>All Job Types</option>
+                <option>Full-time</option>
+                <option>Part-time</option>
+                <option>Contract</option>
+                <option>Remote</option>
             </select>
+            <select class="jb-filter-dropdown">
+                <option>All Locations</option>
+                <option>United States</option>
+                <option>Canada</option>
+                <option>United Kingdom</option>
+                <option>Remote</option>
+            </select>
+        </div>
 
-            <label for="occupation">Occupation:</label>
-            <input type="text" id="occupation" class="input-field" placeholder="Enter your occupation" required>
+        <div class="jb-listings">
+            <!-- Job Card 1 -->
+            <div class="jb-card">
+                <div class="jb-card-header">
+                    <div class="jb-company-logo">TN</div>
+                    <div class="jb-meta">
+                        <span class="jb-type">Remote</span>
+                        <div>Posted 2 days ago</div>
+                    </div>
+                </div>
+                <h2 class="jb-position-title">Senior Frontend Developer</h2>
+                <div class="jb-company-name">TechNova Solutions</div>
 
-            <label for="experience">Years of Experience:</label>
-            <input type="number" id="experience" class="input-field" placeholder="Enter years of experience" required>
+                <div class="jb-details">
+                    <div class="jb-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>San Francisco, CA (Remote possible)</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>$120,000 - $150,000/year</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Remote</span>
+                    </div>
+                </div>
 
-            <div class="button-container">
-                <button class="prev-btn">Previous</button>
-                <button class="next-btn">Next</button>
+                <div class="jb-skills">
+                    <span class="jb-skill-tag">React</span>
+                    <span class="jb-skill-tag">TypeScript</span>
+                    <span class="jb-skill-tag">Redux</span>
+                    <span class="jb-skill-tag">CSS</span>
+                    <span class="jb-skill-tag">Django</span>
+                    <span class="jb-skill-tag">Flask</span>
+                    <span class="jb-skill-tag">NextJs</span>
+                    <span class="jb-skill-tag">Frappe</span>
+                </div>
+
+                <button class="jb-apply-btn" onclick="jbOpenApplyModal('Senior Frontend Developer', 'TechNova Solutions')">
+                    <i class="fas fa-paper-plane"></i> Apply Now
+                </button>
+            </div>
+
+            <!-- Job Card 2 -->
+            <div class="jb-card">
+                <div class="jb-card-header">
+                    <div class="jb-company-logo">DS</div>
+                    <div class="jb-meta">
+                        <span class="jb-type">Full-time</span>
+                        <div>Posted 1 week ago</div>
+                    </div>
+                </div>
+                <h2 class="jb-position-title">Data Engineer</h2>
+                <div class="jb-company-name">DataSystems Inc.</div>
+
+                <div class="jb-details">
+                    <div class="jb-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>New York, NY</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>$110,000 - $140,000/year</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Full-time</span>
+                    </div>
+                </div>
+
+                <div class="jb-skills">
+                    <span class="jb-skill-tag">Python</span>
+                    <span class="jb-skill-tag">SQL</span>
+                    <span class="jb-skill-tag">Spark</span>
+                    <span class="jb-skill-tag">AWS</span>
+                </div>
+
+                <button class="jb-apply-btn" onclick="jbOpenApplyModal('Data Engineer', 'DataSystems Inc.')">
+                    <i class="fas fa-paper-plane"></i> Apply Now
+                </button>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div class="jb-card">
+                <div class="jb-card-header">
+                    <div class="jb-company-logo">DH</div>
+                    <div class="jb-meta">
+                        <span class="jb-type">Remote</span>
+                        <div>Posted 3 days ago</div>
+                    </div>
+                </div>
+                <h2 class="jb-position-title">UX Designer</h2>
+                <div class="jb-company-name">DesignHub</div>
+
+                <div class="jb-details">
+                    <div class="jb-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Remote</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>$50 - $70/hour</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>6-month contract</span>
+                    </div>
+                </div>
+
+                <div class="jb-skills">
+                    <span class="jb-skill-tag">Figma</span>
+                    <span class="jb-skill-tag">UI/UX</span>
+                    <span class="jb-skill-tag">Prototyping</span>
+                    <span class="jb-skill-tag">User Research</span>
+                </div>
+
+                <button class="jb-apply-btn" onclick="jbOpenApplyModal('UX Designer', 'DesignHub')">
+                    <i class="fas fa-paper-plane"></i> Apply Now
+                </button>
+            </div>
+
+            <!-- Job Card 4 -->
+            <div class="jb-card">
+                <div class="jb-card-header">
+                    <div class="jb-company-logo">CF</div>
+                    <div class="jb-meta">
+                        <span class="jb-type">Full-time</span>
+                        <div>Posted 5 days ago</div>
+                    </div>
+                </div>
+                <h2 class="jb-position-title">DevOps Engineer</h2>
+                <div class="jb-company-name">CloudForge</div>
+
+                <div class="jb-details">
+                    <div class="jb-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Boston, MA (Hybrid)</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>$130,000 - $160,000/year</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Full-time</span>
+                    </div>
+                </div>
+
+                <div class="jb-skills">
+                    <span class="jb-skill-tag">Kubernetes</span>
+                    <span class="jb-skill-tag">Docker</span>
+                    <span class="jb-skill-tag">Terraform</span>
+                    <span class="jb-skill-tag">CI/CD</span>
+                </div>
+
+                <button class="jb-apply-btn" onclick="jbOpenApplyModal('DevOps Engineer', 'CloudForge')">
+                    <i class="fas fa-paper-plane"></i> Apply Now
+                </button>
             </div>
         </div>
 
-        <!-- Page 4 -->
-        <div class="form-page page-4">
-            <h2>Additional Information</h2>
-            <label for="comments">Bio:</label>
-            <textarea id="comments" class="input-field" placeholder="Enter your biography"></textarea>
-
-            <label for="skills">Skills:</label>
-            <textarea id="skills" class="input-field" placeholder="List your skills"></textarea>
-
-            <label for="certifications">Certifications:</label>
-            <textarea id="certifications" class="input-field" placeholder="List your certifications"></textarea>
-
-            <div class="button-container">
-                <button class="prev-btn">Previous</button>
-                <button class="submit-btn">Submit</button>
-            </div>
-        </div>
-
-        <!-- Page Number Indicator -->
-        <div class="page-indicator">
-            Page <span id="current-page">1</span> of <span id="total-pages">4</span>
+        <div class="jb-pagination">
+            <button class="jb-page-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="jb-page-btn jb-active">1</button>
+            <button class="jb-page-btn">2</button>
+            <button class="jb-page-btn">3</button>
+            <button class="jb-page-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 
-    <script src="script.js"></script>
-</div>
+    <!-- Application Modal -->
+    <div class="jb-modal" id="jbApplyModal">
+        <div class="jb-modal-content">
+            <span class="jb-close-modal" onclick="jbCloseModal()">&times;</span>
+            <h2 id="jbModalJobTitle"></h2>
+            <p id="jbModalCompanyName" style="color: var(--jb-primary); margin-bottom: 1.5rem;"></p>
 
+            <form id="jbApplicationForm">
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="jbFullName" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name</label>
+                    <input type="text" id="jbFullName" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);">
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="jbEmail" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                    <input type="email" id="jbEmail" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);">
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="jbPhone" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone</label>
+                    <input type="tel" id="jbPhone" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);">
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="jbResume" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Upload Resume</label>
+                    <input type="file" id="jbResume" accept=".pdf,.doc,.docx" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);">
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="jbCoverLetter" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Cover Letter (Optional)</label>
+                    <textarea id="jbCoverLetter" rows="5" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);"></textarea>
+                </div>
+
+                <button type="submit" style="width: 100%; padding: 0.75rem; background-color: var(--jb-primary); color: white; border: none; border-radius: var(--jb-border-radius); font-weight: 600; cursor: pointer;">
+                    Submit Application
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock dynamicpage %}

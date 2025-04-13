@@ -1,11 +1,114 @@
 {% extends "layout.html" %}
 
 {% block dynamicpage %}
-<section class="homepage" id="home">
+<div class="applied-body">
     <div class="container">
-        <h1>Welcome to Job Applied Page</h1>
-        <p>Manage your job applications efficiently and effectively.</p>
-        <button class="cta-button">Get Started</button>
+        <header>
+            <h1><i class="fas fa-briefcase"></i> Job Application Tracker</h1>
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Application
+            </button>
+        </header>
+
+        <div class="stats-container">
+            <div class="stat-card active">
+                <h3>Active Applications</h3>
+                <p>12</p>
+            </div>
+            <div class="stat-card interview">
+                <h3 class="ints">Interviews</h3>
+                <p>5</p>
+            </div>
+            <div class="stat-card offered">
+                <h3>Offers</h3>
+                <p>2</p>
+            </div>
+            <div class="stat-card rejected">
+                <h3>Rejected</h3>
+                <p>3</p>
+            </div>
+        </div>
+
+        <div class="actions">
+            <div class="filter-controls">
+                <!-- Filter controls would go here -->
+            </div>
+        </div>
+
+        <table class="applications-table">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Position</th>
+                    <th>Date Applied</th>
+                    <th>Status</th>
+                    <th>Next Step</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TechCorp Inc.</td>
+                    <td>Senior Frontend Developer</td>
+                    <td>May 15, 2023</td>
+                    <td><span class="status-badge status-interview">Interview</span></td>
+                    <td>Technical interview - Jun 2</td>
+                    <td>
+                        <div class="action-icons">
+                            <a href="#" title="View Details"><i class="fas fa-eye"></i></a>
+                            <a href="#" title="Withdraw Application"><i class="fas fa-user-times"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DataSystems</td>
+                    <td>Data Engineer</td>
+                    <td>May 20, 2023</td>
+                    <td><span class="status-badge status-applied">Applied</span></td>
+                    <td>Awaiting response</td>
+                    <td>
+                        <div class="action-icons">
+                            <a href="#" title="View Details"><i class="fas fa-eye"></i></a>
+                            <a href="#" title="Withdraw Application"><i class="fas fa-user-times"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DesignHub</td>
+                    <td>UX Designer</td>
+                    <td>May 10, 2023</td>
+                    <td><span class="status-badge status-offer">Offer Received</span></td>
+                    <td>Review offer by Jun 5</td>
+                    <td>
+                        <div class="action-icons">
+                            <a href="#" title="View Details"><i class="fas fa-eye"></i></a>
+                            <a href="#" title="Withdraw Application"><i class="fas fa-user-times"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CloudNet</td>
+                    <td>DevOps Engineer</td>
+                    <td>May 5, 2023</td>
+                    <td><span class="status-badge status-rejected">Rejected</span></td>
+                    <td>N/A</td>
+                    <td>
+                        <div class="action-icons">
+                            <a href="#" title="View Details"><i class="fas fa-eye"></i></a>
+                            <a href="#" title="Withdraw Application"><i class="fas fa-user-times"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</section>
+
+    <script>
+        // You would add JavaScript functionality here
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            alert('Add new application form would appear here');
+        });
+    </script>
+</div>
+
 {% endblock dynamicpage %}
