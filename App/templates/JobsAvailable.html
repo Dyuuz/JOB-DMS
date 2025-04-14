@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block dynamicpage %}
-<div class="jobsapp-body">
+<div class="jobs-avail-body">
     <div class="jb-container">
         <header class="jb-header">
             <h1 class="jb-title"><i class="fas fa-briefcase"></i> Available Jobs</h1>
@@ -33,7 +33,7 @@
                     <div class="jb-company-logo">TN</div>
                     <div class="jb-meta">
                         <span class="jb-type">Remote</span>
-                        <div>Posted 2 days ago</div>
+                        <div class="posted">Posted 2 days ago</div>
                     </div>
                 </div>
                 <h2 class="jb-position-title">Senior Frontend Developer</h2>
@@ -76,7 +76,7 @@
                     <div class="jb-company-logo">DS</div>
                     <div class="jb-meta">
                         <span class="jb-type">Full-time</span>
-                        <div>Posted 1 week ago</div>
+                        <div class="posted">Posted 1 week ago</div>
                     </div>
                 </div>
                 <h2 class="jb-position-title">Data Engineer</h2>
@@ -115,7 +115,7 @@
                     <div class="jb-company-logo">DH</div>
                     <div class="jb-meta">
                         <span class="jb-type">Remote</span>
-                        <div>Posted 3 days ago</div>
+                        <div class="posted">Posted 3 days ago</div>
                     </div>
                 </div>
                 <h2 class="jb-position-title">UX Designer</h2>
@@ -154,7 +154,7 @@
                     <div class="jb-company-logo">CF</div>
                     <div class="jb-meta">
                         <span class="jb-type">Full-time</span>
-                        <div>Posted 5 days ago</div>
+                        <div class="posted">Posted 5 days ago</div>
                     </div>
                 </div>
                 <h2 class="jb-position-title">DevOps Engineer</h2>
@@ -186,15 +186,91 @@
                     <i class="fas fa-paper-plane"></i> Apply Now
                 </button>
             </div>
+            <!-- Job Card 5 -->
+            <div class="jb-card">
+                <div class="jb-card-header">
+                    <div class="jb-company-logo">CF</div>
+                    <div class="jb-meta">
+                        <span class="jb-type">Full-time</span>
+                        <div class="posted">Posted 5 days ago</div>
+                    </div>
+                </div>
+                <h2 class="jb-position-title">Backend Engineer</h2>
+                <div class="jb-company-name">CloudForge</div>
+
+                <div class="jb-details">
+                    <div class="jb-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Boston, MA (Hybrid)</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>$130,000 - $160,000/year</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Full-time</span>
+                    </div>
+                </div>
+
+                <div class="jb-skills">
+                    <span class="jb-skill-tag">Kubernetes</span>
+                    <span class="jb-skill-tag">Docker</span>
+                    <span class="jb-skill-tag">Terraform</span>
+                    <span class="jb-skill-tag">CI/CD</span>
+                </div>
+
+                <button class="jb-apply-btn" onclick="jbOpenApplyModal('DevOps Engineer', 'CloudForge')">
+                    <i class="fas fa-paper-plane"></i> Apply Now
+                </button>
+            </div>
+            <!-- Job Card 6 -->
+            <div class="jb-card">
+                <div class="jb-card-header">
+                    <div class="jb-company-logo">CF</div>
+                    <div class="jb-meta">
+                        <span class="jb-type">Full-time</span>
+                        <div class="posted">Posted 5 days ago</div>
+                    </div>
+                </div>
+                <h2 class="jb-position-title">Frontend Engineer</h2>
+                <div class="jb-company-name">CloudForge</div>
+
+                <div class="jb-details">
+                    <div class="jb-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Boston, MA (Hybrid)</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>$130,000 - $160,000/year</span>
+                    </div>
+                    <div class="jb-detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Full-time</span>
+                    </div>
+                </div>
+
+                <div class="jb-skills">
+                    <span class="jb-skill-tag">Kubernetes</span>
+                    <span class="jb-skill-tag">Docker</span>
+                    <span class="jb-skill-tag">Terraform</span>
+                    <span class="jb-skill-tag">CI/CD</span>
+                </div>
+
+                <button class="jb-apply-btn" onclick="jbOpenApplyModal('DevOps Engineer', 'CloudForge')">
+                    <i class="fas fa-paper-plane"></i> Apply Now
+                </button>
+            </div>
         </div>
 
-        <div class="jb-pagination">
+        <!-- <div class="jb-pagination">
             <button class="jb-page-btn"><i class="fas fa-chevron-left"></i></button>
             <button class="jb-page-btn jb-active">1</button>
             <button class="jb-page-btn">2</button>
             <button class="jb-page-btn">3</button>
             <button class="jb-page-btn"><i class="fas fa-chevron-right"></i></button>
-        </div>
+        </div> -->
     </div>
 
     <!-- Application Modal -->

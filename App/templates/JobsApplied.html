@@ -4,13 +4,20 @@
 <div class="applied-body">
     <div class="container">
         <header>
-            <h1><i class="fas fa-briefcase"></i> Job Application Tracker</h1>
-            <button class="btn btn-primary">
-                <i class="fas fa-plus"></i> Add Application
-            </button>
+            <h1 class="ja-title"><i class="fas fa-briefcase"></i> My Job Applications</h1>
+            <div class="search-filter">
+                <input type="text" class="search-box" placeholder="Search applications...">
+                <select class="filter-dropdown">
+                    <option>All Statuses</option>
+                    <option>Applied</option>
+                    <option>Interview</option>
+                    <option>Offer</option>
+                    <option>Rejected</option>
+                </select>
+            </div>
         </header>
 
-        <div class="stats-container">
+        <div class="stats-cards">
             <div class="stat-card active">
                 <h3>Active Applications</h3>
                 <p>12</p>
@@ -29,12 +36,6 @@
             </div>
         </div>
 
-        <div class="actions">
-            <div class="filter-controls">
-                <!-- Filter controls would go here -->
-            </div>
-        </div>
-
         <table class="applications-table">
             <thead>
                 <tr>
@@ -48,67 +49,118 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>TechCorp Inc.</td>
+                    <td>TechNova Solutions</td>
                     <td>Senior Frontend Developer</td>
-                    <td>May 15, 2023</td>
+                    <td>Jun 15, 2023</td>
                     <td><span class="status-badge status-interview">Interview</span></td>
-                    <td>Technical interview - Jun 2</td>
+                    <td>Technical interview - Jun 28</td>
                     <td>
-                        <div class="action-icons">
-                            <a href="#" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="#" title="Withdraw Application"><i class="fas fa-user-times"></i></a>
+                        <div class="action-buttons">
+                            <button class="action-btn view-btn" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn withdraw-btn" title="Withdraw Application">
+                                <i class="fas fa-user-times"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>DataSystems</td>
-                    <td>Data Engineer</td>
-                    <td>May 20, 2023</td>
+                    <td>NASA</td>
+                    <td>DevOps Engineer</td>
+                    <td>Jun 15, 2023</td>
+                    <td><span class="status-badge status-rejected">Rejected</span></td>
+                    <td>N/A</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn view-btn" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn withdraw-btn" title="Withdraw Application">
+                                <i class="fas fa-user-times"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AertherCare Solutions</td>
+                    <td>Data Analyst</td>
+                    <td>Jun 15, 2023</td>
                     <td><span class="status-badge status-applied">Applied</span></td>
                     <td>Awaiting response</td>
                     <td>
-                        <div class="action-icons">
-                            <a href="#" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="#" title="Withdraw Application"><i class="fas fa-user-times"></i></a>
+                        <div class="action-buttons">
+                            <button class="action-btn view-btn" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn withdraw-btn" title="Withdraw Application">
+                                <i class="fas fa-user-times"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DataSystems Inc.</td>
+                    <td>Data Engineer</td>
+                    <td>Jun 10, 2023</td>
+                    <td><span class="status-badge status-applied">Applied</span></td>
+                    <td>Awaiting response</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn view-btn" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn withdraw-btn" title="Withdraw Application">
+                                <i class="fas fa-user-times"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>DesignHub</td>
                     <td>UX Designer</td>
-                    <td>May 10, 2023</td>
+                    <td>Jun 5, 2023</td>
                     <td><span class="status-badge status-offer">Offer Received</span></td>
-                    <td>Review offer by Jun 5</td>
+                    <td>Review offer by Jul 1</td>
                     <td>
-                        <div class="action-icons">
-                            <a href="#" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="#" title="Withdraw Application"><i class="fas fa-user-times"></i></a>
+                        <div class="action-buttons">
+                            <button class="action-btn view-btn" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn withdraw-btn" title="Withdraw Application">
+                                <i class="fas fa-user-times"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>CloudNet</td>
+                    <td>CloudForge</td>
                     <td>DevOps Engineer</td>
-                    <td>May 5, 2023</td>
+                    <td>May 28, 2023</td>
                     <td><span class="status-badge status-rejected">Rejected</span></td>
                     <td>N/A</td>
                     <td>
-                        <div class="action-icons">
-                            <a href="#" title="View Details"><i class="fas fa-eye"></i></a>
-                            <a href="#" title="Withdraw Application"><i class="fas fa-user-times"></i></a>
+                        <div class="action-buttons">
+                            <button class="action-btn view-btn" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn withdraw-btn" title="Withdraw Application">
+                                <i class="fas fa-user-times"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
 
-    <script>
-        // You would add JavaScript functionality here
-        document.querySelector('.btn-primary').addEventListener('click', function() {
-            alert('Add new application form would appear here');
-        });
-    </script>
+        <!-- <div class="pagination">
+            <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+        </div> -->
+    </div>
 </div>
 
 {% endblock dynamicpage %}
