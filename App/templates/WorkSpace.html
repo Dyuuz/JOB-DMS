@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+<div class="workspacebody">
+    <div class="container">
+        <div class="header">
+            <h1 class="title"><i class="fas fa-users"></i> My Workplaces</h1>
+        </div>
+
+        <div class="stats-workspace">
+            <div class="stat-card">
+                <div class="stat-value-active" id="activeCompanies">2</div>
+                <div class="stat-label">Active Companies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value-pend" id="totalProjects">1</div>
+                <div class="stat-label">Pending Approval</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value-hold" id="pendingRequests">1</div>
+                <div class="stat-label">On Hold</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value-served"pendingRequests">1</div>
+                <div class="stat-label">Served</div>
+            </div>
+        </div>
+
+        <div class="search-filter">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search companies...">
+            </div>
+            <!-- <button class="filter-btn">
+                <i class="fas fa-filter"></i> Filter
+            </button> -->
+        </div>
+
+        <div class="grid" id="companiesGrid">
+            <!-- Company 1 -->
+            <div class="company-card">
+                <h3 class="company-name">TechNova Solutions</h3>
+                <div class="company-industry">Technology</div>
+                <div class="company-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-user-tie"></i> Senior Developer
+                    </div>
+                </div>
+                <div class="status-container">
+                    <!-- Active Badge -->
+                    <div class="status-badge badge-active">
+                        <i class="fas fa-check"></i>
+                        <span>Active</span>
+                    </div>
+
+                    <!-- Pending Badge -->
+                    <!-- <div class="status-badge badge-pending">
+                        <i class="fas fa-clock"></i>
+                        <span>Pending</span>
+                    </div>
+
+                    <!== On Hold Badge ==>
+                    <div class="status-badge badge-onhold">
+                        <i class="fas fa-pause"></i>
+                        <span>On Hold</span>
+                    </div> -->
+                </div>
+                <div class="company-dates">
+                    <div class="date-group">
+                        <div class="date-label">Joined</div>
+                        <div class="date-value">Mar 15, 2022</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Left</div>
+                        <div class="date-value status-active">Present</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company 2 -->
+            <div class="company-card">
+                <h3 class="company-name">GreenLeaf Finance</h3>
+                <div class="company-industry">Finance</div>
+                <div class="company-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-user-tie"></i> Financial Analyst
+                    </div>
+                </div>
+                <div class="status-container">
+                    <!-- On Hold Badge -->
+                    <div class="status-badge badge-onhold">
+                        <i class="fas fa-pause"></i>
+                        <span>On Hold</span>
+                    </div>
+                </div>
+                <div class="company-dates">
+                    <div class="date-group">
+                        <div class="date-label">Joined</div>
+                        <div class="date-value">Jan 10, 2023</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Left</div>
+                        <div class="date-value status-former">Nov 30, 2023</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company 3 -->
+            <div class="company-card">
+                <h3 class="company-name">MediCare Health</h3>
+                <div class="company-industry">Healthcare</div>
+                <div class="company-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-user-tie"></i> IT Consultant
+                    </div>
+                </div>
+                <div class="status-container">
+                    <!-- Pending Badge -->
+                    <div class="status-badge badge-pending">
+                        <i class="fas fa-clock"></i>
+                        <span>Pending Approval</span>
+                    </div>
+                </div>
+                <div class="company-dates">
+                    <div class="date-group">
+                        <div class="date-label">Joined</div>
+                        <div class="date-value">May 22, 2023</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Left</div>
+                        <div class="date-value status-active">Present</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company 4 -->
+            <div class="company-card">
+                <h3 class="company-name">EduFuture Academy</h3>
+                <div class="company-industry">Education</div>
+                <div class="company-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-user-tie"></i> Curriculum Developer
+                    </div>
+                </div>
+                <div class="status-container">
+                    <!-- Active Badge -->
+                    <div class="status-badge badge-served">
+                        <i class="fas fa-check"></i>
+                        <span>Served</span>
+                    </div>
+                </div>
+                <div class="company-dates">
+                    <div class="date-group">
+                        <div class="date-label">Joined</div>
+                        <div class="date-value">Nov 5, 2021</div>
+                    </div>
+                    <div class="date-group">
+                        <div class="date-label">Left</div>
+                        <div class="date-value status-former">Dec 15, 2022</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock dynamicpage %}

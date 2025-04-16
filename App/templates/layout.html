@@ -11,8 +11,10 @@
   <link rel="stylesheet" href="{% static 'CSS/landingpage45.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/loginReg712.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/UserProfile15.css' %}">
-  <link rel="stylesheet" href="{% static 'CSS/JobsApplied46.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/JobsApplied40.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/edit-profile.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/document.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/workspace11.css' %}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
@@ -29,19 +31,21 @@
         <ul class="nav-links">
             {% if request.user.is_authenticated %}
             <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Jobs Available</a></li>
-            <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Track Applications</a></li>
-            <li><a href="{% url 'documents' %}"><i class="fas fa-folder-open"></i> Documents</a></li>
             <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="{% url 'workspace' %}"><i class="fas fa-users"></i> Workplace</a></li>
+            <li><a href="{% url 'documents' %}"><i class="fas fa-folder-open"></i> Documents</a></li>
+            <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Job Listings</a></li>
+            <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Track Applications</a></li>
             <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
             <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             {% else %}
             <li ><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
-            <li ><a href="" class="ordered-list-1" onclick="NoAuthUser(event, 1)" data-cnt="jobs-available"><i class="fas fa-briefcase"></i> Jobs Available</a></li>
-            <!-- <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Jobs Available</a></li> -->
-            <li ><a href="" class="ordered-list-2" onclick="NoAuthUser(event, 2)" data-cnt="track-application"><i class="fas fa-file-alt"></i> Track Applications</a></li>
-            <li ><a href="" class="ordered-list-3" onclick="NoAuthUser(event, 3)" data-cnt="documents"><i class="fas fa-folder-open"></i> Documents</a></li>
             <li ><a href="" class="ordered-list-4" onclick="NoAuthUser(event, 4)" data-cnt="profile"><i class="fas fa-user"></i> Profile</a></li>
+            <li ><a href="" class="ordered-list-3" onclick="NoAuthUser(event, 3)" data-cnt="documents"><i class="fas fa-folder-open"></i> Documents</a></li>
+            <li ><a href="" class="ordered-list-1" onclick="NoAuthUser(event, 1)" data-cnt="jobs-available"><i class="fas fa-briefcase"></i> Jobs Available</a></li>
+            <li ><a href="" class="ordered-list-2" onclick="NoAuthUser(event, 2)" data-cnt="track-application"><i class="fas fa-file-alt"></i> Track Applications</a></li>
+
+
             <li ><a href="" class="ordered-list-5" onclick="NoAuthUser(event, 5)" data-cnt="settings"><i class="fas fa-cog"></i> Settings</a></li>
             <li ><a href="{% url 'auth-login' %}" ><i class="fas fa-sign-in-alt"></i> Login</a></li>
             {% endif %}
@@ -221,6 +225,8 @@
     <script src="{% static 'JS/editprofile.js' %}"></script>
     <script src="{% static 'JS/jobsapplied13.js' %}"></script>
     <script src="{% static 'JS/jobapplication12.js' %}"></script>
+    <script src="{% static 'JS/document32.js' %}"></script>
+    <script src="{% static 'JS/workspace.js' %}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -2,7 +2,7 @@ from django import views
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from App.views import HomeView, JobsAvailableView, JobsAppliedView, DocumentView, ProfileView, SettingsView, LogoutView, RegisterView, LoginView, UserProfileUpdateView
+from App.views import HomeView, JobsAvailableView, JobsAppliedView, DocumentView, ProfileView, SettingsView, LogoutView, RegisterView, LoginView, UserProfileUpdateView, WorkSpaceView
 from django.urls import include
 
 auth_patterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
     path('profile/update', UserProfileUpdateView.as_view(), name='profile-update'),
     path('profile', ProfileView.as_view(), name='profile'),
     path('settings', SettingsView.as_view(), name='settings'),
+    path('workspace', WorkSpaceView.as_view(), name='workspace'),
     path('', include(auth_patterns)),
 ]
 

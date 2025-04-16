@@ -1,0 +1,381 @@
+:root {
+    --doc-primary: #2b4454;
+    --doc-primary-light: #e6f7f7;
+    --doc-secondary: #08120d;
+    --doc-success: #4cc9f0;
+    --doc-warning: #f8961e;
+    --doc-danger: #f94144;
+    --doc-light: #f8f9fa;
+    --doc-dark: #212529;
+    --doc-gray: #6c757d;
+    --doc-border-radius: 8px;
+    --doc-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --doc-transition: all 0.3s ease;
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+} */
+
+.doc-body {
+    background-color: #f5f7fa;
+    color: var(--doc-dark);
+    line-height: 1.6;
+}
+
+.doc-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.doc-title {
+    font-size: 2rem;
+    color: var(--doc-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.doc-upload-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--doc-border-radius);
+    background-color: var(--doc-primary);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--doc-transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.doc-upload-btn:hover {
+    background-color: var(--doc-secondary);
+    transform: translateY(-2px);
+}
+
+.doc-categories {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.doc-category {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: var(--doc-transition);
+    white-space: nowrap;
+}
+
+.doc-category.active {
+    background-color: var(--doc-primary);
+    color: white;
+    border-color: var(--doc-primary);
+}
+
+.doc-category:hover:not(.active) {
+    background-color: var(--doc-light);
+}
+
+.doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.doc-card {
+    background: white;
+    border-radius: var(--doc-border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--doc-box-shadow);
+    transition: var(--doc-transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.doc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.doc-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--doc-border-radius);
+    background-color: var(--doc-primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--doc-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.doc-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--doc-dark);
+    word-break: break-word;
+}
+
+.doc-meta {
+    color: var(--doc-gray);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.doc-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.doc-action-btn {
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--doc-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.doc-action-btn:hover {
+    background-color: #f0f4f8;
+}
+
+.doc-view {
+    color: var(--doc-primary);
+}
+
+.doc-download {
+    color: var(--doc-success);
+}
+
+.doc-delete {
+    color: var(--doc-danger);
+}
+
+.doc-empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: var(--doc-border-radius);
+    box-shadow: var(--doc-box-shadow);
+}
+
+.doc-empty-icon {
+    font-size: 3rem;
+    color: var(--doc-gray);
+    margin-bottom: 1rem;
+}
+
+.doc-empty-text {
+    color: var(--doc-gray);
+    margin-bottom: 1.5rem;
+}
+
+/* Upload Modal */
+.doc-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.doc-modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--doc-border-radius);
+    max-width: 500px;
+    width: 90%;
+}
+
+.doc-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.doc-modal-title {
+    font-size: 1.5rem;
+    color: var(--doc-dark);
+}
+
+.doc-close-modal {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--doc-gray);
+}
+
+.doc-upload-area {
+    border: 2px dashed #ddd;
+    border-radius: var(--doc-border-radius);
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: var(--doc-transition);
+}
+
+.doc-upload-area:hover {
+    border-color: var(--doc-primary);
+    background-color: #f8f9fa;
+}
+
+.doc-upload-icon {
+    font-size: 2rem;
+    color: var(--doc-primary);
+    margin-bottom: 1rem;
+}
+
+.doc-file-input {
+    display: none;
+}
+
+.doc-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.doc-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.doc-form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: var(--doc-border-radius);
+}
+
+.doc-form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: var(--doc-border-radius);
+    background-color: white;
+}
+
+.doc-submit-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: var(--doc-border-radius);
+    background-color: var(--doc-primary);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--doc-transition);
+}
+
+.doc-submit-btn:hover {
+    background-color: var(--doc-secondary);
+}
+
+/* Responsive */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .doc-header {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .doc-title {
+        /* width: 100%; */
+        font-size: 1.7rem;
+        align-self: center;
+        justify-content: center;
+    }
+
+    .doc-upload-btn {
+        /* width: 100%; */
+        justify-content: center;
+        align-self: flex-end;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        /* font-weight: 400; */
+    }
+
+}
+
+@media (max-width: 768px) {
+    .doc-container {
+        padding: 1rem;
+    }
+
+    .doc-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    .doc-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .doc-title {
+        /* width: 100%; */
+        font-size: 1.7rem;
+        align-self: center;
+        justify-content: center;
+    }
+
+    .doc-upload-btn {
+        width: 100%;
+        justify-content: center;
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .doc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doc-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .doc-title {
+        /* width: 100%; */
+        font-size: 1.7rem;
+        align-self: center;
+        justify-content: center;
+    }
+
+    .doc-upload-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

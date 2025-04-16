@@ -34,6 +34,16 @@ class JobsAvailableView(View):
 
         return render(request, self.template_name)
 
+class WorkSpaceView(View):
+    """
+    This view handles the page to display jobs available for job seekers
+    """
+    template_name = 'WorkSpace.html'
+
+    def get(self, request, *args, **kwargs):
+
+        return render(request, self.template_name)
+
 class JobsAppliedView(View):
     """
     This view handles the page for jobs applied for n=by a job seeker

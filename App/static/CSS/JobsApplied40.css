@@ -1,5 +1,5 @@
 :root {
-    --primary: #2b4454;
+    --primary: #c1d0da;
     --primary-light: #e6f7f7;
     --secondary: #08120d;
     --success: #4cc9f0;
@@ -43,7 +43,7 @@ header {
 
 .ja-title {
     font-size: 2rem;
-    color: var(--primary);
+    color: #2b4454;
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -116,6 +116,11 @@ header {
     overflow: hidden;
     border-collapse: collapse;
 }
+
+/* .applications-table .cl-thead{
+    background-color: red;
+    padding: 100px;
+} */
 
 .applications-table th,
 .applications-table td {
@@ -251,7 +256,7 @@ header {
     }
 
     .ja-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     .search-filter {
@@ -263,6 +268,13 @@ header {
     .search-box {
         min-width: 90%;
         /* background-color: red; */
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -287,11 +299,18 @@ header {
     }
 
     .ja-title {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .search-box {
         min-width: 90%;
         /* background-color: red; */
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
