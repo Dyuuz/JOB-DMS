@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -36,7 +36,7 @@ class JobsAvailableView(View):
 
 class WorkSpaceView(View):
     """
-    This view handles the page to display jobs available for job seekers
+    This view handles the page to display companies a user is working it, most importantly provided by the platform
     """
     template_name = 'WorkSpace.html'
 
@@ -233,3 +233,51 @@ class LoginView(FormView):
     def form_invalid(self, form):
         # Pass form errors to the template
         return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
+
+    # def get(self):
+    #     if self.request.user.is_authenticated:
+    #         redirect('home')
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
+
+class ApplyForJobView(LoginRequiredMixin, View):
+    template_name = 'apply_job.html'
+
+    def get(self, request, job_id):
+        job = get_object_or_404(Job, id=job_id)
+
+        # AI Assistance — Fetch user's existing resume from their profile
+        user_profile = UserProfile.objects.filter(user=request.user).first()
+        suggested_resume = user_profile.resume if user_profile and user_profile.resume else None
+
+        context = {
+            'job': job,
+            'suggested_resume': suggested_resume,
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, job_id):
+        job = get_object_or_404(Job, id=job_id)
+        resume_file = request.FILES.get('resume')
+
+        # Use existing resume if AI suggestion was accepted
+        if 'use_existing' in request.POST:
+            user_profile = UserProfile.objects.filter(user=request.user).first()
+            if user_profile and user_profile.resume:
+                resume_file = user_profile.resume
+            else:
+                messages.error(request, "No existing resume found.")
+                return redirect('apply_job', job_id=job_id)
+
+        # Save application
+        Application.objects.create(
+            user=request.user,
+            job=job,
+            status='pending',
+            resume_version=resume_file,
+            submitted_at=timezone.now()
+        )
+        messages.success(request, "Your application was submitted successfully.")
+        return redirect('job_list')
