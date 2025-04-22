@@ -36,7 +36,7 @@ class JobsAvailableView(View):
 
 class WorkSpaceView(View):
     """
-    This view handles the page to display jobs available for job seekers
+    This view handles the page to display companies a user is working it, most importantly provided by the platform
     """
     template_name = 'WorkSpace.html'
 
@@ -233,6 +233,10 @@ class LoginView(FormView):
     def form_invalid(self, form):
         # Pass form errors to the template
         return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
+
+    # def get(self):
+    #     if self.request.user.is_authenticated:
+    #         redirect('home')
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
