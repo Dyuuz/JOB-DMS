@@ -25,7 +25,7 @@ Both users and companies can securely manage and update necessary documents link
 
 Project Stack:
 
-Backend: Django (Python)
+Backend: Django(Python), DJANGO REST FRAMEWORK
 
 Frontend: HTML, CSS, JavaScript
 
