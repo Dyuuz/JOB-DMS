@@ -69,6 +69,10 @@ class UserProfileForm(forms.ModelForm):
         'class': 'input-field',
     }))
 
+    resume= forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={
+        'class': 'input-field',
+        'placeholder': 'Upload resume',
+    }))
     class Meta:
         model = UserProfile
         fields = [
