@@ -16,7 +16,7 @@ from django.contrib import messages
 # Create your views here.
 class HomeView(View):
     """
-    This view handles the landing page for anyone without requiring authentication
+    This view handles the landing page for anyone without requiring user authentication
     """
     template_name = 'layout.html'
 
