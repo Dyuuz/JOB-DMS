@@ -1,8 +1,9 @@
 # forms.py
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser, UserProfile, CompanyProfile
+from .models import CustomUser, UserProfile, CompanyProfile, Document
 from django.contrib.auth import authenticate
+import os
 
 class CustomUserCreationForm(UserCreationForm):
     full_name = forms.CharField(
@@ -143,3 +144,66 @@ class CompanyProfileForm(forms.ModelForm):
         if user:
             self.fields['existing_email'].initial = user.email
             self.fields['existing_full_name'].initial = user.full_name
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ['name', 'file_type', 'file_format', 'file', 'job']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'doc-form-input'}),
+            'file_type': forms.Select(attrs={'class': 'doc-form-input'}),
+            'file_format': forms.Select(attrs={'class': 'doc-form-input'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
+        # Limit job choices to those relevant to the user
+        # if self.request and hasattr(self.request.user, 'companyprofile'):
+        #     self.fields['job'].queryset = Job.objects.filter(company=self.request.user.companyprofile)
+        # elif self.request and self.request.user.is_authenticated:
+        #     self.fields['job'].queryset = Job.objects.none()  # Or set appropriate queryset for regular users
+        # else:
+        #     self.fields['job'].queryset = Job.objects.none()
+
+        # Make job field optional
+        self.fields['job'].required = False
+
+        # Remove owner fields completely - we'll handle them in the view
+        self.fields.pop('owner_user', None)
+        self.fields.pop('owner_company', None)
+        self.fields.pop('job', None)
+
+    def clean_file(self):
+        file = self.cleaned_data.get('file')
+
+        if file:
+            # File size validation (5MB limit)
+            max_size = 2 * 1024 * 1024  # 2MB in bytes
+            if file.size > max_size:
+                raise forms.ValidationError("File too large. Maximum size is 2MB.")
+
+            # File extension validation
+            valid_extensions = ['.pdf', '.doc', '.docx', '.txt' ]
+            ext = os.path.splitext(file.name)[1].lower()
+
+            if ext not in valid_extensions:
+                raise forms.ValidationError(
+                    "Unsupported file extension. Only PDF, Word, and text documents are allowed."
+                )
+
+        return file
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+
+        # Set owner based on user type
+        if hasattr(self.request.user, 'companyprofile'):
+            instance.owner_company = self.request.user.companyprofile
+        else:
+            instance.owner_user = self.request.user
+
+        if commit:
+            instance.save()
+        return instance

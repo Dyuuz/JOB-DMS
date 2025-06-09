@@ -118,16 +118,31 @@ class Application(models.Model):
 
 # Document model for storing documents uploaded by users and companies
 class Document(models.Model):
+    FILE_TYPE = (
+        ('Resume', 'Resume'),
+        ('Certification', 'Certification'),
+        ('CV', 'CV'),
+    )
+    FILE_FORMAT = (
+        ('pdf', 'pdf'),
+        ('doc', 'doc'),
+        ('docx', 'docx'),
+        ('txt', 'txt'),
+    )
     owner_user = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
     owner_company = models.ForeignKey(CompanyProfile, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='documents')  # Linked to Job model
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='documents',null=True, blank=True)  # Linked to Job model
     name = models.CharField(max_length=255)
-    file_type = models.CharField(max_length=50)
+    file_type = models.CharField(max_length=50, choices=FILE_TYPE)
+    file_format = models.CharField(max_length=50, choices=FILE_FORMAT, default=FILE_FORMAT[0][0])
     file = models.FileField(upload_to='documents/')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
-        return self.name
+        return self.name + " - " + self.file_type
 
 # Feedback model for company feedback on applications
 class Feedback(models.Model):

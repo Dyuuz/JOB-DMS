@@ -1,0 +1,243 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+
+<div class="dash-body">
+    <div class="jobhive-container">
+        <!-- Header -->
+        <header class="jobhive-header">
+            <div class="jobhive-brand">
+                <div class="jobhive-logo">JH</div>
+                <span class="jobhive-brandname">JobHive</span>
+            </div>
+
+            <div class="jobhive-actions">
+                <div class="jobhive-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search jobs...">
+                </div>
+
+                <div class="jobhive-user">
+                    <div class="jobhive-avatar">AD</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="jobhive-main">
+            <div class="jobhive-section-header">
+                <div>
+                    <h1 class="jobhive-title">Job Management</h1>
+                    <p class="jobhive-subtitle">View and manage all posted positions</p>
+                </div>
+                <button class="jobhive-btn jobhive-btn-primary">
+                    <i class="fas fa-plus"></i> Post New Job
+                </button>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="jobhive-stats">
+                <div class="jobhive-stat-card jobhive-stat-active">
+                    <div class="jobhive-stat-header">
+                        <h3 class="jobhive-stat-title">Active Jobs</h3>
+                        <div class="jobhive-stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                    <h2 class="jobhive-stat-value">24</h2>
+                    <p class="jobhive-stat-desc">+3 from last week</p>
+                </div>
+
+                <div class="jobhive-stat-card jobhive-stat-applications">
+                    <div class="jobhive-stat-header">
+                        <h3 class="jobhive-stat-title">Applications</h3>
+                        <div class="jobhive-stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                    <h2 class="jobhive-stat-value">156</h2>
+                    <p class="jobhive-stat-desc">+12% from last week</p>
+                </div>
+
+                <div class="jobhive-stat-card jobhive-stat-interviews">
+                    <div class="jobhive-stat-header">
+                        <h3 class="jobhive-stat-title">Interviews</h3>
+                        <div class="jobhive-stat-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                    </div>
+                    <h2 class="jobhive-stat-value">18</h2>
+                    <p class="jobhive-stat-desc">5 scheduled today</p>
+                </div>
+
+                <div class="jobhive-stat-card jobhive-stat-drafts">
+                    <div class="jobhive-stat-header">
+                        <h3 class="jobhive-stat-title">Draft Jobs</h3>
+                        <div class="jobhive-stat-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                    </div>
+                    <h2 class="jobhive-stat-value">5</h2>
+                    <p class="jobhive-stat-desc">2 ready to publish</p>
+                </div>
+            </div>
+
+            <!-- Jobs Table -->
+            <div class="jobhive-table-container">
+                <table class="jobhive-table">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Department</th>
+                            <th>Location</th>
+                            <th>Posted</th>
+                            <th>Applications</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="jobhive-job-title">Senior Frontend Developer</div>
+                                <div class="jobhive-job-department">Engineering</div>
+                            </td>
+                            <td>Engineering</td>
+                            <td>Remote</td>
+                            <td>May 15, 2023</td>
+                            <td>42</td>
+                            <td>
+                                <span class="jobhive-status jobhive-status-active">Active</span>
+                            </td>
+                            <td>
+                                <div class="jobhive-actions-cell">
+                                    <button class="jobhive-action-btn" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="View Applications">
+                                        <i class="fas fa-users"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="Close Job">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="jobhive-job-title">Product Manager</div>
+                                <div class="jobhive-job-department">Product</div>
+                            </td>
+                            <td>Product</td>
+                            <td>San Francisco</td>
+                            <td>May 22, 2023</td>
+                            <td>28</td>
+                            <td>
+                                <span class="jobhive-status jobhive-status-active">Active</span>
+                            </td>
+                            <td>
+                                <div class="jobhive-actions-cell">
+                                    <button class="jobhive-action-btn" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="View Applications">
+                                        <i class="fas fa-users"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="Close Job">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="jobhive-job-title">UX Designer</div>
+                                <div class="jobhive-job-department">Design</div>
+                            </td>
+                            <td>Design</td>
+                            <td>New York</td>
+                            <td>May 10, 2023</td>
+                            <td>36</td>
+                            <td>
+                                <span class="jobhive-status jobhive-status-active">Active</span>
+                            </td>
+                            <td>
+                                <div class="jobhive-actions-cell">
+                                    <button class="jobhive-action-btn" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="View Applications">
+                                        <i class="fas fa-users"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="Close Job">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="jobhive-job-title">Data Scientist</div>
+                                <div class="jobhive-job-department">Data</div>
+                            </td>
+                            <td>Data</td>
+                            <td>Remote</td>
+                            <td>June 1, 2023</td>
+                            <td>18</td>
+                            <td>
+                                <span class="jobhive-status jobhive-status-draft">Draft</span>
+                            </td>
+                            <td>
+                                <div class="jobhive-actions-cell">
+                                    <button class="jobhive-action-btn" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="Publish">
+                                        <i class="fas fa-upload"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="jobhive-job-title">Marketing Specialist</div>
+                                <div class="jobhive-job-department">Marketing</div>
+                            </td>
+                            <td>Marketing</td>
+                            <td>Chicago</td>
+                            <td>April 28, 2023</td>
+                            <td>32</td>
+                            <td>
+                                <span class="jobhive-status jobhive-status-closed">Closed</span>
+                            </td>
+                            <td>
+                                <div class="jobhive-actions-cell">
+                                    <button class="jobhive-action-btn" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="View Applications">
+                                        <i class="fas fa-users"></i>
+                                    </button>
+                                    <button class="jobhive-action-btn" title="Reopen">
+                                        <i class="fas fa-redo"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="msg-auth" data-id="{{ message }}"></div>
+    {% endfor %}
+{% endif %}
+
+{% endblock dynamicpage %}

@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+
+<!-- Upload Modal -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="doc-modal" >
+        <div class="doc-modal-content">
+            <div class="doc-modal-header">
+                <h3 class="doc-modal-title">Upload Document</h3>
+                <!-- <span class="doc-close-modal" onclick="docCloseModal()">&times;</span> -->
+            </div>
+
+            <div class="doc-upload-area" onclick="document.getElementById('docFileInput').click()">
+                <div class="doc-upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h4>Click to browse or drag and drop</h4>
+                <p>Supported formats: PDF, DOC, DOCX, TXT</p>
+                <p>Max file size: 2MB</p>
+                {{ form.file }}
+            </div>
+
+            <form id="docUploadForm">
+                <div class="doc-form-group">
+                    <label for="docName" class="doc-form-label">Document Name</label>
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.file_type.label_tag }}
+                    {{ form.file_type }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.file_format.label_tag }}
+                    {{ form.file_format }}
+                </div>
+
+                <!-- <div class="doc-form-group">
+                    <label for="docDescription" class="doc-form-label">Description (Optional)</label>
+                    <textarea id="docDescription" class="doc-form-input" rows="3" placeholder="Brief description of this document..."></textarea>
+                </div> -->
+
+                {% if form.errors %}
+                <!-- <div class="error-mess"> -->
+                    {% for field, errors in form.errors.items %}
+                        <h2 class="error-response">{{ errors|join:", " }}</h2>
+                    {% endfor %}
+                <!-- </div> -->
+                {% endif %}
+
+                <button type="submit" class="doc-submit-btn">
+                    <i class="fas fa-upload"></i> Upload Document
+                </button>
+            </form>
+        </div>
+    </div>
+</form>
+{% endblock dynamicpage %}

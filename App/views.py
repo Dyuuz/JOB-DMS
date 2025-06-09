@@ -3,14 +3,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.views import View
-from .models import CustomUser, CompanyProfile, UserProfile, Job, Application, Feedback
+from .models import CustomUser, CompanyProfile, UserProfile, Job, Application, Feedback, Document
 from django.urls import reverse_lazy
-from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.edit import FormView, UpdateView, CreateView, DeleteView
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm, LoginForm, UserProfileForm, CompanyProfileForm
+from .forms import CustomUserCreationForm, LoginForm, UserProfileForm, CompanyProfileForm, DocumentForm
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 
 
 # Create your views here.
@@ -21,14 +23,25 @@ class HomeView(View):
     template_name = 'layout.html'
 
     def get(self, request, *args, **kwargs):
-
-        return render(request, self.template_name)
+        user_profile = UserProfile.objects.filter(user=request.user).first()
+        company_role = CompanyProfile.objects.filter(user=request.user).first()
+        return render(request, self.template_name, {'company_role': company_role, 'user_profile': user_profile,})
 
 class JobsAvailableView(View):
     """
     This view handles the page to display jobs available for job seekers
     """
     template_name = 'JobsAvailable.html'
+
+    def get(self, request, *args, **kwargs):
+
+        return render(request, self.template_name)
+
+class DashboardView(View):
+    """
+    This view handles the page to display jobs available for job seekers
+    """
+    template_name = 'dashboard.html'
 
     def get(self, request, *args, **kwargs):
 
@@ -54,7 +67,37 @@ class JobsAppliedView(View):
 
         return render(request, self.template_name)
 
-class DocumentView(View):
+class DocumentUploadView(LoginRequiredMixin, CreateView):
+    model = Document
+    form_class = DocumentForm
+    template_name = 'DocumentUpload.html'
+    success_url = reverse_lazy('documents')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def form_valid(self, form):
+        # Set the owner before saving
+        instance = form.save(commit=False)
+        instance.owner_user = self.request.user
+
+        # if hasattr(self.request.user, 'companyprofile'):
+        #     instance.owner_company = self.request.user.companyprofile
+        # else:
+        #     instance.owner_user = self.request.user
+
+        instance.save()
+        messages.success(self.request, f"'{instance.owner_user}' uploaded successfully!")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Please correct the errors below.")
+        return super().form_invalid(form)
+
+
+class DocumentListView(View):
     """
     This view handles the document page for both job seekers and companies
     It checks if the user is authenticated and retrieves their document information
@@ -62,8 +105,40 @@ class DocumentView(View):
     template_name = 'Documents.html'
 
     def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('auth-login')
 
-        return render(request, self.template_name)
+        user_documents = Document.objects.filter(owner_user=request.user)
+
+        for file in user_documents:
+            file.size = round(file.file.size / ( 1024 * 1024 ), 2)
+        return render(request, self.template_name, {
+            'user_documents': user_documents,
+            'has_documents': user_documents.exists()
+        })
+
+
+# class DocumentDeleteView(LoginRequiredMixin, DeleteView):
+#     model = Document
+#     template_name = 'documents/confirm_delete.html'
+#     success_url = reverse_lazy('documents:list')
+
+#     def get_object(self, queryset=None):
+#         obj = get_object_or_404(Document, pk=self.kwargs['pk'])
+#         # Verify ownership
+#         if hasattr(self.request.user, 'companyprofile'):
+#             if obj.owner_company != self.request.user.companyprofile:
+#                 raise PermissionDenied
+#         else:
+#             if obj.owner_user != self.request.user:
+#                 raise PermissionDenied
+#         return obj
+
+#     def delete(self, request, *args, **kwargs):
+#         response = super().delete(request, *args, **kwargs)
+#         messages.success(request, "Document deleted successfully!")
+#         return response
+
 
 class UserProfileUpdateView(UpdateView):
     """
@@ -237,47 +312,3 @@ class LoginView(FormView):
     # def get(self):
     #     if self.request.user.is_authenticated:
     #         redirect('home')
-
-
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils import timezone
-
-class ApplyForJobView(LoginRequiredMixin, View):
-    template_name = 'apply_job.html'
-
-    def get(self, request, job_id):
-        job = get_object_or_404(Job, id=job_id)
-
-        # AI Assistance — Fetch user's existing resume from their profile
-        user_profile = UserProfile.objects.filter(user=request.user).first()
-        suggested_resume = user_profile.resume if user_profile and user_profile.resume else None
-
-        context = {
-            'job': job,
-            'suggested_resume': suggested_resume,
-        }
-        return render(request, self.template_name, context)
-
-    def post(self, request, job_id):
-        job = get_object_or_404(Job, id=job_id)
-        resume_file = request.FILES.get('resume')
-
-        # Use existing resume if AI suggestion was accepted
-        if 'use_existing' in request.POST:
-            user_profile = UserProfile.objects.filter(user=request.user).first()
-            if user_profile and user_profile.resume:
-                resume_file = user_profile.resume
-            else:
-                messages.error(request, "No existing resume found.")
-                return redirect('apply_job', job_id=job_id)
-
-        # Save application
-        Application.objects.create(
-            user=request.user,
-            job=job,
-            status='pending',
-            resume_version=resume_file,
-            submitted_at=timezone.now()
-        )
-        messages.success(request, "Your application was submitted successfully.")
-        return redirect('job_list')
