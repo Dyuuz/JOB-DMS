@@ -128,13 +128,31 @@ class CompanyProfileForm(forms.ModelForm):
     class Meta:
         model = CompanyProfile
         fields = [
-            'existing_full_name', 'existing_email','work_mode', 'description', 'country', 'industry'
+            'existing_full_name', 'existing_email','work_mode', 'tagline', 'country', 'industry',
+            'hire_status', 'company_reg_num', 'founded', 'parent_company', 'headquarters', 'annual_growth_rate', 'website',
+            'about_us', 'mission_statement', 'core_tech', 'awards', 'certifications',
         ]
         widgets = {
-            'industry': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter industry'}),
-            'description': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter description'}),
+            'industry': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Enter industry'}),
+            'tagline': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter description'}),
             'country': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Enter country'}),
             'work_mode': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select work mode'}),
+
+            'hire_status': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select hire status'}),
+            'company_reg_num': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter registration number'}),
+            'founded': forms.DateInput(attrs={'type': 'date','class': 'input-field', 'placeholder': 'Enter description'}),
+            'parent_company': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter parent company'}),
+            'headquarters': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter headquarters location'}),
+            'annual_growth_rate': forms.NumberInput(attrs={'class': 'input-field', 'placeholder': 'Enter annual growth rate'}),
+            'website': forms.URLInput(attrs={'class': 'input-field', 'placeholder': 'Enter website URL'}),
+
+            'about_us': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter about us'}),
+            'mission_statement': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter mission statement'}),
+
+            'core_tech': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter core technologies seperated by commas'}),
+            'awards': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter awards'}),
+            'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications seperated by commas'}),
+
         }
 
     def __init__(self, *args, **kwargs):

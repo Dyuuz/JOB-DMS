@@ -13,7 +13,7 @@ class DocumentAdmin(admin.ModelAdmin):
     list_display = ('owner_user','name', 'file_type', 'file_format',)
 
 class CompanyProfileAdmin(admin.ModelAdmin):
-    list_display = ('user','company_reg_num','work_mode','description','industry','country',)
+    list_display = ('user','company_reg_num','work_mode','industry','country',)
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(CompanyProfile, CompanyProfileAdmin)

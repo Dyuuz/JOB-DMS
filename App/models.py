@@ -67,7 +67,7 @@ class CompanyProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     hire_status = models.CharField(max_length=100,choices=STATUS, default='Hiring')
     company_reg_num = models.CharField(max_length=255, blank=True, null=True)
-    work_mode = models.TextField(choices=WORK_MODE, blank=True, null=True)
+    work_mode = models.CharField(choices=WORK_MODE, blank=True, null=True)
     founded = models.DateField(null=True, blank=True)
     parent_company = models.CharField(max_length=255, blank=True, null=True)
     headquarters = models.CharField(max_length=255, blank=True, null=True)
@@ -80,7 +80,7 @@ class CompanyProfile(models.Model):
     core_tech = models.TextField(help_text="Enter tech tools seperated by commas",blank=True, null=True)
     awards = models.TextField(help_text="Enter awards seperated by commas",blank=True, null=True)
     certifications = models.TextField(help_text="Enter awards seperated by commas",blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+
     industry = models.CharField(max_length=100,choices=INDUSTRY, blank=True)
     country = models.CharField(max_length=255, choices=COUNTRY, blank=True)
 

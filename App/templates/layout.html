@@ -32,7 +32,7 @@
         </div>
         <ul class="nav-links">
             {% if request.user.is_authenticated %}
-                {% if user_profile %}
+                {% if request.user.userprofile %}
                 <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
                 <li><a href="{% url 'workspace' %}"><i class="fas fa-users"></i> Workplace</a></li>

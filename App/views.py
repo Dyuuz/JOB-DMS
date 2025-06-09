@@ -50,7 +50,8 @@ class JobsAvailableView(View):
     template_name = 'JobsAvailable.html'
 
     def get(self, request, *args, **kwargs):
-
+        user_profile = UserProfile.objects.filter(user=request.user).first()
+        company_role = CompanyProfile.objects.filter(user=request.user).first()
         return render(request, self.template_name)
 
 class DashboardView(View):
