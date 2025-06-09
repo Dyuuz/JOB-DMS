@@ -2,7 +2,15 @@ from django import views
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from App.views import HomeView, JobsAvailableView, DocumentUploadView,JobsAppliedView, DocumentListView, ProfileView, SettingsView, LogoutView, RegisterView, LoginView, UserProfileUpdateView, WorkSpaceView, DashboardView
+from App.views import (
+    HomeView, JobsAvailableView,
+    DocumentUploadView,JobsAppliedView,
+    DocumentListView, ProfileView,
+    SettingsView, LogoutView,
+    RegisterView, LoginView,
+    UserProfileUpdateView,
+    WorkSpaceView, DashboardView,
+    WorkforceView)
 from django.urls import include
 
 auth_patterns = [
@@ -14,6 +22,7 @@ auth_patterns = [
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('dashboard', DashboardView.as_view(), name='dashboard'),
+    path('workforce', WorkforceView.as_view(), name='workforce'),
     path('jobs-available', JobsAvailableView.as_view(), name='jobs_available'),
     path('jobs-applied', JobsAppliedView.as_view(), name='jobs_applied'),
     path('documents', DocumentListView.as_view(), name='documents'),

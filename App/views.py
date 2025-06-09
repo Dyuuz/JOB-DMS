@@ -3,17 +3,26 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.views import View
-from .models import CustomUser, CompanyProfile, UserProfile, Job, Application, Feedback, Document
+from .models import (
+    CustomUser, CompanyProfile,
+    UserProfile, Job, Application,
+    Feedback, Document)
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView, UpdateView, CreateView, DeleteView
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm, LoginForm, UserProfileForm, CompanyProfileForm, DocumentForm
+from .forms import (
+    CustomUserCreationForm,
+    LoginForm,
+    UserProfileForm,
+    CompanyProfileForm,
+    DocumentForm)
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-
+from .mixins import UserPermissionMixin
+from .utils import get_company_name
 
 # Create your views here.
 class HomeView(View):
@@ -23,9 +32,16 @@ class HomeView(View):
     template_name = 'layout.html'
 
     def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return render(request, self.template_name)
+
         user_profile = UserProfile.objects.filter(user=request.user).first()
         company_role = CompanyProfile.objects.filter(user=request.user).first()
-        return render(request, self.template_name, {'company_role': company_role, 'user_profile': user_profile,})
+        return render(request, self.template_name,
+        {
+            'company_role': company_role,
+            'user_profile': user_profile,
+        })
 
 class JobsAvailableView(View):
     """
@@ -44,8 +60,28 @@ class DashboardView(View):
     template_name = 'dashboard.html'
 
     def get(self, request, *args, **kwargs):
+        user = request.user
+        name_list = get_company_name(user.full_name)
+        return render(request, self.template_name,
+        {
+            'user': user,
+            'company_name': name_list,
+        })
 
-        return render(request, self.template_name)
+class WorkforceView(View):
+    """
+    This view handles the page to display jobs available for job seekers
+    """
+    template_name = 'workforce.html'
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        name_list = get_company_name(user.full_name)
+        return render(request, self.template_name,
+        {
+            'user': user,
+            'company_name': name_list,
+        })
 
 class WorkSpaceView(View):
     """
@@ -97,7 +133,7 @@ class DocumentUploadView(LoginRequiredMixin, CreateView):
         return super().form_invalid(form)
 
 
-class DocumentListView(View):
+class DocumentListView(UserPermissionMixin, View):
     """
     This view handles the document page for both job seekers and companies
     It checks if the user is authenticated and retrieves their document information

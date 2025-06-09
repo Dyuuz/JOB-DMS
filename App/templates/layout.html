@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Job Application DMS</title>
   <link rel="stylesheet" href="{% static 'CSS/styles13.css' %}">
-  <link rel="stylesheet" href="{% static 'CSS/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/dashboard1.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/workforce.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/JobApplication67.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/landingpage45.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/loginReg712.css' %}">
@@ -43,8 +44,8 @@
                 {% else %}
                 <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="{% url 'workforce' %}"><i class="fas fa-users"></i> Workforce</a></li>
                 <li><a href="{% url 'dashboard' %}"><i class="fas fa-table"></i> Dashboard</a></li>
-                <li><a href="{% url 'documents' %}"><i class="fas fa-users"></i> Candidates</a></li>
                 <!-- <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Job Listings</a></li> -->
                 <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Applications</a></li>
                 <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-chart-bar"></i> Analytics</a></li>
@@ -54,11 +55,10 @@
             {% else %}
             <li ><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
             <li ><a href="" class="ordered-list-4" onclick="NoAuthUser(event, 4)" data-cnt="profile"><i class="fas fa-user"></i> Profile</a></li>
+            <li ><a href="" class="ordered-list-6" onclick="NoAuthUser(event, 6)" data-cnt="workplace"><i class="fas fa-users"></i> Workplace</a></li>
             <li ><a href="" class="ordered-list-3" onclick="NoAuthUser(event, 3)" data-cnt="documents"><i class="fas fa-folder-open"></i> Documents</a></li>
             <li ><a href="" class="ordered-list-1" onclick="NoAuthUser(event, 1)" data-cnt="jobs-available"><i class="fas fa-briefcase"></i> Jobs Available</a></li>
             <li ><a href="" class="ordered-list-2" onclick="NoAuthUser(event, 2)" data-cnt="track-application"><i class="fas fa-file-alt"></i> Track Applications</a></li>
-
-
             <li ><a href="" class="ordered-list-5" onclick="NoAuthUser(event, 5)" data-cnt="settings"><i class="fas fa-cog"></i> Settings</a></li>
             <li ><a href="{% url 'auth-login' %}" ><i class="fas fa-sign-in-alt"></i> Login</a></li>
             {% endif %}
@@ -233,7 +233,7 @@
     </main>
 
     <script src="{% static 'JS/script1.js' %}"></script>
-    <script src="{% static 'JS/NavMenu11.js' %}"></script>
+    <script src="{% static 'JS/NavMenu34.js' %}"></script>
     <script src="{% static 'JS/loginReg.js' %}"></script>
     <script src="{% static 'JS/editprofile.js' %}"></script>
     <script src="{% static 'JS/jobsapplied13.js' %}"></script>

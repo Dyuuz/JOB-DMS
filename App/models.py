@@ -12,10 +12,10 @@ class CustomUser(AbstractUser):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
 
     def is_company(self):
-        return self.role == 'company'
+        return self.role == 'company' and hasattr(self, 'companyprofile')
 
     def is_user(self):
-        return self.role == 'user'
+        return self.role == 'user' and hasattr(self, 'userprofile')
 
     def __str__(self):
         return self.full_name

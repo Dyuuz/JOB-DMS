@@ -26,6 +26,9 @@ function NoAuthUser(event, id) {
     if (navpage === 'jobs-available') {
       toastr.error("Please login to access available jobs.");
     }
+    else if (navpage === 'workplace') {
+      toastr.error("Please login to access workplace.");
+    }
     else if (navpage === 'track-application') {
       toastr.error("Please login to track applications.");
     }
