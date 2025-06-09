@@ -10,7 +10,7 @@ from App.views import (
     RegisterView, LoginView,
     UserProfileUpdateView,
     WorkSpaceView, DashboardView,
-    WorkforceView)
+    WorkforceView, JobDetailView, ApplyJobView)
 from django.urls import include
 
 auth_patterns = [
@@ -23,8 +23,10 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('dashboard', DashboardView.as_view(), name='dashboard'),
     path('workforce', WorkforceView.as_view(), name='workforce'),
+    path('job-details/<int:pk>', JobDetailView.as_view(), name='job_details'),
     path('jobs-available', JobsAvailableView.as_view(), name='jobs_available'),
     path('jobs-applied', JobsAppliedView.as_view(), name='jobs_applied'),
+    path('apply/<int:pk>', ApplyJobView.as_view(), name='apply'),
     path('documents', DocumentListView.as_view(), name='documents'),
     path('documents/upload', DocumentUploadView.as_view(), name='document-upload'),
     path('profile/update', UserProfileUpdateView.as_view(), name='profile-update'),

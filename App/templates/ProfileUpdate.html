@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block dynamicpage %}
-    {% if company_role %}
+    {% if request.user.role == 'company' %}
     <form method="post">
         {% csrf_token %}
         <div class="form-body">

@@ -66,7 +66,7 @@ class CompanyProfile(models.Model):
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     hire_status = models.CharField(max_length=100,choices=STATUS, default='Hiring')
-    company_reg_num = models.CharField(max_length=255, blank=True, null=True)
+    company_reg_num = models.CharField(max_length=255,unique=True, blank=True, null=True)
     work_mode = models.CharField(choices=WORK_MODE, blank=True, null=True)
     founded = models.DateField(null=True, blank=True)
     parent_company = models.CharField(max_length=255, blank=True, null=True)
@@ -193,6 +193,7 @@ class Job(models.Model):
     location = models.CharField(max_length=255, null=True, blank=True)
     job_type = models.CharField(max_length=255, choices=EMPLOYMENT_TYPE, default='Full Time')
     salary = models.IntegerField(null=True, blank=True)
+    experience = models.IntegerField(null=True, blank=True)
     currency = models.CharField(max_length=10,choices=CURRENCY, default='NGN')
     work_mode = models.CharField(max_length=255, choices=WORK_MODE, default='Remote')
     deadline = models.DateField()

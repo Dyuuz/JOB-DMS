@@ -1,0 +1,222 @@
+{% extends "layout.html" %}
+{% load humanize %}
+{% load custom_filters %}
+
+{% block dynamicpage %}
+
+<div class="job-details-body">
+    <!-- Header -->
+    <header class="jobsync-header">
+        <div class="jobsync-header-inner">
+            <div class="jobsync-brand">
+                <!-- <div class="jobsync-logo">{{ company_abbr }}</div> -->
+                <span class="jobsync-brand-text">Job Listings</span>
+            </div>
+            <div class="jobsync-user-actions">
+                <!-- User actions would go here -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="jobsync-container">
+        <!-- Job Detail Card -->
+        <div class="jobsync-job-card">
+            <div class="jobsync-job-header">
+                <h1 class="jobsync-job-title">{{ job.title }}</h1>
+
+                <div class="jobsync-job-meta">
+                    <span class="jobsync-job-meta-item">
+                        <i class="fas fa-building"></i> {{ job.company }}
+                    </span>
+                    <span class="jobsync-job-meta-item">
+                        <i class="fas fa-map-marker-alt"></i> {{ job.work_mode }}
+                    </span>
+                    <span class="jobsync-job-meta-item">
+                        <i class="fas fa-naira-sign"></i>{{ job.salary|intcomma }}
+                    </span>
+                    <span class="jobsync-job-meta-item">
+                        <i class="fas fa-clock"></i> {{ job.job_type }}
+                    </span>
+                    <span class="jobsync-job-meta-item">
+                        <i class="fas fa-users"></i> {{ job.count }} Applicants
+                    </span>
+                    <span class="jobsync-job-meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        Posted
+                        {% if job.time < 60 %}
+                        <span class="span22">{{job.time}} minutes ago</span>
+                        {% elif job.time > 59 and job.time < 120 %}
+                        <span class="span22">{{job.time|divide_by:60}} hour ago</span>
+                        {% elif job.time > 119 and job.time < 1440 %}
+                        <span class="span22">{{job.time|divide_by:60}} hours ago</span>
+                        {% elif job.time > 1439 and job.time < 2880 %}
+                        <span class="span22">{{job.time|divide_by:1440}} day ago</span>
+                        {% elif job.time > 2879 and job.time < 43200 %}
+                        <span class="span22">{{job.time|divide_by:1440}} days ago</span>
+                        {% elif job.time > 43199 and job.time < 86400 %}
+                        <span class="span22">{{job.time|divide_by:43200}} month ago</span>
+                        {% else %}
+                        <span class="span">{{job.time|divide_by:43200}} months ago</span>
+                        {% endif %}
+                    </span>
+                </div>
+
+                {% if request.user.role == 'user' %}
+                <!-- Only visible to applicants -->
+                <div class="jobsync-job-actions" id="jobsync-applicant-actions">
+                    <button class="jobsync-btn jobsync-btn-outline">
+                        <i class="far fa-bookmark"></i> Save
+                    </button>
+                    <button class="jobsync-btn jobsync-btn-primary">
+                        <i class="fas fa-paper-plane"></i> Apply Now
+                    </button>
+                </div>
+                {% else %}
+                <!-- Only visible to posting company -->
+                <div class="jobsync-job-actions" id="jobsync-company-actions">
+                    <button class="jobsync-btn jobsync-btn-outline" id="jobsync-edit-toggle">
+                        <i class="fas fa-edit"></i> Edit Job
+                    </button>
+                    <a href="{% url 'apply_for_job' pk=job.pk %}"><button class="jobsync-btn jobsync-btn-primary" id="jobsync-apply-btn" onclick="jbOpenApplyModal('Senior Frontend Developer', 'TechNova Solutions')">
+                        <i class="fas fa-users"></i> View Applicants
+                    </button></a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="jobsync-job-content">
+                <div class="jobsync-job-main">
+                    <!-- Job Description Section -->
+                    <section class="jobsync-section">
+                        <h2 class="jobsync-section-title">
+                            <i class="fas fa-align-left"></i> Job Description
+                        </h2>
+                        <div class="jobsync-section-content" id="jobsync-job-description">
+                            <!-- <p>We're looking for an experienced Frontend Developer to join our growing team. You'll be responsible for building user interfaces using React, collaborating with designers, and ensuring high performance across devices.</p>
+                            <h3>Responsibilities:</h3> -->
+                            {{ job.description|linebreaks }}
+                            <!-- <ul>
+                                <li>Develop new user-facing features</li>
+                                <li>Build reusable components and front-end libraries</li>
+                                <li>Optimize applications for maximum performance</li>
+                                <li>Collaborate with back-end developers and web designers</li>
+                            </ul> -->
+                        </div>
+                        <div class="jobsync-edit-controls">
+                            <button class="jobsync-btn jobsync-btn-outline">Cancel</button>
+                            <button class="jobsync-btn jobsync-btn-primary">Save Changes</button>
+                        </div>
+                    </section>
+
+                    <!-- Requirements Section -->
+                    <!-- <section class="jobsync-section">
+                        <h2 class="jobsync-section-title">
+                            <i class="fas fa-list-check"></i> Requirements
+                        </h2>
+                        <div class="jobsync-section-content" id="jobsync-job-requirements">
+                            <h3>Must Have:</h3>
+                            <ul>
+                                <li>3+ years experience with React</li>
+                                <li>Proficient in JavaScript, HTML5, CSS3</li>
+                                <li>Experience with Redux or similar state management</li>
+                                <li>Familiarity with RESTful APIs</li>
+                            </ul>
+                            <h3>Nice to Have:</h3>
+                            <ul>
+                                <li>Experience with TypeScript</li>
+                                <li>Knowledge of testing frameworks</li>
+                                <li>Contributions to open source projects</li>
+                            </ul>
+                        </div>
+                        <div class="jobsync-edit-controls">
+                            <button class="jobsync-btn jobsync-btn-outline">Cancel</button>
+                            <button class="jobsync-btn jobsync-btn-primary">Save Changes</button>
+                        </div> -->
+                    </section>
+                </div>
+
+                <div class="jobsync-job-sidebar">
+                    <!-- Company Card -->
+                    <section class="jobsync-section">
+                        <div class="jobsync-company-card">
+                            <div class="jobsync-company-logo">
+                                <img src="https://ui-avatars.com/api/?name={{job.company}}&background=10B981&color=FFF&size=150" alt="TechCorp Logo">
+                            </div>
+                            <h3 class="jobsync-company-name">{{ job.company }}</h3>
+                            <p class="jobsync-company-location">
+                                <i class="fas fa-map-marker-alt"></i> {{ job.company.country }}
+                            </p>
+                            <!-- <button class="jobsync-btn jobsync-btn-outline" style="width: 100%;">
+                                <i class="fas fa-building"></i> View Company
+                            </button> -->
+                        </div>
+                    </section>
+
+                    <!-- Quick Facts -->
+                    <section class="jobsync-section">
+                        <h2 class="jobsync-section-title">
+                            <i class="fas fa-info-circle"></i> Quick Facts
+                        </h2>
+                        <div class="jobsync-section-content">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">JOB TYPE</h4>
+                                    <p>{{ job.job_type }}</p>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">SALARY</h4>
+                                    <p>{{ job.currency }}{{ job.salary }}</p>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">EXPERIENCE</h4>
+                                    <p>{{ job.experience }} years</p>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">LOCATION</h4>
+                                    <p>{{ job.work_mode }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle edit mode (would be set based on user role in real app)
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const companyActions = document.getElementById('jobsync-company-actions');
+            const applicantActions = document.getElementById('jobsync-applicant-actions');
+            const editToggle = document.getElementById('jobsync-edit-toggle');
+
+            // Toggle edit mode
+            editToggle?.addEventListener('click', function() {
+                document.querySelector('.jobsync-job-card').classList.toggle('jobsync-edit-mode');
+
+                if (document.querySelector('.jobsync-job-card').classList.contains('jobsync-edit-mode')) {
+                    this.innerHTML = '<i class="fas fa-times"></i> Cancel Editing';
+                    this.classList.remove('jobsync-btn-outline');
+                    this.classList.add('jobsync-btn-primary');
+                } else {
+                    this.innerHTML = '<i class="fas fa-edit"></i> Edit Job';
+                    this.classList.add('jobsync-btn-outline');
+                    this.classList.remove('jobsync-btn-primary');
+                }
+            });
+
+            // In a real app, you would add functionality to edit the content
+            // and save changes to the backend
+        });
+    </script>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="msg-auth" data-id="{{ message }}"></div>
+    {% endfor %}
+{% endif %}
+
+{% endblock dynamicpage %}

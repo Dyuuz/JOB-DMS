@@ -1,4 +1,7 @@
 {% extends "layout.html" %}
+{% load humanize %}
+{% load custom_filters %}
+
 
 {% block dynamicpage %}
 <div class="jobs-avail-body">
@@ -28,29 +31,46 @@
 
         <div class="jb-listings">
             <!-- Job Card 1 -->
+            {% for job in jobs %}
             <div class="jb-card">
                 <div class="jb-card-header">
-                    <div class="jb-company-logo">TN</div>
+                    <div class="jb-company-logo">{{ job.company_abbr }}</div>
                     <div class="jb-meta">
-                        <span class="jb-type">Remote</span>
-                        <div class="posted">Posted 2 days ago</div>
+                        <span class="jb-type">{{ job.job_type }}</span>
+                        <div class="posted">Posted
+                        {% if job.time < 60 %}
+                        <span class="span22">{{job.time}} minutes ago</span>
+                        {% elif job.time > 59 and job.time < 120 %}
+                        <span class="span22">{{job.time|divide_by:60}} hour ago</span>
+                        {% elif job.time > 119 and job.time < 1440 %}
+                        <span class="span22">{{job.time|divide_by:60}} hours ago</span>
+                        {% elif job.time > 1439 and job.time < 2880 %}
+                        <span class="span22">{{job.time|divide_by:1440}} day ago</span>
+                        {% elif job.time > 2879 and job.time < 43200 %}
+                        <span class="span22">{{job.time|divide_by:1440}} days ago</span>
+                        {% elif job.time > 43199 and job.time < 86400 %}
+                        <span class="span22">{{job.time|divide_by:43200}} month ago</span>
+                        {% else %}
+                        <span class="span">{{job.time|divide_by:43200}} months ago</span>
+                        {% endif %}
+                        </div>
                     </div>
                 </div>
-                <h2 class="jb-position-title">Senior Frontend Developer</h2>
-                <div class="jb-company-name">TechNova Solutions</div>
+                <h2 class="jb-position-title">{{ job.title }}</h2>
+                <div class="jb-company-name">{{ job.company }}</div>
 
                 <div class="jb-details">
                     <div class="jb-detail-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>San Francisco, CA (Remote possible)</span>
+                        <span>{{ job.company.country }}</span>
                     </div>
                     <div class="jb-detail-item">
                         <i class="fas fa-money-bill-wave"></i>
-                        <span>$120,000 - $150,000/year</span>
+                        <span>{{ job.currency }} {{ job.salary|intcomma }}</span>
                     </div>
                     <div class="jb-detail-item">
                         <i class="fas fa-clock"></i>
-                        <span>Remote</span>
+                        <span>{{ job.work_mode }}</span>
                     </div>
                 </div>
 
@@ -65,13 +85,14 @@
                     <span class="jb-skill-tag">Frappe</span>
                 </div>
 
-                <button class="jb-apply-btn" onclick="jbOpenApplyModal('Senior Frontend Developer', 'TechNova Solutions')">
+                <a href="{% url 'job_details' pk=job.pk %}"><button class="jb-apply-btn" onclick="jbOpenApplyModal('{{job.title}}', '{{job.company.}}')">
                     <i class="fas fa-paper-plane"></i> Apply Now
-                </button>
+                </button></a>
             </div>
+            {% endfor %}
 
             <!-- Job Card 2 -->
-            <div class="jb-card">
+            <!-- <div class="jb-card">
                 <div class="jb-card-header">
                     <div class="jb-company-logo">DS</div>
                     <div class="jb-meta">
@@ -109,7 +130,7 @@
                 </button>
             </div>
 
-            <!-- Job Card 3 -->
+            <!== Job Card 3 ==>
             <div class="jb-card">
                 <div class="jb-card-header">
                     <div class="jb-company-logo">DH</div>
@@ -148,7 +169,7 @@
                 </button>
             </div>
 
-            <!-- Job Card 4 -->
+            <!== Job Card 4 ==>
             <div class="jb-card">
                 <div class="jb-card-header">
                     <div class="jb-company-logo">CF</div>
@@ -186,7 +207,7 @@
                     <i class="fas fa-paper-plane"></i> Apply Now
                 </button>
             </div>
-            <!-- Job Card 5 -->
+            <!== Job Card 5 ==>
             <div class="jb-card">
                 <div class="jb-card-header">
                     <div class="jb-company-logo">CF</div>
@@ -224,7 +245,7 @@
                     <i class="fas fa-paper-plane"></i> Apply Now
                 </button>
             </div>
-            <!-- Job Card 6 -->
+            <!== Job Card 6 ==>
             <div class="jb-card">
                 <div class="jb-card-header">
                     <div class="jb-company-logo">CF</div>
@@ -261,7 +282,7 @@
                 <button class="jb-apply-btn" onclick="jbOpenApplyModal('DevOps Engineer', 'CloudForge')">
                     <i class="fas fa-paper-plane"></i> Apply Now
                 </button>
-            </div>
+            </div> -->
         </div>
 
         <!-- <div class="jb-pagination">

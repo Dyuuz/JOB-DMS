@@ -8,6 +8,8 @@ from .models import (
     UserProfile, Job, Application,
     Feedback, Document)
 from django.urls import reverse_lazy
+from django.views.generic.detail import DetailView
+from django.views.generic import ListView
 from django.views.generic.edit import FormView, UpdateView, CreateView, DeleteView
 from django.contrib.auth import login
 from .forms import (
@@ -16,13 +18,14 @@ from .forms import (
     UserProfileForm,
     CompanyProfileForm,
     DocumentForm)
+from datetime import datetime
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-from .mixins import UserPermissionMixin
-from .utils import get_company_name, extract_site_name
+from .mixins import UserPermissionMixin, JobDetailPermissionMixin
+from .utils import get_company_name, extract_site_name, get_time_countdown
 
 # Create your views here.
 class HomeView(View):
@@ -43,16 +46,27 @@ class HomeView(View):
             'user_profile': user_profile,
         })
 
-class JobsAvailableView(View):
+class JobsAvailableView(ListView):
     """
     This view handles the page to display jobs available for job seekers
     """
+    model = Job
+    context_object_name = 'jobs'
     template_name = 'JobsAvailable.html'
 
-    def get(self, request, *args, **kwargs):
-        user_profile = UserProfile.objects.filter(user=request.user).first()
-        company_role = CompanyProfile.objects.filter(user=request.user).first()
-        return render(request, self.template_name)
+    def get_queryset(self):
+        jobs = Job.objects.filter(is_public=True).order_by('-created_at')
+        return jobs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        for job in context['jobs']:
+            job.company_abbr = get_company_name(job.company.user.full_name)
+            get_time = get_time_countdown(f"{job.created_at}")
+            job.time = int(get_time)
+
+        return context
 
 class DashboardView(View):
     """
@@ -73,6 +87,21 @@ class DashboardView(View):
             'user': user,
             'company_name': name_list,
             'job_list': job_list,
+        })
+
+class ApplyJobView(CreateView):
+    """
+    This view handles the page to display jobs available for job seekers
+    """
+    template_name = 'workforce.html'
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        name_list = get_company_name(user.full_name)
+        return render(request, self.template_name,
+        {
+            'user': user,
+            'company_name': name_list,
         })
 
 class WorkforceView(View):
@@ -110,7 +139,30 @@ class JobsAppliedView(View):
 
         return render(request, self.template_name)
 
-class DocumentUploadView(LoginRequiredMixin, CreateView):
+
+class JobDetailView(LoginRequiredMixin,JobDetailPermissionMixin, DetailView):
+    model = Job
+    template_name = 'jobdetails.html'
+    context_object_name = 'job'
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Job, pk=pk)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        job = self.get_object()
+        get_time = get_time_countdown(f"{job.created_at}")
+        job.time = int(get_time)
+        job.count = Application.objects.filter(job=job).count()
+        company_name = get_company_name(job.company.user.full_name)
+
+        context['job'] = job
+        context['company_abbr'] = company_name
+        return context
+
+
+class DocumentUploadView(UserPermissionMixin, LoginRequiredMixin, CreateView):
     model = Document
     form_class = DocumentForm
     template_name = 'DocumentUpload.html'
