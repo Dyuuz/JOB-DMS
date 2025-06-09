@@ -92,13 +92,32 @@ class UserProfile(models.Model):
 
 # Job model for storing job listings posted by companies
 class Job(models.Model):
+    EMPLOYMENT_TYPE = (
+        ('Internship', 'Internship'),
+        ('Part Time', 'Part Time'),
+        ('Full Time', 'Full Time'),
+        ('Contract', 'Contract'),
+    )
+    WORK_MODE = (
+        ('Remote', 'Remote'),
+        ('Hybrid', 'Hybrid'),
+        ('On site', 'On Site'),
+    )
+    CURRENCY = (
+        ('NGN', 'NGN'),
+        ('USD', 'USD'),
+        ('EUR', 'EUR'),
+    )
     company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name='jobs')
     title = models.CharField(max_length=255)
     description = models.TextField()
-    location = models.CharField(max_length=255)
-    job_type = models.CharField(max_length=50)
+    location = models.CharField(max_length=255, null=True, blank=True)
+    job_type = models.CharField(max_length=255, choices=EMPLOYMENT_TYPE, default='Full Time')
+    salary = models.IntegerField(null=True, blank=True)
+    currency = models.CharField(max_length=10,choices=CURRENCY, default='NGN')
+    work_mode = models.CharField(max_length=255, choices=WORK_MODE, default='Remote')
     deadline = models.DateField()
-    is_public = models.BooleanField(default=False)  # Visibility control
+    is_public = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -107,9 +126,22 @@ class Job(models.Model):
 
 # Application model for job applications submitted by job seekers
 class Application(models.Model):
+    STATUS = (
+        ('Applied', 'Applied'),
+        ('Interview', 'Interview'),
+        ('Offer', 'Offer'),
+        ('Rejected', 'Rejected'),
+    )
+    NEXT_STEP = (
+        ('Awaiting response', 'Awaiting response'),
+        ('Technical Interview', 'Technical Interview'),
+        ('N/A', 'N/A'),
+        ('Welcome aboard', 'Welcome aboard'),
+    )
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='applications')  # Link to CustomUser
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
-    status = models.CharField(max_length=50, default='pending')
+    status = models.CharField(max_length=50,choices=STATUS, default='Applied')
+    next_step = models.CharField(max_length=50, choices=NEXT_STEP, default='Awaiting response')
     resume_version = models.FileField(upload_to='resume_versions/', null=True, blank=True)
     submitted_at = models.DateTimeField(auto_now_add=True)
 

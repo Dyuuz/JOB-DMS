@@ -322,7 +322,7 @@ class RegisterView(FormView):
 class LoginView(FormView):
     """
     This view handles user login
-    It uses a custom login form to authenticate users
+    It uses a custom login form to authenticate usersx
     It redirects to the home page after successful login
     """
     form_class = LoginForm
