@@ -22,7 +22,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from .mixins import UserPermissionMixin
-from .utils import get_company_name
+from .utils import get_company_name, extract_site_name
 
 # Create your views here.
 class HomeView(View):
@@ -62,10 +62,16 @@ class DashboardView(View):
     def get(self, request, *args, **kwargs):
         user = request.user
         name_list = get_company_name(user.full_name)
+        job_list = Job.objects.filter(company__user=user).order_by('-created_at')
+
+        for job in job_list:
+            job.count = Application.objects.filter(job=job).count()
+
         return render(request, self.template_name,
         {
             'user': user,
             'company_name': name_list,
+            'job_list': job_list,
         })
 
 class WorkforceView(View):
@@ -258,7 +264,13 @@ class ProfileView(View):
 
                 if user_profile or company_role:
                     if company_role:
-                        return render(request, self.template_name, {'company_role': company_role, 'user_auth': user_auth,})
+                        company_role.core_tech = company_role.core_tech.split(',') if company_role.core_tech else []
+                        # company_role.awards = company_role.awards.split(',') if company_role.awards else []
+                        company_role.certifications = company_role.certifications.split(',') if company_role.certifications else []
+                        # employees =
+                        website_name = extract_site_name(company_role.website) if company_role.website else None
+                        return render(request, self.template_name,
+                                {'company_role': company_role, 'user_auth': user_auth, 'website_name': website_name,})
 
                     elif user_profile:
                         # Provided a variable to avoid hardcoding strings

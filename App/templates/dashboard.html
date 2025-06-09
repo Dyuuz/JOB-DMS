@@ -89,7 +89,7 @@
                         <tr>
                             <th>Job Title</th>
                             <th>Department</th>
-                            <th>Location</th>
+                            <th>Work Type</th>
                             <th>Posted</th>
                             <th>Applications</th>
                             <th>Status</th>
@@ -97,18 +97,30 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for job in job_list %}
                         <tr>
                             <td>
-                                <div class="jobhive-job-title">Senior Frontend Developer</div>
-                                <div class="jobhive-job-department">Engineering</div>
+                                <div class="jobhive-job-title">{{ job.title }}</div>
+                                <div class="jobhive-job-department">{{ job.department }}</div>
                             </td>
-                            <td>Engineering</td>
-                            <td>Remote</td>
-                            <td>May 15, 2023</td>
-                            <td>42</td>
+                            <td>{{ job.department }}</td>
+                            <td>{{ job.work_mode }}</td>
+                            <td>{{ job.created_at|date:"F j, Y" }}</td>
+                            <td>{{ job.count }}</td>
+                            {% if job.status == 'Active' %}
                             <td>
                                 <span class="jobhive-status jobhive-status-active">Active</span>
                             </td>
+                            {% elif job.status == 'Closed' %}
+                            <td>
+                                <span class="jobhive-status jobhive-status-closed">Closed</span>
+                            </td>
+                            {% elif job.status == 'Draft' %}
+                            <td>
+                                <span class="jobhive-status jobhive-status-draft">Draft</span>
+                            </td>
+                            {% endif %}
+
                             <td>
                                 <div class="jobhive-actions-cell">
                                     <button class="jobhive-action-btn" title="Edit">
@@ -123,7 +135,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        {% endfor %}
+                        <!-- <tr>
                             <td>
                                 <div class="jobhive-job-title">Product Manager</div>
                                 <div class="jobhive-job-department">Product</div>
@@ -226,7 +239,7 @@
                                     </button>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

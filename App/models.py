@@ -28,17 +28,60 @@ class CompanyProfile(models.Model):
         ('Kenya', 'Kenya'),
         ('South Africa', 'South Africa'),
     )
+    INDUSTRY = (
+        ('FinTech', 'FinTech'),
+        ('HealthTech', 'HealthTech'),
+        ('EdTech', 'EdTech'),
+        ('E-commerce', 'E-commerce'),
+        ('Agritech', 'Agritech'),
+        ('Logistics', 'Logistics'),
+        ('Real Estate', 'Real Estate'),
+        ('Telecommunications', 'Telecommunications'),
+        ('Entertainment', 'Entertainment'),
+        ('Travel and Tourism', 'Travel and Tourism'),
+        ('Manufacturing', 'Manufacturing'),
+        ('Energy', 'Energy'),
+        ('Retail', 'Retail'),
+        ('Media', 'Media'),
+        ('Construction', 'Construction'),
+        ('Consulting', 'Consulting'),
+        ('Information Technology', 'Information Technology'),
+        ('Food and Beverage', 'Food and Beverage'),
+        ('Transportation', 'Transportation'),
+        ('Non-profit', 'Non-profit'),
+        ('Government', 'Government'),
+        ('Fashion', 'Fashion'),
+        ('Other', 'Other'),  # Add an option for other industries
+
+    )
     WORK_MODE = (
         ('Remote', 'Remote'),
         ('Hybrid', 'Hybrid'),
         ('On site', 'On Site'),
     )
+    STATUS = (
+        ('Hiring', 'Hiring'),
+        ('Applications Closed', 'Applications Closed'),
+    )
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    company_id = models.CharField(max_length=255, blank=True, null=True)
+    hire_status = models.CharField(max_length=100,choices=STATUS, default='Hiring')
+    company_reg_num = models.CharField(max_length=255, blank=True, null=True)
     work_mode = models.TextField(choices=WORK_MODE, blank=True, null=True)
+    founded = models.DateField(null=True, blank=True)
+    parent_company = models.CharField(max_length=255, blank=True, null=True)
+    headquarters = models.CharField(max_length=255, blank=True, null=True)
+    annual_growth_rate = models.IntegerField(null=True, blank=True)
+    website = models.URLField(max_length=255, blank=True, null=True)
+    tagline= models.CharField(max_length=255, blank=True, null=True)
+
+    about_us = models.TextField(blank=True, null=True)
+    mission_statement = models.TextField(blank=True, null=True)
+    core_tech = models.TextField(help_text="Enter tech tools seperated by commas",blank=True, null=True)
+    awards = models.TextField(help_text="Enter awards seperated by commas",blank=True, null=True)
+    certifications = models.TextField(help_text="Enter awards seperated by commas",blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    industry = models.CharField(max_length=100, blank=True)
+    industry = models.CharField(max_length=100,choices=INDUSTRY, blank=True)
     country = models.CharField(max_length=255, choices=COUNTRY, blank=True)
 
     def __str__(self):
@@ -108,16 +151,53 @@ class Job(models.Model):
         ('USD', 'USD'),
         ('EUR', 'EUR'),
     )
+    STATUS = (
+        ('Active', 'Active'),
+        ('Draft', 'Draft'),
+        ('Closed', 'Closed'),
+    )
+    DERPARTMENT = (
+        ('Engineering', 'Engineering'),
+        ('Marketing', 'Marketing'),
+        ('Sales', 'Sales'),
+        ('Human Resources', 'Human Resources'),
+        ('Finance', 'Finance'),
+        ('Customer Support', 'Customer Support'),
+
+        ('Design', 'Design'),
+        ('Product Management', 'Product Management'),
+        ('Operations', 'Operations'),
+
+        ('Data Science', 'Data Science'),
+        ('Content Creation', 'Content Creation'),
+        ('Research and Development', 'Research and Development'),
+        ('Quality Assurance', 'Quality Assurance'),
+
+        ('Administration', 'Administration'),
+
+        ('Business Development', 'Business Development'),
+        ('Information Technology', 'Information Technology'),
+        ('Project Management', 'Project Management'),
+
+        ('Supply Chain Management', 'Supply Chain Management'),
+
+        ('Public Relations', 'Public Relations'),
+        ('Consulting', 'Consulting'),
+
+        ('Other', 'Other'),
+    )
     company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name='jobs')
     title = models.CharField(max_length=255)
     description = models.TextField()
+    department = models.CharField(max_length=255, choices=DERPARTMENT, default='Engineering')
     location = models.CharField(max_length=255, null=True, blank=True)
     job_type = models.CharField(max_length=255, choices=EMPLOYMENT_TYPE, default='Full Time')
     salary = models.IntegerField(null=True, blank=True)
     currency = models.CharField(max_length=10,choices=CURRENCY, default='NGN')
     work_mode = models.CharField(max_length=255, choices=WORK_MODE, default='Remote')
     deadline = models.DateField()
-    is_public = models.BooleanField(default=False)
+    status = models.CharField(max_length=255, choices=STATUS, default='Active')
+    is_public = models.BooleanField(default=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -138,12 +218,17 @@ class Application(models.Model):
         ('N/A', 'N/A'),
         ('Welcome aboard', 'Welcome aboard'),
     )
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='applications')  # Link to CustomUser
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='applications', limit_choices_to={'role': 'user'})  # Link to CustomUser
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
     status = models.CharField(max_length=50,choices=STATUS, default='Applied')
     next_step = models.CharField(max_length=50, choices=NEXT_STEP, default='Awaiting response')
     resume_version = models.FileField(upload_to='resume_versions/', null=True, blank=True)
     submitted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'job'], name='unique_user_job_application')
+        ]
 
     def __str__(self):
         return f"{self.user.full_name} - {self.job.title}"

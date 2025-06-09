@@ -1,5 +1,5 @@
 from .models import CustomUser
-
+from urllib.parse import urlparse
 
 def get_company_name(full_name):
     """
@@ -17,3 +17,15 @@ def get_company_name(full_name):
     name_list = [name[0].upper() for name in company_name]
     name_list_joined = ''.join(name_list[:2])
     return name_list_joined
+
+def extract_site_name(url):
+    parsed_url = urlparse(url)
+    domain = parsed_url.netloc or parsed_url.path
+    parts = domain.split('.')
+
+    # Handles domains like google.com or www.google.com
+    if len(parts) >= 2:
+        if parts[0] == 'www':
+            return parts[1]
+        return parts[0]
+    return domain  # fallback if it doesn't split properly
