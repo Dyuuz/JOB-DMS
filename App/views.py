@@ -17,7 +17,7 @@ from .forms import (
     LoginForm,
     UserProfileForm,
     CompanyProfileForm,
-    DocumentForm)
+    DocumentForm, ApplicationForm)
 from datetime import datetime
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
@@ -90,19 +90,36 @@ class DashboardView(View):
         })
 
 class ApplyJobView(CreateView):
-    """
-    This view handles the page to display jobs available for job seekers
-    """
-    template_name = 'workforce.html'
 
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        name_list = get_company_name(user.full_name)
-        return render(request, self.template_name,
-        {
-            'user': user,
-            'company_name': name_list,
-        })
+    model = Application
+    form_class = ApplicationForm
+    template_name = 'apply_job.html'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def dispatch(self, request, *args, **kwargs):
+        self.job = get_object_or_404(Job, pk=kwargs['pk'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        app = form.save(commit=False)
+        user = self.request.user
+        app.user = user
+        app.job = self.job
+
+        # manually save contact info
+        app.full_name = user.full_name
+        app.phone = user.userprofile.phone
+        app.email = user.email
+
+        app.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('jobs_applied')  # adjust to your success URL
 
 class WorkforceView(View):
     """

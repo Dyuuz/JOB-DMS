@@ -68,9 +68,9 @@
                     <button class="jobsync-btn jobsync-btn-outline">
                         <i class="far fa-bookmark"></i> Save
                     </button>
-                    <button class="jobsync-btn jobsync-btn-primary">
+                    <a href="{% url 'apply_for_job' pk=job.pk %}"><button class="jobsync-btn jobsync-btn-primary">
                         <i class="fas fa-paper-plane"></i> Apply Now
-                    </button>
+                    </button></a>
                 </div>
                 {% else %}
                 <!-- Only visible to posting company -->
@@ -78,9 +78,9 @@
                     <button class="jobsync-btn jobsync-btn-outline" id="jobsync-edit-toggle">
                         <i class="fas fa-edit"></i> Edit Job
                     </button>
-                    <a href="{% url 'apply_for_job' pk=job.pk %}"><button class="jobsync-btn jobsync-btn-primary" id="jobsync-apply-btn" onclick="jbOpenApplyModal('Senior Frontend Developer', 'TechNova Solutions')">
+                    <button class="jobsync-btn jobsync-btn-primary" id="jobsync-apply-btn" onclick="jbOpenApplyModal('Senior Frontend Developer', 'TechNova Solutions')">
                         <i class="fas fa-users"></i> View Applicants
-                    </button></a>
+                    </button>
                 </div>
                 {% endif %}
             </div>

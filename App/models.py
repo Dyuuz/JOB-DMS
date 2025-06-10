@@ -205,35 +205,6 @@ class Job(models.Model):
     def __str__(self):
         return f"{self.title} at {self.company.user.full_name}"
 
-# Application model for job applications submitted by job seekers
-class Application(models.Model):
-    STATUS = (
-        ('Applied', 'Applied'),
-        ('Interview', 'Interview'),
-        ('Offer', 'Offer'),
-        ('Rejected', 'Rejected'),
-    )
-    NEXT_STEP = (
-        ('Awaiting response', 'Awaiting response'),
-        ('Technical Interview', 'Technical Interview'),
-        ('N/A', 'N/A'),
-        ('Welcome aboard', 'Welcome aboard'),
-    )
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='applications', limit_choices_to={'role': 'user'})  # Link to CustomUser
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
-    status = models.CharField(max_length=50,choices=STATUS, default='Applied')
-    next_step = models.CharField(max_length=50, choices=NEXT_STEP, default='Awaiting response')
-    resume_version = models.FileField(upload_to='resume_versions/', null=True, blank=True)
-    submitted_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['user', 'job'], name='unique_user_job_application')
-        ]
-
-    def __str__(self):
-        return f"{self.user.full_name} - {self.job.title}"
-
 # Document model for storing documents uploaded by users and companies
 class Document(models.Model):
     FILE_TYPE = (
@@ -261,6 +232,50 @@ class Document(models.Model):
 
     def __str__(self):
         return self.name + " - " + self.file_type
+
+
+# Application model for job applications submitted by job seekers
+class Application(models.Model):
+    STATUS = (
+        ('Applied', 'Applied'),
+        ('Interview', 'Interview'),
+        ('Offer', 'Offer'),
+        ('Rejected', 'Rejected'),
+    )
+    NEXT_STEP = (
+        ('Awaiting response', 'Awaiting response'),
+        ('Technical Interview', 'Technical Interview'),
+        ('N/A', 'N/A'),
+        ('Welcome aboard', 'Welcome aboard'),
+    )
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='applications', limit_choices_to={'role': 'user'})  # Link to CustomUser
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
+    status = models.CharField(max_length=50,choices=STATUS, default='Applied')
+    next_step = models.CharField(max_length=50, choices=NEXT_STEP, default='Awaiting response')
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    full_name = models.CharField(max_length=255, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    email = models.EmailField(blank=True)
+
+    job_title = models.CharField(max_length=255, blank=True)
+    company = models.CharField(max_length=255, blank=True)
+    portfolio = models.CharField(max_length=255, blank=True)
+
+    resume = models.ForeignKey(Document, on_delete=models.PROTECT, null=True, blank=True)
+    cover_letter = models.TextField(blank=True)
+    experience = models.IntegerField(null=True, blank=True)
+    expected_salary = models.IntegerField(blank=True, null=True)
+    availability = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'job'], name='unique_user_job_application')
+        ]
+
+    def __str__(self):
+        return f"{self.user.full_name} - {self.job.title}"
+
 
 # Feedback model for company feedback on applications
 class Feedback(models.Model):

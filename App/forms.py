@@ -1,7 +1,7 @@
 # forms.py
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser, UserProfile, CompanyProfile, Document
+from .models import CustomUser, UserProfile, CompanyProfile, Document, Application
 from django.contrib.auth import authenticate
 import os
 
@@ -225,3 +225,46 @@ class DocumentForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+
+class ApplicationForm(forms.ModelForm):
+    # full_name = forms.CharField(required=False)
+    # phone = forms.CharField(required=False)
+
+    email = forms.EmailField(required=False, widget=forms.TextInput(attrs={
+        'readonly': 'readonly',
+        'class': 'applynow-form-control',
+    }))
+    full_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'readonly': 'readonly',
+        'class': 'applynow-form-control',
+    }))
+    phone = forms.IntegerField(required=False, widget=forms.TextInput(attrs={
+        'readonly': 'readonly',
+        'class': 'applynow-form-control',
+    }))
+
+    class Meta:
+        model = Application
+        exclude = ['user', 'job', 'status', 'next_step', 'submitted_at']
+
+        widgets = {
+            'job_title': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter job title'}),
+            'company': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter company name'}),
+            'portfolio': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter site link'}),
+            'availability': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter the time for interviews'}),
+            'expected_salary': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter salary'}),
+            'experience': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter years of experience'}),
+            'resume': forms.Select(attrs={'class': 'applynow-form-control', 'placeholder': 'Select resume'}),
+            'cover_letter': forms.Textarea(attrs={'class': 'applynow-form-control', 'placeholder': 'Input cover letter'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Catch the user from the view
+        super().__init__(*args, **kwargs)
+
+        if user:
+            self.fields['resume'].queryset = Document.objects.filter(owner_user=user)
+            self.fields['full_name'].initial = user.full_name
+            self.fields['phone'].initial = user.userprofile.phone
+            self.fields['email'].initial= user.email

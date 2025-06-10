@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+<div class="apply-body">
+    <h2>Apply for {{ job.title }}</h2>
+    <form method="post">
+    {% csrf_token %}
+    <div class="applynow-container">
+        <!-- Job Header -->
+        <div class="applynow-header">
+            <h1 class="applynow-job-title">Senior Frontend Developer</h1>
+            <div class="applynow-company">
+                <i class="fas fa-building"></i>
+                <span>TechCorp Inc.</span>
+            </div>
+            <div class="applynow-divider"></div>
+        </div>
+
+        <!-- Application Form -->
+        <div class="applynow-form-card">
+            <!-- <h2 class="applynow-form-title">
+                <i class="fas fa-file-alt"></i> Application Form
+            </h2> -->
+
+            <!-- <div class="applynow-progress">
+                <div class="applynow-progress-bar"></div>
+            </div> -->
+
+            <form id="applynow-application-form">
+                <!-- Personal Information -->
+                <div class="applynow-form-section">
+                    <h3 class="applynow-section-title">
+                        <i class="fas fa-user"></i> Personal Information
+                    </h3>
+
+                    <div class="applynow-form-grid">
+                        <div class="applynow-form-group">
+                            <label for="applynow-first-name" class="applynow-form-label">Full Name <span>*</span></label>
+                             {{ form.full_name }}
+                        </div>
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-email" class="applynow-form-label">Email Address <span>*</span></label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-phone" class="applynow-form-label">Phone Number</label>
+                        {{ form.phone }}
+                    </div>
+                </div>
+
+                <!-- Professional Information -->
+                <div class="applynow-form-section">
+                    <h3 class="applynow-section-title">
+                        <i class="fas fa-briefcase"></i> Professional Information
+                    </h3>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-portfolio" class="applynow-form-label">Job Title</label>
+                        {{ form.job_title }}
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-portfolio" class="applynow-form-label">Company</label>
+                        {{ form.company }}
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-portfolio" class="applynow-form-label">Experience</label>
+                        {{ form.experience }}
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-portfolio" class="applynow-form-label">Availability</label>
+                        {{ form.availability }}
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-portfolio" class="applynow-form-label">Expected Salary</label>
+                        {{ form.expected_salary }}
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-portfolio" class="applynow-form-label">Portfolio/Website</label>
+                        {{ form.portfolio }}
+                    </div>
+                </div>
+
+                <!-- Application Materials -->
+                <div class="applynow-form-section">
+                    <h3 class="applynow-section-title">
+                        <i class="fas fa-paperclip"></i> Application Materials
+                    </h3>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-resume" class="applynow-form-label">Resume/CV <span>*</span></label>
+                        {{ form.resume }}
+                        <!-- <div class="applynow-file-upload" onclick="document.getElementById('applynow-resume').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <div class="applynow-file-text">Click to upload or drag and drop</div>
+                            <div class="applynow-file-hint">PDF, DOC, DOCX (Max 5MB)</div>
+                            <input type="file" id="applynow-resume" class="applynow-form-control" style="display: none;" accept=".pdf,.doc,.docx" required>
+                        </div> -->
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label for="applynow-cover-letter" class="applynow-form-label">Cover Letter</label>
+                        {{ form.cover_letter }}
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <!-- <div class="applynow-form-section">
+                    <h3 class="applynow-section-title">
+                        <i class="fas fa-ellipsis-h"></i> Additional Information
+                    </h3>
+
+                    <div class="applynow-form-group">
+                        <label class="applynow-form-label">Are you legally authorized to work in this country? <span>*</span></label>
+                        <div class="applynow-radio-group">
+                            <div class="applynow-radio-option">
+                                <input type="radio" id="applynow-work-auth-yes" name="work_auth" class="applynow-radio" value="yes" required>
+                                <label for="applynow-work-auth-yes">Yes</label>
+                            </div>
+                            <div class="applynow-radio-option">
+                                <input type="radio" id="applynow-work-auth-no" name="work_auth" class="applynow-radio" value="no">
+                                <label for="applynow-work-auth-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="applynow-form-group">
+                        <label class="applynow-form-label">Will you now or in the future require sponsorship for employment visa status? <span>*</span></label>
+                        <div class="applynow-radio-group">
+                            <div class="applynow-radio-option">
+                                <input type="radio" id="applynow-visa-yes" name="visa_sponsor" class="applynow-radio" value="yes" required>
+                                <label for="applynow-visa-yes">Yes</label>
+                            </div>
+                            <div class="applynow-radio-option">
+                                <input type="radio" id="applynow-visa-no" name="visa_sponsor" class="applynow-radio" value="no">
+                                <label for="applynow-visa-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="applynow-checkbox-group">
+                        <input type="checkbox" id="applynow-privacy" class="applynow-checkbox" required>
+                        <label for="applynow-privacy" class="applynow-checkbox-label">
+                            I agree to the <a href="#">Privacy Policy</a> and consent to the processing of my personal data.
+                        </label>
+                    </div>
+                </div> -->
+
+                <!-- Form Actions -->
+                <div class="applynow-form-actions">
+                    <button type="button" class="applynow-btn applynow-btn-outline">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="applynow-btn applynow-btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </form>
+
+    <!-- <script>
+        document.getElementById('applynow-application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Application submitted successfully!');
+            // Form submission logic would go here
+        });
+
+        // File upload display logic
+        document.getElementById('applynow-resume').addEventListener('change', function(e) {
+            if (this.files.length > 0) {
+                const fileName = this.files[0].name;
+                const uploadArea = this.parentElement;
+                uploadArea.querySelector('.applynow-file-text').textContent = fileName;
+                uploadArea.style.borderColor = var(--success-500);
+                uploadArea.style.backgroundColor = 'rgba(16, 185, 129, 0.05)';
+            }
+        });
+    </script> -->
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="msg-auth" data-id="{{ message }}"></div>
+    {% endfor %}
+{% endif %}
+
+{% endblock dynamicpage %}
