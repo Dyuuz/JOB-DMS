@@ -108,6 +108,7 @@
                     <div class="applynow-form-group">
                         <label for="applynow-cover-letter" class="applynow-form-label">Cover Letter</label>
                         {{ form.cover_letter }}
+                        <div id="suggestion-box" style="margin-top: 10px; color: gray;"></div>
                     </div>
                 </div>
 
@@ -167,24 +168,39 @@
     </div>
     </form>
 
-    <!-- <script>
-        document.getElementById('applynow-application-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Application submitted successfully!');
-            // Form submission logic would go here
-        });
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const input = document.getElementById('id_cover_letter');
+        const suggestionBox = document.getElementById('suggestion-box');
+        let timeoutId = null;
 
-        // File upload display logic
-        document.getElementById('applynow-resume').addEventListener('change', function(e) {
-            if (this.files.length > 0) {
-                const fileName = this.files[0].name;
-                const uploadArea = this.parentElement;
-                uploadArea.querySelector('.applynow-file-text').textContent = fileName;
-                uploadArea.style.borderColor = var(--success-500);
-                uploadArea.style.backgroundColor = 'rgba(16, 185, 129, 0.05)';
-            }
-        });
-    </script> -->
+        if (input) {
+            input.addEventListener('input', function () {
+                suggestionBox.innerText = "Loading suggestions...";
+
+                // Clear previous timer
+                clearTimeout(timeoutId);
+
+                // Set new debounce timer
+                timeoutId = setTimeout(() => {
+                    axios.get('/suggest-cover-letter', {
+                        params: { text: input.value }
+                    })
+                    .then(response => {
+                        suggestionBox.innerText = response.data.suggestion || "No suggestion found.";
+                    })
+                    .catch(error => {
+                        suggestionBox.innerText = "Error fetching suggestion.";
+                        console.error('Error fetching data:', error);
+                    });
+                }, 5000);  // Delay in milliseconds
+            });
+        } else {
+            alert('Cover letter field not found!');
+        }
+    });
+    </script>
+
 </div>
 
 {% if messages %}

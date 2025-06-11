@@ -258,8 +258,6 @@ class Application(models.Model):
     phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
 
-    job_title = models.CharField(max_length=255, blank=True)
-    company = models.CharField(max_length=255, blank=True)
     portfolio = models.CharField(max_length=255, blank=True)
 
     resume = models.ForeignKey(Document, on_delete=models.PROTECT, null=True, blank=True)

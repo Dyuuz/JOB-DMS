@@ -1,7 +1,27 @@
 from .models import CustomUser
 from urllib.parse import urlparse
 from datetime import datetime
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+import google.generativeai as genai
+import time
 
+@login_required
+def suggest_cover_letter(request):
+    user = request.user
+    typed_text = request.GET.get('text', '')
+    # Configure with your Gemini API key
+    genai.configure(api_key="AIzaSyDm9E3dWU6Eqrpmx24gz8AGMpdlTFTPsk4")
+
+    model = genai.GenerativeModel('gemini-1.5-flash-latest')
+
+    # Generate content (e.g. for a cover letter)
+    suggestion = f"Based on this profile provided, use the {typed_text}, {user.userprofile.work_experience}years of experience, i have work experience in this company {user.userprofile.company_name} with the job role - {user.userprofile.job_description} and this is about me {user.userprofile.bio}, with name as {user.full_name} and email as {user.email}, use a professional tone to write a cover letter body for the job application. The cover letter should be concise, engaging, and tailored to the user's details. It should highlight my skills, about me and experiences relevant to the position."
+    response = model.generate_content(suggestion)
+    print(response)
+    time.sleep(5)
+    return JsonResponse({'suggestion': response.text})
 
 def get_company_name(full_name):
     """

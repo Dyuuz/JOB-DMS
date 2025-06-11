@@ -256,7 +256,7 @@ class ApplicationForm(forms.ModelForm):
             'expected_salary': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter salary'}),
             'experience': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter years of experience'}),
             'resume': forms.Select(attrs={'class': 'applynow-form-control', 'placeholder': 'Select resume'}),
-            'cover_letter': forms.Textarea(attrs={'class': 'applynow-form-control', 'placeholder': 'Input cover letter'}),
+            'cover_letter': forms.Textarea(attrs={'id': 'id_cover_letter', 'class': 'applynow-form-control', 'placeholder': 'Input cover letter'}),
         }
 
     def __init__(self, *args, **kwargs):

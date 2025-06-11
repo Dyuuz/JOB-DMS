@@ -11,6 +11,7 @@ from App.views import (
     UserProfileUpdateView,
     WorkSpaceView, DashboardView,
     WorkforceView, JobDetailView, ApplyJobView)
+from .utils import suggest_cover_letter
 from django.urls import include
 
 auth_patterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     path('jobs-available', JobsAvailableView.as_view(), name='jobs_available'),
     path('jobs-applied', JobsAppliedView.as_view(), name='jobs_applied'),
     path('apply/<int:pk>', ApplyJobView.as_view(), name='apply_for_job'),
+    path('suggest-cover-letter/', suggest_cover_letter, name='suggest_cover_letter'),
     path('documents', DocumentListView.as_view(), name='documents'),
     path('documents/upload', DocumentUploadView.as_view(), name='document-upload'),
     path('profile/update', UserProfileUpdateView.as_view(), name='profile-update'),

@@ -104,6 +104,12 @@ class ApplyJobView(CreateView):
         self.job = get_object_or_404(Job, pk=kwargs['pk'])
         return super().dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category = self.kwargs.get('pk')  # Get from URL
+        context['job'] = self.job
+        return context
+
     def form_valid(self, form):
         app = form.save(commit=False)
         user = self.request.user
