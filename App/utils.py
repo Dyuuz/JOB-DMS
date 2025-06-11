@@ -6,13 +6,17 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 import google.generativeai as genai
 import time
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 @login_required
 def suggest_cover_letter(request):
     user = request.user
     typed_text = request.GET.get('text', '')
-    # Configure with your Gemini API key
-    genai.configure(api_key="AIzaSyDm9E3dWU6Eqrpmx24gz8AGMpdlTFTPsk4")
+
+    api_key = os.getenv('API_KEY')
+    genai.configure(api_key=api_key)
 
     model = genai.GenerativeModel('gemini-1.5-flash-latest')
 

@@ -57,7 +57,7 @@
                         <i class="fas fa-briefcase"></i> Professional Information
                     </h3>
 
-                    <div class="applynow-form-group">
+                    <!-- <div class="applynow-form-group">
                         <label for="applynow-portfolio" class="applynow-form-label">Job Title</label>
                         {{ form.job_title }}
                     </div>
@@ -65,7 +65,7 @@
                     <div class="applynow-form-group">
                         <label for="applynow-portfolio" class="applynow-form-label">Company</label>
                         {{ form.company }}
-                    </div>
+                    </div> -->
 
                     <div class="applynow-form-group">
                         <label for="applynow-portfolio" class="applynow-form-label">Experience</label>
@@ -176,7 +176,7 @@
 
         if (input) {
             input.addEventListener('input', function () {
-                suggestionBox.innerText = "Loading suggestions...";
+                suggestionBox.innerText = "Preparing suggestions...";
 
                 // Clear previous timer
                 clearTimeout(timeoutId);

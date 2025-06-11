@@ -2,165 +2,287 @@
 
 {% block dynamicpage %}
 <div class="applied-body">
-    <div class="container">
-        <header>
-            <h1 class="ja-title"><i class="fas fa-briefcase"></i> My Job Applications</h1>
-            <div class="search-filter">
-                <input type="text" class="search-box" placeholder="Search applications...">
-                <select class="filter-dropdown">
-                    <option>All Statuses</option>
+    <!-- Header -->
+    <header class="trackmyjobs-header">
+        <div class="trackmyjobs-header-inner">
+            <div class="trackmyjobs-brand">
+                <div class="trackmyjobs-logo">TJ</div>
+                <span class="trackmyjobs-brand-text">TrackMyJobs</span>
+            </div>
+            <!-- <div class="trackmyjobs-user-avatar">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User Avatar">
+            </div> -->
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="trackmyjobs-container">
+        <!-- Stats Dashboard -->
+        <div class="trackmyjobs-dashboard">
+            <div class="trackmyjobs-stat-card trackmyjobs-stat-applied">
+                <div class="trackmyjobs-stat-header">
+                    <h3 class="trackmyjobs-stat-title">Applied</h3>
+                    <div class="trackmyjobs-stat-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </div>
+                <h2 class="trackmyjobs-stat-value">1</h2>
+                <p class="trackmyjobs-stat-change positive">
+                    <i class="fas fa-arrow-up"></i> 1 this week
+                </p>
+            </div>
+
+            <div class="trackmyjobs-stat-card trackmyjobs-stat-interview">
+                <div class="trackmyjobs-stat-header">
+                    <h3 class="trackmyjobs-stat-title">Interview</h3>
+                    <div class="trackmyjobs-stat-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                </div>
+                <h2 class="trackmyjobs-stat-value">0</h2>
+                <p class="trackmyjobs-stat-change positive">
+                    <i class="fas fa-arrow-up"></i> 0 this week
+                </p>
+            </div>
+
+            <div class="trackmyjobs-stat-card trackmyjobs-stat-offer">
+                <div class="trackmyjobs-stat-header">
+                    <h3 class="trackmyjobs-stat-title">Offers</h3>
+                    <div class="trackmyjobs-stat-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                </div>
+                <h2 class="trackmyjobs-stat-value">0</h2>
+                <p class="trackmyjobs-stat-change">
+                    <i class="fas fa-equals"></i> No change
+                </p>
+            </div>
+
+            <div class="trackmyjobs-stat-card trackmyjobs-stat-rejected">
+                <div class="trackmyjobs-stat-header">
+                    <h3 class="trackmyjobs-stat-title">Rejected</h3>
+                    <div class="trackmyjobs-stat-icon">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <h2 class="trackmyjobs-stat-value">0</h2>
+                <p class="trackmyjobs-stat-change negative">
+                    <i class="fas fa-arrow-down"></i> 0 this week
+                </p>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="trackmyjobs-filter-bar">
+            <div class="trackmyjobs-filter-group">
+                <span class="trackmyjobs-filter-label">Status:</span>
+                <select class="trackmyjobs-filter-select">
+                    <option>All Applications</option>
                     <option>Applied</option>
                     <option>Interview</option>
                     <option>Offer</option>
                     <option>Rejected</option>
                 </select>
             </div>
-        </header>
 
-        <div class="stats-cards">
-            <div class="stat-card active">
-                <h3>Active Applications</h3>
-                <p>12</p>
+            <div class="trackmyjobs-filter-group">
+                <span class="trackmyjobs-filter-label">Sort by:</span>
+                <select class="trackmyjobs-filter-select">
+                    <option>Newest</option>
+                    <option>Oldest</option>
+                    <option>Company Name</option>
+                    <option>Job Title</option>
+                </select>
             </div>
-            <div class="stat-card interview">
-                <h3 class="ints">Interviews</h3>
-                <p>5</p>
-            </div>
-            <div class="stat-card offered">
-                <h3>Offers</h3>
-                <p>2</p>
-            </div>
-            <div class="stat-card rejected">
-                <h3>Rejected</h3>
-                <p>3</p>
+
+            <div class="trackmyjobs-search">
+                <i class="fas fa-search trackmyjobs-search-icon"></i>
+                <input type="text" class="trackmyjobs-search-input" placeholder="Search applications...">
             </div>
         </div>
 
-        <table class="applications-table">
-            <thead class="cl-thead">
-                <tr>
-                    <th>Company</th>
-                    <th>Position</th>
-                    <th>Date Applied</th>
-                    <th>Status</th>
-                    <th>Next Step</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>TechNova Solutions</td>
-                    <td>Senior Frontend Developer</td>
-                    <td>Jun 15, 2023</td>
-                    <td><span class="status-badge status-interview">Interview</span></td>
-                    <td>Technical interview - Jun 28</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn view-btn" title="View Details">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn withdraw-btn" title="Withdraw Application">
-                                <i class="fas fa-user-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>NASA</td>
-                    <td>DevOps Engineer</td>
-                    <td>Jun 15, 2023</td>
-                    <td><span class="status-badge status-rejected">Rejected</span></td>
-                    <td>N/A</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn view-btn" title="View Details">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn withdraw-btn" title="Withdraw Application">
-                                <i class="fas fa-user-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>AertherCare Solutions</td>
-                    <td>Data Analyst</td>
-                    <td>Jun 15, 2023</td>
-                    <td><span class="status-badge status-applied">Applied</span></td>
-                    <td>Awaiting response</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn view-btn" title="View Details">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn withdraw-btn" title="Withdraw Application">
-                                <i class="fas fa-user-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>DataSystems Inc.</td>
-                    <td>Data Engineer</td>
-                    <td>Jun 10, 2023</td>
-                    <td><span class="status-badge status-applied">Applied</span></td>
-                    <td>Awaiting response</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn view-btn" title="View Details">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn withdraw-btn" title="Withdraw Application">
-                                <i class="fas fa-user-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>DesignHub</td>
-                    <td>UX Designer</td>
-                    <td>Jun 5, 2023</td>
-                    <td><span class="status-badge status-offer">Offer Received</span></td>
-                    <td>Review offer by Jul 1</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn view-btn" title="View Details">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn withdraw-btn" title="Withdraw Application">
-                                <i class="fas fa-user-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>CloudForge</td>
-                    <td>DevOps Engineer</td>
-                    <td>May 28, 2023</td>
-                    <td><span class="status-badge status-rejected">Rejected</span></td>
-                    <td>N/A</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="action-btn view-btn" title="View Details">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn withdraw-btn" title="Withdraw Application">
-                                <i class="fas fa-user-times"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- <div class="pagination">
-            <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
-        </div> -->
+        <!-- Applications Table -->
+        <div class="trackmyjobs-applications">
+            <table class="trackmyjobs-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Company</th>
+                        <th>Date Applied</th>
+                        <th>Status</th>
+                        <th>Next Step</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                    <tr>
+                        <td>
+                            <div class="trackmyjobs-application">
+                                <div class="trackmyjobs-company-logo">
+                                    <img src="https://logo.clearbit.com/techcorp.com" alt="TechCorp">
+                                </div>
+                                <div class="trackmyjobs-application-info">
+                                    <div class="trackmyjobs-job-title">{{ application.job.title }}</div>
+                                    <div class="trackmyjobs-company-name">{{ application. }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ application.job.company.user.full_name }}</td>
+                        <td>{{ application.submitted_at|date:"F j, Y" }}</td>
+                        <!-- <td>
+                            <span class="trackmyjobs-status trackmyjobs-status-interview">
+                                <span class="trackmyjobs-status-dot"></span>
+                                Interview
+                            </span>
+                        </td> -->
+                        <td>
+                            <span class="trackmyjobs-status trackmyjobs-status-applied">
+                                <span class="trackmyjobs-status-dot"></span>
+                                Applied
+                            </span>
+                        </td>
+                        <td>{{ application.next_step }}</td>
+                        <td>
+                            <div class="trackmyjobs-actions">
+                                <button class="trackmyjobs-action-btn" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="trackmyjobs-action-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="trackmyjobs-action-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- <tr>
+                        <td>
+                            <div class="trackmyjobs-application">
+                                <div class="trackmyjobs-company-logo">
+                                    <img src="https://logo.clearbit.com/designhub.com" alt="DesignHub">
+                                </div>
+                                <div class="trackmyjobs-application-info">
+                                    <div class="trackmyjobs-job-title">UX Designer</div>
+                                    <div class="trackmyjobs-company-name">DesignHub</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>DesignHub</td>
+                        <td>May 10, 2023</td>
+                        <td>
+                            <span class="trackmyjobs-status trackmyjobs-status-applied">
+                                <span class="trackmyjobs-status-dot"></span>
+                                Applied
+                            </span>
+                        </td>
+                        <td>
+                            <div class="trackmyjobs-actions">
+                                <button class="trackmyjobs-action-btn" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="trackmyjobs-action-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="trackmyjobs-action-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="trackmyjobs-application">
+                                <div class="trackmyjobs-company-logo">
+                                    <img src="https://logo.clearbit.com/datastack.com" alt="DataStack">
+                                </div>
+                                <div class="trackmyjobs-application-info">
+                                    <div class="trackmyjobs-job-title">Data Scientist</div>
+                                    <div class="trackmyjobs-company-name">DataStack</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>DataStack</td>
+                        <td>Apr 28, 2023</td>
+                        <td>
+                            <span class="trackmyjobs-status trackmyjobs-status-offer">
+                                <span class="trackmyjobs-status-dot"></span>
+                                Offer
+                            </span>
+                        </td>
+                        <td>
+                            <div class="trackmyjobs-actions">
+                                <button class="trackmyjobs-action-btn" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="trackmyjobs-action-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="trackmyjobs-action-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="trackmyjobs-application">
+                                <div class="trackmyjobs-company-logo">
+                                    <img src="https://logo.clearbit.com/marketingpros.com" alt="MarketingPros">
+                                </div>
+                                <div class="trackmyjobs-application-info">
+                                    <div class="trackmyjobs-job-title">Marketing Specialist</div>
+                                    <div class="trackmyjobs-company-name">MarketingPros</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>MarketingPros</td>
+                        <td>Apr 15, 2023</td>
+                        <td>
+                            <span class="trackmyjobs-status trackmyjobs-status-rejected">
+                                <span class="trackmyjobs-status-dot"></span>
+                                Rejected
+                            </span>
+                        </td>
+                        <td>
+                            <div class="trackmyjobs-actions">
+                                <button class="trackmyjobs-action-btn" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="trackmyjobs-action-btn" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="trackmyjobs-action-btn" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <script>
+        // In a real application, this would handle filtering and sorting
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusFilter = document.querySelector('.trackmyjobs-filter-select');
+            const searchInput = document.querySelector('.trackmyjobs-search-input');
+
+            // Example of filtering functionality
+            statusFilter.addEventListener('change', function() {
+                console.log('Filter by:', this.value);
+                // Filter applications based on selected status
+            });
+
+            searchInput.addEventListener('input', function() {
+                console.log('Search for:', this.value);
+                // Filter applications based on search query
+            });
+        });
+    </script>
 </div>
 
 {% endblock dynamicpage %}

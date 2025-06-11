@@ -68,7 +68,7 @@ class JobsAvailableView(ListView):
 
         return context
 
-class DashboardView(View):
+class DashboardView(ListView):
     """
     This view handles the page to display jobs available for job seekers
     """
@@ -152,15 +152,19 @@ class WorkSpaceView(View):
 
         return render(request, self.template_name)
 
-class JobsAppliedView(View):
+class JobsAppliedView(ListView):
     """
     This view handles the page for jobs applied for n=by a job seeker
     """
     template_name = 'JobsApplied.html'
 
     def get(self, request, *args, **kwargs):
+        applications = Application.objects.filter(user=request.user).order_by('-submitted_at')
 
-        return render(request, self.template_name)
+        return render(request, self.template_name,
+        {
+            "applications" : applications,
+        })
 
 
 class JobDetailView(LoginRequiredMixin,JobDetailPermissionMixin, DetailView):
