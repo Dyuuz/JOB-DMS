@@ -1,0 +1,198 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+    {% if user_profile %}
+        <!-- User Profile Page -->
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-header-actions">
+                    <a href="{% url 'profile-update' %}" class="edit-profile-btn">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </a>
+                </div>
+                <img src="https://ui-avatars.com/api/?name={{user_profile.user.full_name}}&background=10B981&color=FFF&size=150"  class="profile-avatar">
+                <h1 class="profile-name">{{ user_profile.user.full_name }}</h1>
+                <p class="profile-title">{{ user_profile.job_title }} at {{ user_profile.company_name }}</p>
+
+                <div class="profile-contact">
+                    <span class="contact-item">
+                        <i class="fas fa-birthday-cake"></i>
+                        <span class="contact-text">{{ user_profile.DOB | date:"F j, Y" }}</span>
+                    </span>
+                    <span class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span class="contact-text">{{ user_profile.phone }}</span>
+                    </span>
+                    <span class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span class="contact-text">{{ user_profile.user.email }}</span>
+                    </span>
+                    <span class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="contact-text">{{ user_profile.user_country }}</span>
+                    </span>
+                </div>
+                <div class="ready-status">
+                    {% if ready_to_work  %}
+                    <span class="status-dot"></span>
+                    <span class="status-dot-text">{{ user_profile.ready_to_work }}</span>
+                    {% else %}
+                    <span class="status-dot1"></span>
+                    <span class="status-dot-text">{{ user_profile.ready_to_work }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="profile-grid">
+                <div class="profile-sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">About Me</h3>
+                        <div class="profile-field-group">
+                            <p class="profile-value">
+                                {{ user_profile.bio }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Work/Career</h3>
+                        <div class="profile-field-group">
+                            <p class="profile-value">
+                                {{ user_profile.work_field }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Work Experience</h3>
+                        <div class="profile-field-group">
+                            <p class="profile-value">
+                                {{ user_profile.work_experience }} years
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Education</h3>
+                        <div class="profile-field-group">
+                            <p class="profile-label">Highest Education Level</p>
+                            <p class="profile-value">{{ user_profile.highest_education_level }}</p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Skills</h3>
+                        <div class="profile-field-group">
+                            <div class="skills-list">
+                                <span class="skill-tag">{{ user_profile.skills }}</span>
+                                <span class="skill-tag">Wireframing</span>
+                                <span class="skill-tag">Prototyping</span>
+                                <span class="skill-tag">Figma</span>
+                                <span class="skill-tag">Adobe XD</span>
+                                <span class="skill-tag">UI/UX Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Projects</h3>
+                        <div class="profile-field-group">
+                            <div class="skills-list">
+                                <span class="skill-tag">TechScape</span>
+                                <span class="skill-tag">Data Vault</span>
+                                <span class="skill-tag">JOB DMS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Certifications</h3>
+                        <div class="profile-field-group">
+                            <div class="certs-list">
+                                <span class="cert-tag">NN/g UX Certification</span>
+                                <span class="cert-tag">Google UX Design</span>
+                                <span class="cert-tag">Adobe Certified Expert</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-main">
+                    <div class="profile-section">
+                        <h2 class="sidebar-title">Professional Information</h2>
+
+                        <div class="profile-field-group">
+                            <p class="profile-label">Full Name</p>
+                            <p class="profile-value">{{ user_profile.user.full_name }}</p>
+                        </div>
+
+                        <div class="profile-field-group">
+                            <p class="profile-label">Date of Birth</p>
+                            <p class="profile-value">{{ user_profile.DOB | date:"F j, Y" }}</p>
+                        </div>
+
+                        <div class="profile-field-group">
+                            <p class="profile-label">Phone Number</p>
+                            <p class="profile-value">{{ user_profile.phone }}</p>
+                        </div>
+
+                        <div class="profile-field-group">
+                            <p class="profile-label">Email</p>
+                            <p class="profile-value">{{ user_profile.user.email }}</p>
+                        </div>
+
+                        <div class="profile-field-group">
+                            <p class="profile-label">Nationality</p>
+                            <p class="profile-value">{{ user_profile.user_country }}</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h2 class="sidebar-title">Current Employment</h2>
+
+                        <div class="employment-item">
+                            <p class="employment-company">{{ user_profile.company_name }}</p>
+                            <div class="employment-details">
+                                <span>{{ user_profile.job_title }}</span>
+                                <span>{{ user_profile.employment_type }}</span>
+                            </div>
+                            <div class="employment-details">
+                                <span>{{ user_profile.start_date | date:'M y'}} - {{ user_profile.end_date | date:'M y' }}</span>
+                                <span>{{ user_profile.job_location }}</span>
+                            </div>
+                            <p class="profile-value">
+                                {{ user_profile.job_description }}
+                            </p>
+                        </div>
+
+                        <div class="experience-tab">
+                            <h3>Experience</h3>
+                            <a href="{% url 'profile-update' %}" class="edit-profile-btn">
+                                <i class="fas fa-edit"></i> Add Experience
+                            </a>
+                        </div>
+                        <h3 class="sidebar-title" style=""></h3>
+                        <div class="employment-item">
+                            <p class="employment-company">DesignWorks Agency</p>
+                            <div class="employment-details">
+                                <span>UX Designer</span>
+                                <span>Full-time</span>
+                            </div>
+                            <div class="employment-details">
+                                <span>May 2015 - May 2018</span>
+                                <span>New York, NY</span>
+                            </div>
+                            <p class="profile-value">
+                                Designed interfaces for clients in various industries including finance, healthcare, and e-commerce.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="msg-auth" data-id="{{ message }}"></div>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endblock dynamicpage %}

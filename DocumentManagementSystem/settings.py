@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
     os.getenv('ipadd4'),
     os.getenv('ipadd5'),
     os.getenv('ipadd6'),
+    os.getenv('ipadd7'),
 ]
 
 
@@ -55,6 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'App',
+    'cloudinary',
+    'cloudinary_storage',
     'rest_framework',
     'django_extensions',
 ]
@@ -103,12 +106,38 @@ WSGI_APPLICATION = 'DocumentManagementSystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv('DATABASE_URL'),
+#         conn_max_age=600
+#     )
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+    }
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 AUTH_USER_MODEL = 'App.CustomUser'
 
@@ -142,6 +171,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+X_FRAME_OPTIONS = 'ALLOWALL'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -149,9 +180,9 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [BASE_DIR / 'App/static']
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'App/media/')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'App/media/')
 
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

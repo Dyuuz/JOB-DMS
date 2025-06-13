@@ -1,0 +1,2726 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "App",
+    "model": "application"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "App",
+    "model": "company"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "App",
+    "model": "feedback"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "App",
+    "model": "job"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "App",
+    "model": "customuser"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "App",
+    "model": "userprofile"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "App",
+    "model": "document"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "App",
+    "model": "companyprofile"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0qdf8w6i89j60cin1oyu71u3ad4804i3",
+  "fields": {
+    "session_data": ".eJxVi0sOwjAMRO-SNapCGseYXZE4R-QktlLxUUXoCnF3gtQF7GbmzXuZyOuzxrXJI87FHM1odr9b4nyR-xdMyzJsrQ3nG8_Xqb9OG_-TKrfaDe8TkSuOBQJ6xDH0JCLWqSZACOSzo2BVwMGBEGGkolR4b1E1W_P-ANfTMtY:1uQAYQ:iz7y6Sx2lSXMP6IpASsCywmIa7lfdemkEhl8pmPUO54",
+    "expire_date": "2025-06-27T19:59:10.877Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "13lw8p1muyy3wrm9t6u85g51qcrmea3x",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1u84qf:yN_a0rJvz3AGv7isR2rqUPi60snKJOtaobCeHA1Nbx4",
+    "expire_date": "2025-05-08T22:15:13.333Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4wyxcm29dvalb73csumwcphoh7mf8wp1",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1u4mMG:O6vbfWyqXJkPQ6Fz0sd2DPyVwqVMMuNb1zvC6arkISw",
+    "expire_date": "2025-04-29T19:54:12.471Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7rorl9ao2qnnq6c1q28slnuhla8446lx",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1u3J4D:qaH9E90f3iJ0N7tAh7YMnN9r4kvkdIGYD5twJT3EZTA",
+    "expire_date": "2025-04-25T18:25:29.876Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9tttrwc7w29b819ddmm8wbemxypiaehm",
+  "fields": {
+    "session_data": ".eJxVi0sOwjAMRO-SNapCGseYXZE4R-QktlLxUUXoCnF3gtQF7GbmzXuZyOuzxrXJI87FHM1odr9b4nyR-xdMyzJsrQ3nG8_Xqb9OG_-TKrfaDe8TkSuOBQJ6xDH0JCLWqSZACOSzo2BVwMGBEGGkolR4b1E1W_P-ANfTMtY:1uPPX4:mQ6gpLwQQ-NiammvN-g2K6DAGCNbsTGbMRi2lDBW4z4",
+    "expire_date": "2025-06-25T17:46:38.818Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "biw9fbucx2i8vrvlxhemlwqu9hei1vba",
+  "fields": {
+    "session_data": ".eJxVi0sOwjAMRO-SNapCGseYXZE4R-QktlLxUUXoCnF3gtQF7GbmzXuZyOuzxrXJI87FHM1odr9b4nyR-xdMyzJsrQ3nG8_Xqb9OG_-TKrfaDe8TkSuOBQJ6xDH0JCLWqSZACOSzo2BVwMGBEGGkolR4b1E1W_P-ANfTMtY:1uPFTH:DsKC23ldIuXIX1Fj9sMRohpJfn8URyOlJVrXyJrWyOM",
+    "expire_date": "2025-06-25T07:02:03.414Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cqngbsfx55plo9vz0sqtzuispi1lz3iv",
+  "fields": {
+    "session_data": ".eJxVi0sOwjAMRO-SNapCGseYXZE4R-QktlLxUUXoCnF3gtQF7GbmzXuZyOuzxrXJI87FHM1odr9b4nyR-xdMyzJsrQ3nG8_Xqb9OG_-TKrfaDe8TkSuOBQJ6xDH0JCLWqSZACOSzo2BVwMGBEGGkolR4b1E1W_P-ANfTMtY:1uPS6T:dGx7sFTYg9vMEJ9pQvZDgB61pdIhDDtQBtnNjoXJI2c",
+    "expire_date": "2025-06-25T20:31:21.975Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "efrjyns0ypizbbcvxqjnppyo37t8blgl",
+  "fields": {
+    "session_data": "e30:1u24it:m-4diwWXYPo5NweuQeXwcvHee6xWPq6yos9RCWnyWE0",
+    "expire_date": "2025-04-22T08:54:23.495Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fjs0apdus1jmtfkgnx331dhpoj2ua6zq",
+  "fields": {
+    "session_data": "e30:1u24jq:qi1snJn6Ul8dvLDDBPrRTEbLCdePbQiXXjI8LQhZKuU",
+    "expire_date": "2025-04-22T08:55:22.157Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "gtdp27x5p0kpeee3vwi30md1sj2f1bzy",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1uFaZj:n4TUmc9B1rlVvgnowH1mppas0iFpbaAn6AxdFGbTxpk",
+    "expire_date": "2025-05-29T15:32:47.875Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i7351fx98n0397jecpg4rs1n8ylw90gb",
+  "fields": {
+    "session_data": "e30:1u24n7:EX7EZ-L2ZjTrvWsfKTogYHO00qh38z-o0KPcxBiDdEM",
+    "expire_date": "2025-04-22T08:58:45.856Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "is8k1rpcuv8cfj0no0vhwslq7j4ekn9g",
+  "fields": {
+    "session_data": "e30:1u24n6:H0qI_CzcNd719A52cwkbWabPngWbNqJNoPFVfwW7-DA",
+    "expire_date": "2025-04-22T08:58:44.319Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "knvpf307zts13ugl9bstkobmpwqx0kdk",
+  "fields": {
+    "session_data": "e30:1u2NvT:GiAv9JU8Tegel6fW6zkVqaNYFLf7723MYuNSssPWho4",
+    "expire_date": "2025-04-23T05:24:39.403Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kq4qfn0r2k55wntoxhr06i3al03hbmvs",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1u3v9v:eqt01Ru2th_4gnr5vi5O0WTza1TTAM28yCHH6HfQe-0",
+    "expire_date": "2025-04-27T11:05:55.445Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "m704mxodmfxdevv5v1u8obn5y0kp6ic3",
+  "fields": {
+    "session_data": "e30:1u2NuJ:GeEPh4haFjY57QFqcXk3LjMtqqkytmUN_-6iEw6oPjA",
+    "expire_date": "2025-04-23T05:23:27.155Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mngzd0cgrt35h10yhz0tltez9ck65hun",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1u36jk:Ae9toCle7YUd2BBOPjUW6P-67uqJ1mpbSMPMTGr25Bg",
+    "expire_date": "2025-04-25T05:15:32.287Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "odbed7qfnvrbnpk4bd0r6kfk19pv3ku0",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1u84yS:L4aQ-fkuK1t5TIduCdnWGz8g_qNJlaa4OAAVkdY6GAQ",
+    "expire_date": "2025-05-08T22:23:16.632Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ox6w8skqt7l8loowtv2yagdrxwrqj8qq",
+  "fields": {
+    "session_data": "e30:1u24iL:TYYwOkrvDhhbmxBQmJ_EdX1xn3_2jKE7KHk_qL0Be5Q",
+    "expire_date": "2025-04-22T08:53:49.013Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pyrip4gbt29qg7erld1bq8jkqtt4ss4m",
+  "fields": {
+    "session_data": ".eJxVjDEOwyAQBP9CHaE7Gx2QMn3egICD4CQCydiVlb_HllwkxTY7s7sJ59eluLWn2U0srgLF5bcLPr5SPQA_fX00GVtd5inIQ5En7fLeOL1vp_t3UHwv-5pyYsY9owmssgKLCDQCZh8MEivUlBBUpGgUeT0mbU22GoaBNVAWny_rizd3:1u17Jm:7nrqmUnhKOl_Cp0JmvDgLK6kVexqiJ1Immrd9V7bCgA",
+    "expire_date": "2025-04-19T17:28:30.715Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "q0578dr0q1kgz57cvk9r6wkb83z8fqzi",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laymTdCYPdxX8jjDJJKT4oBi7Ev_dCl3o8t5zzktFXp8trr084izqqExQh98zcb6U-5dMyzLsqw_nG8_XabNOO_-LGve2Fd5L0KPGAMg6FRo9AeUsBlCEUrUavHGacKxQkKxwAJLkMlZnCbx6fwDjuzJQ:1u2y1e:nUyg0s3h5JdwkCk3ZhpUDG2p16PxxydAADMnClLJkBI",
+    "expire_date": "2025-04-24T19:57:26.261Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qq6imutknt0scm9pq1edq3waulmn5f6m",
+  "fields": {
+    "session_data": ".eJxVTksKwjAQvUvWUmJ-47ir4DnCJJkhxQ-lsSvx7kYoorv35z1VpPVR49p4iVNRR2XV7ldLlC98_xjjPA8ba8P5RtN17KnT5v-VKrXaG84lRFMMsQ_gAGzoiJm1EUkefECXDQYt7I0_IIC3WAQL7TWIZN1Hv7_s6w1RQTae:1u2QP6:nHSSK3GyeLPAzfI60y31H7ewxqpnuG8uX6J6e3bqv28",
+    "expire_date": "2025-04-23T08:03:24.393Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rz2tlwr8vgv634r9j1ybah1hai1htplo",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1uEz8c:_dfJvTWI4__WWDTncHKIBclFSnIaUpw4SxE4QnjYCqg",
+    "expire_date": "2025-05-27T23:34:18.626Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "x1nozube30gmw62amkufn8xl8cdbxgom",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1uObje:CzYWHDSaY2giJdqfhGIS8oL5cE0I8OO81LOZ5-MfrMA",
+    "expire_date": "2025-06-23T12:36:18.617Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xot9dsrymu79pzhl0tbddndy5623q0q2",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1uN6nr:IebBO6gLUTi5tzRDFaZ1b28qnUrS-IOL9Vcv_ZL6vzU",
+    "expire_date": "2025-06-19T09:22:27.848Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "y1nh4qpbhmhgo6xauoylojovz3ob6e3c",
+  "fields": {
+    "session_data": ".eJxVi0sOwjAMRO-SNapCGseYXZE4R-QktlLxUUXoCnF3gtQF7GbmzXuZyOuzxrXJI87FHM1odr9b4nyR-xdMyzJsrQ3nG8_Xqb9OG_-TKrfaDe8TkSuOBQJ6xDH0JCLWqSZACOSzo2BVwMGBEGGkolR4b1E1W_P-ANfTMtY:1u3IsN:eQxN_5y-1DUbrGNJzzidTe6E0pMKXicahJcnHLaiiLk",
+    "expire_date": "2025-04-25T18:13:15.748Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "y5wp01yrscihiaofiv9eq7xxwn5vs1q5",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1u6TTx:kmJTsberZM5DIHmW87yUfF_6PVHKqM8QDvwDSI8VagM",
+    "expire_date": "2025-05-04T12:09:09.187Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yqrzoawohlb9p5fgau5uspb9oleqzmuj",
+  "fields": {
+    "session_data": ".eJxVi0sOwjAMRO-SNapCGseYXZE4R-QktlLxUUXoCnF3gtQF7GbmzXuZyOuzxrXJI87FHM1odr9b4nyR-xdMyzJsrQ3nG8_Xqb9OG_-TKrfaDe8TkSuOBQJ6xDH0JCLWqSZACOSzo2BVwMGBEGGkolR4b1E1W_P-ANfTMtY:1uOTzU:_nXdLP59-BQ-D34ecNuj8tIyOK45gSmc6fdKTdXVbxk",
+    "expire_date": "2025-06-23T04:20:08.319Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yugdf2yfe1rqxxbommatuewj92u48c35",
+  "fields": {
+    "session_data": "e30:1u2Nyg:jZFLYqAX0UyC2YKYkaKVyJmc1aVqyA-roAp6lvGNdM4",
+    "expire_date": "2025-04-23T05:27:58.656Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yuw0zc94lgv9sn2jpthx6bgyvx5fu0qm",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAQRf8laylpmseMuwp-R7hNJqT4oBi7Ev_dCl3o8t5zzktFrM8a1yaPOGd1VCaow-85IV3k_iXjsnT7at35hvk6btZp539RRatbATaDONGk2aLQROQgnr1lYSqD663RNMBqTxk-9AnZl8wojBRsYPX-APblMwo:1u6TUx:kS4_HYQU8sYbrAbwQF29SgAxnKiHulZfJeUwaqjunUE",
+    "expire_date": "2025-05-04T12:10:11.447Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zbcv4wrzvz71r5e7ncjtiykrrqibsyuu",
+  "fields": {
+    "session_data": ".eJxVi0sOwjAMRO-SNapCGseYXZE4R-QktlLxUUXoCnF3gtQF7GbmzXuZyOuzxrXJI87FHM1odr9b4nyR-xdMyzJsrQ3nG8_Xqb9OG_-TKrfaDe8TkSuOBQJ6xDH0JCLWqSZACOSzo2BVwMGBEGGkolR4b1E1W_P-ANfTMtY:1uMgdA:CV9mR5RF6k083_b77gDQg_mcKA7yGw_AgiNnAQNcfh4",
+    "expire_date": "2025-06-18T05:25:40.399Z"
+  }
+},
+{
+  "model": "App.job",
+  "pk": 1,
+  "fields": {
+    "company": 2,
+    "title": "Backend Developer",
+    "description": "We are looking for a skilled Backend Developer to design, build, and maintain scalable server-side applications. You will work closely with frontend developers, product managers, and DevOps engineers to deliver robust APIs, optimize performance, and ensure system reliability.\r\n\r\nKey Responsibilities\r\n✔ Develop and maintain high-performance backend services using [Node.js/Python/Java/Go/Rust/etc.]\r\n✔ Design and optimize RESTful/gRPC/GraphQL APIs\r\n✔ Implement database schemas (SQL/NoSQL) and optimize queries\r\n✔ Integrate third-party services (payment, auth, analytics)\r\n✔ Write unit/integration tests and ensure code quality\r\n✔ Collaborate on cloud deployment (AWS/GCP/Azure) and CI/CD pipelines\r\n✔ Troubleshoot and debug production issues\r\n\r\nRequirements\r\n✅ 3+ years of backend development experience\r\n✅ Proficiency in [Primary Backend Language] and frameworks\r\n✅ Strong knowledge of databases (PostgreSQL, MongoDB, etc.)\r\n✅ Experience with caching (Redis, Memcached) and message queues (Kafka, RabbitMQ)\r\n✅ Familiarity with containerization (Docker, Kubernetes)\r\n✅ Understanding of security best practices (OAuth, JWT, data encryption)\r\n✅ Problem-solving mindset and teamwork skills\r\n\r\nNice to Have\r\n🔹 Experience with serverless architecture\r\n🔹 Knowledge of microservices design patterns\r\n🔹 Contributions to open-source projects\r\n\r\nWhy Join Us?\r\nWork on scalable systems with high impact\r\nFlexible work environment\r\nCompetitive salary & benefits",
+    "department": "Engineering",
+    "location": "Nigeria",
+    "job_type": "Full Time",
+    "salary": 100000,
+    "experience": 3,
+    "currency": "NGN",
+    "work_mode": "Hybrid",
+    "deadline": "2025-06-13",
+    "status": "Active",
+    "is_public": true,
+    "created_at": "2025-06-09T07:48:08.058Z"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add application",
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "codename": "add_application"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change application",
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "codename": "change_application"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete application",
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "codename": "delete_application"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view application",
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "codename": "view_application"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add company",
+    "content_type": [
+      "App",
+      "company"
+    ],
+    "codename": "add_company"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change company",
+    "content_type": [
+      "App",
+      "company"
+    ],
+    "codename": "change_company"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete company",
+    "content_type": [
+      "App",
+      "company"
+    ],
+    "codename": "delete_company"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view company",
+    "content_type": [
+      "App",
+      "company"
+    ],
+    "codename": "view_company"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add feedback",
+    "content_type": [
+      "App",
+      "feedback"
+    ],
+    "codename": "add_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change feedback",
+    "content_type": [
+      "App",
+      "feedback"
+    ],
+    "codename": "change_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete feedback",
+    "content_type": [
+      "App",
+      "feedback"
+    ],
+    "codename": "delete_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view feedback",
+    "content_type": [
+      "App",
+      "feedback"
+    ],
+    "codename": "view_feedback"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add job",
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "codename": "add_job"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change job",
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "codename": "change_job"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete job",
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "codename": "delete_job"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view job",
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "codename": "view_job"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "codename": "add_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "codename": "change_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "codename": "delete_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "codename": "view_customuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user profile",
+    "content_type": [
+      "App",
+      "userprofile"
+    ],
+    "codename": "add_userprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user profile",
+    "content_type": [
+      "App",
+      "userprofile"
+    ],
+    "codename": "change_userprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user profile",
+    "content_type": [
+      "App",
+      "userprofile"
+    ],
+    "codename": "delete_userprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user profile",
+    "content_type": [
+      "App",
+      "userprofile"
+    ],
+    "codename": "view_userprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add document",
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "codename": "add_document"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change document",
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "codename": "change_document"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete document",
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "codename": "delete_document"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view document",
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "codename": "view_document"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add company profile",
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "codename": "add_companyprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change company profile",
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "codename": "change_companyprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete company profile",
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "codename": "delete_companyprofile"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view company profile",
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "codename": "view_companyprofile"
+  }
+},
+{
+  "model": "App.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$gFvtLWpjSiHWfHBUnaIHG1$Kah5CwgAex+0s65OYu5+LjpA9MXZi1HLM+dsQ2C1/DI=",
+    "last_login": "2025-06-13T19:59:10.725Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "email": "lekanoyesunle@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-04-05T17:29:58Z",
+    "full_name": "Vertex Technologies",
+    "username": "admin",
+    "role": "company",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "App.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$HbICwOvWVrLNWHX71k3zbe$uBAaF+KXwaDJNyiwVyZ4BAtkJYbRTwxYfGQ35DSHcLo=",
+    "last_login": "2025-06-11T17:43:29.377Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "email": "pearlaviz.dev@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-09T09:24:02Z",
+    "full_name": "Pearl Aviz",
+    "username": null,
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "App.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$E3oD8vPLcFtsyBECf6RGrh$HiDFdOr6RR20wUKBNg5suT4TfRs3RV27fFp3T31BIvo=",
+    "last_login": "2025-06-05T05:30:32.976Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "email": "pearl.aviz.jnr@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-10T15:28:17.972Z",
+    "full_name": "Don Clem Tech",
+    "username": null,
+    "role": "company",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "App.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$A18NBwnrkLIDpPS5tmXpyr$Kd31+QGkIMrWhbE8nTadE9V/oz8SL9gQ7FaE960S5/o=",
+    "last_login": "2025-04-15T19:49:31.851Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "email": "ThomasEdison@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-15T19:49:13.671Z",
+    "full_name": "Thomas Edison",
+    "username": null,
+    "role": "user",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "App.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$870000$E4bracWCrNXcbw9QRUCP61$RNSdG7pJslwdN200CscqMZRrBXxfzyAOnuDCRzBrNM0=",
+    "last_login": "2025-06-09T15:02:22.749Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "email": "insbrid@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-06-09T13:44:27.038Z",
+    "full_name": "Insbrid Tech",
+    "username": null,
+    "role": "company",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "App.companyprofile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "hire_status": "Applications Closed",
+    "company_reg_num": "132736AWQ",
+    "work_mode": "Remote",
+    "founded": "2022-08-08",
+    "parent_company": "Fox Glove",
+    "headquarters": "London, UK",
+    "annual_growth_rate": 2,
+    "website": "http://www.google.com",
+    "tagline": "Powering the Future of Intelligent Automation",
+    "about_us": "We are a forward-thinking fintech company committed to leveraging technology to simplify financial processes.\r\nOur team consists of industry experts and tech enthusiasts who are passionate about creating solutions that meet the evolving needs of our customers.\r\nWe believe in transparency, integrity, and the power of collaboration to drive positive change in the financial sector.",
+    "mission_statement": "To democratize financial services by making them accessible to everyone, regardless of their background or financial status.\r\nTo harness cutting-edge technology, such as blockchain and artificial intelligence, to deliver secure and efficient financial solutions.\r\nTo foster financial literacy and empower our users with the knowledge and tools they need to make informed financial decisions.\r\nTo create a positive social impact by supporting underserved communities and promoting sustainable financial practices.\r\nTo continuously innovate and adapt our services to meet the changing demands of the market and our customers.",
+    "core_tech": "UI/UX Designs, DevOps, Backend Architectures, Cloud Computing, Brand Strategist",
+    "awards": "Best Fintech Company in Oyo State",
+    "certifications": "UI/UX Expert Certificate, Certified Backend Developer",
+    "industry": "FinTech",
+    "country": "Nigeria"
+  }
+},
+{
+  "model": "App.companyprofile",
+  "pk": 13,
+  "fields": {
+    "user": [
+      null
+    ],
+    "hire_status": "Hiring",
+    "company_reg_num": null,
+    "work_mode": "Remote",
+    "founded": null,
+    "parent_company": null,
+    "headquarters": null,
+    "annual_growth_rate": null,
+    "website": null,
+    "tagline": null,
+    "about_us": "",
+    "mission_statement": "",
+    "core_tech": "",
+    "awards": "",
+    "certifications": "",
+    "industry": "",
+    "country": "South Africa"
+  }
+},
+{
+  "model": "App.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      null
+    ],
+    "phone": "08142266856",
+    "DOB": "2010-07-05",
+    "user_country": "Nigeria",
+    "company_name": "AetherCore Solutions",
+    "job_title": "Backend Developer",
+    "job_description": "Lead Backend dev for the company's flagship product, managing a team of two stacks and conducting user research studies.",
+    "start_date": "2025-02-09",
+    "end_date": "2025-06-11",
+    "employment_type": "Internship",
+    "job_location": "United Kingdom",
+    "highest_education_level": "Bachelor's Degree",
+    "work_field": "Full Stack Developer",
+    "work_experience": 2,
+    "project": "",
+    "resume": "",
+    "ready_to_work": "Available immediately",
+    "bio": "Creative Backend engineer with 2+ years of experience creating intuitive backend solutions for web applications. Passionate about user research and backend design systems.",
+    "skills": "Django\r\nPython \r\npostgreSQL",
+    "certifications": "Smart Code Academy, Udemy."
+  }
+},
+{
+  "model": "App.document",
+  "pk": 3,
+  "fields": {
+    "owner_user": [
+      "admin"
+    ],
+    "owner_company": null,
+    "job": null,
+    "name": "INSBRID",
+    "file_type": "Certification",
+    "file_format": "doc",
+    "file": "documents/gIFT_Xo5wTfq.docx",
+    "created_at": "2025-06-05T07:35:53.152Z"
+  }
+},
+{
+  "model": "App.document",
+  "pk": 4,
+  "fields": {
+    "owner_user": [
+      "admin"
+    ],
+    "owner_company": null,
+    "job": null,
+    "name": "woman",
+    "file_type": "Resume",
+    "file_format": "txt",
+    "file": "documents/Women.txt",
+    "created_at": "2025-06-07T15:04:18.462Z"
+  }
+},
+{
+  "model": "App.document",
+  "pk": 5,
+  "fields": {
+    "owner_user": [
+      "admin"
+    ],
+    "owner_company": null,
+    "job": null,
+    "name": "Matric",
+    "file_type": "CV",
+    "file_format": "docx",
+    "file": "documents/20203181.docx",
+    "created_at": "2025-06-07T15:04:44.936Z"
+  }
+},
+{
+  "model": "App.document",
+  "pk": 6,
+  "fields": {
+    "owner_user": [
+      "admin"
+    ],
+    "owner_company": 2,
+    "job": null,
+    "name": "My resume",
+    "file_type": "Resume",
+    "file_format": "pdf",
+    "file": "documents/NewDMSProject.pdf",
+    "created_at": "2025-06-07T15:55:52.656Z"
+  }
+},
+{
+  "model": "App.document",
+  "pk": 7,
+  "fields": {
+    "owner_user": [
+      "admin"
+    ],
+    "owner_company": 2,
+    "job": null,
+    "name": "New Resume",
+    "file_type": "Resume",
+    "file_format": "pdf",
+    "file": "documents/gIFT_KkvkwQb.docx",
+    "created_at": "2025-06-07T15:59:11.094Z"
+  }
+},
+{
+  "model": "App.document",
+  "pk": 10,
+  "fields": {
+    "owner_user": [
+      null
+    ],
+    "owner_company": null,
+    "job": null,
+    "name": "20203181-CSC420EXAM",
+    "file_type": "Certification",
+    "file_format": "doc",
+    "file": "documents/20203181-CSC420EXAM.docx",
+    "created_at": "2025-06-11T17:58:40.583Z"
+  }
+},
+{
+  "model": "App.document",
+  "pk": 11,
+  "fields": {
+    "owner_user": [
+      null
+    ],
+    "owner_company": null,
+    "job": null,
+    "name": "DMS",
+    "file_type": "Resume",
+    "file_format": "pdf",
+    "file": "documents/DMSProjectPrint.pdf",
+    "created_at": "2025-06-13T20:19:24.902Z"
+  }
+},
+{
+  "model": "App.application",
+  "pk": 8,
+  "fields": {
+    "user": [
+      null
+    ],
+    "job": 1,
+    "status": "Applied",
+    "next_step": "Awaiting response",
+    "submitted_at": "2025-06-11T05:48:52.455Z",
+    "full_name": "Pearl Aviz",
+    "phone": "08142266856",
+    "email": "pearlaviz.dev@gmail.com",
+    "portfolio": "https://github.com/Dyuuz",
+    "resume": 11,
+    "cover_letter": "I am writing to express my keen interest in the [Job Title] position at [Company Name], as advertised on [Platform where you saw the advert]. As a creative Backend Engineer with over two years of experience at AetherCore Solutions, I possess the skills and passion to significantly contribute to your team.\r\n\r\nIn my previous role as Lead Backend Developer for AetherCore Solutions' flagship product, I spearheaded the development of [mention a specific achievement or project, quantifying the impact if possible. E.g., \"a high-performance API resulting in a 30% increase in user engagement\"]. This involved managing a team of two, fostering collaboration, and implementing innovative backend solutions. Furthermore, my commitment to user-centric design is demonstrated through my active participation in user research studies, allowing me to directly translate user needs into robust and intuitive backend systems.\r\n\r\nMy expertise lies in [mention 2-3 relevant technical skills, e.g., Node.js, Python, PostgreSQL, AWS]. I am passionate about creating well-architected, scalable, and maintainable backend systems, and I am confident in my ability to quickly adapt to new technologies and challenges. My resume provides further detail on my qualifications and accomplishments.\r\n\r\nThank you for your time and consideration. I look forward to hearing from you soon. My email address is pearlaviz.dev@gmail.com.",
+    "experience": 3,
+    "expected_salary": 250000,
+    "availability": "June 15 2025"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-04-05T17:32:31.877Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "hs",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-04-06T05:24:27.016Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "7",
+    "object_repr": "Olamilekan",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-04-06T20:24:23.956Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "12",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-04-08T10:18:19.434Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "3",
+    "object_repr": "Admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Full name\", \"Role\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.213Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "11",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.213Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "10",
+    "object_repr": "Oye Mighty",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.213Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "9",
+    "object_repr": "lekan14514",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.213Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "8",
+    "object_repr": "lekan456",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.213Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "7",
+    "object_repr": "Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.213Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "6",
+    "object_repr": "lekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.214Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "5",
+    "object_repr": "hs",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.214Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "4",
+    "object_repr": "hs",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-04-08T10:19:10.214Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "1",
+    "object_repr": "hs",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.332Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "21",
+    "object_repr": "Ademola Phillips",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.332Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "20",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.332Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "19",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.332Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "18",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.332Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "17",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.332Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "16",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.332Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "15",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.332Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "14",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-04-09T05:40:38.333Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "13",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-04-09T08:59:09.488Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "26",
+    "object_repr": "Oyesunle Olamilekan",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-04-09T08:59:09.488Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "25",
+    "object_repr": "Asake Opemipo",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-04-09T08:59:09.488Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "24",
+    "object_repr": "Ademola Opemipo",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-04-09T08:59:09.488Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "23",
+    "object_repr": "Ademola Phillips",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-04-09T08:59:09.488Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "22",
+    "object_repr": "Ademola Phillips",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-04-09T14:30:02.028Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "userprofile"
+    ],
+    "object_id": "1",
+    "object_repr": "Ademola Phillips",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-04-09T14:31:57.446Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "27",
+    "object_repr": "Oyesunle Segun",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Email address\", \"Full name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2025-04-09T15:58:35.913Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "userprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Oyesunle Segun",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Job title\", \"Highest education level\", \"Work field\", \"Bio\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2025-04-09T16:34:50.969Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "userprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Oyesunle Segun",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Resume\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2025-04-10T15:26:39.358Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "28",
+    "object_repr": "Don Clem Tech",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2025-04-10T18:38:04.241Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "1",
+    "object_repr": "Don Clem Tech",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Country\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2025-04-10T20:47:07.824Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "1",
+    "object_repr": "Don Clem Tech",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2025-04-11T05:16:30.564Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "7",
+    "object_repr": "Don Clem Tech",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2025-04-11T10:43:00.872Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "27",
+    "object_repr": "Pearl Aviz",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Email address\", \"Full name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2025-04-11T10:44:03.778Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "27",
+    "object_repr": "Pearl Aviz",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2025-04-11T10:46:01.094Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "userprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Pearl Aviz",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Company name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2025-04-11T15:22:16.297Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "customuser"
+    ],
+    "object_id": "3",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Full name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2025-06-07T15:17:38.126Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "5",
+    "object_repr": "Lekan",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Owner user\", \"Owner company\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2025-06-07T15:27:06.021Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "4",
+    "object_repr": "woman - Resume",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Owner user\", \"Owner company\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2025-06-07T15:42:42.341Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "5",
+    "object_repr": "Matric - CV",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\", \"File format\", \"File\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2025-06-07T15:57:58.387Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "6",
+    "object_repr": "Olamilekan Oyesunle - Resume",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Owner user\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2025-06-07T16:03:14.076Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "6",
+    "object_repr": "My resume - Resume",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2025-06-07T16:03:40.290Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "7",
+    "object_repr": "New Resume - Resume",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2025-06-07T16:06:04.773Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "3",
+    "object_repr": "INSBRID - Certification",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Owner user\", \"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2025-06-09T07:48:08.461Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2025-06-09T08:27:44.690Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "1",
+    "object_repr": "Pearl Aviz - Backend Dev",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2025-06-09T08:44:11.084Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2025-06-09T08:50:15.922Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "2",
+    "object_repr": "Pearl Aviz - Backend Dev",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2025-06-09T08:56:22.821Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "2",
+    "object_repr": "Pearl Aviz - Backend Dev",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2025-06-09T09:04:10.458Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2025-06-09T09:04:48.932Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2025-06-09T09:12:20.428Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Department\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2025-06-09T09:14:20.438Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Department\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2025-06-09T10:56:05.994Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Company reg num\", \"Founded\", \"Parent company\", \"Headquarters\", \"Annual growth rate\", \"Website\", \"Tagline\", \"Core tech\", \"Awards\", \"Industry\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2025-06-09T10:57:29.493Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Tagline\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2025-06-09T11:03:25.871Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Certifications\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2025-06-09T11:09:17.436Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About us\", \"Mission statement\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2025-06-09T11:39:49.998Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Hire status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2025-06-09T11:42:51.788Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Hire status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2025-06-09T11:52:07.971Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Certifications\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2025-06-09T12:02:43.714Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "2",
+    "object_repr": "Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Website\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2025-06-09T12:58:30.461Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "13",
+    "object_repr": "Don Clem Tech",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Industry\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2025-06-09T14:38:32.793Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Deadline\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2025-06-09T15:19:12.452Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "companyprofile"
+    ],
+    "object_id": "13",
+    "object_repr": "Insbrid Tech",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2025-06-09T15:45:23.592Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Experience\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2025-06-09T15:46:57.650Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2025-06-09T15:49:30.732Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2025-06-09T17:06:38.228Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Dev at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Work mode\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2025-06-11T04:49:20.947Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "1",
+    "object_repr": "Pearl Aviz - Backend Dev",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2025-06-11T17:42:30.014Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "9",
+    "object_repr": "20203181-CSC420EXAM - Resume",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2025-06-11T17:55:41.926Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "8",
+    "object_repr": "Pearl Aviz - Backend Dev",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Resume\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2025-06-11T17:56:51.616Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "8",
+    "object_repr": "DMSProjectPrint - Resume",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2025-06-11T17:56:51.617Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "2",
+    "object_repr": "Gify - Resume",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2025-06-11T17:56:51.617Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "1",
+    "object_repr": "Olamilekan DRive - CV",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 77,
+  "fields": {
+    "action_time": "2025-06-11T18:34:39.034Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "8",
+    "object_repr": "Pearl Aviz - Backend Dev",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 78,
+  "fields": {
+    "action_time": "2025-06-11T18:35:06.219Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "8",
+    "object_repr": "Pearl Aviz - Backend Dev",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 79,
+  "fields": {
+    "action_time": "2025-06-11T18:36:14.250Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "8",
+    "object_repr": "Pearl Aviz - Backend Dev",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\", \"Next step\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 80,
+  "fields": {
+    "action_time": "2025-06-13T00:01:12.403Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "job"
+    ],
+    "object_id": "1",
+    "object_repr": "Backend Developer at Vertex Technologies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 81,
+  "fields": {
+    "action_time": "2025-06-13T20:19:25.039Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "document"
+    ],
+    "object_id": "11",
+    "object_repr": "DMS - Resume",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 82,
+  "fields": {
+    "action_time": "2025-06-13T20:20:03.462Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "8",
+    "object_repr": "Pearl Aviz - Backend Developer",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Resume\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 83,
+  "fields": {
+    "action_time": "2025-06-13T20:25:19.238Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "App",
+      "application"
+    ],
+    "object_id": "8",
+    "object_repr": "Pearl Aviz - Backend Developer",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\", \"Next step\"]}}]"
+  }
+}
+]

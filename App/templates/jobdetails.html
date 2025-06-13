@@ -78,9 +78,9 @@
                     <button class="jobsync-btn jobsync-btn-outline" id="jobsync-edit-toggle">
                         <i class="fas fa-edit"></i> Edit Job
                     </button>
-                    <button class="jobsync-btn jobsync-btn-primary" id="jobsync-apply-btn" onclick="jbOpenApplyModal('Senior Frontend Developer', 'TechNova Solutions')">
+                    <a href="{% url 'jobs_applicants_view' pk=job.pk %}"><button class="jobsync-btn jobsync-btn-primary" id="jobsync-apply-btn" onclick="jbOpenApplyModal('Senior Frontend Developer', 'TechNova Solutions')">
                         <i class="fas fa-users"></i> View Applicants
-                    </button>
+                    </button></a>
                 </div>
                 {% endif %}
             </div>

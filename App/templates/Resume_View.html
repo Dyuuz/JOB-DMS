@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+<div class="resume-view-body">
+  <!-- <div class="resume-header">
+    📄 Document Preview UI
+  </div> -->
+
+  <div class="container">
+    <div class="doc-preview">
+      <div class="doc-header">Preview: {{ document.name }}</div>
+      <!-- You can replace the src with your actual document file path -->
+      <iframe src="{{ document.file.url }}"></iframe>
+    </div>
+  </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="msg-auth" data-id="{{ message }}"></div>
+    {% endfor %}
+{% endif %}
+
+{% endblock dynamicpage %}

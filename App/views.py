@@ -188,6 +188,79 @@ class JobDetailView(LoginRequiredMixin,JobDetailPermissionMixin, DetailView):
         context['company_abbr'] = company_name
         return context
 
+class JobApplicantView(ListView):
+    """
+    This view handles the applicants page that applied to a job for companies
+    It checks if the user is authenticated and retrieves their job information
+    """
+    template_name = 'JobApplicants_View.html'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('auth-login')
+
+        pk = self.kwargs.get('pk')
+        job = Job.objects.filter(pk=pk).first()
+
+        if not job:
+            messages.error(request, "Job not found.")
+            return redirect('dashboard')
+
+        applicants = Application.objects.filter(job=job)
+        job_title = job.title
+
+        return render(request, self.template_name, {
+            'applicants': applicants,
+            'job_title': job_title,
+        })
+
+
+class JobApplicantFormView(ListView):
+    """
+
+    """
+    template_name = 'JobApplicants_Details.html'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('auth-login')
+
+        pk = self.kwargs.get('pk')
+        job = Job.objects.filter(pk=pk).first()
+
+        if not job:
+            messages.error(request, "Job not found.")
+            return redirect('dashboard')
+
+        applicants = Application.objects.filter(job=job).first()
+        job_title = job.title
+
+        return render(request, self.template_name, {
+            'applicant': applicants,
+            'job_title': job_title,
+        })
+
+class ResumeView(ListView):
+    """
+
+    """
+    template_name = 'Resume_View.html'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('auth-login')
+
+        pk = self.kwargs.get('pk')
+        document = Document.objects.filter(pk=pk).first()
+
+        if not Document:
+            messages.error(request, "Document not found.")
+            return redirect('dashboard')
+
+        return render(request, self.template_name, {
+            'document': document,
+        })
+
 
 class DocumentUploadView(UserPermissionMixin, LoginRequiredMixin, CreateView):
     model = Document

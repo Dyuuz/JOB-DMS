@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser
 
 # Custom User model with roles for job seekers and companies
@@ -67,7 +68,7 @@ class CompanyProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     hire_status = models.CharField(max_length=100,choices=STATUS, default='Hiring')
     company_reg_num = models.CharField(max_length=255,unique=True, blank=True, null=True)
-    work_mode = models.CharField(choices=WORK_MODE, blank=True, null=True)
+    work_mode = models.CharField(max_length=255,choices=WORK_MODE, blank=True, null=True)
     founded = models.DateField(null=True, blank=True)
     parent_company = models.CharField(max_length=255, blank=True, null=True)
     headquarters = models.CharField(max_length=255, blank=True, null=True)

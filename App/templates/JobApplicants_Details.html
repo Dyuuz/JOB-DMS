@@ -1,0 +1,193 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+<div class="application-details-body">
+    <header class="applicantinfo-header">
+        <div class="applicantinfo-header-inner">
+            <div class="applicantinfo-brand">
+                <div class="applicantinfo-logo">AI</div>
+                <span class="applicantinfo-brand-text">ApplicantInfo</span>
+            </div>
+            <button class="applicantinfo-back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Applicants
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="applicantinfo-container">
+        <!-- Applicant Card -->
+        <div class="applicantinfo-card">
+            <!-- Header with Avatar and Basic Info -->
+            <div class="applicantinfo-card-header">
+                <div class="applicantinfo-avatar">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                </div>
+                <div class="applicantinfo-header-content">
+                    <h1 class="applicantinfo-name">{{ applicant.user.full_name }}</h1>
+                    <div class="applicantinfo-job-title">Applicant for: {{ job_title }}</div>
+                    <div class="applicantinfo-contact">
+                        <div class="applicantinfo-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>{{ applicant.user.email }}</span>
+                        </div>
+                        <div class="applicantinfo-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>{{ applicant.user.userprofile.phone }}</span>
+                        </div>
+                        <div class="applicantinfo-contact-item">
+                            <i class="fas fa-globe"></i>
+                            <span>{{ applicant.portfolio }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Information Sections -->
+            <div class="applicantinfo-details">
+                <!-- Left Column -->
+                <div>
+                    <!-- Professional Details -->
+                    <div class="applicantinfo-section">
+                        <h2 class="applicantinfo-section-title">
+                            <i class="fas fa-briefcase"></i> Professional Details
+                        </h2>
+                        <div class="applicantinfo-detail-group">
+                            <div class="applicantinfo-detail-label">Years of Experience</div>
+                            <div class="applicantinfo-detail-value">{{ applicant.experience }} years</div>
+                        </div>
+                        <div class="applicantinfo-detail-group">
+                            <div class="applicantinfo-detail-label">Expected Salary</div>
+                            <div class="applicantinfo-detail-value">{{ applicant.job.currency }} {{ applicant.expected_salary }}</div>
+                        </div>
+                        <div class="applicantinfo-detail-group">
+                            <div class="applicantinfo-detail-label">Availability</div>
+                            <div class="applicantinfo-detail-value">{{ applicant.availability }}</div>
+                        </div>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="applicantinfo-section">
+                        <h2 class="applicantinfo-section-title">
+                            <i class="fas fa-file-alt"></i> Documents
+                        </h2>
+                        <div class="applicantinfo-detail-group">
+                            <div class="applicantinfo-detail-label">Resume</div>
+                            <a href="{% url 'view_resume' pk=applicant.resume.pk %}" class="applicantinfo-document-link">
+                                <i class="fas fa-file-pdf"></i> View Resume
+                            </a>
+                        </div>
+                        <div class="applicantinfo-detail-group">
+                            <h2 class="applicantinfo-section-title">
+                                <i class="fas fa-profile-avatar"></i> Applicant Profile
+                            </h2>
+                            <a href="{{ applicant.user }}" class="applicantinfo-document-link">
+                                <i class="fas fa-external-link-alt"></i> View Applicant Info
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <!-- Cover Letter -->
+                    <div class="applicantinfo-section">
+                        <h2 class="applicantinfo-section-title">
+                            <i class="fas fa-envelope-open-text"></i> Cover Letter
+                        </h2>
+                        <div class="applicantinfo-cover-letter">
+                           {{ applicant.cover_letter|safe }}
+                        </div>
+                    </div>
+
+                    <!-- Portfolio -->
+                    <div class="applicantinfo-section">
+                        <h2 class="applicantinfo-section-title">
+                            <i class="fas fa-link"></i> Portfolio
+                        </h2>
+                        <div class="applicantinfo-detail-group">
+                            <a href="{{ applicant.portfolio }}" target="_blank" class="applicantinfo-document-link">
+                                <i class="fas fa-external-link-alt"></i> Follow
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="applicantinfo-status-bar">
+                <div>
+                    <span class="applicantinfo-status applicantinfo-status-interview">
+                        <span class="applicantinfo-status-dot"></span>
+                        Interview Stage
+                    </span>
+                </div>
+                <div>
+                    <select class="applicantinfo-status-select">
+                        <option value="applied">Applied</option>
+                        <option value="interview" selected>Interview</option>
+                        <option value="offer">Offer</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Status change handler
+            const statusSelect = document.querySelector('.applicantinfo-status-select');
+
+            statusSelect.addEventListener('change', function() {
+                const statusBar = document.querySelector('.applicantinfo-status');
+
+                // Remove all status classes
+                statusBar.classList.remove(
+                    'applicantinfo-status-applied',
+                    'applicantinfo-status-interview',
+                    'applicantinfo-status-offer',
+                    'applicantinfo-status-rejected'
+                );
+
+                // Update status text and add appropriate class
+                switch(this.value) {
+                    case 'applied':
+                        statusBar.textContent = 'Applied';
+                        statusBar.classList.add('applicantinfo-status-applied');
+                        break;
+                    case 'interview':
+                        statusBar.innerHTML = '<span class="applicantinfo-status-dot"></span> Interview Stage';
+                        statusBar.classList.add('applicantinfo-status-interview');
+                        break;
+                    case 'offer':
+                        statusBar.innerHTML = '<span class="applicantinfo-status-dot"></span> Offer Extended';
+                        statusBar.classList.add('applicantinfo-status-offer');
+                        break;
+                    case 'rejected':
+                        statusBar.innerHTML = '<span class="applicantinfo-status-dot"></span> Rejected';
+                        statusBar.classList.add('applicantinfo-status-rejected');
+                        break;
+                }
+
+                console.log('Status changed to:', this.value);
+                // In a real app, you would send this update to your backend
+            });
+
+            // Back button functionality
+            const backButton = document.querySelector('.applicantinfo-back-btn');
+            backButton.addEventListener('click', function() {
+                console.log('Navigating back to applicants list');
+                // In a real app, this would navigate back
+            });
+        });
+    </script>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="msg-auth" data-id="{{ message }}"></div>
+    {% endfor %}
+{% endif %}
+
+{% endblock dynamicpage %}

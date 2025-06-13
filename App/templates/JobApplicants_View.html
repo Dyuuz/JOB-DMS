@@ -1,0 +1,301 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+<div class="application-view-body">
+    <header class="applicanttrack-header">
+        <div class="applicanttrack-header-inner">
+            <div class="applicanttrack-brand">
+                <div class="applicanttrack-logo">AT</div>
+                <span class="applicanttrack-brand-text">ApplicantTrack</span>
+            </div>
+            <div class="applicanttrack-job-title">
+                Applicants for: <strong>{{ job_title }}</strong>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="applicanttrack-container">
+        <!-- Filter Bar -->
+        <div class="applicanttrack-filter-bar">
+            <div class="applicanttrack-search">
+                <i class="fas fa-search applicanttrack-search-icon"></i>
+                <input type="text" class="applicanttrack-search-input" placeholder="Search applicants...">
+            </div>
+
+            <div class="applicanttrack-filter-group">
+                <span class="applicanttrack-filter-label">Status:</span>
+                <select class="applicanttrack-filter-select">
+                    <option>All Applicants</option>
+                    <option>Applied</option>
+                    <option>Interview</option>
+                    <option>Offer</option>
+                    <option>Rejected</option>
+                </select>
+            </div>
+
+            <div class="applicanttrack-filter-group">
+                <span class="applicanttrack-filter-label">Sort by:</span>
+                <select class="applicanttrack-filter-select">
+                    <option>Newest First</option>
+                    <option>Oldest First</option>
+                    <option>Name (A-Z)</option>
+                    <option>Name (Z-A)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Applicants Table -->
+        <div class="applicanttrack-applicants">
+            <table class="applicanttrack-table">
+                <thead>
+                    <tr>
+                        <th>Applicants</th>
+                        <th>Date Applied</th>
+                        <th>Status</th>
+                        <th>Interview Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for applicant in applicants %}
+                    <tr>
+                        <td>
+                            <div class="applicanttrack-applicant">
+                                <div class="applicanttrack-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                                </div>
+                                <div class="applicanttrack-applicant-info">
+                                    <div class="applicanttrack-applicant-name">{{ applicant.user.full_name }}</div>
+                                    <div class="applicanttrack-applicant-email">{{ applicant.user.email }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ applicant.submitted_at|date:"F j, Y"}}</td>
+                        <td>
+                            <div class="applicanttrack-status">
+                                <select class="applicanttrack-status-select applicanttrack-status-interview">
+                                    <option value="applied">Applied</option>
+                                    <option value="interview" selected>Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>-</td>
+                        <td>
+                            <div class="applicanttrack-actions">
+                                <a href="{% url 'jobs_applicant_form' pk=applicant.job.pk %}"><button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- <tr>
+                        <td>
+                            <div class="applicanttrack-applicant">
+                                <div class="applicanttrack-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                                </div>
+                                <div class="applicanttrack-applicant-info">
+                                    <div class="applicanttrack-applicant-name">Michael Chen</div>
+                                    <div class="applicanttrack-applicant-email">michael.chen@example.com</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>May 14, 2023</td>
+                        <td>
+                            <div class="applicanttrack-status">
+                                <select class="applicanttrack-status-select applicanttrack-status-applied">
+                                    <option value="applied" selected>Applied</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="applicanttrack-actions">
+                                <button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="applicanttrack-applicant">
+                                <div class="applicanttrack-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jessica Williams">
+                                </div>
+                                <div class="applicanttrack-applicant-info">
+                                    <div class="applicanttrack-applicant-name">Jessica Williams</div>
+                                    <div class="applicanttrack-applicant-email">jessica.williams@example.com</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>May 12, 2023</td>
+                        <td>
+                            <div class="applicanttrack-status">
+                                <select class="applicanttrack-status-select applicanttrack-status-offer">
+                                    <option value="applied">Applied</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="offer" selected>Offer</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="applicanttrack-actions">
+                                <button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="applicanttrack-applicant">
+                                <div class="applicanttrack-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David Kim">
+                                </div>
+                                <div class="applicanttrack-applicant-info">
+                                    <div class="applicanttrack-applicant-name">David Kim</div>
+                                    <div class="applicanttrack-applicant-email">david.kim@example.com</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>May 10, 2023</td>
+                        <td>
+                            <div class="applicanttrack-status">
+                                <select class="applicanttrack-status-select applicanttrack-status-rejected">
+                                    <option value="applied">Applied</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="rejected" selected>Rejected</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="applicanttrack-actions">
+                                <button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="applicanttrack-applicant">
+                                <div class="applicanttrack-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Emily Rodriguez">
+                                </div>
+                                <div class="applicanttrack-applicant-info">
+                                    <div class="applicanttrack-applicant-name">Emily Rodriguez</div>
+                                    <div class="applicanttrack-applicant-email">emily.rodriguez@example.com</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>May 8, 2023</td>
+                        <td>
+                            <div class="applicanttrack-status">
+                                <select class="applicanttrack-status-select applicanttrack-status-interview">
+                                    <option value="applied">Applied</option>
+                                    <option value="interview" selected>Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="applicanttrack-actions">
+                                <button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // In a real application, this would handle status changes and filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            // Status change handler
+            const statusSelects = document.querySelectorAll('.applicanttrack-status-select');
+
+            statusSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    // Remove all status classes
+                    this.classList.remove(
+                        'applicanttrack-status-applied',
+                        'applicanttrack-status-interview',
+                        'applicanttrack-status-offer',
+                        'applicanttrack-status-rejected'
+                    );
+
+                    // Add the appropriate status class
+                    switch(this.value) {
+                        case 'applied':
+                            this.classList.add('applicanttrack-status-applied');
+                            break;
+                        case 'interview':
+                            this.classList.add('applicanttrack-status-interview');
+                            break;
+                        case 'offer':
+                            this.classList.add('applicanttrack-status-offer');
+                            break;
+                        case 'rejected':
+                            this.classList.add('applicanttrack-status-rejected');
+                            break;
+                    }
+
+                    console.log('Status changed to:', this.value);
+                    // In a real app, you would send this update to your backend
+                });
+            });
+
+            // View button handler
+            const viewButtons = document.querySelectorAll('.applicanttrack-view-btn');
+
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const applicantName = this.closest('tr').querySelector('.applicanttrack-applicant-name').textContent;
+                    console.log('Viewing application for:', applicantName);
+                    // In a real app, this would open a modal or navigate to a detail page
+                });
+            });
+
+            // Search and filter functionality
+            const searchInput = document.querySelector('.applicanttrack-search-input');
+            const filterSelects = document.querySelectorAll('.applicanttrack-filter-select');
+
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const rows = document.querySelectorAll('.applicanttrack-table tbody tr');
+
+                rows.forEach(row => {
+                    const name = row.querySelector('.applicanttrack-applicant-name').textContent.toLowerCase();
+                    const email = row.querySelector('.applicanttrack-applicant-email').textContent.toLowerCase();
+
+                    if (name.includes(searchTerm) || email.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="msg-auth" data-id="{{ message }}"></div>
+    {% endfor %}
+{% endif %}
+
+{% endblock dynamicpage %}
