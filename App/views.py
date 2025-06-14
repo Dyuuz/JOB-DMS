@@ -207,6 +207,9 @@ class JobApplicantView(ListView):
             return redirect('dashboard')
 
         applicants = Application.objects.filter(job=job)
+        for applicant in applicants:
+            applicant.element = applicant.status.lower()
+            print(applicant.element)
         job_title = job.title
 
         return render(request, self.template_name, {
@@ -226,18 +229,14 @@ class JobApplicantFormView(ListView):
             return redirect('auth-login')
 
         pk = self.kwargs.get('pk')
-        job = Job.objects.filter(pk=pk).first()
 
-        if not job:
-            messages.error(request, "Job not found.")
-            return redirect('dashboard')
-
-        applicants = Application.objects.filter(job=job).first()
-        job_title = job.title
+        userprofile = get_object_or_404(CustomUser, pk=pk)
+        applicants = Application.objects.filter(user=userprofile).first()
 
         return render(request, self.template_name, {
             'applicant': applicants,
-            'job_title': job_title,
+            'job_title': applicants.job.title,
+            'status': applicants.status.lower(),
         })
 
 class ResumeView(ListView):

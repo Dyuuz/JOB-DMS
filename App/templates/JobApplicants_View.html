@@ -74,148 +74,41 @@
                         <td>{{ applicant.submitted_at|date:"F j, Y"}}</td>
                         <td>
                             <div class="applicanttrack-status">
-                                <select class="applicanttrack-status-select applicanttrack-status-interview">
+                                <select class="applicanttrack-status-select applicanttrack-status-{{ applicant.element }}">
+                                    {% if applicant.status == 'Applied' %}
+                                    <option value="applied" selected>Applied</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="rejected">Rejected</option>
+                                    {% elif applicant.status == 'Interview' %}
                                     <option value="applied">Applied</option>
                                     <option value="interview" selected>Interview</option>
                                     <option value="offer">Offer</option>
                                     <option value="rejected">Rejected</option>
+                                    {% elif applicant.status == 'Offer' %}
+                                    <option value="applied">Applied</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="offer" selected>Offer</option>
+                                    <option value="rejected">Rejected</option>
+                                    {% elif applicant.status == 'Rejected' %}
+                                    <option value="applied">Applied</option>
+                                    <option value="interview" >Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="rejected" selected>Rejected</option>
+                                    {% endif %}
                                 </select>
                             </div>
                         </td>
                         <td>-</td>
                         <td>
                             <div class="applicanttrack-actions">
-                                <a href="{% url 'jobs_applicant_form' pk=applicant.job.pk %}"><button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
+                                <a href="{% url 'jobs_applicant_form' pk=applicant.user.pk %}"><button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
                                     <i class="fas fa-eye"></i>
                                 </button></a>
                             </div>
                         </td>
                     </tr>
                     {% endfor %}
-                    <!-- <tr>
-                        <td>
-                            <div class="applicanttrack-applicant">
-                                <div class="applicanttrack-avatar">
-                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
-                                </div>
-                                <div class="applicanttrack-applicant-info">
-                                    <div class="applicanttrack-applicant-name">Michael Chen</div>
-                                    <div class="applicanttrack-applicant-email">michael.chen@example.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>May 14, 2023</td>
-                        <td>
-                            <div class="applicanttrack-status">
-                                <select class="applicanttrack-status-select applicanttrack-status-applied">
-                                    <option value="applied" selected>Applied</option>
-                                    <option value="interview">Interview</option>
-                                    <option value="offer">Offer</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="applicanttrack-actions">
-                                <button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="applicanttrack-applicant">
-                                <div class="applicanttrack-avatar">
-                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jessica Williams">
-                                </div>
-                                <div class="applicanttrack-applicant-info">
-                                    <div class="applicanttrack-applicant-name">Jessica Williams</div>
-                                    <div class="applicanttrack-applicant-email">jessica.williams@example.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>May 12, 2023</td>
-                        <td>
-                            <div class="applicanttrack-status">
-                                <select class="applicanttrack-status-select applicanttrack-status-offer">
-                                    <option value="applied">Applied</option>
-                                    <option value="interview">Interview</option>
-                                    <option value="offer" selected>Offer</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="applicanttrack-actions">
-                                <button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="applicanttrack-applicant">
-                                <div class="applicanttrack-avatar">
-                                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David Kim">
-                                </div>
-                                <div class="applicanttrack-applicant-info">
-                                    <div class="applicanttrack-applicant-name">David Kim</div>
-                                    <div class="applicanttrack-applicant-email">david.kim@example.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>May 10, 2023</td>
-                        <td>
-                            <div class="applicanttrack-status">
-                                <select class="applicanttrack-status-select applicanttrack-status-rejected">
-                                    <option value="applied">Applied</option>
-                                    <option value="interview">Interview</option>
-                                    <option value="offer">Offer</option>
-                                    <option value="rejected" selected>Rejected</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="applicanttrack-actions">
-                                <button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="applicanttrack-applicant">
-                                <div class="applicanttrack-avatar">
-                                    <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Emily Rodriguez">
-                                </div>
-                                <div class="applicanttrack-applicant-info">
-                                    <div class="applicanttrack-applicant-name">Emily Rodriguez</div>
-                                    <div class="applicanttrack-applicant-email">emily.rodriguez@example.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>May 8, 2023</td>
-                        <td>
-                            <div class="applicanttrack-status">
-                                <select class="applicanttrack-status-select applicanttrack-status-interview">
-                                    <option value="applied">Applied</option>
-                                    <option value="interview" selected>Interview</option>
-                                    <option value="offer">Offer</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="applicanttrack-actions">
-                                <button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr> -->
                 </tbody>
             </table>
         </div>

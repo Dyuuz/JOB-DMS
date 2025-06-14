@@ -45,13 +45,20 @@
                 <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Job Listings</a></li>
                 <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-file-alt"></i> Track Applications</a></li>
                 <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="{% url 'settings' %}"><i class="fas fa-headset"></i> Help Center</a></li>
                 <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                {% else %}
+                {% elif request.user.companyprofile %}
                 <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
                 <li><a href="{% url 'workforce' %}"><i class="fas fa-users"></i> Workforce</a></li>
                 <li><a href="{% url 'dashboard' %}"><i class="fas fa-table"></i> Dashboard</a></li>
                 <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="{% url 'settings' %}"><i class="fas fa-headset"></i> Help Center</a></li>
+                <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
                 <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
                 <li><a href="{% url 'settings' %}"><i class="fas fa-headset"></i> Help Center</a></li>
                 <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>

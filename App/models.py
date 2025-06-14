@@ -108,7 +108,7 @@ class UserProfile(models.Model):
     )
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=20, blank=True)
+    phone = models.CharField(unique=True, max_length=20, blank=True)
     DOB = models.DateField(null=True, blank=True)
     user_country = models.CharField(max_length=255, blank=True)
 
@@ -124,7 +124,7 @@ class UserProfile(models.Model):
     work_field = models.CharField(max_length=100, blank=True)
     work_experience = models.IntegerField(null=True, blank=True)
     project = models.CharField(max_length=100, blank=True)
-    resume = models.FileField(upload_to='media/', blank=True, null=True)
+    resume = CloudinaryField(resource_type='raw', blank=True, null=True)
     ready_to_work = models.CharField(max_length=50, choices=START_DATE_READY, blank=True)
 
     bio = models.TextField(max_length=255, blank=True, null=True)
@@ -225,7 +225,7 @@ class Document(models.Model):
     name = models.CharField(max_length=255)
     file_type = models.CharField(max_length=50, choices=FILE_TYPE)
     file_format = models.CharField(max_length=50, choices=FILE_FORMAT, default=FILE_FORMAT[0][0])
-    file = models.FileField(upload_to='documents/')
+    file = CloudinaryField(resource_type='raw', blank=True, null=True)  # Using Cloudinary for file storage
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
