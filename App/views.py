@@ -55,7 +55,7 @@ class JobsAvailableView(ListView):
     template_name = 'JobsAvailable.html'
 
     def get_queryset(self):
-        jobs = Job.objects.filter(is_public=True).order_by('-created_at')
+        jobs = Job.objects.filter(is_public=True, status='Active').order_by('-created_at')
         return jobs
 
     def get_context_data(self, **kwargs):
@@ -117,9 +117,9 @@ class ApplyJobView(CreateView):
         app.job = self.job
 
         # manually save contact info
-        app.full_name = user.full_name
-        app.phone = user.userprofile.phone
-        app.email = user.email
+        # app.full_name = user.full_name
+        # app.phone = user.userprofile.phone
+        # app.email = user.email
 
         app.save()
         return super().form_valid(form)
@@ -184,8 +184,11 @@ class JobDetailView(LoginRequiredMixin,JobDetailPermissionMixin, DetailView):
         job.count = Application.objects.filter(job=job).count()
         company_name = get_company_name(job.company.user.full_name)
 
+        applied = True if self.request.user.role == 'user' and Application.objects.filter(job=job, user=self.request.user).first() else False
+
         context['job'] = job
         context['company_abbr'] = company_name
+        context['applied'] = applied
         return context
 
 class JobApplicantView(ListView):
@@ -200,6 +203,7 @@ class JobApplicantView(ListView):
             return redirect('auth-login')
 
         pk = self.kwargs.get('pk')
+
         job = Job.objects.filter(pk=pk).first()
 
         if not job:
@@ -207,14 +211,17 @@ class JobApplicantView(ListView):
             return redirect('dashboard')
 
         applicants = Application.objects.filter(job=job)
+
         for applicant in applicants:
             applicant.element = applicant.status.lower()
             print(applicant.element)
-        job_title = job.title
 
         return render(request, self.template_name, {
             'applicants': applicants,
-            'job_title': job_title,
+            'job_title': job.title,
+            'job': job,
+            'company_name': job.company.user,
+            'company_abbr': get_company_name(job.company.user.full_name),
         })
 
 
@@ -229,15 +236,39 @@ class JobApplicantFormView(ListView):
             return redirect('auth-login')
 
         pk = self.kwargs.get('pk')
+        jd = self.kwargs.get('jd')
+
+        # job = Job.objects.get(title=jd)
 
         userprofile = get_object_or_404(CustomUser, pk=pk)
-        applicants = Application.objects.filter(user=userprofile).first()
+        applicants = Application.objects.filter(job__pk=jd, user=userprofile).first()
+        company_name = get_company_name(applicants.job.company.user.full_name)
+        status = applicants.status.lower()
 
         return render(request, self.template_name, {
             'applicant': applicants,
             'job_title': applicants.job.title,
-            'status': applicants.status.lower(),
+            'company_name': company_name,
+            'status': status,
         })
+
+class ApplicantProfileView(ListView):
+    model = Job
+    template_name = 'user_view.html'
+    context_object_name = 'user_profile'
+
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(UserProfile, pk=pk)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_profile = self.get_object()
+        ready_to_work = True if user_profile.ready_to_work == 'Available immediately' else False
+
+        context['user_profile'] = user_profile
+        context['ready_to_work'] = ready_to_work
+        return context
 
 class ResumeView(ListView):
     """

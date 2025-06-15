@@ -5,12 +5,15 @@
     <header class="applicantinfo-header">
         <div class="applicantinfo-header-inner">
             <div class="applicantinfo-brand">
-                <div class="applicantinfo-logo">AI</div>
-                <span class="applicantinfo-brand-text">ApplicantInfo</span>
+                <div class="jobhive-logo">AI</div>
+                <span class="applicantinfo-brand-text"></span>
             </div>
-            <button class="applicantinfo-back-btn">
-                <i class="fas fa-arrow-left"></i> Back to Applicants
-            </button>
+            <div>
+                <span class="applicantinfo-status applicantinfo-status-{{ status }}">
+                    <span class="applicantinfo-status-dot"></span>
+                    {{ applicant.status }}
+                </span>
+            </div>
         </div>
     </header>
 
@@ -24,16 +27,16 @@
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
                 </div>
                 <div class="applicantinfo-header-content">
-                    <h1 class="applicantinfo-name">{{ applicant.user.full_name }}</h1>
+                    <h1 class="applicantinfo-name">{{ applicant.full_name }}</h1>
                     <div class="applicantinfo-job-title">Applicant for: {{ job_title }}</div>
                     <div class="applicantinfo-contact">
                         <div class="applicantinfo-contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>{{ applicant.user.email }}</span>
+                            <span>{{ applicant.email }}</span>
                         </div>
                         <div class="applicantinfo-contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>{{ applicant.user.userprofile.phone }}</span>
+                            <span>{{ applicant.phone }}</span>
                         </div>
                         <div class="applicantinfo-contact-item">
                             <i class="fas fa-globe"></i>
@@ -81,7 +84,7 @@
                             <h2 class="applicantinfo-section-title">
                                 <i class="fas fa-profile-avatar"></i> Applicant Profile
                             </h2>
-                            <a href="{{ applicant.user }}" class="applicantinfo-document-link">
+                            <a href="{% url 'applicant_profile' pk=applicant.user.userprofile.pk %}" class="applicantinfo-document-link">
                                 <i class="fas fa-external-link-alt"></i> View Applicant Info
                             </a>
                         </div>
@@ -107,7 +110,7 @@
                         </h2>
                         <div class="applicantinfo-detail-group">
                             <a href="{{ applicant.portfolio }}" target="_blank" class="applicantinfo-document-link">
-                                <i class="fas fa-external-link-alt"></i> Follow
+                                <i class="fas fa-external-link-alt"></i> View Portfolio
                             </a>
                         </div>
                     </div>
@@ -116,20 +119,20 @@
 
             <!-- Status Bar -->
             <div class="applicantinfo-status-bar">
-                <div>
+                <!-- <div>
                     <span class="applicantinfo-status applicantinfo-status-{{ status }}">
                         <span class="applicantinfo-status-dot"></span>
                         {{ applicant.status }} Stage
                     </span>
-                </div>
-                <div>
+                </div> -->
+                <!-- <div>
                     <select class="applicantinfo-status-select">
                         <option value="applied">Applied</option>
                         <option value="interview" selected>Interview</option>
                         <option value="offer">Offer</option>
                         <option value="rejected">Rejected</option>
                     </select>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

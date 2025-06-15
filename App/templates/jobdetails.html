@@ -68,9 +68,15 @@
                     <button class="jobsync-btn jobsync-btn-outline">
                         <i class="far fa-bookmark"></i> Save
                     </button>
+                    {% if not applied %}
                     <a href="{% url 'apply_for_job' pk=job.pk %}"><button class="jobsync-btn jobsync-btn-primary">
                         <i class="fas fa-paper-plane"></i> Apply Now
                     </button></a>
+                    {% else %}
+                    <button class="jobsync-btn jobsync-btn-primary">
+                        <i class="fas fa-paper-plane"></i> Applied
+                    </button>
+                    {% endif %}
                 </div>
                 {% else %}
                 <!-- Only visible to posting company -->

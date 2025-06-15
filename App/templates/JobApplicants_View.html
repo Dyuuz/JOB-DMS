@@ -5,8 +5,8 @@
     <header class="applicanttrack-header">
         <div class="applicanttrack-header-inner">
             <div class="applicanttrack-brand">
-                <div class="applicanttrack-logo">AT</div>
-                <span class="applicanttrack-brand-text">ApplicantTrack</span>
+                <div class="jobhive-logo">{{ company_abbr }}</div>
+                <span class="applicanttrack-brand-text">{{ company_name }}</span>
             </div>
             <div class="applicanttrack-job-title">
                 Applicants for: <strong>{{ job_title }}</strong>
@@ -102,7 +102,7 @@
                         <td>-</td>
                         <td>
                             <div class="applicanttrack-actions">
-                                <a href="{% url 'jobs_applicant_form' pk=applicant.user.pk %}"><button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
+                                <a href="{% url 'jobs_applicant_form' pk=applicant.user.pk  jd=applicant.job.pk %}"><button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">
                                     <i class="fas fa-eye"></i>
                                 </button></a>
                             </div>

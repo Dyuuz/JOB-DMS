@@ -6,6 +6,9 @@ from django.contrib.auth import authenticate
 import os
 
 class CustomUserCreationForm(UserCreationForm):
+    # resume = forms.CharField(
+    #     widget=forms.TextInput(attrs={'placeholder': 'Enter full name'})
+    # )
     full_name = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Enter full name'})
     )
@@ -20,6 +23,9 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'full_name', 'email', 'role']
+        widgets = {
+        'username': forms.TextInput(attrs={'placeholder': 'Enter username'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -231,16 +237,16 @@ class ApplicationForm(forms.ModelForm):
     # full_name = forms.CharField(required=False)
     # phone = forms.CharField(required=False)
 
-    email = forms.EmailField(required=False, widget=forms.TextInput(attrs={
+    email = forms.EmailField(required=True, widget=forms.TextInput(attrs={
+        # 'readonly': 'readonly',
+        'class': 'applynow-form-control',
+    }))
+    full_name = forms.CharField(required=True, widget=forms.TextInput(attrs={
         'readonly': 'readonly',
         'class': 'applynow-form-control',
     }))
-    full_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        'readonly': 'readonly',
-        'class': 'applynow-form-control',
-    }))
-    phone = forms.IntegerField(required=False, widget=forms.TextInput(attrs={
-        'readonly': 'readonly',
+    phone = forms.IntegerField(required=True, widget=forms.TextInput(attrs={
+        # 'readonly': 'readonly',
         'class': 'applynow-form-control',
     }))
 
