@@ -33,7 +33,10 @@
                         <i class="fas fa-map-marker-alt"></i> {{ job.work_mode }}
                     </span>
                     <span class="jobsync-job-meta-item">
-                        <i class="fas fa-naira-sign"></i>{{ job.salary|intcomma }}
+                        <i class="fas fa-naira-sign"></i>{{ job.min_salary|intcomma }} - {{ job.max_salary|intcomma }}
+                    </span>
+                    <span class="jobsync-job-meta-item">
+                        <i class="fas fa-naira-sign"></i>
                     </span>
                     <span class="jobsync-job-meta-item">
                         <i class="fas fa-clock"></i> {{ job.job_type }}
@@ -81,7 +84,7 @@
                 {% else %}
                 <!-- Only visible to posting company -->
                 <div class="jobsync-job-actions" id="jobsync-company-actions">
-                    <button class="jobsync-btn jobsync-btn-outline" id="jobsync-edit-toggle">
+                    <a href="{% url 'job_form' %}?update={{job.pk}}"><button class="jobsync-btn jobsync-btn-outline" id="">
                         <i class="fas fa-edit"></i> Edit Job
                     </button>
                     <a href="{% url 'jobs_applicants_view' pk=job.pk %}"><button class="jobsync-btn jobsync-btn-primary" id="jobsync-apply-btn" onclick="jbOpenApplyModal('Senior Frontend Developer', 'TechNova Solutions')">
@@ -172,7 +175,7 @@
                                 </div>
                                 <div>
                                     <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">SALARY</h4>
-                                    <p>{{ job.currency }}{{ job.salary }}</p>
+                                    <p>{{ job.currency }} {{ job.min_salary|intcomma }} - {{ job.max_salary|intcomma }}</p>
                                 </div>
                                 <div>
                                     <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">EXPERIENCE</h4>

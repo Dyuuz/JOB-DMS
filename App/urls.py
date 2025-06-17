@@ -12,7 +12,7 @@ from App.views import (
     WorkSpaceView, DashboardView,
     WorkforceView, JobDetailView, ApplyJobView,
     JobApplicantView, JobApplicantFormView,ResumeView,
-    ApplicantProfileView)
+    ApplicantProfileView, JobFormView)
 from .utils import suggest_cover_letter
 from django.urls import include
 
@@ -29,6 +29,7 @@ urlpatterns = [
     path('job-details/<int:pk>', JobDetailView.as_view(), name='job_details'),
     path('jobs-available', JobsAvailableView.as_view(), name='jobs_available'),
     path('jobs-applied', JobsAppliedView.as_view(), name='jobs_applied'),
+    path('job-form', JobFormView.as_view(), name='job_form'),
     path('applicant-profile/<int:pk>', ApplicantProfileView.as_view(), name='applicant_profile'),
     path('resume/<int:pk>/view', ResumeView.as_view(), name='view_resume'),
     path('jobs-applicants/<int:pk>/view', JobApplicantView.as_view(), name='jobs_applicants_view'),

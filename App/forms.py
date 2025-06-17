@@ -1,7 +1,7 @@
 # forms.py
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser, UserProfile, CompanyProfile, Document, Application
+from .models import CustomUser, UserProfile, CompanyProfile, Document, Application, Job
 from django.contrib.auth import authenticate
 import os
 
@@ -168,6 +168,35 @@ class CompanyProfileForm(forms.ModelForm):
         if user:
             self.fields['existing_email'].initial = user.email
             self.fields['existing_full_name'].initial = user.full_name
+
+class JobForm(forms.ModelForm):
+
+    class Meta:
+        model = Job
+        fields = [
+            'title', 'description','department', 'location', 'job_type', 'min_salary', 'max_salary',
+            'experience', 'currency', 'work_mode', 'deadline', 'status', 'is_public', 'experience_level',
+        ]
+        widgets = {
+            'title': forms.TextInput(attrs={'id': 'jobeditpro-job-title', 'placeholder': 'Enter title'}),
+            'description': forms.Textarea(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Enter description'}),
+            'location': forms.TextInput(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Enter location'}),
+            'job_type': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select job type'}),
+            'department': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select department'}),
+            'experience_level': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select experience level'}),
+
+            'min_salary': forms.NumberInput(attrs={'type': 'number', 'class': 'jobeditpro-form-control', 'placeholder': 'Enter minimum salary'}),
+            'max_salary': forms.NumberInput(attrs={'type': 'number', 'class': 'jobeditpro-form-control', 'placeholder': 'Enter maximum salary'}),
+            'experience': forms.NumberInput(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Enter years of experience'}),
+            'currency': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select currency'}),
+            'work_mode': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select work mode'}),
+            'deadline': forms.DateInput(attrs={'type': 'date', 'class': 'jobeditpro-form-control', 'placeholder': 'Select deadline'}),
+            'status': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select status'}),
+            'is_public': forms.CheckboxInput(attrs={'class': 'jobeditpro-form-control-mod', 'placeholder': 'Enter annual growth rate'}),
+        }
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
 
 class DocumentForm(forms.ModelForm):
     class Meta:

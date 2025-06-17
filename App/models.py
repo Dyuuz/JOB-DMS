@@ -142,6 +142,12 @@ class Job(models.Model):
         ('Full Time', 'Full Time'),
         ('Contract', 'Contract'),
     )
+    EXPERIENCE_LEVEL= (
+        ('Entry Level', 'Entry Level'),
+        ('Mid Level', 'Mid Level'),
+        ('Senior Level', 'Senior Level'),
+        ('Expert', 'Expert'),
+    )
     WORK_MODE = (
         ('Remote', 'Remote'),
         ('Hybrid', 'Hybrid'),
@@ -193,8 +199,10 @@ class Job(models.Model):
     department = models.CharField(max_length=255, choices=DERPARTMENT, default='Engineering')
     location = models.CharField(max_length=255, null=True, blank=True)
     job_type = models.CharField(max_length=255, choices=EMPLOYMENT_TYPE, default='Full Time')
-    salary = models.IntegerField(null=True, blank=True)
+    min_salary = models.IntegerField(null=True, blank=True)
+    max_salary = models.IntegerField(null=True, blank=True)
     experience = models.IntegerField(null=True, blank=True)
+    experience_level = models.CharField(max_length=50,choices=EXPERIENCE_LEVEL, default='Senior Level')
     currency = models.CharField(max_length=10,choices=CURRENCY, default='NGN')
     work_mode = models.CharField(max_length=255, choices=WORK_MODE, default='Remote')
     deadline = models.DateField()

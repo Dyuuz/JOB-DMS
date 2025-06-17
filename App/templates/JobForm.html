@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+{% load humanize %}
+{% load custom_filters %}
+
+{% block dynamicpage %}
+
+<div class="job-form-body">
+    <!-- Header -->
+    <header class="jobeditpro-header">
+        <div class="jobeditpro-header-inner">
+            <div class="jobeditpro-brand">
+                <div class="jobeditpro-logo">JE</div>
+                <span class="jobeditpro-brand-text">{{ company }}</span>
+            </div>
+            <div class="jobeditpro-user-actions">
+                <!-- User actions would go here -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="jobeditpro-container">
+        <form method='POST' class="jobeditpro-form-container">
+            {% csrf_token %}
+            <!-- Form Header -->
+            <div class="jobeditpro-form-header">
+                {% if job_object %}
+                <h1 class="jobeditpro-form-title">Edit Job</h1>
+                {% else %}
+                <h1 class="jobeditpro-form-title">Create New Job</h1>
+                {% endif %}
+                <div class="jobeditpro-form-actions">
+                    <!-- <button type="button" class="jobeditpro-btn jobeditpro-btn-outline">
+                        <i class="fas fa-eye"></i> Preview
+                    </button>
+                    <button type="button" class="jobeditpro-btn jobeditpro-btn-danger">
+                        <i class="far fa-trash-alt"></i> Delete
+                    </button>
+                    <button type="submit" class="jobeditpro-btn jobeditpro-btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button> -->
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="jobeditpro-form-content">
+                <!-- Basic Information Section -->
+                <div class="jobeditpro-form-section">
+                    <h2 class="jobeditpro-section-title">
+                        <i class="fas fa-info-circle"></i> Basic Information
+                    </h2>
+                    <div class="jobeditpro-form-grid">
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-title" class="jobeditpro-form-label">Job Title</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-department" class="jobeditpro-form-label">Department</label>
+                            {{ form.department }}
+                        </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-type" class="jobeditpro-form-label">Job Type</label>
+                            {{ form.job_type }}
+                        </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-location" class="jobeditpro-form-label">Work Mode</label>
+                            {{ form.work_mode }}
+                        </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-location" class="jobeditpro-form-label">Currency</label>
+                            {{ form.currency }}
+                        </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-salary-min" class="jobeditpro-form-label">Salary Range</label>
+                            <div style="display: flex; gap: 0.75rem;">
+                                {{ form.min_salary }}
+                                <span id="span-to" style="align-self: center;">to</span>
+                                {{ form.max_salary }}
+                            </div>
+                        </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-experience" class="jobeditpro-form-label">Experience Level</label>
+                            {{ form.experience_level }}
+                        </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-experience" class="jobeditpro-form-label">Years of Experience</label>
+                            {{ form.experience }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements Section -->
+                <div class="jobeditpro-form-section">
+                    <div class="jobeditpro-form-group">
+                        <h2 class="jobeditpro-section-title">
+                        <i class="fas fa-align-left"></i> Job Description
+                    </div>
+                <div>
+                        <label for="jobeditpro-job-requirements" class="jobeditpro-form-label">Job Info</label>
+                        {{ form.description }}
+                    </div>
+                </div>
+
+                <!-- Application Settings -->
+                <div class="jobeditpro-form-section">
+                    <h2 class="jobeditpro-section-title">
+                        <i class="fas fa-user-check"></i> Application Settings
+                    </h2>
+                    <div class="jobeditpro-form-grid">
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-application-deadline" class="jobeditpro-form-label">Application Deadline</label>
+                            {{ form.deadline }}
+                        </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-status" class="jobeditpro-form-label">Job Status</label>
+                            {{ form.status }}
+                        </div>
+                        <div class="jobeditpro-form-group-mod">
+                            <label for="jobeditpro-job-status" class="jobeditpro-form-label">Visible on Job Listings</label>{{ form.is_public }}
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Footer -->
+                <div class="jobeditpro-form-actions" style="border-top: 1px solid var(--gray-200); padding-top: 1.5rem; margin-top: 1rem;">
+                    <button type="button" class="jobeditpro-btn jobeditpro-btn-outline">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // In a real application, this would handle form submission
+        //document.querySelector('form').addEventListener('submit', function(e) {
+           // e.preventDefault();
+           // alert('Job details saved successfully!');
+            // Here you would typically send data to your backend
+       // });
+    </script>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="msg-auth" data-id="{{ message }}"></div>
+    {% endfor %}
+{% endif %}
+
+{% endblock dynamicpage %}

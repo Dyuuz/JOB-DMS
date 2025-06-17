@@ -17,7 +17,8 @@ from .forms import (
     LoginForm,
     UserProfileForm,
     CompanyProfileForm,
-    DocumentForm, ApplicationForm)
+    DocumentForm, ApplicationForm,
+    JobForm)
 from datetime import datetime
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
@@ -25,6 +26,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from .mixins import UserPermissionMixin, JobDetailPermissionMixin
+from django.contrib.auth.decorators import login_required
 from .utils import get_company_name, extract_site_name, get_time_countdown
 
 # Create your views here.
@@ -45,6 +47,7 @@ class HomeView(View):
             'company_role': company_role,
             'user_profile': user_profile,
         })
+
 
 class JobsAvailableView(ListView):
     """
@@ -68,7 +71,8 @@ class JobsAvailableView(ListView):
 
         return context
 
-class DashboardView(ListView):
+
+class DashboardView(LoginRequiredMixin, ListView):
     """
     This view handles the page to display jobs available for job seekers
     """
@@ -88,6 +92,7 @@ class DashboardView(ListView):
             'company_name': name_list,
             'job_list': job_list,
         })
+
 
 class ApplyJobView(CreateView):
 
@@ -127,6 +132,7 @@ class ApplyJobView(CreateView):
     def get_success_url(self):
         return reverse_lazy('jobs_applied')  # adjust to your success URL
 
+
 class WorkforceView(View):
     """
     This view handles the page to display jobs available for job seekers
@@ -142,6 +148,7 @@ class WorkforceView(View):
             'company_name': name_list,
         })
 
+
 class WorkSpaceView(View):
     """
     This view handles the page to display companies a user is working it, most importantly provided by the platform
@@ -151,6 +158,7 @@ class WorkSpaceView(View):
     def get(self, request, *args, **kwargs):
 
         return render(request, self.template_name)
+
 
 class JobsAppliedView(ListView):
     """
@@ -165,6 +173,75 @@ class JobsAppliedView(ListView):
         {
             "applications" : applications,
         })
+
+
+class JobFormView1(CreateView):
+    """
+    This view handles the page for jobs uploads by a company
+    """
+    template_name = 'JobForm.html'
+    model = Job
+    form_class = JobForm
+    success_url = reverse_lazy('dashboard')
+
+
+    def form_valid(self, form):
+        job = form.save(commit=False)
+        user = self.request.user
+        job.company = user.companyprofile
+
+        job.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Pass form errors to the template
+        return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
+
+class JobFormView(UpdateView):
+    """
+    This view handles the page for jobs uploads by a company
+    """
+    template_name = 'JobForm.html'
+    model = Job
+    form_class = JobForm
+    success_url = reverse_lazy('dashboard')
+
+    # Override this method to get the object to be updated
+    def get_object(self, queryset=None):
+        if self.request.user.is_authenticated:
+            try:
+                # Try to get CompanyProfile if user is company
+                if hasattr(self.request.user, 'role') and self.request.user.role == 'company':
+                    pk = self.request.GET.get('update')
+                    if pk:
+                        return Job.objects.get(pk=pk)
+                    else:
+                        return None
+                else:
+                    reverse_lazy('jobs_available')
+            except AttributeError:
+                return self.form_invalid(self.form)
+        return redirect('auth-login')
+
+    # Override this method to pass the user to the template
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.request.GET.get('update')
+        context['job_object'] = Job.objects.filter(pk=pk).first()
+        context['company'] = self.request.user.companyprofile
+        return context
+
+    # Override this method to handle form submission
+    # and save the profile data
+    def form_valid(self, form):
+        form.instance.company = self.request.user.companyprofile
+        messages.success(self.request, f"Job successfully updated")
+        return super().form_valid(form)
+
+    # Override this method to handle form submission errors
+    # and pass them to the template
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
 
 
 class JobDetailView(LoginRequiredMixin,JobDetailPermissionMixin, DetailView):
@@ -190,6 +267,7 @@ class JobDetailView(LoginRequiredMixin,JobDetailPermissionMixin, DetailView):
         context['company_abbr'] = company_name
         context['applied'] = applied
         return context
+
 
 class JobApplicantView(ListView):
     """
@@ -252,6 +330,7 @@ class JobApplicantFormView(ListView):
             'status': status,
         })
 
+
 class ApplicantProfileView(ListView):
     model = Job
     template_name = 'user_view.html'
@@ -269,6 +348,7 @@ class ApplicantProfileView(ListView):
         context['user_profile'] = user_profile
         context['ready_to_work'] = ready_to_work
         return context
+
 
 class ResumeView(ListView):
     """
