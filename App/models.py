@@ -130,7 +130,6 @@ class UserProfile(models.Model):
     work_field = models.CharField(max_length=100, blank=True)
     work_experience = models.IntegerField(null=True, blank=True)
     project = models.CharField(max_length=100, blank=True)
-    resume = CloudinaryField(resource_type='raw', blank=True, null=True)
     ready_to_work = models.CharField(max_length=50, choices=START_DATE_READY, blank=True)
 
     bio = models.TextField(max_length=255, blank=True, null=True)
@@ -256,8 +255,6 @@ class Document(models.Model):
     )
     FILE_FORMAT = (
         ('pdf', 'pdf'),
-        ('doc', 'doc'),
-        ('docx', 'docx'),
         ('txt', 'txt'),
     )
     owner_user = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')

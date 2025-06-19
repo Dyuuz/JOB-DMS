@@ -123,6 +123,27 @@ textarea.input-field {
     min-height: 100px;
 }
 
+.input-field-new {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.input-field-new:focus {
+    border-color: #27a133;
+    outline: none;
+}
+
+textarea.input-field-new {
+    resize: vertical;
+    min-height: 100px;
+}
+
 .button-container {
     display: flex;
     justify-content: space-between;

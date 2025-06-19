@@ -96,7 +96,7 @@ class UserProfileForm(forms.ModelForm):
             'job_title': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter job title'}),
             'job_description': forms.Textarea(attrs={'class': 'input-field' , 'rows': 2, 'placeholder': 'Enter job description'}),
             'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select start date'}),
-            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select end date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field-new', 'placeholder': 'Select end date'}),
             'employment_type': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select employment type'}),
             'work_mode': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select employment type'}),
             'job_location': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter job location'}),
@@ -105,7 +105,6 @@ class UserProfileForm(forms.ModelForm):
             'work_field': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter work field'}),
             'work_experience': forms.NumberInput(attrs={'class': 'input-field', 'placeholder': 'Enter work experience'}),
             'project': forms.Textarea(attrs={'class': 'input-field', 'placeholder': 'Enter project names'}),
-            'resume': forms.FileInput(attrs={'class': 'input-field', 'placeholder': 'Upload resume'}),
             'ready_to_work': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Check if ready to work'}),
 
             'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter career summary'}),
@@ -238,12 +237,12 @@ class DocumentForm(forms.ModelForm):
                 raise forms.ValidationError("File too large. Maximum size is 2MB.")
 
             # File extension validation
-            valid_extensions = ['.pdf', '.doc', '.docx', '.txt' ]
+            valid_extensions = ['.pdf', '.txt' ]
             ext = os.path.splitext(file.name)[1].lower()
 
             if ext not in valid_extensions:
                 raise forms.ValidationError(
-                    "Unsupported file extension. Only PDF, Word, and text documents are allowed."
+                    "Unsupported file extension. Only PDF and text documents are allowed."
                 )
         if hasattr(self.request.user, 'companyprofile'):
             raise forms.ValidationError(
@@ -295,7 +294,7 @@ class ApplicationForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)  # Catch the user from the view
+        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
 
         if user:

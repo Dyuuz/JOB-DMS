@@ -20,6 +20,7 @@ from .forms import (
     DocumentForm, ApplicationForm,
     JobForm, EmploymentForm)
 from datetime import datetime
+import requests
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -27,7 +28,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from .mixins import UserPermissionMixin, JobDetailPermissionMixin
 from django.contrib.auth.decorators import login_required
-from .utils import get_company_name, extract_site_name, get_time_countdown
+from .utils import get_company_name, extract_site_name, get_time_countdown, get_download_url
 import os
 
 
@@ -414,8 +415,13 @@ class DocumentListView(UserPermissionMixin, View):
 
         user_documents = Document.objects.filter(owner_user=request.user)
 
-        # for file in user_documents:
-            # file.size = round(file.file.size / ( 1024 * 1024 ), 2)
+        for file in user_documents:
+            response = requests.head(file.file.url)
+            size = int(response.headers.get('Content-Length', 0))
+            file.size = round(size / ( 1024 * 1024 ), 2)
+
+            file.download_url = get_download_url(file.file.url, file.name)
+
         return render(request, self.template_name, {
             'user_documents': user_documents,
             'has_documents': user_documents.exists()
@@ -510,6 +516,7 @@ class UserProfileUpdateView(UpdateView):
         # Pass form errors to the template
         return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
 
+
 class ProfileView(View):
     """
     This view handles the profile page for both job seekers and companies
@@ -545,6 +552,7 @@ class ProfileView(View):
                 return redirect('profile-update')
             except UserProfile.DoesNotExist:
                 return HttpResponse("User profile does not exist.")
+
 
 class SettingsView(View):
     """

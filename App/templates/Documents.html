@@ -48,7 +48,11 @@
                 {% for document in user_documents %}
                 <div class="doc-card">
                     <div class="doc-icon">
+                        {% if document.file_format == 'txt' %}
+                        <i class="fas fa-file-alt"></i>
+                        {% else %}
                         <i class="fas fa-file-pdf"></i>
+                        {% endif %}
                     </div>
                     <h3 class="doc-name">{{ document.name }}</h3>
                     <div class="doc-meta">
@@ -59,7 +63,7 @@
                         <a href="{% url 'view_resume' pk=document.pk %}" class="applicantinfo-document-link"><button class="doc-action-btn doc-view" title="View">
                             <i class="fas fa-eye"></i>
                         </button></a>
-                        <a href="{{document.file.url}}" download><button class="doc-action-btn doc-download" title="Download">
+                        <a href="{{document.download_url}}" download="{{ document.name }}.{{ document.file_format }}"><button class="doc-action-btn doc-download" title="Download">
                             <i class="fas fa-download"></i></a>
                         </button>
                         <button class="doc-action-btn doc-delete" title="Delete">

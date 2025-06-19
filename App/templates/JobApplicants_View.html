@@ -131,9 +131,13 @@
                     );
 
                     // Seperate status and applicant id for the value
+                    value = this.value;
+                    const parts = value.split("-");
+                    const prefix = parts[0];
+                    const pk = parts[1];
 
                     // Add the appropriate status class
-                    switch(this.value) {
+                    switch(prefix) {
                         case 'applied':
                             this.classList.add('applicanttrack-status-applied');
 
@@ -151,9 +155,6 @@
 
                             break;
                     }
-
-                    console.log('Status changed to:', this.value);
-                    // In a real app, you would send this update to your backend
                 });
             });
 

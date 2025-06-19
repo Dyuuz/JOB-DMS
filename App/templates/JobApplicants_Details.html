@@ -77,7 +77,8 @@
                     <!-- Documents -->
                     <div class="applicantinfo-section">
                         <h2 class="applicantinfo-section-title">
-                            <i class="fas fa-file-alt"></i> Resume
+                            <!-- <i class="fas fa-file-alt"></i> -->
+                             Resume
                         </h2>
                         <div class="applicantinfo-detail-group">
                             {% comment %} <div class="applicantinfo-detail-label">Resume</div> {% endcomment %}
@@ -87,7 +88,8 @@
                         </div>
                         <div class="applicantinfo-detail-group">
                             <h2 class="applicantinfo-section-title">
-                                <i class="fas fa-profile-avatar"></i> Applicant Profile
+                                <!-- <i class="fas fa-user"></i>  -->
+                                Applicant Profile
                             </h2>
                             <a href="{% url 'applicant_profile' pk=applicant.user.userprofile.pk %}" class="applicantinfo-document-link">
                                 <i class="fas fa-external-link-alt"></i> View Applicant Info
@@ -96,7 +98,8 @@
                         <!-- Portfolio -->
 
                         <h2 class="applicantinfo-section-title">
-                            <i class="fas fa-link"></i> Portfolio
+                            <!-- <i class="fas fa-link"></i>  -->
+                            Portfolio
                         </h2>
                         <div class="applicantinfo-detail-group">
                             <a href="{{ applicant.portfolio }}" target="_blank" class="applicantinfo-document-link">

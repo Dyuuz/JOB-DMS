@@ -8,7 +8,7 @@
 
   <div class="container">
     <div class="doc-preview">
-      <div class="doc-header">Preview: {{ document.name }}</div>
+      <div class="doc-header">Preview: {{ document.name }}.{{ document.file_format }}</div>
       <!-- You can replace the src with your actual document file path -->
       <iframe src="{{ document.file.url }}"></iframe>
     </div>

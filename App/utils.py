@@ -71,3 +71,11 @@ def get_time_countdown(target_date_str):
     time = f"{time_diff:.0f}"
 
     return time
+
+def get_download_url(cloudinary_url, filename):
+    """
+    Adds 'fl_attachment' to a Cloudinary raw file URL to force download.
+    """
+    if 'upload/' in cloudinary_url:
+        return cloudinary_url.replace('upload/', f'upload/fl_attachment:{filename}/')
+    return cloudinary_url

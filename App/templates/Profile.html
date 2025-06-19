@@ -334,15 +334,16 @@
                         <div class="experience-tab">
                             <h3>Experience</h3>
                             <a href="{% url 'employment' %}" class="edit-profile-btn">
-                                <i class="fas fa-edit"></i> Add Experience
+                                <i class="fas fa-plus"></i> Add
                             </a>
                         </div>
                         <!-- <h3 class="sidebar-title"></h3> -->
                         <div class="employment-item">
                             <div class="employment-details">
                                 <p class="employment-company">{{ user_profile.company_name }}</p>
-                                <a href="{% url 'profile-update' %}" class="edit-profile">
-                                <i class="fas fa-edit"></i> Edit
+
+                                <a href="{% url 'profile-update' %}" class="edit-profile-btn-new">
+                                    <i class="fas fa-edit"></i> Edit
                                 </a>
                             </div>
                             <div class="employment-details">
@@ -366,9 +367,13 @@
                         <div class="employment-item">
                             <div class="employment-details">
                                 <p class="employment-company">{{ exp.company_name }}</p>
-                                <a href="{% url 'employment' %}?update={{exp.pk}}" class="edit-profile">
-                                <i class="fas fa-edit"></i> Edit
-                                </a>
+
+                                <div class="profile-header-action">
+
+                                    <a href="{% url 'employment' %}?update={{exp.pk}}" class="edit-profile-btn-new">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
                             </div>
                             <div class="employment-details">
                                 <span>{{ exp.job_title }}</span>
