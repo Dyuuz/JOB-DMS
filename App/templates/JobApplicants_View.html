@@ -63,7 +63,7 @@
                         <td>
                             <div class="applicanttrack-applicant">
                                 <div class="applicanttrack-avatar">
-                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                                    <img src="{{ applicant.user.userprofile.profile_picture.url }}" alt="{{ applicant.user.full_name }}" >
                                 </div>
                                 <div class="applicanttrack-applicant-info">
                                     <div class="applicanttrack-applicant-name">{{ applicant.user.full_name }}</div>

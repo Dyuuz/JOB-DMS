@@ -25,7 +25,7 @@
             <!-- Header with Avatar and Basic Info -->
             <div class="applicantinfo-card-header">
                 <div class="applicantinfo-avatar">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                    <img src="{{applicant.user.userprofile.profile_picture.url}}" alt="{{ applicant.full_name }}">
                 </div>
                 <div class="applicantinfo-header-content">
                     <h1 class="applicantinfo-name">{{ applicant.full_name }}</h1>

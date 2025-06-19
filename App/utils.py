@@ -52,8 +52,8 @@ def extract_site_name(url):
     # Handles domains like google.com or www.google.com
     if len(parts) >= 2:
         if parts[0] == 'www':
-            return parts[1]
-        return parts[0]
+            return parts[1].title()
+        return parts[0].title()
     return domain  # fallback if it doesn't split properly
 
 def get_time_countdown(target_date_str):

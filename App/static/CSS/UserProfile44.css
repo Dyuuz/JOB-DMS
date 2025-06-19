@@ -96,8 +96,8 @@
     margin-bottom: 1.5rem;
     /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.034); */
     animation: pulse-green 10s infinite ease-in-out;
-    /* background: linear-gradient(135deg, #3B82F6, #EC4899); */
-    /* background-color: red; */
+    /* background: white; */
+    /* background-color: white; */
 }
 
 .profile-name {

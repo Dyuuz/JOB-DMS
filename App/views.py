@@ -331,10 +331,12 @@ class ApplicantProfileView(ListView):
         user_profile = self.get_object()
         experience = Employment.objects.filter(user=user_profile.user)
         ready_to_work = True if user_profile.ready_to_work == 'Available immediately' else False
+        website_name = extract_site_name(user_profile.portfolio) if user_profile.portfolio else None
 
         context['user_profile'] = user_profile
         context['ready_to_work'] = ready_to_work
         context['experience'] = experience
+        context['website_name'] = website_name
         return context
 
 
@@ -546,8 +548,9 @@ class ProfileView(View):
                         # Provided a variable to avoid hardcoding strings
                         available_immediately = 'Available immediately'
                         ready_to_work = (user_profile.ready_to_work == available_immediately) if user_profile.ready_to_work else False
+                        website_name = extract_site_name(user_profile.portfolio) if user_profile.portfolio else None
                         return render(request, self.template_name,
-                            {'user_profile': user_profile, 'user_auth': user_auth, 'ready_to_work': ready_to_work, 'experience' : experience })
+                            {'user_profile': user_profile, 'user_auth': user_auth, 'ready_to_work': ready_to_work, 'experience' : experience, 'website_name': website_name })
 
                 return redirect('profile-update')
             except UserProfile.DoesNotExist:

@@ -10,7 +10,7 @@
                         <i class="fas fa-edit"></i> Edit Profile
                     </a>
                 </div> -->
-                <img src="https://ui-avatars.com/api/?name={{user_profile.user.full_name}}&background=10B981&color=FFF&size=150"  class="profile-avatar">
+                <img src="{{user_profile.profile_picture.url}}"  class="profile-avatar" alt="{{ user_profile.full_name }}">
                 <h1 class="profile-name">{{ user_profile.user.full_name }}</h1>
                 <p class="profile-title">{{ user_profile.job_title }} at {{ user_profile.company_name }}</p>
 
@@ -80,6 +80,15 @@
                     </div>
 
                     <div class="sidebar-section">
+                        <h3 class="sidebar-title">Portfolio</h3>
+                        <div class="profile-field-group">
+                            <p class="profile-value">
+                                <a href="{{ user_profile.portfolio }}">{{ website_name }}</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
                         <h3 class="sidebar-title">Skills</h3>
                         <div class="profile-field-group">
                             <div class="skills-list">
@@ -115,7 +124,7 @@
 
                 <div class="profile-main">
                     <div class="profile-section">
-                        <h2 class="sidebar-title">Professional Information</h2>
+                        <h2 class="sidebar-title">Personal Information</h2>
 
                         <div class="profile-field-group">
                             <p class="profile-label">Full Name</p>

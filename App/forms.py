@@ -85,7 +85,7 @@ class UserProfileForm(forms.ModelForm):
         fields = [
             'existing_full_name','phone', 'DOB', 'user_country', 'company_name', 'job_title', 'job_description', 'start_date', 'end_date',
             'employment_type', 'work_mode', 'job_location', 'highest_education_level', 'work_field', 'work_experience', 'project',
-            'ready_to_work', 'bio', 'skills', 'certifications'
+            'ready_to_work', 'bio', 'skills', 'certifications', 'portfolio'
         ]
         widgets = {
             'phone': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter phone number'}),
@@ -109,6 +109,7 @@ class UserProfileForm(forms.ModelForm):
 
             'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter career summary'}),
             'skills': forms.SelectMultiple(attrs={'id': 'id_skills', 'class': 'input-field', 'placeholder': 'Select skills'}),
+            'portfolio': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter porftfolio'}),
             'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications'}),
         }
 

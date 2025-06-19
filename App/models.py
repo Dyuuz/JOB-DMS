@@ -146,6 +146,7 @@ class UserProfile(models.Model):
 
     bio = models.TextField(max_length=255, blank=True, null=True)
     skills = models.ManyToManyField(Skill, related_name='skills', blank=True)
+    portfolio = models.CharField(max_length=255, blank=True, null=True)
     project = models.CharField(max_length=100, blank=True)
     certifications = models.TextField(blank=True, null=True)
 
