@@ -4,11 +4,9 @@ from django import forms
 from .models import CustomUser, UserProfile, CompanyProfile, Document, Application, Job, Employment
 from django.contrib.auth import authenticate
 import os
+from .models import Skill
 
 class CustomUserCreationForm(UserCreationForm):
-    # resume = forms.CharField(
-    #     widget=forms.TextInput(attrs={'placeholder': 'Enter full name'})
-    # )
     full_name = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Enter full name'})
     )
@@ -76,16 +74,18 @@ class UserProfileForm(forms.ModelForm):
         'class': 'input-field',
     }))
 
-    resume= forms.FileField(required=False, widget=forms.ClearableFileInput(attrs={
-        'class': 'input-field',
-        'placeholder': 'Upload resume',
-    }))
+    # skills = forms.ModelMultipleChoiceField(
+    #     queryset=Skill.objects.all(),
+    #     widget=forms.SelectMultiple(attrs={'class': 'input-field', 'id': 'id_skills'}),
+    #     required=False,
+    # )
+
     class Meta:
         model = UserProfile
         fields = [
             'existing_full_name','phone', 'DOB', 'user_country', 'company_name', 'job_title', 'job_description', 'start_date', 'end_date',
             'employment_type', 'work_mode', 'job_location', 'highest_education_level', 'work_field', 'work_experience', 'project',
-            'resume', 'ready_to_work', 'bio', 'skills', 'certifications'
+            'ready_to_work', 'bio', 'skills', 'certifications'
         ]
         widgets = {
             'phone': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter phone number'}),
@@ -108,7 +108,7 @@ class UserProfileForm(forms.ModelForm):
             'ready_to_work': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Check if ready to work'}),
 
             'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter career summary'}),
-            'skills': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter skills'}),
+            'skills': forms.SelectMultiple(attrs={'id': 'id_skills', 'class': 'input-field', 'placeholder': 'Select skills'}),
             'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications'}),
         }
 

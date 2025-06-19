@@ -83,12 +83,9 @@
                         <h3 class="sidebar-title">Skills</h3>
                         <div class="profile-field-group">
                             <div class="skills-list">
-                                <span class="skill-tag">{{ user_profile.skills }}</span>
-                                <span class="skill-tag">Wireframing</span>
-                                <span class="skill-tag">Prototyping</span>
-                                <span class="skill-tag">Figma</span>
-                                <span class="skill-tag">Adobe XD</span>
-                                <span class="skill-tag">UI/UX Design</span>
+                                {% for tech in user_profile.skills.all %}
+                                <span class="skill-tag">{{ tech }}</span>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

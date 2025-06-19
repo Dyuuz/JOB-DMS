@@ -273,7 +273,7 @@
 .status-badge {
     display: inline-flex;
     align-items: center;
-    /* gap: 0.5rem; */
+    gap: 0.5rem;
     padding: 0.35rem 0.75rem;
     border-radius: 50px;
     font-size: 0.8rem;

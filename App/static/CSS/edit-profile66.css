@@ -189,6 +189,10 @@ button:hover {
     color: #555;
 }
 
+#id_skills{
+    margin-bottom: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     .form-content {

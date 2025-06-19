@@ -18,9 +18,7 @@
                     {% else %}
                     <h2>Complete your profile</h2>
                     {% endif %}
-
                     <div class="page-content">
-                        {% csrf_token %}
                         <label for="name">Full Name:</label>
                         {{ form.existing_full_name }}
 
@@ -38,18 +36,17 @@
 
                         <label for="dob">Country:</label>
                         {{ form.country }}
-
-                        {% if form.errors %}
-                        <!-- <div class="error-mess"> -->
-                            {% for field, errors in form.errors.items %}
-                                <h2 class="error-response">{{ errors|join:", " }}</h2>
-                            {% endfor %}
-                        <!-- </div> -->
-                        {% endif %}
-                        <div class="page-btns">
-                            <div class="button-container">
-                                <button class="next-btn">Next</button>
-                            </div>
+                    </div>
+                    {% if form.errors %}
+                    <!-- <div class="error-mess"> -->
+                        {% for field, errors in form.errors.items %}
+                            <h2 class="error-response">{{ errors|join:", " }}</h2>
+                        {% endfor %}
+                    <!-- </div> -->
+                    {% endif %}
+                    <div class="page-btns">
+                        <div class="button-container">
+                            <button class="next-btn">Next</button>
                         </div>
                     </div>
                 </div>
@@ -326,5 +323,15 @@
             <!-- <script src="script.js"></script> -->
         </div>
     </form>
+
+
+    <script>
+    $(document).ready(function() {
+        $('#id_skills').select2({
+            placeholder: "Select skills",
+            allowClear: true
+        });
+    });
+    </script>
     {% endif %}
 {% endblock dynamicpage %}

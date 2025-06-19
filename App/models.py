@@ -88,6 +88,18 @@ class CompanyProfile(models.Model):
     def __str__(self):
         return self.user.full_name
 
+class Skill(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if self.name:
+            self.name = self.name.title()
+        super().save(*args, **kwargs)
+
+
 # User profile model for job seekers' additional information
 class UserProfile(models.Model):
     EMPLOYMENT_TYPE = (
@@ -114,6 +126,7 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     phone = models.CharField(unique=True, max_length=20, blank=True)
+    profile_picture = CloudinaryField('image', blank=True, null=True)
     DOB = models.DateField(null=True, blank=True)
     user_country = models.CharField(max_length=255, blank=True)
 
@@ -129,11 +142,11 @@ class UserProfile(models.Model):
     highest_education_level = models.CharField(max_length=20, choices=EDUCATION_LEVEL, blank=True)
     work_field = models.CharField(max_length=100, blank=True)
     work_experience = models.IntegerField(null=True, blank=True)
-    project = models.CharField(max_length=100, blank=True)
     ready_to_work = models.CharField(max_length=50, choices=START_DATE_READY, blank=True)
 
     bio = models.TextField(max_length=255, blank=True, null=True)
-    skills = models.TextField(blank=True, null=True)
+    skills = models.ManyToManyField(Skill, related_name='skills', blank=True)
+    project = models.CharField(max_length=100, blank=True)
     certifications = models.TextField(blank=True, null=True)
 
     def __str__(self):
