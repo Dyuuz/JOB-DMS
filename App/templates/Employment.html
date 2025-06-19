@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+
+<!-- Upload Modal -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="doc-modal" >
+        <div class="doc-modal-content">
+            <div class="doc-modal-header">
+                {% if employment_object %}
+                <h3 class="doc-modal-title">Update Job Experience</h3>
+                {% else %}
+                <h3 class="doc-modal-title">Create New Job Experience</h3>
+                {% endif %}
+                <!-- <span class="doc-close-modal" onclick="docCloseModal()">&times;</span> -->
+            </div>
+
+            <form id="docUploadForm">
+                <div class="doc-form-group">
+                    {{ form.company_name.label_tag }}
+                    {{ form.company_name }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.job_title.label_tag }}
+                    {{ form.job_title }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.job_description.label_tag }}
+                    {{ form.job_description }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.start_date.label_tag }}
+                    {{ form.start_date }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.end_date.label_tag }}
+                    {{ form.end_date }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.employment_type.label_tag }}
+                    {{ form.employment_type }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.work_mode.label_tag }}
+                    {{ form.work_mode }}
+                </div>
+
+                <div class="doc-form-group">
+                    {{ form.job_location.label_tag }}
+                    {{ form.job_location }}
+                </div>
+
+                <!-- <div class="doc-form-group">
+                    <label for="docDescription" class="doc-form-label">Description (Optional)</label>
+                    <textarea id="docDescription" class="doc-form-input" rows="3" placeholder="Brief description of this document..."></textarea>
+                </div> -->
+
+                {% if form.errors %}
+                <!-- <div class="error-mess"> -->
+                    {% for field, errors in form.errors.items %}
+                        <h2 class="error-response">{{ errors|join:", " }}</h2>
+                    {% endfor %}
+                <!-- </div> -->
+                {% endif %}
+
+                <button type="submit" class="doc-submit-btn">
+                    <i class="fas fa-upload"></i> Upload Document
+                </button>
+            </form>
+        </div>
+    </div>
+</form>
+{% endblock dynamicpage %}

@@ -201,12 +201,15 @@
 }
 
 .trackmyjobs-search-input {
-    width: 100%;
+    width: 90%;
     padding: 0.5rem 1rem 0.5rem 2.5rem;
     border: 1px solid var(--gray-200);
     border-radius: var(--border-radius);
     font-size: 0.875rem;
 }
+/* .trackmyjobs-search-input:focus {
+    border: 1px solid red;
+} */
 
 .trackmyjobs-search-icon {
     position: absolute;
@@ -342,6 +345,10 @@
     display: flex;
     gap: 0.5rem;
 }
+.trackmyjobs-actions a {
+    text-decoration: none;
+    font-size: 15px;
+}
 
 .trackmyjobs-action-btn {
     width: 32px;
@@ -359,7 +366,7 @@
 
 .trackmyjobs-action-btn:hover {
     background: var(--gray-100);
-    color: var(--primary-500);
+    color: rgb(33, 131, 93);
 }
 
 /* ===== Responsive ===== */
@@ -390,6 +397,10 @@
         display: block;
         overflow-x: auto;
     }
+
+    .trackmyjobs-search-input {
+        width: 70%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -399,5 +410,9 @@
 
     .trackmyjobs-stat-card {
         padding: 1rem;
+    }
+
+    .trackmyjobs-search-input {
+        width: 70%;
     }
 }

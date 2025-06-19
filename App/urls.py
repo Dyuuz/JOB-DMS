@@ -12,7 +12,7 @@ from App.views import (
     WorkSpaceView, DashboardView,
     WorkforceView, JobDetailView, ApplyJobView,
     JobApplicantView, JobApplicantFormView,ResumeView,
-    ApplicantProfileView, JobFormView)
+    ApplicantProfileView, JobFormView, EmploymentUpdateView)
 from .utils import suggest_cover_letter
 from django.urls import include
 
@@ -42,6 +42,7 @@ urlpatterns = [
     path('profile', ProfileView.as_view(), name='profile'),
     path('settings', SettingsView.as_view(), name='settings'),
     path('workspace', WorkSpaceView.as_view(), name='workspace'),
+    path('job-experience', EmploymentUpdateView.as_view(), name='employment'),
     path('', include(auth_patterns)),
 ]
 

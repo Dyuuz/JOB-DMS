@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load humanize %}
 
 {% block dynamicpage %}
 <div class="application-details-body">
@@ -60,8 +61,12 @@
                             <div class="applicantinfo-detail-value">{{ applicant.experience }} years</div>
                         </div>
                         <div class="applicantinfo-detail-group">
+                            <div class="applicantinfo-detail-label">Current Salary</div>
+                            <div class="applicantinfo-detail-value">{{ applicant.job.currency }} {{ applicant.current_salary|intcomma }}</div>
+                        </div>
+                        <div class="applicantinfo-detail-group">
                             <div class="applicantinfo-detail-label">Expected Salary</div>
-                            <div class="applicantinfo-detail-value">{{ applicant.job.currency }} {{ applicant.expected_salary }}</div>
+                            <div class="applicantinfo-detail-value">{{ applicant.job.currency }} {{ applicant.expected_salary|intcomma }}</div>
                         </div>
                         <div class="applicantinfo-detail-group">
                             <div class="applicantinfo-detail-label">Availability</div>
@@ -72,10 +77,10 @@
                     <!-- Documents -->
                     <div class="applicantinfo-section">
                         <h2 class="applicantinfo-section-title">
-                            <i class="fas fa-file-alt"></i> Documents
+                            <i class="fas fa-file-alt"></i> Resume
                         </h2>
                         <div class="applicantinfo-detail-group">
-                            <div class="applicantinfo-detail-label">Resume</div>
+                            {% comment %} <div class="applicantinfo-detail-label">Resume</div> {% endcomment %}
                             <a href="{% url 'view_resume' pk=applicant.resume.pk %}" class="applicantinfo-document-link">
                                 <i class="fas fa-file-pdf"></i> View Resume
                             </a>
@@ -88,6 +93,17 @@
                                 <i class="fas fa-external-link-alt"></i> View Applicant Info
                             </a>
                         </div>
+                        <!-- Portfolio -->
+
+                        <h2 class="applicantinfo-section-title">
+                            <i class="fas fa-link"></i> Portfolio
+                        </h2>
+                        <div class="applicantinfo-detail-group">
+                            <a href="{{ applicant.portfolio }}" target="_blank" class="applicantinfo-document-link">
+                                <i class="fas fa-external-link-alt"></i> View Portfolio
+                            </a>
+                        </div>
+
                     </div>
                 </div>
 
@@ -103,17 +119,6 @@
                         </div>
                     </div>
 
-                    <!-- Portfolio -->
-                    <div class="applicantinfo-section">
-                        <h2 class="applicantinfo-section-title">
-                            <i class="fas fa-link"></i> Portfolio
-                        </h2>
-                        <div class="applicantinfo-detail-group">
-                            <a href="{{ applicant.portfolio }}" target="_blank" class="applicantinfo-document-link">
-                                <i class="fas fa-external-link-alt"></i> View Portfolio
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
 

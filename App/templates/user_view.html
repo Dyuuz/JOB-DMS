@@ -147,6 +147,7 @@
                     </div>
 
                     <div class="profile-section">
+                        {% if current %}
                         <h2 class="sidebar-title">Current Employment</h2>
 
                         <div class="employment-item">
@@ -156,7 +157,35 @@
                                 <span>{{ user_profile.employment_type }}</span>
                             </div>
                             <div class="employment-details">
-                                <span>{{ user_profile.start_date | date:'M y'}} - {{ user_profile.end_date | date:'M y' }}</span>
+                                <span>{{ user_profile.start_date | date:'M y'}} - {% if user_profile.end_date %}{{ user_profile.end_date | date:'M y' }}{% else %}Present{% endif %}</span>
+                                <span>{{ user_profile.job_location }}</span>
+                            </div>
+                            <p class="profile-value">
+                                {{ user_profile.job_description }}
+                            </p>
+                        </div>
+                        {% endif %}
+
+                        <div class="experience-tab">
+                            <h3>Experience</h3>
+                        </div>
+                        <!-- <h3 class="sidebar-title"></h3> -->
+                        <div class="employment-item">
+                            <div class="employment-details">
+                                <p class="employment-company">{{ user_profile.company_name }}</p>
+                                <a href="{% url 'employment' %}" class="edit-profile">
+                                <i class="fas fa-edit"></i>
+                                </a>
+                            </div>
+                            <div class="employment-details">
+                                <span>{{ user_profile.job_title }}</span>
+                                <span>{{ user_profile.employment_type }}</span>
+                            </div>
+                            <div class="employment-details">
+                                <span>{{ user_profile.start_date | date:'M y'}} - {% if user_profile.end_date %}{{ user_profile.end_date | date:'M y' }}{% else %}Present{% endif %}</span>
+                                <span>{{ user_profile.work_mode }}</span>
+                            </div>
+                            <div class="employment-details">
                                 <span>{{ user_profile.job_location }}</span>
                             </div>
                             <p class="profile-value">
@@ -164,27 +193,31 @@
                             </p>
                         </div>
 
-                        <div class="experience-tab">
-                            <h3>Experience</h3>
-                            <a href="{% url 'profile-update' %}" class="edit-profile-btn">
-                                <i class="fas fa-edit"></i> Add Experience
-                            </a>
-                        </div>
-                        <h3 class="sidebar-title" style=""></h3>
+                        <!-- Experience Model -->
+                        {% for exp in  experience %}
                         <div class="employment-item">
-                            <p class="employment-company">DesignWorks Agency</p>
                             <div class="employment-details">
-                                <span>UX Designer</span>
-                                <span>Full-time</span>
+                                <p class="employment-company">{{ exp.company_name }}</p>
+                                <a href="{% url 'employment' %}" class="edit-profile">
+                                <i class="fas fa-edit"></i>
+                                </a>
                             </div>
                             <div class="employment-details">
-                                <span>May 2015 - May 2018</span>
-                                <span>New York, NY</span>
+                                <span>{{ exp.job_title }}</span>
+                                <span>{{ exp.employment_type }}</span>
+                            </div>
+                            <div class="employment-details">
+                                <span>{{ exp.start_date | date:'M y'}} - {% if exp.end_date %}{{ exp.end_date | date:'M y' }}{% else %}Present{% endif %}</span>
+                                <span>{{ exp.work_mode }}</span>
+                            </div>
+                            <div class="employment-details">
+                                <span>{{ exp.job_location }}</span>
                             </div>
                             <p class="profile-value">
-                                Designed interfaces for clients in various industries including finance, healthcare, and e-commerce.
+                                {{ exp.job_description }}
                             </p>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

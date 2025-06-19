@@ -36,9 +36,6 @@
                         <i class="fas fa-naira-sign"></i>{{ job.min_salary|intcomma }} - {{ job.max_salary|intcomma }}
                     </span>
                     <span class="jobsync-job-meta-item">
-                        <i class="fas fa-naira-sign"></i>
-                    </span>
-                    <span class="jobsync-job-meta-item">
                         <i class="fas fa-clock"></i> {{ job.job_type }}
                     </span>
                     <span class="jobsync-job-meta-item">
@@ -174,8 +171,8 @@
                                     <p>{{ job.job_type }}</p>
                                 </div>
                                 <div>
-                                    <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">SALARY</h4>
-                                    <p>{{ job.currency }} {{ job.min_salary|intcomma }} - {{ job.max_salary|intcomma }}</p>
+                                    <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">DEADLINE</h4>
+                                    <p>{{ job.deadline }}</p>
                                 </div>
                                 <div>
                                     <h4 style="font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.25rem;">EXPERIENCE</h4>

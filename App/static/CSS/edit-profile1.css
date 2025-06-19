@@ -91,6 +91,8 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid var(--accent-color2);
+    border-bottom-style: dashed;
 }
 
 label {

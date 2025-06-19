@@ -226,7 +226,7 @@
 }
 
 .sidebar-title {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
     font-weight: 600;
     color: var(--secondary-color);
     margin-bottom: 1rem;
@@ -263,9 +263,9 @@
 
 /* Employment History */
 .employment-item {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #eee;
+    /* margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem; */
+    border-bottom: 1px solid #ebe7e7;
 }
 
 .employment-item:last-child {

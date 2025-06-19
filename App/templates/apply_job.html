@@ -78,6 +78,11 @@
                     </div>
 
                     <div class="applynow-form-group">
+                        <label for="applynow-portfolio" class="applynow-form-label">Current Salary in {{ job.currency }}</label>
+                        {{ form.current_salary }}
+                    </div>
+
+                    <div class="applynow-form-group">
                         <label for="applynow-portfolio" class="applynow-form-label">Expected Salary in {{ job.currency }}</label>
                         {{ form.expected_salary }}
                     </div>

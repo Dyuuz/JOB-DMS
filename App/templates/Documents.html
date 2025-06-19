@@ -56,9 +56,9 @@
                         <div>Size: {{ document.size }} MB</div>
                     </div>
                     <div class="doc-actions">
-                        <button class="doc-action-btn doc-view" title="View">
+                        <a href="{% url 'view_resume' pk=document.pk %}" class="applicantinfo-document-link"><button class="doc-action-btn doc-view" title="View">
                             <i class="fas fa-eye"></i>
-                        </button>
+                        </button></a>
                         <a href="{{document.file.url}}" download><button class="doc-action-btn doc-download" title="Download">
                             <i class="fas fa-download"></i></a>
                         </button>

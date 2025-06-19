@@ -1,7 +1,7 @@
 # forms.py
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser, UserProfile, CompanyProfile, Document, Application, Job
+from .models import CustomUser, UserProfile, CompanyProfile, Document, Application, Job, Employment
 from django.contrib.auth import authenticate
 import os
 
@@ -84,7 +84,7 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = [
             'existing_full_name','phone', 'DOB', 'user_country', 'company_name', 'job_title', 'job_description', 'start_date', 'end_date',
-            'employment_type', 'job_location', 'highest_education_level', 'work_field', 'work_experience', 'project',
+            'employment_type', 'work_mode', 'job_location', 'highest_education_level', 'work_field', 'work_experience', 'project',
             'resume', 'ready_to_work', 'bio', 'skills', 'certifications'
         ]
         widgets = {
@@ -98,6 +98,7 @@ class UserProfileForm(forms.ModelForm):
             'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select start date'}),
             'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select end date'}),
             'employment_type': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select employment type'}),
+            'work_mode': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select employment type'}),
             'job_location': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter job location'}),
 
             'highest_education_level': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select education level'}),
@@ -201,11 +202,10 @@ class JobForm(forms.ModelForm):
 class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ['name', 'file_type', 'file_format', 'file', 'job']
+        fields = ['name', 'file_type', 'file']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'doc-form-input'}),
             'file_type': forms.Select(attrs={'class': 'doc-form-input'}),
-            'file_format': forms.Select(attrs={'class': 'doc-form-input'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -221,7 +221,7 @@ class DocumentForm(forms.ModelForm):
         #     self.fields['job'].queryset = Job.objects.none()
 
         # Make job field optional
-        self.fields['job'].required = False
+        # self.fields['job'].required = False
 
         # Remove owner fields completely - we'll handle them in the view
         self.fields.pop('owner_user', None)
@@ -245,17 +245,16 @@ class DocumentForm(forms.ModelForm):
                 raise forms.ValidationError(
                     "Unsupported file extension. Only PDF, Word, and text documents are allowed."
                 )
+        if hasattr(self.request.user, 'companyprofile'):
+            raise forms.ValidationError(
+                    "Company profiles are not allowed to upload documents."
+                )
 
         return file
 
     def save(self, commit=True):
         instance = super().save(commit=False)
-
-        # Set owner based on user type
-        if hasattr(self.request.user, 'companyprofile'):
-            instance.owner_company = self.request.user.companyprofile
-        else:
-            instance.owner_user = self.request.user
+        instance.owner_user = self.request.user
 
         if commit:
             instance.save()
@@ -288,6 +287,7 @@ class ApplicationForm(forms.ModelForm):
             'company': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter company name'}),
             'portfolio': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter site link'}),
             'availability': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter the time for interviews'}),
+            'current_salary': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter salary'}),
             'expected_salary': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter salary'}),
             'experience': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter years of experience'}),
             'resume': forms.Select(attrs={'class': 'applynow-form-control', 'placeholder': 'Select resume'}),
@@ -303,3 +303,29 @@ class ApplicationForm(forms.ModelForm):
             self.fields['full_name'].initial = user.full_name
             self.fields['phone'].initial = user.userprofile.phone
             self.fields['email'].initial= user.email
+
+class EmploymentForm(forms.ModelForm):
+    class Meta:
+        model = Employment
+        fields = ['company_name', 'job_title', 'job_description', 'start_date', 'end_date', 'employment_type', 'job_location', 'work_mode',]
+        widgets = {
+            'company_name': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter company name'}),
+            'job_title': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter job title'}),
+            'job_description': forms.Textarea(attrs={'class': 'input-field' , 'rows': 2, 'placeholder': 'Enter job description'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select start date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select end date'}),
+            'employment_type': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select employment type'}),
+            'work_mode': forms.Select(attrs={'class': 'input-field', 'placeholder': 'Select employment type'}),
+            'job_location': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter job location'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    # def save(self, commit=True):
+    #     instance = super().save(commit=False)
+    #     instance.user = self.request.user
+
+    #     if commit:
+    #         instance.save()
+    #     return instance

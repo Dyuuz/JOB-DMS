@@ -6,7 +6,7 @@ from django.views import View
 from .models import (
     CustomUser, CompanyProfile,
     UserProfile, Job, Application,
-    Feedback, Document)
+    Feedback, Document, Employment)
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
@@ -18,7 +18,7 @@ from .forms import (
     UserProfileForm,
     CompanyProfileForm,
     DocumentForm, ApplicationForm,
-    JobForm)
+    JobForm, EmploymentForm)
 from datetime import datetime
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
@@ -28,6 +28,8 @@ from django.core.exceptions import PermissionDenied
 from .mixins import UserPermissionMixin, JobDetailPermissionMixin
 from django.contrib.auth.decorators import login_required
 from .utils import get_company_name, extract_site_name, get_time_countdown
+import os
+
 
 # Create your views here.
 class HomeView(View):
@@ -82,16 +84,16 @@ class DashboardView(LoginRequiredMixin, ListView):
         user = request.user
         name_list = get_company_name(user.full_name)
         job_list = Job.objects.filter(company__user=user).order_by('-created_at')
+        active_jobs = len(Job.objects.filter(company__user=user, status='Active'))
+        draft_jobs = len(Job.objects.filter(company__user=user, status='Draft'))
+        applications = len(Application.objects.filter(job__company=user.companyprofile))
+        interviews = len(Application.objects.filter(job__company=user.companyprofile, status='Interview'))
+
 
         for job in job_list:
             job.count = Application.objects.filter(job=job).count()
 
-        return render(request, self.template_name,
-        {
-            'user': user,
-            'company_name': name_list,
-            'job_list': job_list,
-        })
+        return render(request, self.template_name, locals())
 
 
 class ApplyJobView(CreateView):
@@ -168,34 +170,12 @@ class JobsAppliedView(ListView):
 
     def get(self, request, *args, **kwargs):
         applications = Application.objects.filter(user=request.user).order_by('-submitted_at')
+        applied = len(Application.objects.filter(user=request.user, status='Applied'))
+        interviews = len(Application.objects.filter(user=request.user, status='Interview'))
+        offers = len(Application.objects.filter(user=request.user, status='Offer'))
+        rejected = len(Application.objects.filter(user=request.user, status='Rejected'))
 
-        return render(request, self.template_name,
-        {
-            "applications" : applications,
-        })
-
-
-class JobFormView1(CreateView):
-    """
-    This view handles the page for jobs uploads by a company
-    """
-    template_name = 'JobForm.html'
-    model = Job
-    form_class = JobForm
-    success_url = reverse_lazy('dashboard')
-
-
-    def form_valid(self, form):
-        job = form.save(commit=False)
-        user = self.request.user
-        job.company = user.companyprofile
-
-        job.save()
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        # Pass form errors to the template
-        return self.render_to_response(self.get_context_data(form=form, errors=form.errors))
+        return render(request, self.template_name, locals())
 
 class JobFormView(UpdateView):
     """
@@ -211,7 +191,7 @@ class JobFormView(UpdateView):
         if self.request.user.is_authenticated:
             try:
                 # Try to get CompanyProfile if user is company
-                if hasattr(self.request.user, 'role') and self.request.user.role == 'company':
+                if self.request.user.is_company():
                     pk = self.request.GET.get('update')
                     if pk:
                         return Job.objects.get(pk=pk)
@@ -226,8 +206,7 @@ class JobFormView(UpdateView):
     # Override this method to pass the user to the template
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        pk = self.request.GET.get('update')
-        context['job_object'] = Job.objects.filter(pk=pk).first()
+        context['job_object'] = self.get_object()
         context['company'] = self.request.user.companyprofile
         return context
 
@@ -235,7 +214,13 @@ class JobFormView(UpdateView):
     # and save the profile data
     def form_valid(self, form):
         form.instance.company = self.request.user.companyprofile
-        messages.success(self.request, f"Job successfully updated")
+
+        obj = self.get_object()
+        if obj is None:
+            messages.success(self.request, f"Job successfully created")
+        else:
+            messages.success(self.request, f"Job successfully updated")
+
         return super().form_valid(form)
 
     # Override this method to handle form submission errors
@@ -343,10 +328,12 @@ class ApplicantProfileView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user_profile = self.get_object()
+        experience = Employment.objects.filter(user=user_profile.user)
         ready_to_work = True if user_profile.ready_to_work == 'Available immediately' else False
 
         context['user_profile'] = user_profile
         context['ready_to_work'] = ready_to_work
+        context['experience'] = experience
         return context
 
 
@@ -384,17 +371,29 @@ class DocumentUploadView(UserPermissionMixin, LoginRequiredMixin, CreateView):
         return kwargs
 
     def form_valid(self, form):
-        # Set the owner before saving
+        # Get unsaved instance
         instance = form.save(commit=False)
         instance.owner_user = self.request.user
 
-        # if hasattr(self.request.user, 'companyprofile'):
-        #     instance.owner_company = self.request.user.companyprofile
-        # else:
-        #     instance.owner_user = self.request.user
+        # Extract extension
+        _, ext = os.path.splitext(instance.file.name)
+        cleaned_ext = ext.lower().lstrip('.')
 
+        valid_extensions = [choice[0] for choice in instance.FILE_FORMAT]
+
+        if cleaned_ext in valid_extensions:
+            instance.file_format = cleaned_ext
+        else:
+            form.add_error('file', f"Unsupported file format: .{cleaned_ext}")
+            return self.form_invalid(form)
+
+        # Save instance
         instance.save()
-        messages.success(self.request, f"'{instance.owner_user}' uploaded successfully!")
+        messages.success(self.request, f"'{instance.name}' uploaded successfully!")
+
+        # Set self.object so CBV knows the saved object
+        self.object = instance
+
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -415,8 +414,8 @@ class DocumentListView(UserPermissionMixin, View):
 
         user_documents = Document.objects.filter(owner_user=request.user)
 
-        for file in user_documents:
-            file.size = round(file.file.size / ( 1024 * 1024 ), 2)
+        # for file in user_documents:
+            # file.size = round(file.file.size / ( 1024 * 1024 ), 2)
         return render(request, self.template_name, {
             'user_documents': user_documents,
             'has_documents': user_documents.exists()
@@ -524,6 +523,7 @@ class ProfileView(View):
                 user_auth = CustomUser.objects.get(email=request.user.email)
                 user_profile = UserProfile.objects.filter(user=request.user).first()
                 company_role = CompanyProfile.objects.filter(user=request.user).first()
+                experience = Employment.objects.filter(user=request.user)
 
                 if user_profile or company_role:
                     if company_role:
@@ -539,7 +539,8 @@ class ProfileView(View):
                         # Provided a variable to avoid hardcoding strings
                         available_immediately = 'Available immediately'
                         ready_to_work = (user_profile.ready_to_work == available_immediately) if user_profile.ready_to_work else False
-                        return render(request, self.template_name, {'user_profile': user_profile, 'user_auth': user_auth, 'ready_to_work': ready_to_work,})
+                        return render(request, self.template_name,
+                            {'user_profile': user_profile, 'user_auth': user_auth, 'ready_to_work': ready_to_work, 'experience' : experience })
 
                 return redirect('profile-update')
             except UserProfile.DoesNotExist:
@@ -585,7 +586,6 @@ class RegisterView(FormView):
         user = form.save()
         # login(self.request, user)  # Log in the user
 
-        # Set a temporary message for a successful login
         messages.success(self.request, f"You can now proceed to login")
 
         return super().form_valid(form)
@@ -623,3 +623,44 @@ class LoginView(FormView):
     # def get(self):
     #     if self.request.user.is_authenticated:
     #         redirect('home')
+
+class EmploymentUpdateView(UpdateView):
+    model = Employment
+    form_class = EmploymentForm
+    template_name = 'Employment.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, queryset=None):
+        if self.request.user.is_authenticated:
+            try:
+                if self.request.user.is_user():
+                    pk = self.request.GET.get('update')
+                    if pk:
+                        return Employment.objects.get(pk=pk)
+                    else:
+                        return None
+                else:
+                    reverse_lazy('profile')
+            except AttributeError:
+                return self.form_invalid(self.form)
+        return redirect('auth-login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['employment_object'] = self.get_object()
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+
+        obj = self.get_object()
+        if obj is None:
+            messages.success(self.request, f"'{obj.company_name}' successfully updated!")
+        else:
+            messages.success(self.request, f"Successfully created!")
+
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Please correct the errors below.")
+        return super().form_invalid(form)

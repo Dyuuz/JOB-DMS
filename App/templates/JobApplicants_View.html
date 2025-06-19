@@ -76,25 +76,25 @@
                             <div class="applicanttrack-status">
                                 <select class="applicanttrack-status-select applicanttrack-status-{{ applicant.element }}">
                                     {% if applicant.status == 'Applied' %}
-                                    <option value="applied" selected>Applied</option>
-                                    <option value="interview">Interview</option>
-                                    <option value="offer">Offer</option>
-                                    <option value="rejected">Rejected</option>
+                                    <option value="applied-{{applicant.pk}}" selected>Applied</option>
+                                    <option value="interview-{{applicant.pk}}">Interview</option>
+                                    <option value="offer-{{applicant.pk}}">Offer</option>
+                                    <option value="rejected-{{applicant.pk}}">Rejected</option>
                                     {% elif applicant.status == 'Interview' %}
-                                    <option value="applied">Applied</option>
-                                    <option value="interview" selected>Interview</option>
-                                    <option value="offer">Offer</option>
-                                    <option value="rejected">Rejected</option>
+                                    <option value="applied-{{applicant.pk}}">Applied</option>
+                                    <option value="interview-{{applicant.pk}}" selected>Interview</option>
+                                    <option value="offer-{{applicant.pk}}">Offer</option>
+                                    <option value="rejected-{{applicant.pk}}">Rejected</option>
                                     {% elif applicant.status == 'Offer' %}
-                                    <option value="applied">Applied</option>
-                                    <option value="interview">Interview</option>
-                                    <option value="offer" selected>Offer</option>
-                                    <option value="rejected">Rejected</option>
+                                    <option value="applied-{{applicant.pk}}">Applied</option>
+                                    <option value="interview-{{applicant.pk}}">Interview</option>
+                                    <option value="offer-{{applicant.pk}}" selected>Offer</option>
+                                    <option value="rejected-{{applicant.pk}}">Rejected</option>
                                     {% elif applicant.status == 'Rejected' %}
-                                    <option value="applied">Applied</option>
-                                    <option value="interview" >Interview</option>
-                                    <option value="offer">Offer</option>
-                                    <option value="rejected" selected>Rejected</option>
+                                    <option value="applied-{{applicant.pk}}">Applied</option>
+                                    <option value="interview-{{applicant.pk}}" >Interview</option>
+                                    <option value="offer-{{applicant.pk}}">Offer</option>
+                                    <option value="rejected-{{applicant.pk}}" selected>Rejected</option>
                                     {% endif %}
                                 </select>
                             </div>
@@ -130,19 +130,25 @@
                         'applicanttrack-status-rejected'
                     );
 
+                    // Seperate status and applicant id for the value
+
                     // Add the appropriate status class
                     switch(this.value) {
                         case 'applied':
                             this.classList.add('applicanttrack-status-applied');
+
                             break;
                         case 'interview':
                             this.classList.add('applicanttrack-status-interview');
+
                             break;
                         case 'offer':
                             this.classList.add('applicanttrack-status-offer');
+
                             break;
                         case 'rejected':
                             this.classList.add('applicanttrack-status-rejected');
+
                             break;
                     }
 
@@ -157,7 +163,7 @@
             viewButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const applicantName = this.closest('tr').querySelector('.applicanttrack-applicant-name').textContent;
-                    console.log('Viewing application for:', applicantName);
+                    // alert('Viewing application for:', applicantName);
                     // In a real app, this would open a modal or navigate to a detail page
                 });
             });

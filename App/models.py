@@ -106,6 +106,11 @@ class UserProfile(models.Model):
         ('Available immediately', 'Available immediately'),
         ('Requires notice period', 'Requires notice period'),
     )
+    WORK_MODE = (
+        ('Remote', 'Remote'),
+        ('Hybrid', 'Hybrid'),
+        ('On site', 'On Site'),
+    )
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     phone = models.CharField(unique=True, max_length=20, blank=True)
@@ -118,6 +123,7 @@ class UserProfile(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     employment_type = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE, blank=True)
+    work_mode = models.CharField(max_length=20, choices=WORK_MODE)
     job_location = models.CharField(max_length=255, blank=True)
 
     highest_education_level = models.CharField(max_length=20, choices=EDUCATION_LEVEL, blank=True)
@@ -133,6 +139,32 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.full_name
+
+class Employment(models.Model):
+    EMPLOYMENT_TYPE = (
+        ('Internship', 'Internship'),
+        ('Part Time', 'Part Time'),
+        ('Full Time', 'Full Time'),
+        ('Contract', 'Contract'),
+    )
+    WORK_MODE = (
+        ('Remote', 'Remote'),
+        ('Hybrid', 'Hybrid'),
+        ('On site', 'On Site'),
+    )
+    user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, related_name='experience')
+    company_name = models.CharField(max_length=100)
+    job_title = models.CharField(max_length=50)
+    job_description = models.TextField()
+    start_date = models.DateField()
+    end_date = models.DateField(null=True,blank=True)
+    employment_type = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE)
+    work_mode = models.CharField(max_length=20, choices=WORK_MODE)
+    job_location = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.company_name
+
 
 # Job model for storing job listings posted by companies
 class Job(models.Model):
@@ -169,6 +201,7 @@ class Job(models.Model):
         ('Sales', 'Sales'),
         ('Human Resources', 'Human Resources'),
         ('Finance', 'Finance'),
+        ('Education', 'Education'),
         ('Customer Support', 'Customer Support'),
 
         ('Design', 'Design'),
@@ -272,8 +305,12 @@ class Application(models.Model):
     resume = models.ForeignKey(Document, on_delete=models.PROTECT, null=True, blank=True)
     cover_letter = models.TextField(blank=True)
     experience = models.IntegerField(null=True, blank=True)
+    current_salary = models.IntegerField(blank=True, null=True)
     expected_salary = models.IntegerField(blank=True, null=True)
     availability = models.CharField(max_length=255, blank=True)
+
+    resume_viewed = models.BooleanField(default=False)
+    profile_viewed = models.BooleanField(default=False)
 
     class Meta:
         constraints = [

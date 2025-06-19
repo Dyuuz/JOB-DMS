@@ -7,7 +7,7 @@
         <!-- Header -->
         <header class="jobhive-header">
             <div class="jobhive-brand">
-                <div class="jobhive-logo">{{ company_name }}</div>
+                <div class="jobhive-logo">{{ name_list }}</div>
                 <span class="jobhive-brandname">{{ user.full_name }}</span>
             </div>
 
@@ -44,8 +44,8 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                     </div>
-                    <h2 class="jobhive-stat-value">24</h2>
-                    <p class="jobhive-stat-desc">+3 from last week</p>
+                    <h2 class="jobhive-stat-value">{{ active_jobs }}</h2>
+                    <p class="jobhive-stat-desc">+0 from last week</p>
                 </div>
 
                 <div class="jobhive-stat-card jobhive-stat-applications">
@@ -55,8 +55,8 @@
                             <i class="fas fa-file-alt"></i>
                         </div>
                     </div>
-                    <h2 class="jobhive-stat-value">156</h2>
-                    <p class="jobhive-stat-desc">+12% from last week</p>
+                    <h2 class="jobhive-stat-value">{{ applications }}</h2>
+                    <p class="jobhive-stat-desc">+0% from last week</p>
                 </div>
 
                 <div class="jobhive-stat-card jobhive-stat-interviews">
@@ -66,8 +66,8 @@
                             <i class="fas fa-user-friends"></i>
                         </div>
                     </div>
-                    <h2 class="jobhive-stat-value">18</h2>
-                    <p class="jobhive-stat-desc">5 scheduled today</p>
+                    <h2 class="jobhive-stat-value">{{ interviews }}</h2>
+                    <p class="jobhive-stat-desc">0 scheduled today</p>
                 </div>
 
                 <div class="jobhive-stat-card jobhive-stat-drafts">
@@ -77,8 +77,8 @@
                             <i class="fas fa-edit"></i>
                         </div>
                     </div>
-                    <h2 class="jobhive-stat-value">5</h2>
-                    <p class="jobhive-stat-desc">2 ready to publish</p>
+                    <h2 class="jobhive-stat-value">{{ draft_jobs }}</h2>
+                    <p class="jobhive-stat-desc">0 ready to publish</p>
                 </div>
             </div>
 
