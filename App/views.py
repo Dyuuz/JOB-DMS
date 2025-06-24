@@ -430,26 +430,26 @@ class DocumentListView(UserPermissionMixin, View):
         })
 
 
-# class DocumentDeleteView(LoginRequiredMixin, DeleteView):
-#     model = Document
-#     template_name = 'documents/confirm_delete.html'
-#     success_url = reverse_lazy('documents:list')
+class DocumentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Document
+    # template_name = 'documents/confirm_delete.html'
+    success_url = reverse_lazy('documents:list')
 
-#     def get_object(self, queryset=None):
-#         obj = get_object_or_404(Document, pk=self.kwargs['pk'])
-#         # Verify ownership
-#         if hasattr(self.request.user, 'companyprofile'):
-#             if obj.owner_company != self.request.user.companyprofile:
-#                 raise PermissionDenied
-#         else:
-#             if obj.owner_user != self.request.user:
-#                 raise PermissionDenied
-#         return obj
+    def get_object(self, queryset=None):
+        obj = get_object_or_404(Document, pk=self.kwargs['pk'])
+        # Verify ownership
+        if hasattr(self.request.user, 'companyprofile'):
+            if obj.owner_company != self.request.user.companyprofile:
+                raise PermissionDenied
+        else:
+            if obj.owner_user != self.request.user:
+                raise PermissionDenied
+        return obj
 
-#     def delete(self, request, *args, **kwargs):
-#         response = super().delete(request, *args, **kwargs)
-#         messages.success(request, "Document deleted successfully!")
-#         return response
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, "Document deleted successfully!")
+        return response
 
 
 class UserProfileUpdateView(UpdateView):
@@ -536,10 +536,7 @@ class ProfileView(View):
 
                 if user_profile or company_role:
                     if company_role:
-                        company_role.core_tech = company_role.core_tech.split(',') if company_role.core_tech else []
-                        # company_role.awards = company_role.awards.split(',') if company_role.awards else []
-                        company_role.certifications = company_role.certifications.split(',') if company_role.certifications else []
-                        # employees =
+                        # employees
                         website_name = extract_site_name(company_role.website) if company_role.website else None
                         return render(request, self.template_name,
                                 {'company_role': company_role, 'user_auth': user_auth, 'website_name': website_name,})
@@ -665,7 +662,7 @@ class EmploymentUpdateView(UpdateView):
         form.instance.user = self.request.user
 
         obj = self.get_object()
-        if obj is None:
+        if obj is not None:
             messages.success(self.request, f"'{obj.company_name}' successfully updated!")
         else:
             messages.success(self.request, f"Successfully created!")

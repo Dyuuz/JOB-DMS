@@ -85,7 +85,7 @@ class UserProfileForm(forms.ModelForm):
         fields = [
             'existing_full_name','phone', 'DOB', 'user_country', 'company_name', 'job_title', 'job_description', 'start_date', 'end_date',
             'employment_type', 'work_mode', 'job_location', 'highest_education_level', 'work_field', 'work_experience', 'project',
-            'ready_to_work', 'bio', 'skills', 'certifications', 'portfolio'
+            'ready_to_work', 'bio', 'skills', 'certifications', 'portfolio', 'project'
         ]
         widgets = {
             'phone': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter phone number'}),
@@ -110,7 +110,8 @@ class UserProfileForm(forms.ModelForm):
             'bio': forms.Textarea(attrs={'class': 'input-field', 'rows': 3, 'placeholder': 'Enter career summary'}),
             'skills': forms.SelectMultiple(attrs={'id': 'id_skills', 'class': 'input-field', 'placeholder': 'Select skills'}),
             'portfolio': forms.TextInput(attrs={'class': 'input-field', 'placeholder': 'Enter porftfolio'}),
-            'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications'}),
+            'certifications': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter certifications seperated by commas'}),
+            'project': forms.Textarea(attrs={'class': 'input-field', 'rows': 2, 'placeholder': 'Enter projects seperated by commas'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -238,12 +239,12 @@ class DocumentForm(forms.ModelForm):
                 raise forms.ValidationError("File too large. Maximum size is 2MB.")
 
             # File extension validation
-            valid_extensions = ['.pdf', '.txt' ]
+            valid_extensions = ['.pdf', '.txt', '.doc', '.docx']
             ext = os.path.splitext(file.name)[1].lower()
 
             if ext not in valid_extensions:
                 raise forms.ValidationError(
-                    "Unsupported file extension. Only PDF and text documents are allowed."
+                    "Unsupported file type. Only PDF, DOC, DOCX & Text documents are allowed."
                 )
         if hasattr(self.request.user, 'companyprofile'):
             raise forms.ValidationError(
@@ -266,7 +267,7 @@ class ApplicationForm(forms.ModelForm):
     # phone = forms.CharField(required=False)
 
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={
-        # 'readonly': 'readonly',
+        'readonly': 'readonly',
         'class': 'applynow-form-control',
     }))
     full_name = forms.CharField(required=True, widget=forms.TextInput(attrs={
@@ -275,6 +276,8 @@ class ApplicationForm(forms.ModelForm):
     }))
     phone = forms.IntegerField(required=True, widget=forms.TextInput(attrs={
         # 'readonly': 'readonly',
+        'id': 'id_phone',
+        'placeholder': 'Enter phone number',
         'class': 'applynow-form-control',
     }))
 
@@ -285,11 +288,12 @@ class ApplicationForm(forms.ModelForm):
         widgets = {
             'job_title': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter job title'}),
             'company': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter company name'}),
-            'portfolio': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter site link'}),
-            'availability': forms.TextInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter the time for interviews'}),
+            'portfolio': forms.TextInput(attrs={'id': 'id_portfolio','class': 'applynow-form-control', 'placeholder': 'Enter site link'}),
+            'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select start date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select end date'}),
             'current_salary': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter salary'}),
             'expected_salary': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter salary'}),
-            'experience': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter years of experience'}),
+            'experience': forms.NumberInput(attrs={'id': 'id_experience','class': 'applynow-form-control', 'placeholder': 'Enter years of experience'}),
             'resume': forms.Select(attrs={'class': 'applynow-form-control', 'placeholder': 'Select resume'}),
             'cover_letter': forms.Textarea(attrs={'id': 'id_cover_letter', 'class': 'applynow-form-control', 'placeholder': 'Input cover letter'}),
         }
@@ -299,9 +303,9 @@ class ApplicationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         if user:
-            self.fields['resume'].queryset = Document.objects.filter(owner_user=user)
+            self.fields['resume'].queryset = Document.objects.filter(owner_user=user, file_format='pdf')
             self.fields['full_name'].initial = user.full_name
-            self.fields['phone'].initial = user.userprofile.phone
+            # self.fields['phone'].initial = user.userprofile.phone
             self.fields['email'].initial= user.email
 
 class EmploymentForm(forms.ModelForm):

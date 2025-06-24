@@ -1,3 +1,10 @@
+function deleteDoc(id) {
+        const csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const docdelete = document.querySelector(`.doc-name[data-id='${id}']`);
+        alert(docdelete.value);
+
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const docGrid = document.querySelector('.doc-grid');
@@ -17,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return {
             element: card,
             type: card.querySelector('.doc-icon i').className.includes('file-pdf') ?
-                  (card.querySelector('.doc-name').textContent.includes('Resume') ? 'resume' :
-                   card.querySelector('.doc-name').textContent.includes('Certification') ? 'certificate' :
-                   card.querySelector('.doc-name').textContent.includes('Portfolio') ? 'portfolio' : 'other') :
+                  (card.querySelector('.Resume')?.getAttribute('data-type') === 'Resume' ? 'resume' :
+                   card.querySelector('.CV')?.getAttribute('data-type') === 'CV' ? 'CV' :
+                   card.querySelector('.Certification')?.getAttribute('data-type') === 'Certification' ? 'certificate' : 'other') :
                   card.querySelector('.doc-icon i').className.includes('file-word') ? 'cover-letter' :
                   card.querySelector('.doc-icon i').className.includes('file-certificate') ? 'certificate' :
                   card.querySelector('.doc-icon i').className.includes('file-image') ? 'portfolio' : 'other',
@@ -42,10 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Filter by type
             const filteredDocs = documents.filter(doc => {
                 if (type === 'Resumes') return doc.type === 'resume';
-                if (type === 'Cover Letters') return doc.type === 'cover-letter';
+                if (type === 'Cover Letters') return doc.type === 'CV';
                 if (type === 'Certificates') return doc.type === 'certificate';
-                if (type === 'Portfolio') return doc.type === 'portfolio';
-                if (type === 'References') return doc.type === 'reference';
+                if (type === 'Pdfs') return doc.type === 'pdf';
+                if (type === 'Text Files') return doc.type === 'reference';
+                // if (type === 'Portfolio') return doc.type === 'portfolio';
+                // if (type === 'References') return doc.type === 'reference';
                 return true;
             });
 
@@ -68,9 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <h3>No Documents Found</h3>
                 <p class="doc-empty-text">No documents match the selected filter</p>
-                <button class="doc-upload-btn" onclick="docOpenModal()">
-                    <i class="fas fa-plus"></i> Upload Document
-                </button>
             </div>
         `;
     }
@@ -109,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
             docNameInput.value = fileName.split('.')[0];
 
             // Auto-detect document type based on file name
-            if (fileName.toLowerCase().includes('resume')) {
-                docTypeSelect.value = 'resume';
+            if (fileName.toLowerCase().includes('m')) {
+                docTypeSelect.value = 'm';
             } else if (fileName.toLowerCase().includes('cover')) {
                 docTypeSelect.value = 'cover-letter';
             } else if (fileName.toLowerCase().includes('certif') || fileName.toLowerCase().includes('diploma')) {

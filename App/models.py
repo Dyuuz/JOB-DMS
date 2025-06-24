@@ -147,8 +147,8 @@ class UserProfile(models.Model):
     bio = models.TextField(max_length=255, blank=True, null=True)
     skills = models.ManyToManyField(Skill, related_name='skills', blank=True)
     portfolio = models.CharField(max_length=255, blank=True, null=True)
-    project = models.CharField(max_length=100, blank=True)
-    certifications = models.TextField(blank=True, null=True)
+    project = models.TextField(help_text="Enter certifications seperated by commas",null=True, blank=True)
+    certifications = models.TextField(help_text="Enter certifications seperated by commas", blank=True, null=True)
 
     def __str__(self):
         return self.user.full_name
@@ -270,6 +270,8 @@ class Document(models.Model):
     FILE_FORMAT = (
         ('pdf', 'pdf'),
         ('txt', 'txt'),
+        ('docx', 'docx'),
+        ('doc', 'doc'),
     )
     owner_user = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
     owner_company = models.ForeignKey(CompanyProfile, null=True, blank=True, on_delete=models.CASCADE, related_name='documents')
@@ -318,7 +320,8 @@ class Application(models.Model):
     experience = models.IntegerField(null=True, blank=True)
     current_salary = models.IntegerField(blank=True, null=True)
     expected_salary = models.IntegerField(blank=True, null=True)
-    availability = models.CharField(max_length=255, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
 
     resume_viewed = models.BooleanField(default=False)
     profile_viewed = models.BooleanField(default=False)

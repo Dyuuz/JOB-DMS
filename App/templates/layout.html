@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token }}">
   <title>Job Application DMS</title>
   <link rel="stylesheet" href="{% static 'CSS/styles31.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/dashboard1.css' %}">
@@ -17,7 +18,7 @@
   <link rel="stylesheet" href="{% static 'CSS/JobsApplied32.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/edit-profile56.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/document32.css' %}">
-  <link rel="stylesheet" href="{% static 'CSS/applyjob.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/applyjob12.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/jobform90.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/workspace90.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/JobApplicants_View.css' %}">
@@ -254,12 +255,13 @@
     </main>
 
     <script src="{% static 'JS/script1.js' %}"></script>
+    <script src="{% static 'JS/apply_job.js' %}"></script>
     <script src="{% static 'JS/NavMenu34.js' %}"></script>
     <script src="{% static 'JS/loginReg.js' %}"></script>
     <script src="{% static 'JS/editprofile.js' %}"></script>
     <script src="{% static 'JS/jobsapplied13.js' %}"></script>
     <script src="{% static 'JS/jobapplication8.js' %}"></script>
-    <script src="{% static 'JS/document32.js' %}"></script>
+    <script src="{% static 'JS/document76.js' %}"></script>
     <script src="{% static 'JS/workspace.js' %}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

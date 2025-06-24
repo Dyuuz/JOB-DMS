@@ -2,13 +2,12 @@
 
 {% block dynamicpage %}
 <div class="apply-body">
-    <h2>Apply for {{ job.title }}</h2>
     <form method="post">
     {% csrf_token %}
     <div class="applynow-container">
         <!-- Job Header -->
         <div class="applynow-header">
-            <!-- <h1 class="applynow-job-title">Senior Frontend Developer</h1> -->
+            <h1 class="applynow-job-title">Apply for {{ job.title }}</h1>
             <div class="applynow-company">
                 <i class="fas fa-building"></i>
                 <span>{{ job.company.user.full_name }}</span>
@@ -73,8 +72,8 @@
                     </div>
 
                     <div class="applynow-form-group">
-                        <label for="applynow-portfolio" class="applynow-form-label">Availability</label>
-                        {{ form.availability }}
+                        <label for="applynow-portfolio" class="applynow-form-label">Pick Interview Dates</label>
+                        {{ form.start_date }} {{ form.end_date }}
                     </div>
 
                     <div class="applynow-form-group">
@@ -90,6 +89,7 @@
                     <div class="applynow-form-group">
                         <label for="applynow-portfolio" class="applynow-form-label">Portfolio/Website</label>
                         {{ form.portfolio }}
+                        <div id="suggestion-box" class="portfolio-box"></div>
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@
                     <div class="applynow-form-group">
                         <label for="applynow-cover-letter" class="applynow-form-label">Cover Letter</label>
                         {{ form.cover_letter }}
-                        <div id="suggestion-box" style="margin-top: 10px; color: gray;"></div>
+                        <div id="suggestion-box" class="suggestion-box"></div>
                     </div>
                 </div>
 
@@ -174,36 +174,7 @@
     </form>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const input = document.getElementById('id_cover_letter');
-        const suggestionBox = document.getElementById('suggestion-box');
-        let timeoutId = null;
 
-        if (input) {
-            input.addEventListener('input', function () {
-                suggestionBox.innerText = "Preparing suggestions...";
-
-                // Clear previous timer
-                clearTimeout(timeoutId);
-
-                // Set new debounce timer
-                timeoutId = setTimeout(() => {
-                    axios.get('/suggest-cover-letter', {
-                        params: { text: input.value }
-                    })
-                    .then(response => {
-                        suggestionBox.innerText = response.data.suggestion || "No suggestion found.";
-                    })
-                    .catch(error => {
-                        suggestionBox.innerText = "Error fetching suggestion.";
-                        console.error('Error fetching data:', error);
-                    });
-                }, 5000);  // Delay in milliseconds
-            });
-        } else {
-            alert('Cover letter field not found!');
-        }
-    });
     </script>
 
 </div>

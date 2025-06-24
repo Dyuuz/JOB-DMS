@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load custom_filters %}
 
 {% block dynamicpage %}
     {% if user_auth %}
@@ -67,7 +68,7 @@
                         <h3 class="sidebar-title">Core Tech</h3>
                         <div class="profile-field-group">
                             <div class="skills-list">
-                                {% for tech in company_role.core_tech %}
+                                {% for tech in company_role.core_tech|split:"," %}
                                 <span class="skill-tag">{{ tech }}</span>
                                 {% endfor %}
                             </div>
@@ -78,7 +79,10 @@
                         <h3 class="sidebar-title">Awards</h3>
                         <div class="profile-field-group">
                             <!-- <p class="profile-label">Highest Education Level</p> -->
-                            <p class="profile-value">{{ company_role.awards }}</p>
+                            {% for awards in company_role.awards|split:"," %}
+                                <span class="cert-tag">{{ awards }}</span>
+                            {% endfor %}
+                            <!-- <p class="profile-value">{{ company_role.awards }}</p> -->
                         </div>
                     </div>
 
@@ -86,7 +90,7 @@
                         <h3 class="sidebar-title">Certifications</h3>
                         <div class="profile-field-group">
                             <div class="certs-list">
-                                {% for certifications in company_role.certifications %}
+                                {% for certifications in company_role.certifications|split:"," %}
                                 <span class="cert-tag">{{ certifications }}</span>
                                 {% endfor %}
                                 <!-- <span class="cert-tag">NN/g UX Certification</span>
@@ -268,9 +272,12 @@
                         <h3 class="sidebar-title">Projects</h3>
                         <div class="profile-field-group">
                             <div class="skills-list">
-                                <span class="skill-tag">TechScape</span>
+                                {% for project in user_profile.project|split:"," %}
+                                <span class="cert-tag">{{ project }}</span>
+                                {% endfor %}
+                                <!-- <span class="skill-tag">TechScape</span>
                                 <span class="skill-tag">Data Vault</span>
-                                <span class="skill-tag">JOB DMS</span>
+                                <span class="skill-tag">JOB DMS</span> -->
                             </div>
                         </div>
                     </div>
@@ -279,9 +286,12 @@
                         <h3 class="sidebar-title">Certifications</h3>
                         <div class="profile-field-group">
                             <div class="certs-list">
-                                <span class="cert-tag">NN/g UX Certification</span>
+                                {% for certifications in user_profile.certifications|split:"," %}
+                                <span class="cert-tag">{{ certifications }}</span>
+                                {% endfor %}
+                                <!-- <span class="cert-tag">NN/g UX Certification</span>
                                 <span class="cert-tag">Google UX Design</span>
-                                <span class="cert-tag">Adobe Certified Expert</span>
+                                <span class="cert-tag">Adobe Certified Expert</span> -->
                             </div>
                         </div>
                     </div>

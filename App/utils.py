@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 import google.generativeai as genai
 import time
 from dotenv import load_dotenv
+from App.models import UserProfile
 import os
 load_dotenv()
 
@@ -14,6 +15,7 @@ load_dotenv()
 def suggest_cover_letter(request):
     user = request.user
     typed_text = request.GET.get('text', '')
+    job_title = request.GET.get('job_title', '')
 
     api_key = os.getenv('API_KEY')
     genai.configure(api_key=api_key)
@@ -21,11 +23,20 @@ def suggest_cover_letter(request):
     model = genai.GenerativeModel('gemini-1.5-flash-latest')
 
     # Generate content (e.g. for a cover letter)
-    suggestion = f"Based on this profile provided, use the {typed_text}, {user.userprofile.work_experience}years of experience, i have work experience in this company {user.userprofile.company_name} with the job role - {user.userprofile.job_description} and this is about me {user.userprofile.bio}, with name as {user.full_name} and email as {user.email}, use a professional tone to write a cover letter body for the job application. The cover letter should be concise, engaging, and tailored to the user's details. It should highlight my skills, about me and experiences relevant to the position."
+    suggestion = f"Based on this profile provided, use the {typed_text}, {user.userprofile.work_experience}years of experience, i have work experience in this company {user.userprofile.company_name} with the job role - {user.userprofile.job_description}, job title as {job_title} and this is about me {user.userprofile.bio}, with name as {user.full_name} and email as {user.email}, use a professional tone to write a cover letter body for the job application. The cover letter should be concise, engaging, and tailored to the user's details and the role. It should highlight my skills, about me and experiences relevant to the position. Neglect this part[advertised [mention where you saw the advertisemente.g., on LinkedIn, company website]. Make it brief"
     response = model.generate_content(suggestion)
-    print(response)
+    # print(response)
     time.sleep(5)
     return JsonResponse({'suggestion': response.text})
+
+@login_required
+def suggest_portfolio(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+    data = user_profile.portfolio
+
+    time.sleep(2)
+    return JsonResponse({'suggestion': data})
 
 def get_company_name(full_name):
     """

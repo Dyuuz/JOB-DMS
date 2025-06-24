@@ -11,3 +11,7 @@ def divide_by(value, arg):
         return math.floor(value / arg)
     except (ValueError, ZeroDivisionError):
         return None
+
+@register.filter(name='split')
+def split(value, delimiter=','):
+    return value.split(delimiter)
