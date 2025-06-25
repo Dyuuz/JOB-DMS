@@ -49,7 +49,7 @@
                         <a href="{{document.download_url}}" download="{{ document.name }}.{{ document.file_format }}"><button class="doc-action-btn doc-download" title="Download">
                             <i class="fas fa-download"></i></a>
                         </button>
-                        <button class="doc-action-btn doc-delete" onclick="deleteDoc('{{ document.id }}')" title="Delete">
+                        <button class="doc-action-btn doc-delete" onclick="showDeleteDialog('{{ document.name }}','{{ document.id }}')" title="Delete">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -72,7 +72,7 @@
         </div>
     </div>
 </div>
-<!-- Can be placed anywhere in your HTML -->
+    <!-- Can be placed anywhere in your HTML -->
     <div class="dialog-overlay" id="deleteDialog">
         <div class="dialog-container">
             <div class="dialog-icon">
@@ -91,38 +91,8 @@
         </div>
     </div>
 
-    <!-- Example usage in your page -->
-    <button onclick="showDeleteDialog('Annual Report 2023.pdf')">Delete Document</button>
 
-<script>
-// Dialog control functions
-function showDeleteDialog(filename) {
-    const dialog = document.getElementById('deleteDialog');
-    const message = document.getElementById('dialogMessage');
 
-    message.textContent = `"${filename}" will be permanently deleted. This action cannot be undone.`;
-    dialog.classList.add('active');
-}
-
-function hideDeleteDialog() {
-    document.getElementById('deleteDialog').classList.remove('active');
-}
-
-// Event listeners
-document.getElementById('cancelBtn').addEventListener('click', hideDeleteDialog);
-document.getElementById('confirmBtn').addEventListener('click', function() {
-    // Add your delete logic here
-    alert('Document deleted!');
-    hideDeleteDialog();
-});
-
-// Close when clicking outside dialog
-document.getElementById('deleteDialog').addEventListener('click', function(e) {
-    if (e.target === this) {
-        hideDeleteDialog();
-    }
-});
-</script>
 <script>
     $(document).ready(function() {
         const msg = document.querySelectorAll(".msg-auth");

@@ -1,3 +1,37 @@
+
+
+// Dialog control functions
+function showDeleteDialog(filename, documentId) {
+    const dialog = document.getElementById('deleteDialog');
+    const message = document.getElementById('dialogMessage');
+
+    message.textContent = `"${filename}" will be permanently deleted. This action cannot be undone.`;
+    dialog.classList.add('active');
+
+    // Store the document ID for later use
+    dialog.setAttribute('data-document-id', documentId);
+}
+
+function hideDeleteDialog() {
+    document.getElementById('deleteDialog').classList.remove('active');
+}
+
+// Event listeners
+document.getElementById('cancelBtn').addEventListener('click', hideDeleteDialog);
+document.getElementById('confirmBtn').addEventListener('click', function() {
+    const documentId = document.getElementById('deleteDialog').getAttribute('data-document-id');
+    // Add your delete logic here
+    deleteDoc(documentId)
+    hideDeleteDialog();
+});
+
+// Close when clicking outside dialog
+document.getElementById('deleteDialog').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideDeleteDialog();
+    }
+});
+
 function deleteDoc(id) {
     const csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const docdelete = document.querySelector(`.doc-name[data-id='${id}']`);
@@ -15,7 +49,14 @@ function deleteDoc(id) {
         docCard.style.display = 'none';
     })
     .catch(error => {
-        alert(error);
+        // alert(error.response.data.error);
+        const errorMsg = error.response.data.error;
+        if (errorMsg.includes('File too large')) {
+            errorDisplay.innerHTML = `
+                File exceeds size limit.
+                <a href="/help#file-size" class="error-link">Learn more</a>
+            `;
+        }
     });
 }
 

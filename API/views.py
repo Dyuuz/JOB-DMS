@@ -39,4 +39,4 @@ class DocumentDeleteAPIView(DestroyAPIView):
             return Response({'error': 'Document not found'}, status=status.HTTP_404_NOT_FOUND)
 
         except Exception as e:
-            return Response({'error': f"Error {e}"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': f"Error string: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)

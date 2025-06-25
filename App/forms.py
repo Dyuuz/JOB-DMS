@@ -201,12 +201,20 @@ class JobForm(forms.ModelForm):
             super().__init__(*args, **kwargs)
 
 class DocumentForm(forms.ModelForm):
+    file = forms.FileField(
+        label='Select a file',
+        widget=forms.ClearableFileInput(attrs={
+            'class': 'file-input',
+            'required': 'required',
+        }),
+        help_text='Max file size: 5MB'
+    )
     class Meta:
         model = Document
         fields = ['name', 'file_type', 'file']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'doc-form-input'}),
-            'file_type': forms.Select(attrs={'class': 'doc-form-input'}),
+            'name': forms.TextInput(attrs={'class': 'doc-form-input', 'required': 'required'}),
+            'file_type': forms.Select(attrs={'class': 'doc-form-input', 'required': 'required'}),
         }
 
     def __init__(self, *args, **kwargs):

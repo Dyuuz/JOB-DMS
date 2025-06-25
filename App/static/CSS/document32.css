@@ -386,121 +386,133 @@
         justify-content: center;
     }
 }
+
+:root {
+  --primary: #4361ee;
+  --danger: #f72585;
+  --gray-100: #f8f9fa;
+  --gray-800: #343a40;
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Base Overlay Styles */
 .dialog-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.2s ease-out;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
 }
 
+.dialog-overlay.active {
+  display: flex;
+}
+
+/* Dialog Container */
 .dialog-container {
-    background: white;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
-    padding: 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    animation: slideUp 0.3s ease-out;
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: min(400px, 90vw);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s ease-out;
+  margin: auto;
 }
 
-.dialog-icon {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-
-.dialog-icon svg {
-    width: 48px;
-    height: 48px;
-    color: var(--danger);
-    animation: pulse 0.5s ease-in-out;
-}
-
+/* Responsive Typography */
 .dialog-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    color: var(--gray-800);
+  font-size: clamp(1.1rem, 4vw, 1.25rem);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--gray-800);
 }
 
 .dialog-message {
-    color: var(--gray-800);
-    text-align: center;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: var(--gray-800);
+  text-align: center;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.5;
 }
 
+/* Icon Scaling */
+.dialog-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(0.75rem, 3vw, 1rem);
+}
+
+.dialog-icon svg {
+  width: clamp(36px, 10vw, 48px);
+  height: clamp(36px, 10vw, 48px);
+  color: var(--danger);
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* Button Adaptations */
 .dialog-actions {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 0.75rem);
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn {
-    padding: 0.6rem 1.25rem;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-    font-size: 0.9rem;
+  padding: clamp(0.5rem, 2vw, 0.6rem) clamp(1rem, 3vw, 1.25rem);
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: clamp(0.85rem, 3vw, 0.9rem);
+  flex: 1 1 45%;
+  min-width: 120px;
+  max-width: 100%;
 }
 
-.btn-danger {
-    background-color: var(--danger);
-    color: white;
+/* Mobile Landscape Adaptation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .dialog-container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 }
 
-.btn-danger:hover {
-    background-color: #e51775;
-    transform: translateY(-1px);
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .dialog-overlay,
+  .dialog-container,
+  .dialog-icon svg {
+    animation: none;
+  }
 }
 
-.btn-secondary {
-    background-color: var(--gray-100);
-    color: var(--gray-800);
-}
-
-.btn-secondary:hover {
-    background-color: #e9ecef;
-}
-
-/* Hide by default */
-.dialog-overlay {
-    display: none;
-}
-
-/* Show when active */
-.dialog-overlay.active {
-    display: flex;
-}
-
+/* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
