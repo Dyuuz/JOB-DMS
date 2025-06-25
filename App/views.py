@@ -430,29 +430,6 @@ class DocumentListView(UserPermissionMixin, View):
             'has_documents': user_documents.exists()
         })
 
-
-class DocumentDeleteView(LoginRequiredMixin, DeleteView):
-    model = Document
-    # template_name = 'documents/confirm_delete.html'
-    success_url = reverse_lazy('documents:list')
-
-    def get_object(self, queryset=None):
-        obj = get_object_or_404(Document, pk=self.kwargs['pk'])
-        # Verify ownership
-        if hasattr(self.request.user, 'companyprofile'):
-            if obj.owner_company != self.request.user.companyprofile:
-                raise PermissionDenied
-        else:
-            if obj.owner_user != self.request.user:
-                raise PermissionDenied
-        return obj
-
-    def delete(self, request, *args, **kwargs):
-        response = super().delete(request, *args, **kwargs)
-        messages.success(request, "Document deleted successfully!")
-        return response
-
-
 class UserProfileUpdateView(UpdateView):
     """
     This view handles the profile update for both job seekers and companies
@@ -673,13 +650,3 @@ class EmploymentUpdateView(UpdateView):
     def form_invalid(self, form):
         messages.error(self.request, "Please correct the errors below.")
         return super().form_invalid(form)
-
-class DocumentDeleteView(View):
-    def post(self, request, *args, **kwargs):
-        doc_id = self.kwargs.get('id')
-        try:
-            document = Document.objects.get(id=doc_id)
-            document.delete()
-            return JsonResponse({'success': True})
-        except Document.DoesNotExist:
-            return JsonResponse({'error': 'Document not found'}, status=404)

@@ -42,7 +42,6 @@ urlpatterns = [
     path('suggest-experience/', suggest_experience, name='suggest-experience'),
     path('documents', DocumentListView.as_view(), name='documents'),
     path('documents/upload', DocumentUploadView.as_view(), name='document-upload'),
-    path('documents/<int:pk>/delete', DocumentUploadView.as_view(), name='document-delete'),
     path('profile/update', UserProfileUpdateView.as_view(), name='profile-update'),
     path('profile', ProfileView.as_view(), name='profile'),
     path('settings', SettingsView.as_view(), name='settings'),

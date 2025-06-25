@@ -23,7 +23,7 @@
             <!-- Document Card 1 -->
             {% if has_documents %}
                 {% for document in user_documents %}
-                <div class="doc-card">
+                <div class="doc-card" data-id="{{ document.pk }}">
                     <div class="doc-icon">
                         {% if document.file_format == 'txt' %}
                         <i class="fas fa-file-alt"></i>
@@ -68,30 +68,60 @@
                     </button></a>
                 </div>
             {% endif %}
+
         </div>
     </div>
 </div>
-<script>
-    function deleteDoc(id) {
-        const csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        docdelete = document.querySelector(`.doc-name[data-id='${id}']`);
-        //const docdelete = document.querySelector('.doc-name');
-        //const dat = docdelete.dataset.id;
-        alert(docdelete.textContent);
+<!-- Can be placed anywhere in your HTML -->
+    <div class="dialog-overlay" id="deleteDialog">
+        <div class="dialog-container">
+            <div class="dialog-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+            </div>
+            <h3 class="dialog-title">Delete Document?</h3>
+            <p class="dialog-message" id="dialogMessage">
+                <!-- Message will be inserted via JavaScript -->
+            </p>
+            <div class="dialog-actions">
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                <button class="btn btn-danger" id="confirmBtn">Delete</button>
+            </div>
+        </div>
+    </div>
 
-        axios.delete(`/document/${id}/delete/`, {
-        headers: {
-            'X-CSRFToken': csrf_token
-        }
-        })
-        .then(response => {
-            alert(response.data.success);
-            docdelete.style.display = 'none';
-        })
-        .catch(error => {
-            alert(error);
-        });
+    <!-- Example usage in your page -->
+    <button onclick="showDeleteDialog('Annual Report 2023.pdf')">Delete Document</button>
+
+<script>
+// Dialog control functions
+function showDeleteDialog(filename) {
+    const dialog = document.getElementById('deleteDialog');
+    const message = document.getElementById('dialogMessage');
+
+    message.textContent = `"${filename}" will be permanently deleted. This action cannot be undone.`;
+    dialog.classList.add('active');
+}
+
+function hideDeleteDialog() {
+    document.getElementById('deleteDialog').classList.remove('active');
+}
+
+// Event listeners
+document.getElementById('cancelBtn').addEventListener('click', hideDeleteDialog);
+document.getElementById('confirmBtn').addEventListener('click', function() {
+    // Add your delete logic here
+    alert('Document deleted!');
+    hideDeleteDialog();
+});
+
+// Close when clicking outside dialog
+document.getElementById('deleteDialog').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideDeleteDialog();
     }
+});
 </script>
 <script>
     $(document).ready(function() {

@@ -1,4 +1,23 @@
+function deleteDoc(id) {
+    const csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const docdelete = document.querySelector(`.doc-name[data-id='${id}']`);
+    const docCard = document.querySelector(`.doc-card[data-id='${id}']`);
+    //const docdelete = document.querySelector('.doc-name');
+    //const dat = docdelete.dataset.id;
+    //alert(docdelete.textContent);
 
+    axios.delete(`/api/document/${id}/delete/`, {
+    headers: {
+        'X-CSRFToken': csrf_token
+    }
+    })
+    .then(response => {
+        docCard.style.display = 'none';
+    })
+    .catch(error => {
+        alert(error);
+    });
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
