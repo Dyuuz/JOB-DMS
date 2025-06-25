@@ -2,7 +2,7 @@
 
 {% block dynamicpage %}
 <div class="apply-body">
-    <form method="post">
+    <form method="post" autocomplete="off">
     {% csrf_token %}
     <div class="applynow-container">
         <!-- Job Header -->
@@ -45,7 +45,7 @@
                         {{ form.email }}
                         {{ form.email.errors }}
                     </div>
-
+                    <input type="text" name="fake-phone" style="display:none" autocomplete="off">
                     <div class="applynow-form-group">
                         <label for="applynow-phone" class="applynow-form-label">{{form.phone.label}} <span>*</span></label>
                         {{ form.phone }}

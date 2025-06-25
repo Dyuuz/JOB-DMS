@@ -12,7 +12,8 @@ from App.views import (
     WorkSpaceView, DashboardView,
     WorkforceView, JobDetailView, ApplyJobView,
     JobApplicantView, JobApplicantFormView,ResumeView,
-    ApplicantProfileView, JobFormView, EmploymentUpdateView)
+    ApplicantProfileView, JobFormView, EmploymentUpdateView,
+    )
 from .utils import suggest_cover_letter, suggest_portfolio, suggest_phone, suggest_experience
 from django.urls import include
 

@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render, HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -672,3 +673,13 @@ class EmploymentUpdateView(UpdateView):
     def form_invalid(self, form):
         messages.error(self.request, "Please correct the errors below.")
         return super().form_invalid(form)
+
+class DocumentDeleteView(View):
+    def post(self, request, *args, **kwargs):
+        doc_id = self.kwargs.get('id')
+        try:
+            document = Document.objects.get(id=doc_id)
+            document.delete()
+            return JsonResponse({'success': True})
+        except Document.DoesNotExist:
+            return JsonResponse({'error': 'Document not found'}, status=404)

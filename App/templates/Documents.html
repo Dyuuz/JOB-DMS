@@ -49,7 +49,7 @@
                         <a href="{{document.download_url}}" download="{{ document.name }}.{{ document.file_format }}"><button class="doc-action-btn doc-download" title="Download">
                             <i class="fas fa-download"></i></a>
                         </button>
-                        <button class="doc-action-btn doc-delete" onclick="deleteDoc('{{ document.pk }}')" title="Delete">
+                        <button class="doc-action-btn doc-delete" onclick="deleteDoc('{{ document.id }}')" title="Delete">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -71,6 +71,28 @@
         </div>
     </div>
 </div>
+<script>
+    function deleteDoc(id) {
+        const csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        docdelete = document.querySelector(`.doc-name[data-id='${id}']`);
+        //const docdelete = document.querySelector('.doc-name');
+        //const dat = docdelete.dataset.id;
+        alert(docdelete.textContent);
+
+        axios.delete(`/document/${id}/delete/`, {
+        headers: {
+            'X-CSRFToken': csrf_token
+        }
+        })
+        .then(response => {
+            alert(response.data.success);
+            docdelete.style.display = 'none';
+        })
+        .catch(error => {
+            alert(error);
+        });
+    }
+</script>
 <script>
     $(document).ready(function() {
         const msg = document.querySelectorAll(".msg-auth");

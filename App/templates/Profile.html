@@ -410,6 +410,22 @@
 
                     </div>
 
+                    <div class="floating-share" onclick="toggleSharePopup()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M13 1a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM4.21 8.09l7.58 3.82a.5.5 0 0 0 .42-.91L4.63 7.18a.5.5 0 1 0-.42.91zm0-1.18l7.58-3.82a.5.5 0 1 0-.42-.91L4.21 5.91a.5.5 0 0 0 .42.91z"/>
+                        </svg>
+                        </div>
+
+                        <!-- Share Popup -->
+                        <div class="share-popup" id="sharePopup">
+                        <div class="share-popup-content">
+                            <p>Share this:</p>
+                            <button onclick="copyToClipboard()">Copy Link</button>
+                            <button onclick="window.open('https://twitter.com/intent/tweet?text=Check%20this%20out!', '_blank')">Tweet</button>
+                            <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank')">Facebook</button>
+                        </div>
+                    </div>
+
                     <!-- <div class="profile-section">
                         <h2 class="sidebar-title">Resume</h2>
                         <a href="#" class="resume-download">
@@ -420,6 +436,19 @@
                 </div>
             </div>
         </div>
+        <!-- JavaScript -->
+        <script>
+        function toggleSharePopup() {
+            const popup = document.getElementById("sharePopup");
+            popup.style.display = popup.style.display === "block" ? "none" : "block";
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+            alert("Link copied to clipboard!");
+            });
+        }
+        </script>
         <script>
             $(document).ready(function() {
                 const msg = document.querySelectorAll(".msg-auth");

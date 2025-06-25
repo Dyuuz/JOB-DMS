@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // alert(suggestionContent);
 
         // if (inputlength > 2 && suggestionContent !== "https://github.com/Dyuuz" && portfolio.value !== "https://github.com/Dyuuz") {
-        if (inputlength  > 2 ) {
+        if (inputlength  >= 2 ) {
             suggestionBox.style.display = 'block';
             suggestionBox.innerText = "Preparing data...";
 

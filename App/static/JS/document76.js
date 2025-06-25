@@ -1,9 +1,4 @@
-function deleteDoc(id) {
-        const csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        const docdelete = document.querySelector(`.doc-name[data-id='${id}']`);
-        alert(docdelete.value);
 
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
