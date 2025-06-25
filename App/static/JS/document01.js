@@ -1,4 +1,52 @@
+// DOM Elements
+const globalModal = document.getElementById('globalModal');
+const modalMessage = document.getElementById('modalMessage');
+const modalIcon = document.getElementById('modalIcon');
+const modalClose = document.getElementById('modalClose');
 
+// Show alert function
+function showGlobalAlert(message, type = 'info') {
+    // Set message
+    modalMessage.textContent = message;
+
+    // Set icon type
+    modalIcon.className = 'modal-icon-global';
+    if (type === 'success') {
+        modalIcon.classList.add('modal-icon-success');
+        modalIcon.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        `;
+    } else if (type === 'error') {
+        modalIcon.classList.add('modal-icon-error');
+        modalIcon.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        `;
+    } else {
+        modalIcon.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+            </svg>
+        `;
+    }
+
+    // Show modal
+    globalModal.classList.add('is-active');
+}
+
+// Close modal
+function closeGlobalModal() {
+    globalModal.classList.remove('is-active');
+}
+
+// Event listeners
+modalClose.addEventListener('click', closeGlobalModal);
+globalModal.addEventListener('click', (e) => {
+    if (e.target === globalModal) closeGlobalModal();
+});
 
 // Dialog control functions
 function showDeleteDialog(filename, documentId) {
@@ -49,13 +97,14 @@ function deleteDoc(id) {
         docCard.style.display = 'none';
     })
     .catch(error => {
-        // alert(error.response.data.error);
         const errorMsg = error.response.data.error;
-        if (errorMsg.includes('File too large')) {
-            errorDisplay.innerHTML = `
-                File exceeds size limit.
-                <a href="/help#file-size" class="error-link">Learn more</a>
-            `;
+        if (errorMsg.includes('Cannot delete some instances of model')) {
+            const message = 'This document cannot be deleted because it is associated with your job records.';
+            showGlobalAlert(message, type = 'error')
+        }
+        else{
+            const message = 'An error occurred while deleting the document. Try again later.';
+            showGlobalAlert(message, type = 'error')
         }
     });
 }

@@ -16,17 +16,16 @@ class DocumentDeleteAPIView(DestroyAPIView):
         # Verify ownership
         if hasattr(self.request.user, 'companyprofile'):
             if obj.owner_company != self.request.user.companyprofile:
-                raise PermissionDenied
+                return False
         else:
             if obj.owner_user != self.request.user:
-                raise PermissionDenied
+                return False
         return True
 
     def delete(self, request, id):
         try:
             document = Document.objects.get(id=id)
             verify = self.verify_member(document)
-            print(verify)
 
             if verify:
                 document.delete()

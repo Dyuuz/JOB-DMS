@@ -341,7 +341,7 @@
 }
 
 .job-board-header {
-    background: linear-gradient(135deg, var(--primary-color), #3a0ca3);
+    background: linear-gradient(135deg, var(--primary-color), #0d0f5ec4);
     color: white;
     padding: 3rem 1.5rem;
     text-align: center;

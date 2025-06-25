@@ -382,8 +382,8 @@
 
 .floating-share {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 40px;
+  right: 40px;
   background: linear-gradient(135deg, #17c426, #4f46e5);
   color: white;
   width: 48px;
@@ -398,6 +398,11 @@
   z-index: 1000;
 }
 
+.floating-share i {
+    color: white;
+  font-size: 17px;
+  transition: transform 0.3s ease;
+}
 .floating-share:hover {
   transform: scale(1.1);
   background: linear-gradient(135deg, #149660, #15911b);
