@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const suggestionBox = document.querySelector('.experience-box');
         const suggestionContent = suggestionBox.innerText;
 
-        if (inputlength > 2 && suggestionBox.innerText !== suggestionContent) {
+        if (inputlength >= 1) {
             suggestionBox.style.display = 'block';
             suggestionBox.innerText = "Preparing data...";
 
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const suggestionBox = document.querySelector('.phone-box');
         const suggestionContent = suggestionBox.innerText;
 
-        if (inputlength > 2 && suggestionBox.innerText !== suggestionContent) {
+        if (inputlength > 1 ) {
             suggestionBox.style.display = 'block';
             suggestionBox.innerText = "Preparing data...";
 

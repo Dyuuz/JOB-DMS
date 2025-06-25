@@ -34,19 +34,23 @@
 
                     <div class="applynow-form-grid">
                         <div class="applynow-form-group">
-                            <label for="applynow-first-name" class="applynow-form-label">Full Name <span>*</span></label>
+                            <label for="applynow-first-name" class="applynow-form-label">{{form.full_name.label}} <span>*</span></label>
                              {{ form.full_name }}
+                             {{ form.full_name.errors }}
                         </div>
                     </div>
 
                     <div class="applynow-form-group">
-                        <label for="applynow-email" class="applynow-form-label">Email Address <span>*</span></label>
+                        <label for="applynow-email" class="applynow-form-label">{{form.email.label}} <span>*</span></label>
                         {{ form.email }}
+                        {{ form.email.errors }}
                     </div>
 
                     <div class="applynow-form-group">
-                        <label for="applynow-phone" class="applynow-form-label">Phone Number</label>
+                        <label for="applynow-phone" class="applynow-form-label">{{form.phone.label}} <span>*</span></label>
                         {{ form.phone }}
+                        {{ form.phone.errors }}
+                        <div id="suggestion-box" class="phone-box"></div>
                     </div>
                 </div>
 
@@ -67,28 +71,35 @@
                     </div> -->
 
                     <div class="applynow-form-group">
-                        <label for="applynow-portfolio" class="applynow-form-label">Experience</label>
+                        <label for="applynow-portfolio" class="applynow-form-label">{{ form.experience.label }} <span>*</span></label>
                         {{ form.experience }}
+                        {{ form.experience.errors }}
+                        <div id="suggestion-box" class="experience-box"></div>
                     </div>
 
                     <div class="applynow-form-group">
-                        <label for="applynow-portfolio" class="applynow-form-label">Pick Interview Dates</label>
+                        <label for="applynow-portfolio" class="applynow-form-label">Pick Interview Dates <span>*</span></label>
                         {{ form.start_date }} {{ form.end_date }}
+                        {{ form.start_date.errors }}
+                        {{ form.end_date.errors }}
                     </div>
 
                     <div class="applynow-form-group">
-                        <label for="applynow-portfolio" class="applynow-form-label">Current Salary in {{ job.currency }}</label>
+                        <label for="applynow-portfolio" class="applynow-form-label">Current Salary in {{ job.currency }} <span>*</span></label>
                         {{ form.current_salary }}
+                        {{ form.current_salary.errors }}
                     </div>
 
                     <div class="applynow-form-group">
-                        <label for="applynow-portfolio" class="applynow-form-label">Expected Salary in {{ job.currency }}</label>
+                        <label for="applynow-portfolio" class="applynow-form-label">Expected Salary in {{ job.currency }} <span>*</span></label>
                         {{ form.expected_salary }}
+                        {{ form.expected_salary.errors }}
                     </div>
 
                     <div class="applynow-form-group">
-                        <label for="applynow-portfolio" class="applynow-form-label">Portfolio/Website</label>
+                        <label for="applynow-portfolio" class="applynow-form-label">Portfolio/Website <span>*</span></label>
                         {{ form.portfolio }}
+                        {{ form.portfolio.errors }}
                         <div id="suggestion-box" class="portfolio-box"></div>
                     </div>
                 </div>
@@ -102,6 +113,7 @@
                     <div class="applynow-form-group">
                         <label for="applynow-resume" class="applynow-form-label">Resume/CV <span>*</span></label>
                         {{ form.resume }}
+                        {{ form.resume.errors }}
                         <!-- <div class="applynow-file-upload" onclick="document.getElementById('applynow-resume').click()">
                             <i class="fas fa-cloud-upload-alt"></i>
                             <div class="applynow-file-text">Click to upload or drag and drop</div>
@@ -111,8 +123,9 @@
                     </div>
 
                     <div class="applynow-form-group">
-                        <label for="applynow-cover-letter" class="applynow-form-label">Cover Letter</label>
+                        <label for="applynow-cover-letter" class="applynow-form-label">Cover Letter <span>*</span></label>
                         {{ form.cover_letter }}
+                        {{ form.cover_letter.errors }}
                         <div id="suggestion-box" class="suggestion-box"></div>
                     </div>
                 </div>

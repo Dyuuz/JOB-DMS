@@ -288,7 +288,7 @@ class ApplicationForm(forms.ModelForm):
 
         widgets = {
             'portfolio': forms.TextInput(attrs={'id': 'id_portfolio','class': 'applynow-form-control', 'placeholder': 'Enter site link', 'autocomplete': 'off', 'required': 'required'}),
-            'phone': forms.TextInput(attrs={'id': 'id_phone','class': 'applynow-form-control', 'placeholder': 'e.g. +2348012345678', 'autocomplete': 'phone', 'required': 'required'}),
+            'phone': forms.TextInput(attrs={'id': 'id_phone','class': 'applynow-form-control', 'placeholder': 'e.g. +2348012345678', 'autocomplete': 'off', 'required': 'required'}),
             'start_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select start date', 'required': 'required'}),
             'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'input-field', 'placeholder': 'Select end date', 'required': 'required'}),
             'current_salary': forms.NumberInput(attrs={'class': 'applynow-form-control', 'placeholder': 'Enter salary', 'required': 'required'}),
