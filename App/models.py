@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Custom User model with roles for job seekers and companies
 class CustomUser(AbstractUser):
@@ -188,9 +189,9 @@ class Job(models.Model):
         ('Contract', 'Contract'),
     )
     EXPERIENCE_LEVEL= (
-        ('Entry Level', 'Entry Level'),
-        ('Mid Level', 'Mid Level'),
-        ('Senior Level', 'Senior Level'),
+        ('Entry', 'Entry'),
+        ('Mid', 'Mid'),
+        ('Senior', 'Senior'),
         ('Expert', 'Expert'),
     )
     WORK_MODE = (
@@ -310,7 +311,7 @@ class Application(models.Model):
     submitted_at = models.DateTimeField(auto_now_add=True)
 
     full_name = models.CharField(max_length=255, blank=True)
-    phone = models.CharField(max_length=20, blank=True)
+    phone = PhoneNumberField(null=True, blank=True)
     email = models.EmailField(blank=True)
 
     portfolio = models.CharField(max_length=255, blank=True)

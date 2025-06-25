@@ -94,7 +94,7 @@
 }
 
 .trackmyjobs-stat-card {
-    background: white;
+    background: linear-gradient(135deg, rgba(5, 53, 16, 0.651), #061d61);
     border-radius: var(--border-radius);
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
@@ -108,7 +108,7 @@
 
 .trackmyjobs-stat-title {
     font-size: 0.875rem;
-    color: var(--gray-600);
+    color: white;
     font-weight: 500;
 }
 
@@ -145,11 +145,12 @@
     font-size: 1.75rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
+    color: white;
 }
 
 .trackmyjobs-stat-change {
     font-size: 0.875rem;
-    color: var(--gray-600);
+    color: rgba(255, 255, 255, 0.671);
     display: flex;
     align-items: center;
     gap: 0.25rem;

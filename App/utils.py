@@ -35,7 +35,25 @@ def suggest_portfolio(request):
     user_profile = UserProfile.objects.get(user=user)
     data = user_profile.portfolio
 
-    time.sleep(2)
+    # time.sleep(2)
+    return JsonResponse({'suggestion': data})
+
+@login_required
+def suggest_phone(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+    data = user_profile.phone
+
+    # time.sleep(2)
+    return JsonResponse({'suggestion': data})
+
+@login_required
+def suggest_experience(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+    data = user_profile.work_experience
+
+    # time.sleep(2)
     return JsonResponse({'suggestion': data})
 
 def get_company_name(full_name):

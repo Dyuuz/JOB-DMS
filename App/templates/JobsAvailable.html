@@ -5,7 +5,7 @@
 
 {% block dynamicpage %}
 <div class="jobs-avail-body">
-    <div class="jb-container">
+    <!-- <div class="jb-container">
         <header class="jb-header">
             <h1 class="jb-title"><i class="fas fa-briefcase"></i> Available Jobs</h1>
             <p class="jb-subtitle">Browse and apply to exciting opportunities from top companies around the world</p>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="jb-listings">
-            <!-- Job Card 1 -->
+            <!== Job Card 1 ==>
             {% for job in jobs %}
             <div class="jb-card">
                 <div class="jb-card-header">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="jb-skills">
+                <!== <div class="jb-skills">
                     <span class="jb-skill-tag">React</span>
                     <span class="jb-skill-tag">TypeScript</span>
                     <span class="jb-skill-tag">Redux</span>
@@ -83,255 +83,140 @@
                     <span class="jb-skill-tag">Flask</span>
                     <span class="jb-skill-tag">NextJs</span>
                     <span class="jb-skill-tag">Frappe</span>
-                </div> -->
+                </div> ==>
 
                 <a href="{% url 'job_details' pk=job.pk %}"><button class="jb-apply-btn" onclick="jbOpenApplyModal('{{job.title}}', '{{job.company.}}')">
                     <i class="fas fa-paper-plane"></i> Apply Now
                 </button></a>
             </div>
             {% endfor %}
-
-            <!-- Job Card 2 -->
-            <!-- <div class="jb-card">
-                <div class="jb-card-header">
-                    <div class="jb-company-logo">DS</div>
-                    <div class="jb-meta">
-                        <span class="jb-type">Full-time</span>
-                        <div class="posted">Posted 1 week ago</div>
-                    </div>
-                </div>
-                <h2 class="jb-position-title">Data Engineer</h2>
-                <div class="jb-company-name">DataSystems Inc.</div>
-
-                <div class="jb-details">
-                    <div class="jb-detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>New York, NY</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span>$110,000 - $140,000/year</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Full-time</span>
-                    </div>
-                </div>
-
-                <div class="jb-skills">
-                    <span class="jb-skill-tag">Python</span>
-                    <span class="jb-skill-tag">SQL</span>
-                    <span class="jb-skill-tag">Spark</span>
-                    <span class="jb-skill-tag">AWS</span>
-                </div>
-
-                <button class="jb-apply-btn" onclick="jbOpenApplyModal('Data Engineer', 'DataSystems Inc.')">
-                    <i class="fas fa-paper-plane"></i> Apply Now
-                </button>
-            </div>
-
-            <!== Job Card 3 ==>
-            <div class="jb-card">
-                <div class="jb-card-header">
-                    <div class="jb-company-logo">DH</div>
-                    <div class="jb-meta">
-                        <span class="jb-type">Remote</span>
-                        <div class="posted">Posted 3 days ago</div>
-                    </div>
-                </div>
-                <h2 class="jb-position-title">UX Designer</h2>
-                <div class="jb-company-name">DesignHub</div>
-
-                <div class="jb-details">
-                    <div class="jb-detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Remote</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span>$50 - $70/hour</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-clock"></i>
-                        <span>6-month contract</span>
-                    </div>
-                </div>
-
-                <div class="jb-skills">
-                    <span class="jb-skill-tag">Figma</span>
-                    <span class="jb-skill-tag">UI/UX</span>
-                    <span class="jb-skill-tag">Prototyping</span>
-                    <span class="jb-skill-tag">User Research</span>
-                </div>
-
-                <button class="jb-apply-btn" onclick="jbOpenApplyModal('UX Designer', 'DesignHub')">
-                    <i class="fas fa-paper-plane"></i> Apply Now
-                </button>
-            </div>
-
-            <!== Job Card 4 ==>
-            <div class="jb-card">
-                <div class="jb-card-header">
-                    <div class="jb-company-logo">CF</div>
-                    <div class="jb-meta">
-                        <span class="jb-type">Full-time</span>
-                        <div class="posted">Posted 5 days ago</div>
-                    </div>
-                </div>
-                <h2 class="jb-position-title">DevOps Engineer</h2>
-                <div class="jb-company-name">CloudForge</div>
-
-                <div class="jb-details">
-                    <div class="jb-detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Boston, MA (Hybrid)</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span>$130,000 - $160,000/year</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Full-time</span>
-                    </div>
-                </div>
-
-                <div class="jb-skills">
-                    <span class="jb-skill-tag">Kubernetes</span>
-                    <span class="jb-skill-tag">Docker</span>
-                    <span class="jb-skill-tag">Terraform</span>
-                    <span class="jb-skill-tag">CI/CD</span>
-                </div>
-
-                <button class="jb-apply-btn" onclick="jbOpenApplyModal('DevOps Engineer', 'CloudForge')">
-                    <i class="fas fa-paper-plane"></i> Apply Now
-                </button>
-            </div>
-            <!== Job Card 5 ==>
-            <div class="jb-card">
-                <div class="jb-card-header">
-                    <div class="jb-company-logo">CF</div>
-                    <div class="jb-meta">
-                        <span class="jb-type">Full-time</span>
-                        <div class="posted">Posted 5 days ago</div>
-                    </div>
-                </div>
-                <h2 class="jb-position-title">Backend Engineer</h2>
-                <div class="jb-company-name">CloudForge</div>
-
-                <div class="jb-details">
-                    <div class="jb-detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Boston, MA (Hybrid)</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span>$130,000 - $160,000/year</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Full-time</span>
-                    </div>
-                </div>
-
-                <div class="jb-skills">
-                    <span class="jb-skill-tag">Kubernetes</span>
-                    <span class="jb-skill-tag">Docker</span>
-                    <span class="jb-skill-tag">Terraform</span>
-                    <span class="jb-skill-tag">CI/CD</span>
-                </div>
-
-                <button class="jb-apply-btn" onclick="jbOpenApplyModal('DevOps Engineer', 'CloudForge')">
-                    <i class="fas fa-paper-plane"></i> Apply Now
-                </button>
-            </div>
-            <!== Job Card 6 ==>
-            <div class="jb-card">
-                <div class="jb-card-header">
-                    <div class="jb-company-logo">CF</div>
-                    <div class="jb-meta">
-                        <span class="jb-type">Full-time</span>
-                        <div class="posted">Posted 5 days ago</div>
-                    </div>
-                </div>
-                <h2 class="jb-position-title">Frontend Engineer</h2>
-                <div class="jb-company-name">CloudForge</div>
-
-                <div class="jb-details">
-                    <div class="jb-detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Boston, MA (Hybrid)</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span>$130,000 - $160,000/year</span>
-                    </div>
-                    <div class="jb-detail-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Full-time</span>
-                    </div>
-                </div>
-
-                <div class="jb-skills">
-                    <span class="jb-skill-tag">Kubernetes</span>
-                    <span class="jb-skill-tag">Docker</span>
-                    <span class="jb-skill-tag">Terraform</span>
-                    <span class="jb-skill-tag">CI/CD</span>
-                </div>
-
-                <button class="jb-apply-btn" onclick="jbOpenApplyModal('DevOps Engineer', 'CloudForge')">
-                    <i class="fas fa-paper-plane"></i> Apply Now
-                </button>
-            </div> -->
         </div>
+    </div> -->
+    <header class="job-board-header">
+        <h1 class="job-board-title">JOBDMS</h1>
+        <p class="job-board-subtitle">Click on any opportunity to apply instantly</p>
+    </header>
 
-        <!-- <div class="jb-pagination">
-            <button class="jb-page-btn"><i class="fas fa-chevron-left"></i></button>
-            <button class="jb-page-btn jb-active">1</button>
-            <button class="jb-page-btn">2</button>
-            <button class="jb-page-btn">3</button>
-            <button class="jb-page-btn"><i class="fas fa-chevron-right"></i></button>
-        </div> -->
+    <div class="job-filters">
+        <button class="job-filter active">All Jobs</button>
+        <button class="job-filter">Technology</button>
+        <button class="job-filter">Design</button>
+        <button class="job-filter">Marketing</button>
+        <button class="job-filter">Finance</button>
     </div>
 
-    <!-- Application Modal -->
-    <div class="jb-modal" id="jbApplyModal">
-        <div class="jb-modal-content">
-            <span class="jb-close-modal" onclick="jbCloseModal()">&times;</span>
-            <h2 id="jbModalJobTitle"></h2>
-            <p id="jbModalCompanyName" style="color: var(--jb-primary); margin-bottom: 1.5rem;"></p>
-
-            <form id="jbApplicationForm">
-                <div style="margin-bottom: 1.5rem;">
-                    <label for="jbFullName" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name</label>
-                    <input type="text" id="jbFullName" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);">
+    <div class="job-listings">
+        <div class="job-grid">
+            <!-- Job Card 1 -->
+            {% for job in jobs %}
+            <a href="{% url 'job_details' pk=job.pk %}">
+            <div class="job-card" data-job-id="1">
+                <div class="job-card-header">
+                    <div class="job-card-company">
+                        <img src="https://logo.clearbit.com/figma.com" alt="Vercel" class="job-card-logo">
+                        <div class="job-card-company-info">
+                            <div class="job-card-company-name">{{ job.company }}</div>
+                            <div class="job-card-posted">Posted
+                            {% if job.time < 60 %}
+                            {{job.time}} minutes ago
+                            {% elif job.time > 59 and job.time < 120 %}
+                            {{job.time|divide_by:60}} hour ago
+                            {% elif job.time > 119 and job.time < 1440 %}
+                            {{job.time|divide_by:60}} hours ago
+                            {% elif job.time > 1439 and job.time < 2880 %}
+                            {{job.time|divide_by:1440}} day ago
+                            {% elif job.time > 2879 and job.time < 43200 %}
+                            {{job.time|divide_by:1440}} days ago
+                            {% elif job.time > 43199 and job.time < 86400 %}
+                            {{job.time|divide_by:43200}} month ago
+                            {% else %}
+                            {{job.time|divide_by:43200}} months ago
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="job-card-title">{{ job.title }}</h2>
+                    <!-- <div class="job-card-location">
+                        <i class="fas fa-building job-card-location-icon"></i>
+                        <span>{{ job.work_mode }}</span>
+                    </div>
+                    <div class="job-card-location">
+                        <i class="fas fa-sitemap job-card-location-icon"></i>
+                        <span>{{ job.department }}</span>
+                    </div> -->
+                    <div class="job-card-location">
+                        <i class="fas fa-map-marker-alt job-card-location-icon"></i>
+                        <span>{{ job.company.country }} ({{ job.work_mode }})</span>
+                    </div>
+                    <!-- <span class="job-card-tag job-card-tag-remote">Featured</span> -->
+                    <span class="job-card-tag job-card-tag-featured">Featured</span>
                 </div>
-
-                <div style="margin-bottom: 1.5rem;">
-                    <label for="jbEmail" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
-                    <input type="email" id="jbEmail" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);">
+                <div class="job-card-body">
+                    <div class="job-card-details">
+                        <span class="job-card-detail">{{ job.job_type }}</span>
+                        <span class="job-card-detail">{{ job.experience_level }}</span>
+                        <span class="job-card-detail job-card-salary">{{ job.currency }} {{ job.min_salary|intcomma }} - {{ job.max_salary|intcomma }}</span>
+                    </div>
+                    <p class="job-card-description">
+                        {{job.description}}
+                    </p>
                 </div>
+                <div class="job-card-apply-indicator"></div>
+            </div>
+            </a>
+            {% endfor %}
 
-                <div style="margin-bottom: 1.5rem;">
-                    <label for="jbPhone" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone</label>
-                    <input type="tel" id="jbPhone" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);">
-                </div>
-
-                <div style="margin-bottom: 1.5rem;">
-                    <label for="jbResume" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Upload Resume</label>
-                    <input type="file" id="jbResume" accept=".pdf,.doc,.docx" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);">
-                </div>
-
-                <div style="margin-bottom: 1.5rem;">
-                    <label for="jbCoverLetter" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Cover Letter (Optional)</label>
-                    <textarea id="jbCoverLetter" rows="5" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: var(--jb-border-radius);"></textarea>
-                </div>
-
-                <button type="submit" style="width: 100%; padding: 0.75rem; background-color: var(--jb-primary); color: white; border: none; border-radius: var(--jb-border-radius); font-weight: 600; cursor: pointer;">
-                    Submit Application
-                </button>
-            </form>
         </div>
     </div>
-</div>
+
+    <!-- <div class="application-toast" id="applicationToast">
+        <i class="fas fa-check-circle application-toast-icon"></i>
+        <span>Application submitted successfully!</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const jobCards = document.querySelectorAll('.job-card');
+            const applicationToast = document.getElementById('applicationToast');
+
+            jobCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    if (this.classList.contains('applied')) return;
+
+                    const jobId = this.getAttribute('data-job-id');
+
+                    // Visual feedback
+                    this.classList.add('applied');
+
+                    // Show toast notification
+                    applicationToast.style.display = 'flex';
+                    setTimeout(() => {
+                        applicationToast.style.display = 'none';
+                    }, 3000);
+
+                    // In a real app, you would send the application to your backend
+                    console.log(`User applied to job ${jobId}`);
+
+                    // Prevent event bubbling if there are interactive elements inside
+                    event.stopPropagation();
+                });
+            });
+
+            // Filter functionality
+            const filters = document.querySelectorAll('.job-filter');
+            filters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Remove active class from all filters
+                    filters.forEach(f => f.classList.remove('active'));
+
+                    // Add active class to clicked filter
+                    this.classList.add('active');
+
+                    // In a real app, you would filter the jobs here
+                    console.log(`Filter selected: ${this.textContent}`);
+                });
+            });
+        });
+    </script> -->
+
 {% endblock dynamicpage %}

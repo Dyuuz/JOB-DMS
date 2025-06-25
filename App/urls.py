@@ -13,7 +13,7 @@ from App.views import (
     WorkforceView, JobDetailView, ApplyJobView,
     JobApplicantView, JobApplicantFormView,ResumeView,
     ApplicantProfileView, JobFormView, EmploymentUpdateView)
-from .utils import suggest_cover_letter, suggest_portfolio
+from .utils import suggest_cover_letter, suggest_portfolio, suggest_phone, suggest_experience
 from django.urls import include
 
 auth_patterns = [
@@ -37,6 +37,8 @@ urlpatterns = [
     path('apply/<int:pk>', ApplyJobView.as_view(), name='apply_for_job'),
     path('suggest-cover-letter/', suggest_cover_letter, name='suggest_cover_letter'),
     path('suggest-portfolio/', suggest_portfolio, name='suggest-portfolio'),
+    path('suggest-phone/', suggest_phone, name='suggest-phone'),
+    path('suggest-experience/', suggest_experience, name='suggest-experience'),
     path('documents', DocumentListView.as_view(), name='documents'),
     path('documents/upload', DocumentUploadView.as_view(), name='document-upload'),
     path('documents/<int:pk>/delete', DocumentUploadView.as_view(), name='document-delete'),

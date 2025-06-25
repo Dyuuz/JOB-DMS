@@ -41,6 +41,7 @@ ALLOWED_HOSTS = [
     os.getenv('ipadd5'),
     os.getenv('ipadd6'),
     os.getenv('ipadd7'),
+    os.getenv('ipadd8'),
 ]
 
 

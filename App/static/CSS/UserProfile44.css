@@ -379,3 +379,71 @@
     background-color: var(--primary-color);
     color: white;
 }
+
+.floating-share {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #17c426, #4f46e5);
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.floating-share:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #149660, #15911b);
+}
+
+.share-popup {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: #ffffff;
+  color: #333;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.share-popup-content {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.share-popup-content p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.share-popup-content button {
+  background: linear-gradient(135deg, #17c426, #4f46e5);
+  color: white;
+  border: none;
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.share-popup-content button:hover {
+  background: linear-gradient(135deg, #149660, #15911b);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
