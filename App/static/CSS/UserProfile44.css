@@ -312,7 +312,7 @@
 }
 
 .skill-tag, .cert-tag {
-    background-color: var(--accent-color);
+    background: linear-gradient(135deg, rgba(5, 53, 16, 0.651), #061d61);
     color: white;
     padding: 0.4rem 0.8rem;
     border-radius: 20px;

@@ -23,8 +23,15 @@
 } */
 
 .applied-body {
-    background-color: var(--gray-100);
+    /* background-color: var(--gray-100); */
     color: var(--gray-800);
+}
+
+.ws-container-applied {
+    height: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
 }
 
 /* ===== Layout ===== */

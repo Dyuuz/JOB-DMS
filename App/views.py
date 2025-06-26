@@ -246,6 +246,7 @@ class JobDetailView(LoginRequiredMixin,JobDetailPermissionMixin, DetailView):
         get_time = get_time_countdown(f"{job.created_at}")
         job.time = int(get_time)
         job.count = Application.objects.filter(job=job).count()
+        # job.currency_symbol =
         company_name = get_company_name(job.company.user.full_name)
 
         applied = True if self.request.user.role == 'user' and Application.objects.filter(job=job, user=self.request.user).first() else False
