@@ -29,7 +29,9 @@
 .ws-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding-top:0;
+    /* padding: 1rem; */
+    /* background-color: red; */
 }
 
 .header {
@@ -38,7 +40,7 @@
     align-items: center;
     /* margin-bottom: 2.5rem; */
     flex-wrap: wrap;
-    gap: 1.5rem;
+    /* gap: 1.5rem; */
     /* background-color: red; */
 }
 
