@@ -21,7 +21,7 @@
 } */
 
 .wf-body {
-    background-color: var(--gray-100);
+    /* background-color: var(--gray-100); */
     color: var(--gray-800);
 }
 
@@ -124,16 +124,22 @@
 .teampulse-main {
     flex: 1;
     padding: 2rem;
+    padding-top: 0;
 }
 
 .teampulse-section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    background-color: #10B981;
+    /* margin-bottom: 1.5rem; */
+    /* position: sticky;
+    top: 0;
+    z-index: 10;
+    margin-bottom: 0; */
 }
 
-.teampulse-section-title {
+/* .teampulse-section-title {
     font-size: 1.5rem;
     font-weight: 600;
 }
@@ -164,21 +170,25 @@
 
 .teampulse-btn-primary:hover {
     background: var(--primary-500);
-}
+} */
 
 /* ===== Team Stats ===== */
 .teampulse-stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .teampulse-stat-card {
-    background: white;
+    background: linear-gradient(135deg, rgba(5, 53, 16, 0.651), #061d61);
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: var(--shadow-sm);
+}
+
+.teampulse-stat-card:hover {
+    transform: translateY(-3px);
 }
 
 .teampulse-stat-header {
@@ -189,7 +199,7 @@
 
 .teampulse-stat-title {
     font-size: 0.875rem;
-    color: var(--gray-600);
+    color: white;
     font-weight: 500;
 }
 
@@ -226,6 +236,7 @@
     font-size: 1.75rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
+    color: white;
 }
 
 .teampulse-stat-trend {

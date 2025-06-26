@@ -14,9 +14,9 @@
                 <div class="header-dash">
                     <h1 class="title"><i class="fas fa-sitemap"></i> Dashboard</h1>
                 </div>
-                <a href="{% url 'job_form' %}"><button class="jobhive-btn jobhive-btn-primary">
+                <!-- <a href="{% url 'job_form' %}"><button class="jobhive-btn jobhive-btn-primary">
                     <i class="fas fa-plus"></i> Post New Job
-                </button></a>
+                </button></a> -->
             </div>
 
             <!-- Stats Cards -->
@@ -103,7 +103,7 @@
                         <tr>
                             <td>
                                 <div class="jobhive-job-title">{{ job.title }}</div>
-                                <div class="jobhive-job-department">{{ job.department }}</div>
+                                <div class="jobhive-job-department">{{ job.job_type }}</div>
                             </td>
                             <td>{{ job.department }}</td>
                             <td>{{ job.work_mode }}</td>
@@ -246,6 +246,13 @@
                 </table>
             </div>
         </main>
+    </div>
+    <div class="floating-share">
+        <a  href="{% url 'job_form' %}" title="Post New Job">
+            <!-- <button class="doc-upload-btn"> -->
+                <i class="fas fa-plus"></i>
+            <!-- </button> -->
+        </a>
     </div>
 </div>
 

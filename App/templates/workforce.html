@@ -4,35 +4,12 @@
 
 <div class="wf-body">
     <div class="teampulse-container">
-        <!-- Header -->
-        <header class="teampulse-header">
-            <div class="teampulse-brand">
-                <div class="teampulse-logo">{{ company_name }}</div>
-                <span class="teampulse-brand-text">{{ user.full_name }}</span>
-            </div>
-
-            <div class="teampulse-header-actions">
-                <div class="teampulse-search">
-                    <i class="fas fa-search teampulse-search-icon"></i>
-                    <input type="text" class="teampulse-search-input" placeholder="Search team members...">
-                </div>
-
-                <div class="teampulse-user-profile">
-                    <div class="teampulse-user-avatar">AD</div>
-                </div>
-            </div>
-        </header>
-
         <!-- Main Content -->
         <main class="teampulse-main">
-            <div class="teampulse-section-header">
-                <div>
-                    <h1 class="teampulse-section-title">Team Management</h1>
-                    <p class="teampulse-section-description">Manage your organization's workforce and team members</p>
+            <div class="jobhive-section-header">
+                <div class="header-dash">
+                    <h1 class="title"><i class="fas fa-users"></i> Team Management</h1>
                 </div>
-                <button class="teampulse-btn teampulse-btn-primary">
-                    <i class="fas fa-plus"></i> Add Member
-                </button>
             </div>
 
             <!-- Team Stats -->
@@ -89,6 +66,24 @@
                     </p>
                 </div>
             </div>
+
+            <header class="jobhive-header">
+                <div class="jobhive-brand">
+                    <div class="jobhive-logo"></div>
+                    <span class="jobhive-brandname"></span>
+                </div>
+
+                <div class="jobhive-actions">
+                    <div class="jobhive-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search members...">
+                    </div>
+
+                    <!-- <div class="jobhive-user">
+                        <div class="jobhive-avatar">AD</div>
+                    </div> -->
+                </div>
+            </header>
 
             <!-- Team Table -->
             <div class="teampulse-table-container">
@@ -298,6 +293,13 @@
                 </table>
             </div>
         </main>
+    </div>
+    <div class="floating-share">
+        <a  href="{% url 'job_form' %}" title="Add New Member">
+            <!-- <button class="doc-upload-btn"> -->
+                <i class="fas fa-user"></i>
+            <!-- </button> -->
+        </a>
     </div>
 </div>
 
