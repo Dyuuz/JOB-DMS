@@ -4,31 +4,15 @@
 
 <div class="dash-body">
     <div class="jobhive-container">
-        <!-- Header -->
-        <header class="jobhive-header">
-            <div class="jobhive-brand">
-                <div class="jobhive-logo">{{ name_list }}</div>
-                <span class="jobhive-brandname">{{ user.full_name }}</span>
-            </div>
-
-            <div class="jobhive-actions">
-                <div class="jobhive-search">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search jobs...">
-                </div>
-
-                <!-- <div class="jobhive-user">
-                    <div class="jobhive-avatar">AD</div>
-                </div> -->
-            </div>
-        </header>
-
         <!-- Main Content -->
         <main class="jobhive-main">
             <div class="jobhive-section-header">
-                <div>
+                <!-- <div>
                     <h1 class="jobhive-title">Job Management</h1>
                     <p class="jobhive-subtitle">View and manage all posted positions</p>
+                </div> -->
+                <div class="header-dash">
+                    <h1 class="title"><i class="fas fa-sitemap"></i> Dashboard</h1>
                 </div>
                 <a href="{% url 'job_form' %}"><button class="jobhive-btn jobhive-btn-primary">
                     <i class="fas fa-plus"></i> Post New Job
@@ -81,6 +65,24 @@
                     <p class="jobhive-stat-desc">0 ready to publish</p>
                 </div>
             </div>
+
+            <header class="jobhive-header">
+                <div class="jobhive-brand">
+                    <div class="jobhive-logo"></div>
+                    <span class="jobhive-brandname"></span>
+                </div>
+
+                <div class="jobhive-actions">
+                    <div class="jobhive-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search jobs...">
+                    </div>
+
+                    <!-- <div class="jobhive-user">
+                        <div class="jobhive-avatar">AD</div>
+                    </div> -->
+                </div>
+            </header>
 
             <!-- Jobs Table -->
             <div class="jobhive-table-container">

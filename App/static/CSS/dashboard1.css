@@ -18,7 +18,7 @@
 } */
 
 .dash-body {
-    background-color: #F3F4F6;
+    /* background-color: #F3F4F6; */
     color: var(--dark-color);
 }
 
@@ -31,17 +31,18 @@
 
 /* ===== Header Styles ===== */
 .jobhive-header {
-    background: white;
+    background: transparent;
     padding: 1rem 2rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
     display: flex;
-    justify-content: space-between;
+    justify-content:flex-end;
     align-items: center;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
 }
 
 .jobhive-brand {
-    display: flex;
+    display: none;
+    visibility: hidden;
     align-items: center;
     gap: 0.75rem;
 }
@@ -121,6 +122,12 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    /* background-color: red; */
+}
+
+.jobhive-section-header .header-dash {
+    justify-self: center;
+    align-self: center;
 }
 
 .jobhive-title {
@@ -136,22 +143,28 @@
 .jobhive-btn {
     padding: 0.625rem 1.25rem;
     border-radius: 6px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     border: none;
+    border-radius: 20px;
     transition: all 0.2s;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    font-size: 14px;
+}
+
+.jobhive-btn i{
+    font-size: 12px;
 }
 
 .jobhive-btn-primary {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, rgba(22, 165, 56, 0.651), #4862b3);
     color: white;
 }
 
 .jobhive-btn-primary:hover {
-    background: #4338CA;
+    background: linear-gradient(135deg, rgba(17, 163, 51, 0.651), #061d61);
 }
 
 /* ===== Stats Cards ===== */
@@ -159,14 +172,19 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.4rem;
+    /* padding: 10px; */
 }
 
 .jobhive-stat-card {
-    background: white;
+    background: linear-gradient(135deg, rgba(5, 53, 16, 0.651), #061d61);
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.jobhive-stat-card:hover {
+    transform: translateY(-3px);
 }
 
 .jobhive-stat-header {
@@ -177,7 +195,7 @@
 
 .jobhive-stat-title {
     font-size: 0.875rem;
-    color: var(--gray-color);
+    color: white;
     font-weight: 500;
 }
 
@@ -211,13 +229,14 @@
 }
 
 .jobhive-stat-value {
+    color: white;
     font-size: 1.75rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
 }
 
 .jobhive-stat-desc {
-    color: var(--gray-color);
+    color: rgb(224, 218, 218);
     font-size: 0.875rem;
 }
 
@@ -314,9 +333,18 @@
         padding: 1rem;
     }
 
+    .jobhive-section-header .header-dash{
+        justify-self: center;
+        align-self: center;
+    }
+
+    .jobhive-section-header a{
+        align-self: flex-end;
+    }
+
     .jobhive-actions {
         width: 100%;
-        justify-content: space-between;
+        justify-content:flex-end;
     }
 
     .jobhive-search input {
@@ -335,6 +363,20 @@
         gap: 1rem;
     }
 
+    .jobhive-section-header .header-dash{
+        justify-self: center;
+        align-self: center;
+    }
+
+    .jobhive-section-header a{
+        align-self: flex-end;
+    }
+
+    .jobhive-actions {
+        width: 100%;
+        justify-content:flex-end;
+    }
+
     .jobhive-table th,
     .jobhive-table td {
         padding: 0.75rem;
@@ -346,11 +388,25 @@
 }
 
 @media (max-width: 480px) {
+    .jobhive-section-header a{
+        align-self: flex-end;
+    }
+
+    .jobhive-section-header .header-dash{
+        justify-self: center;
+        align-self: center;
+    }
+
     .jobhive-search input {
         width: 160px;
     }
 
     .jobhive-stats {
         grid-template-columns: 1fr;
+    }
+
+    .jobhive-actions {
+        width: 100%;
+        justify-content:flex-end;
     }
 }

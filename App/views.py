@@ -155,7 +155,7 @@ class WorkforceView(View):
 
 class WorkSpaceView(View):
     """
-    This view handles the page to display companies a user is working it, most importantly provided by the platform
+    This view handles the page to display companies a user is working with, most importantly provided by the platform
     """
     template_name = 'WorkSpace.html'
 
