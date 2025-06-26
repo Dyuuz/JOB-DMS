@@ -40,7 +40,7 @@
 
 .jobzen-company-card {
     flex: 1;
-    min-width: 300px;
+    min-width: 250px;
     background: var(--card-bg);
     border-radius: 16px;
     padding: 2rem;
@@ -85,13 +85,14 @@
 
 .jobzen-meta-item {
     display: flex;
+    margin: 10px;
     align-items: center;
     gap: 0.5rem;
-    color: var(--medium);
+    color: rgba(0, 0, 0, 0.856);
 }
 
 .jobzen-meta-icon {
-    color: var(--primary);
+    color: rgba(9, 100, 30, 0.651);
 }
 
 .jobzen-actions {
@@ -103,6 +104,7 @@
 
 .jobzen-actions a{
     text-decoration: none;
+    /* width: 200px; */
     /* width: inherit; */
     /* background-color: red; */
 }
@@ -119,28 +121,29 @@
     gap: 0.75rem;
     border: none;
     font-size: 1rem;
+    width: 200px;
 }
 
 .jobzen-btn-primary {
     background: var(--primary);
     color: white;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+    background: linear-gradient(135deg, rgba(5, 53, 16, 0.651), #061d61);
 }
 
 .jobzen-btn-primary:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+    background: linear-gradient(135deg, rgba(17, 163, 51, 0.651), #061d61);
 }
 
 .jobzen-btn-secondary {
-    background: white;
-    color: var(--primary);
+    background: linear-gradient(135deg, rgba(5, 53, 16, 0.651), #061d61);
+    color: white;
     border: 1px solid var(--border);
 }
 
 .jobzen-btn-secondary:hover {
-    background: var(--light);
+    background: linear-gradient(135deg, rgba(17, 163, 51, 0.651), #061d61);
     transform: translateY(-2px);
 }
 
@@ -186,7 +189,7 @@
     left: 0;
     width: 48px;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background: rgba(10, 63, 23, 0.651);
     border-radius: 2px;
 }
 
@@ -194,7 +197,7 @@
     color: var(--dark);
     margin-bottom: 2rem;
     line-height: 1.8;
-    font-size: 1.05rem;
+    font-size: 1.0rem;
 }
 
 .jobzen-highlights {
@@ -208,7 +211,7 @@
     background: var(--light);
     border-radius: 12px;
     padding: 1.5rem;
-    border-left: 4px solid var(--primary);
+    border-left: 4px solid rgba(17, 163, 51, 0.651);
 }
 
 .jobzen-highlight-label {
@@ -270,7 +273,7 @@
 .jobzen-salary {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--secondary);
+    color: rgba(5, 71, 18, 0.829);
     margin: 1.5rem 0;
 }
 
@@ -283,7 +286,7 @@
 
 .jobzen-tag {
     background: var(--tag-bg);
-    color: var(--primary);
+    color: rgba(0, 0, 0, 0.76);
     padding: 0.5rem 1rem;
     border-radius: 50px;
     font-size: 0.85rem;
@@ -291,8 +294,9 @@
 }
 
 .jobzen-posted {
-    color: var(--medium);
+    color: rgba(0, 0, 0, 0.795);
     font-size: 0.9rem;
+    font-weight: 600;
     margin-top: 2rem;
     display: flex;
     align-items: center;
@@ -300,7 +304,12 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (max-width: 998px) {
+    /* .jobzen-company-card {
+        flex: 1;
+        width:auto;
+    } */
+
     .jobzen-header {
         flex-direction: column;
     }
@@ -313,7 +322,32 @@
 
     .jobzen-btn {
         flex: 1;
-        min-width: 200px;
+        min-width: 0;
+    }
+
+    .jobzen-highlights {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .jobzen-header {
+        flex-direction: column;
+    }
+
+    .jobzen-actions {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        /* justify-content: space-around; */
+        flex-wrap: wrap;
+    }
+
+    .jobzen-btn {
+        flex: 1;
+        min-width: 0;
+        /* color: red; */
     }
 
     .jobzen-highlights {
@@ -333,6 +367,28 @@
 
     .jobzen-btn {
         width: 100%;
+        /* color: rgb(19, 18, 18); */
+    }
+
+    .jobzen-details-card,
+    .jobzen-side-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .jobzen-company-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .jobzen-actions {
+        flex-direction: column;
+    }
+
+    .jobzen-btn {
+        width: 100%;
+        /* color: rgb(7, 58, 117); */
     }
 
     .jobzen-details-card,

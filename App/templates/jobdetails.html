@@ -11,7 +11,7 @@
         <header class="jobzen-header">
             <div class="jobzen-company-card">
                 <div class="jobzen-company-header">
-                    <img src="https://logo.clearbit.com/gtbank.com" alt="Stripe" class="jobzen-logo">
+                    <img src="https://logo.clearbit.com/tesla.com" alt="Stripe" class="jobzen-logo">
                     <div class="jobzen-title">
                         <h1>{{ job.title }}</h1>
                         <p>{{ job.company.tagline }}</p>
@@ -50,20 +50,20 @@
                         <i class="fas fa-paper-plane"></i> Apply Now
                     </button></a>
                     {% else %}
-                    <button class="jobzen-btn jobzen-btn-primary" id="jobzenApplyBtn">
+                    <a><button class="jobzen-btn jobzen-btn-primary" id="jobzenApplyBtn">
                         <i class="fas fa-paper-plane"></i> Applied
-                    </button>
+                    </button></a>
                     {% endif %}
-                    <button class="jobzen-btn jobzen-btn-secondary" id="jobzenEditBtn">
-                        <i class="fas fa-edit"></i> Save
-                    </button>
+                    <a><button class="jobzen-btn jobzen-btn-secondary" id="jobzenEditBtn">
+                        <i class="far fa-bookmark"></i> Save
+                    </button></a>
                 {% else %}
                     <!-- Only visible to posting company -->
                     <a href="{% url 'job_form' %}?update={{job.pk}}"><button class="jobzen-btn jobzen-btn-primary" id="jobzenApplyBtn">
-                        <i class="fas fa-paper-plane"></i> Edit
+                        <i class="fas fa-edit"></i> Edit
                     </button></a>
                     <a href="{% url 'jobs_applicants_view' pk=job.pk %}"><button class="jobzen-btn jobzen-btn-secondary" id="jobzenEditBtn">
-                        <i class="fas fa-edit"></i> View Applicants
+                        <i class="fas fa-paper-plane"></i> View Applicants
                     </button></a>
                 {% endif %}
 
@@ -93,6 +93,10 @@
                         <div class="jobzen-highlight-card">
                             <div class="jobzen-highlight-label">Experience</div>
                             <div class="jobzen-highlight-value">{{ job.experience }} years</div>
+                        </div>
+                        <div class="jobzen-highlight-card">
+                            <div class="jobzen-highlight-label">Job Type</div>
+                            <div class="jobzen-highlight-value">{{ job.job_type }}</div>
                         </div>
                         <!-- <div class="jobzen-highlight-card">
                             <div class="jobzen-highlight-label">Visa Sponsorship</div>
@@ -186,7 +190,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         // Button functionality
         document.getElementById('jobzenApplyBtn').addEventListener('click', () => {
             alert('Application process would start here');
@@ -195,7 +199,7 @@
         document.getElementById('jobzenEditBtn').addEventListener('click', () => {
             alert('Edit job form would open here');
         });
-    </script>
+    </script> -->
 </div>
 
 {% if messages %}
