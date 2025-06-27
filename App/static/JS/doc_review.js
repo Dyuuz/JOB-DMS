@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const docName = window.userData.doc_name;
     const docType = window.userData.doc_type;
     const docUrl = window.userData.doc_url;
-    alert(`Document Name: ${docName}, Type: ${docType}, URL: ${docUrl}`);
+    //alert(`Document Name: ${docName}, Type: ${docType}, URL: ${docUrl}`);
     // DOM Elements
     const pdfViewer = document.getElementById('pdf-viewer');
     const docxViewer = document.getElementById('docx-viewer');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         [docName]: {
             name: docName,
             type: docType,
-            url: 'http://res.cloudinary.com/djk1yzglo/raw/upload/v1750747802/uezyruormluiv8ezkykh.docx',
+            url: docUrl,
         },
     };
 
@@ -36,13 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (doc.type === 'pdf') {
             // PDF viewer using browser's built-in PDF viewer
             pdfViewer.style.display = 'block';
-            pdfViewer.src = doc.url;
+            pdfViewer.src = `https://docs.google.com/gview?url=${encodeURIComponent(doc.url)}&embedded=true`;
             //pageControls.style.display = 'flex';
         }
         else if (doc.type === 'docx' || doc.type === 'doc') {
             // DOCX viewer using Microsoft Office Online Viewer
             docxViewer.style.display = 'block';
-            docxViewer.src = doc.url;
+            docxViewer.src = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(doc.url)}`;
         }
         else if (doc.type === 'txt') {
             // Plain text viewer

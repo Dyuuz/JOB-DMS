@@ -81,7 +81,7 @@
                             <div class="file-actions">
                                 {% if document.file_format == 'doc' or document.file_format == 'docx' %}
                                 <a href="{% url 'view_resume' pk=document.pk %}" ><button class="action-btn" title="{{document.file_format|title}} view not supported">
-                                    <i class="fas fa-eye-slash"></i>
+                                    <i class="fas fa-eye"></i>
                                 </button></a>
                                 {% else %}
                                 <a href="{% url 'view_resume' pk=document.pk %}" ><button class="action-btn eye-i" title="View">
