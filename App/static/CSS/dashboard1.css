@@ -263,6 +263,14 @@
     background: var(--light-color);
 }
 
+tr .status-sdb{
+    padding-left: 25px;
+}
+
+tr .action-adb{
+    padding-left: 30px;
+}
+
 .jobhive-table td {
     padding: 1rem;
     border-top: 1px solid var(--border-color);
@@ -329,6 +337,12 @@
     color: var(--primary-color);
 }
 
+@media (max-width: 1200px) {
+    .jobhive-table-container {
+        overflow-x: auto;
+    }
+}
+
 /* ===== Responsive Styles ===== */
 @media (max-width: 1024px) {
     .jobhive-header {
@@ -354,6 +368,10 @@
 
     .jobhive-search input {
         width: 200px;
+    }
+
+    .jobhive-table-container {
+        overflow-x: auto;
     }
 }
 

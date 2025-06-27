@@ -280,6 +280,14 @@
     font-size: 0.875rem;
 }
 
+tr .status-swf{
+    padding-left: 25px;
+}
+
+tr .action-awf{
+    padding-left: 30px;
+}
+
 .teampulse-table td {
     padding: 1rem;
     border-top: 1px solid var(--border-light);
@@ -416,6 +424,10 @@
 
     .teampulse-search-input {
         width: 200px;
+    }
+
+    .teampulse-table-container {
+        overflow-x: auto;
     }
 }
 

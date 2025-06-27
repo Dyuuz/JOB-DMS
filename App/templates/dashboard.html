@@ -94,8 +94,8 @@
                             <th>Work Type</th>
                             <th>Posted</th>
                             <th>Applications</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th class="status-sdb">Status</th>
+                            <th class="action-adb">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,66 +131,14 @@
                                     <a href="{% url 'jobs_applicants_view' pk=job.pk %}"><button class="jobhive-action-btn" title="View Applications">
                                         <i class="fas fa-users"></i>
                                     </button>
-                                    <!-- <button class="jobhive-action-btn" title="Close Job">
-                                        <i class="fas fa-times"></i>
-                                    </button> -->
+                                    <a><button class="jobhive-action-btn" title="Close Job">
+                                        <i class="fas fa-trash"></i>
+                                    </button></a>
                                 </div>
                             </td>
                         </tr>
                         {% endfor %}
                         <!-- <tr>
-                            <td>
-                                <div class="jobhive-job-title">Product Manager</div>
-                                <div class="jobhive-job-department">Product</div>
-                            </td>
-                            <td>Product</td>
-                            <td>San Francisco</td>
-                            <td>May 22, 2023</td>
-                            <td>28</td>
-                            <td>
-                                <span class="jobhive-status jobhive-status-active">Active</span>
-                            </td>
-                            <td>
-                                <div class="jobhive-actions-cell">
-                                    <button class="jobhive-action-btn" title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="jobhive-action-btn" title="View Applications">
-                                        <i class="fas fa-users"></i>
-                                    </button>
-                                    <button class="jobhive-action-btn" title="Close Job">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="jobhive-job-title">UX Designer</div>
-                                <div class="jobhive-job-department">Design</div>
-                            </td>
-                            <td>Design</td>
-                            <td>New York</td>
-                            <td>May 10, 2023</td>
-                            <td>36</td>
-                            <td>
-                                <span class="jobhive-status jobhive-status-active">Active</span>
-                            </td>
-                            <td>
-                                <div class="jobhive-actions-cell">
-                                    <button class="jobhive-action-btn" title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="jobhive-action-btn" title="View Applications">
-                                        <i class="fas fa-users"></i>
-                                    </button>
-                                    <button class="jobhive-action-btn" title="Close Job">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
                             <td>
                                 <div class="jobhive-job-title">Data Scientist</div>
                                 <div class="jobhive-job-department">Data</div>
@@ -212,32 +160,6 @@
                                     </button>
                                     <button class="jobhive-action-btn" title="Delete">
                                         <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="jobhive-job-title">Marketing Specialist</div>
-                                <div class="jobhive-job-department">Marketing</div>
-                            </td>
-                            <td>Marketing</td>
-                            <td>Chicago</td>
-                            <td>April 28, 2023</td>
-                            <td>32</td>
-                            <td>
-                                <span class="jobhive-status jobhive-status-closed">Closed</span>
-                            </td>
-                            <td>
-                                <div class="jobhive-actions-cell">
-                                    <button class="jobhive-action-btn" title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="jobhive-action-btn" title="View Applications">
-                                        <i class="fas fa-users"></i>
-                                    </button>
-                                    <button class="jobhive-action-btn" title="Reopen">
-                                        <i class="fas fa-redo"></i>
                                     </button>
                                 </div>
                             </td>

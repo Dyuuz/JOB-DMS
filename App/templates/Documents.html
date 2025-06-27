@@ -2,73 +2,157 @@
 
 {% block dynamicpage %}
 <div class="doc-body">
-    <div class="doc-container">
-        <div class="doc-header">
-            <h1 class="doc-title"><i class="fas fa-folder-open"></i> My Documents</h1>
-            <!-- <a  href="{% url 'document-upload' %}"><button class="doc-upload-btn">
-                <i class="fas fa-plus"></i>
-            </button></a> -->
+    <!-- <div class="doc-container">
+
+    </div> -->
+    <div class="documents-container">
+
+        <!-- Header with Search and Actions -->
+        <div class="documents-header">
+            <div class="doc-header">
+                <h1 class="doc-title"><i class="fas fa-folder-open"></i> My Documents</h1>
+                <!-- <a  href="{% url 'document-upload' %}"><button class="doc-upload-btn">
+                    <i class="fas fa-plus"></i>
+                </button></a> -->
+            </div>
+            <div class="documents-actions">
+                <div class="documents-search">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search documents...">
+                </div>
+                <select class="sort-dropdown">
+                    <option value="name-asc">Sort by: Name (A-Z)</option>
+                    <option value="name-desc">Sort by: Name (Z-A)</option>
+                    <option value="date-asc">Sort by: Date (Oldest)</option>
+                    <option value="date-desc" selected>Sort by: Date (Newest)</option>
+                    <option value="size-asc">Sort by: Size (Smallest)</option>
+                    <option value="size-desc">Sort by: Size (Largest)</option>
+                </select>
+                <!-- <button class="upload-btn">
+                    <i class="fas fa-upload"></i>
+                    Upload
+                </button> -->
+            </div>
         </div>
 
-        <div class="doc-categories">
-            <div class="doc-category active">All Documents</div>
-            <div class="doc-category">Resumes</div>
-            <div class="doc-category">Cover Letters</div>
-            <div class="doc-category">Certificates</div>
-            <!-- <div class="doc-category">Pdfs</div>
-            <div class="doc-category">Text Files</div> -->
-        </div>
-
-        <div class="doc-grid">
-            <!-- Document Card 1 -->
+        <!-- Documents Table -->
+        <div class="documents-table-container">
             {% if has_documents %}
-                {% for document in user_documents %}
-                <div class="doc-card" data-id="{{ document.pk }}">
-                    <div class="doc-icon">
-                        {% if document.file_format == 'txt' %}
-                        <i class="fas fa-file-alt"></i>
-                        {% else %}
-                        <i class="fas fa-file-pdf"></i>
-                        {% endif %}
-                    </div>
-                    <h3 class="doc-name {{ document.file_type }}" data-type="{{ document.file_type }}" data-id="{{ document.pk }}">{{ document.name }}</h3>
-                    <div class="doc-meta">
-                        <div>{{ document.created_at }}</div>
-                        <div>Size: {{ document.size }} MB</div>
-                    </div>
-                    <div class="doc-actions">
-                        {% if document.file_format == 'doc' or document.file_format == 'docx' %}
-                        <button class="doc-action-btn doc-view" title="{{document.file_format|title}} view not supported">
-                            <i class="fas fa-eye-slash"></i>
-                        </button>
-                        {% else %}
-                        <a href="{% url 'view_resume' pk=document.pk %}" class="applicantinfo-document-link"><button class="doc-action-btn doc-view" title="View">
-                            <i class="fas fa-eye"></i>
-                        </button></a>
-                        {% endif %}
-                        <a href="{{document.download_url}}" download="{{ document.name }}.{{ document.file_format }}"><button class="doc-action-btn doc-download" title="Download">
-                            <i class="fas fa-download"></i></a>
-                        </button>
-                        <button class="doc-action-btn doc-delete" onclick="showDeleteDialog('{{ document.name }}','{{ document.id }}')" title="Delete">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-                {% endfor %}
-            {% else %}
-                <!-- Empty State (hidden by default) -->
-                <div class="doc-empty-state">
-                    <div class="doc-empty-icon">
-                        <i class="fas fa-folder-open"></i>
-                    </div>
-                    <h3>No Documents Found</h3>
-                    <p class="doc-empty-text">Upload your first document to get started with your job applications</p>
-                    <a  href="{% url 'document-upload' %}"><button class="doc-upload-btn">
-                        <i class="fas fa-plus"></i> Upload Document
-                    </button></a>
-                </div>
-            {% endif %}
+            <table class="documents-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" data-sort="name">
+                            Name <i class="fas fa-sort sort-icon"></i>
+                        </th>
+                        <th class="sortable" data-sort="date">
+                            Uploaded <i class="fas fa-sort sort-icon"></i>
+                        </th>
+                        <th class="sortable" data-sort="size">
+                            Size <i class="fas fa-sort sort-icon"></i>
+                        </th>
+                        <th>Type</th>
+                        <th class="action-doct">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for document in user_documents %}
+                    <tr class="doc-card-new" data-id="{{ document.pk }}">
+                        <td data-label="Name">
+                            <div class="file-info">
+                                <div class="file-icon xls">
+                                    {% if document.file_format == 'txt' %}
+                                    <i class="fas fa-file-alt"></i>
+                                    {% elif document.file_format == 'pdf' %}
+                                    <i class="fas fa-file-pdf"></i>
+                                    {% else %}
+                                    <i class="far fa-file-excel"></i>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <div class="file-name">{{ document.name }}</div>
+                                    <div class="file-details">{{ document.file_format|upper }} file</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Uploaded">{{ document.created_at|date:"F j, Y" }}</td>
+                        <td data-label="Size">{{ document.size }} MB</td>
+                        <td data-label="Type">{{ document.file_type }}</td>
+                        <td data-label="Actions">
+                            <div class="file-actions">
+                                {% if document.file_format == 'doc' or document.file_format == 'docx' %}
+                                <button class="action-btn" title="{{document.file_format|title}} view not supported">
+                                    <i class="fas fa-eye-slash"></i>
+                                </button>
+                                {% else %}
+                                 <a href="{% url 'view_resume' pk=document.pk %}" ><button class="action-btn eye-i" title="View">
+                                    <i class="fas fa-eye"></i>
+                                </button></a>
+                                {% endif %}
+                                <a href="{{document.download_url}}" download="{{ document.name }}.{{ document.file_format }}"><button class="action-btn download eye-i" title="Download">
+                                    <i class="fas fa-download"></i>
+                                </button></a>
 
+                                <!-- <button class="action-btn" title="Rename">
+                                    <i class="fas fa-pen"></i>
+                                </button> -->
+                                <button class="action-btn delete" onclick="showDeleteDialog('{{ document.name }}','{{ document.id }}')" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- <tr>
+                        <td data-label="Name">
+                            <div class="file-info">
+                                <div class="file-icon xls">
+                                    <i class="far fa-file-excel"></i>
+                                </div>
+                                <div>
+                                    <div class="file-name">Financial Report Q2.xlsx</div>
+                                    <div class="file-details">XLS file</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Uploaded">Jun 22, 2023</td>
+                        <td data-label="Size">3.5 MB</td>
+                        <td data-label="Type">XLS</td>
+                        <td data-label="Actions">
+                            <div class="file-actions">
+                                <button class="action-btn download" title="Download">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="action-btn" title="Share">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                                <button class="action-btn" title="Rename">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                                <button class="action-btn delete" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr> -->
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <div class="empty-icon">
+                    <i class="far fa-folder-open"></i>
+                </div>
+                <h3>No documents found</h3>
+                <p>Upload your first document or adjust your search</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <div class="empty-icon">
+                <i class="far fa-folder-open"></i>
+            </div>
+            <h3>No documents found</h3>
+            <p>Upload your first document or adjust your search</p>
         </div>
     </div>
 </div>
@@ -132,7 +216,9 @@
 
 {% if messages %}
     {% for message in messages %}
-        <div class="msg-auth" data-id="{{ message }}"></div>
+        {% if forloop.first %}
+            <div class="msg-auth" data-id="{{ message }}"></div>
+        {% endif %}
     {% endfor %}
 {% endif %}
 

@@ -62,7 +62,8 @@
                 <li><a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a></li>
                 <li><a href="{% url 'workforce' %}"><i class="fas fa-users"></i> Workforce</a></li>
                 <li><a href="{% url 'dashboard' %}"><i class="fas fa-table"></i> Dashboard</a></li>
-                <li><a href="{% url 'jobs_applied' %}"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="{% url 'dashboard' %}"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Job Listings</a></li>
                 <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
                 <li><a href="{% url 'settings' %}"><i class="fas fa-headset"></i> Help Center</a></li>
                 <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
@@ -75,6 +76,7 @@
                 {% endif %}
             {% else %}
             <li ><a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{% url 'jobs_available' %}" ><i class="fas fa-briefcase"></i> Job Listings</a></li>
             <!-- <li ><a href="" class="ordered-list-4" onclick="NoAuthUser(event, 4)" data-cnt="profile"><i class="fas fa-user"></i> Profile</a></li>
             <li ><a href="" class="ordered-list-6" onclick="NoAuthUser(event, 6)" data-cnt="workplace"><i class="fas fa-users"></i> Workplace</a></li>
             <li ><a href="" class="ordered-list-3" onclick="NoAuthUser(event, 3)" data-cnt="documents"><i class="fas fa-folder-open"></i> Documents</a></li>
@@ -263,6 +265,7 @@
     <script src="{% static 'JS/jobapplication8.js' %}"></script>
     <script src="{% static 'JS/document01.js' %}"></script>
     <script src="{% static 'JS/workspace.js' %}"></script>
+    <script src="{% static 'JS/d.js' %}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
