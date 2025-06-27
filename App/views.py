@@ -346,7 +346,7 @@ class ResumeView(ListView):
     """
 
     """
-    template_name = 'Resume_View.html'
+    template_name = 'Doc_review.html'
 
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:

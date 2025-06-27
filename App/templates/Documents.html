@@ -80,11 +80,11 @@
                         <td data-label="Actions">
                             <div class="file-actions">
                                 {% if document.file_format == 'doc' or document.file_format == 'docx' %}
-                                <button class="action-btn" title="{{document.file_format|title}} view not supported">
+                                <a href="{% url 'view_resume' pk=document.pk %}" ><button class="action-btn" title="{{document.file_format|title}} view not supported">
                                     <i class="fas fa-eye-slash"></i>
-                                </button>
+                                </button></a>
                                 {% else %}
-                                 <a href="{% url 'view_resume' pk=document.pk %}" ><button class="action-btn eye-i" title="View">
+                                <a href="{% url 'view_resume' pk=document.pk %}" ><button class="action-btn eye-i" title="View">
                                     <i class="fas fa-eye"></i>
                                 </button></a>
                                 {% endif %}

@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block dynamicpage %}
+<div class="doc-review-body">
+    <div class="document-viewer-container">
+        <!-- Viewer Header -->
+        <div class="viewer-header">
+            <div class="viewer-title">
+                <div class="viewer-file-icon pdf" id="file-type-icon">
+                    <i class="far fa-file-pdf"></i>
+                </div>
+                <span id="file-name">{{document.name}}.{{document.file_format}}</span>
+            </div>
+            <div class="viewer-actions">
+                <button class="viewer-btn viewer-btn-primary" id="download-btn">
+                    <i class="fas fa-download"></i>
+                    Download
+                </button>
+                <!-- <button class="viewer-btn viewer-btn-secondary" id="share-btn">
+                    <i class="fas fa-share-alt"></i>
+                    Share
+                </button> -->
+                <button class="viewer-btn viewer-btn-secondary" id="print-btn">
+                    <i class="fas fa-print"></i>
+                    Print
+                </button>
+            </div>
+        </div>
+
+        <!-- Document Content -->
+        <div class="document-content-container">
+            <div class="document-toolbar">
+                <button class="toolbar-btn" id="prev-page-btn" title="Previous Page">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="toolbar-btn" id="next-page-btn" title="Next Page">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="toolbar-separator"></div>
+                <div class="zoom-controls">
+                    <button class="toolbar-btn" id="zoom-out-btn" title="Zoom Out">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <div class="zoom-value" id="zoom-level">100%</div>
+                    <button class="toolbar-btn" id="zoom-in-btn" title="Zoom In">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                </div>
+                <div class="toolbar-separator"></div>
+                <button class="toolbar-btn" id="fullscreen-btn" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+
+            <div class="document-preview-container">
+                <!-- PDF Viewer -->
+                <iframe id="pdf-viewer" class="document-preview" style="display: none;"></iframe>
+
+                <!-- DOCX Viewer (using Microsoft Office Online Viewer) -->
+                <iframe id="docx-viewer" class="document-preview" style="display: none;"></iframe>
+
+                <!-- Plain Text Viewer -->
+                <pre id="text-viewer" class="text-content" style="display: none;"></pre>
+
+                <!-- Unsupported File Message -->
+                <div id="unsupported-message" style="display: none; padding: 2rem; text-align: center;">
+                    <i class="far fa-file-excel" style="font-size: 3rem; color: var(--gray-medium); margin-bottom: 1rem;"></i>
+                    <h3>File Preview Not Available</h3>
+                    <p>This file type cannot be previewed in the browser. Please download the file to view it.</p>
+                </div>
+            </div>
+
+            <div class="page-controls" id="page-controls" style="display: none;">
+                <button class="page-btn" id="first-page-btn" title="First Page">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="page-btn" id="prev-page-control-btn" title="Previous Page">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <!-- <div class="page-info" id="page-info">Page 1 of 12</div> -->
+                <button class="page-btn" id="next-page-control-btn" title="Next Page">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="page-btn" id="last-page-btn" title="Last Page">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.userData = {
+        doc_url: "{{ document.file.url }}",
+        doc_type: "{{ document.file_format }}",
+        doc_name: "{{ document.name }}.{{ document.file_format }}",
+    };
+</script>
+
+{% endblock dynamicpage %}

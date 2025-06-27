@@ -21,7 +21,7 @@
 } */
 
 .doc-body {
-    background-color: #f5f7fa;
+    /* background-color: #f5f7fa; */
     color: var(--doc-dark);
     line-height: 1.6;
 }
