@@ -169,7 +169,7 @@
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    /* gap: 0.5rem; */
 }
 
 .jobeditpro-section-title i {
@@ -206,6 +206,23 @@
     font-size: 0.875rem;
 }
 
+.jobeditpro-form-label-info {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.jobeditpro-form-label-inf {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding-left: 10px;
+}
+
 #jobeditpro-job-title {
     width: 95%;
     padding: 0.75rem;
@@ -228,6 +245,34 @@
     outline: none;
     border-color: var(--primary-500);
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+#id_about{
+    width: 96%;
+    resize: none;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 25px;
+    font-size: 16px;
+}
+
+#id_description{
+    width: 96%;
+    resize: none;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 25px;
+    font-size: 16px;
+}
+
+#id_qualification{
+    width: 96%;
+    resize: none;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 25px;
+    font-size: 16px;
+}
+
+#id_status{
+    user-select: none;
 }
 
 #span-to{

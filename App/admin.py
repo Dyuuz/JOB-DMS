@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from App.models import CustomUser, CompanyProfile, UserProfile, Job, Application, Feedback, Document, Skill
+from App.models import CustomUser, CompanyProfile, UserProfile, Job, Application, Feedback, Document, Skill, Employment, TeamManagement
 
 # Register your models here.
 class CustomUserAdmin(admin.ModelAdmin):
@@ -25,4 +25,6 @@ admin.site.register(Job)
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(Application)
 admin.site.register(Feedback)
+admin.site.register(TeamManagement)
+admin.site.register(Employment)
 admin.site.register(Document, DocumentAdmin)

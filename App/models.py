@@ -154,6 +154,8 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.full_name
 
+
+# Work Experience model
 class Employment(models.Model):
     EMPLOYMENT_TYPE = (
         ('Internship', 'Internship'),
@@ -167,6 +169,7 @@ class Employment(models.Model):
         ('On site', 'On Site'),
     )
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, related_name='experience')
+    # company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name='employed')
     company_name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=50)
     job_description = models.TextField()
@@ -243,7 +246,8 @@ class Job(models.Model):
     company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name='jobs')
     title = models.CharField(max_length=255)
     about = models.TextField(blank=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
+    qualification = models.TextField(blank=True)
     department = models.CharField(max_length=255, choices=DERPARTMENT, default='Engineering')
     location = models.CharField(max_length=255, null=True, blank=True)
     job_type = models.CharField(max_length=255, choices=EMPLOYMENT_TYPE, default='Full Time')
@@ -262,6 +266,23 @@ class Job(models.Model):
 
     def __str__(self):
         return f"{self.title} at {self.company.user.full_name}"
+
+# Work Force/Space model
+class TeamManagement(models.Model):
+    WORk_STATUS = (
+        ('Active', 'Active'),
+        ('On Hold', 'On Hold'),
+        ('Pending Approval', 'Pending Approval'),
+        ('Served', 'Served'),
+    )
+    user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, related_name='worfforce')
+    job = models.ForeignKey(Job, on_delete=models.PROTECT, related_name='company_worforce',null=True, blank=True)
+    joined = models.DateField()
+    left = models.DateField(null=True,blank=True)
+    status = models.CharField(max_length=20, choices=WORk_STATUS, default=WORk_STATUS[2][0])
+
+    def __str__(self):
+        return self.user + " - " + self.job
 
 # Document model for storing documents uploaded by users and companies
 class Document(models.Model):

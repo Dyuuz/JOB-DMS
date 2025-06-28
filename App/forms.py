@@ -176,12 +176,14 @@ class JobForm(forms.ModelForm):
     class Meta:
         model = Job
         fields = [
-            'title', 'description','department', 'location', 'job_type', 'min_salary', 'max_salary',
-            'experience', 'currency', 'work_mode', 'deadline', 'status', 'is_public', 'experience_level',
+            'title', 'about', 'description','department', 'location', 'job_type', 'min_salary', 'max_salary',
+            'experience', 'currency', 'work_mode', 'qualification','work_mode_description', 'deadline', 'status', 'is_public', 'experience_level',
         ]
         widgets = {
             'title': forms.TextInput(attrs={'id': 'jobeditpro-job-title', 'placeholder': 'Enter title'}),
-            'description': forms.Textarea(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Enter description'}),
+            'about': forms.Textarea(attrs={'id':'id_about','class': 'jobeditpro-form-control', 'placeholder': "What's the job about?"}),
+            'description': forms.Textarea(attrs={'id':'id_description','class': 'jobeditpro-form-control', 'placeholder': 'Enter job description'}),
+            'qualification': forms.Textarea(attrs={'id':'id_qualification','class': 'jobeditpro-form-control', 'placeholder': 'Enter job qualification and skills'}),
             'location': forms.TextInput(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Enter location'}),
             'job_type': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select job type'}),
             'department': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select department'}),
@@ -192,8 +194,9 @@ class JobForm(forms.ModelForm):
             'experience': forms.NumberInput(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Enter years of experience'}),
             'currency': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select currency'}),
             'work_mode': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select work mode'}),
-            'deadline': forms.DateInput(attrs={'type': 'date', 'class': 'jobeditpro-form-control', 'placeholder': 'Select deadline'}),
-            'status': forms.Select(attrs={'class': 'jobeditpro-form-control', 'placeholder': 'Select status'}),
+            'work_mode_description': forms.TextInput(attrs={'id': 'jobeditpro-job-title', 'placeholder': 'E.g 40hours/week or 3days/week'}),
+            'deadline': forms.DateInput(attrs={'type': 'date','id': 'jobeditpro-job-title', 'class': 'jobeditpro-form-control', 'placeholder': 'Select deadline'}),
+            'status': forms.Select(attrs={'id': 'id_status','class': 'jobeditpro-form-control', 'placeholder': 'Select status'}),
             'is_public': forms.CheckboxInput(attrs={'class': 'jobeditpro-form-control-mod', 'placeholder': 'Enter annual growth rate'}),
         }
 

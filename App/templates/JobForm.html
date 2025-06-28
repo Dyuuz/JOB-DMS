@@ -86,6 +86,10 @@
                             <label for="jobeditpro-job-experience" class="jobeditpro-form-label">Years of Experience</label>
                             {{ form.experience }}
                         </div>
+                        <div class="jobeditpro-form-group">
+                            <label for="jobeditpro-job-experience" class="jobeditpro-form-label">Work Mode Description</label>
+                            {{ form.work_mode_description }}
+                        </div>
                     </div>
                 </div>
 
@@ -93,11 +97,20 @@
                 <div class="jobeditpro-form-section">
                     <div class="jobeditpro-form-group">
                         <h2 class="jobeditpro-section-title">
-                        <i class="fas fa-align-left"></i> Job Description
+                        <i class="fas fa-align-left"></i> Job Info
                     </div>
                 <div>
-                        <label for="jobeditpro-job-requirements" class="jobeditpro-form-label">Job Info</label>
+                    <div>
+                        <label for="jobeditpro-job-requirements" class="jobeditpro-form-label-inf">About</label>
+                        {{ form.about }}
+                    </div>
+                    <div>
+                        <label for="jobeditpro-job-requirements" class="jobeditpro-form-label-info">Requirements</label>
                         {{ form.description }}
+                    </div>
+                    <div>
+                        <label for="jobeditpro-job-requirements" class="jobeditpro-form-label-info">Qualification</label>
+                        {{ form.qualification }}
                     </div>
                 </div>
 
