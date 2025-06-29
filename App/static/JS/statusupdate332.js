@@ -15,10 +15,14 @@ function statusupdate(applicantId, status) {
         })
         .then(response => {
             showToast("Status updated to " + status);
+            const messageCell = document.querySelector(`td.status-message[data-applicant-id="${applicantId}"]`);
+            if (status === 'Interview') {
+                messageCell.textContent = response.data.next_step;
+            }
         })
         .catch(error => {
             const errorMsg = error.response.data.error;
-            showToast("Error updating status");
+            showToast(errorMsg);
         });
 
     }
@@ -43,25 +47,26 @@ document.addEventListener('DOMContentLoaded', function() {
             const statusClass = this.classList[1];
             const initialStatus = this.dataset.initialStatus;
             const applicantId = this.dataset.applicantId;
+            // alert(`From: ${initialStatus} to ${this.value}`);
 
-            if (statusClass && initialStatus.includes('offer')) {
+            if (statusClass && statusClass.includes('offer')) {
                 showToast("Cannot change status after it's set to 'Offer'");
                 this.value = `Offer-${applicantId}`;
-                this.classList.add('applicanttrack-status-offer');
+                // alert(`Failed to change from offer ${this.value}`);
                 return;
             }
 
-            else if (statusClass && initialStatus.includes('interview') && this.value.includes('Applied')) {
+            else if (statusClass && statusClass.includes('interview') && this.value.includes('Applied')) {
                 showToast("Cannot change status to 'Applied' after it's set to 'Interview'");
                 this.value = `Interview-${applicantId}`;
-                this.classList.add('applicanttrack-status-interview');
+                // alert(`Failed to change to interview ${this.value}`);
                 return;
             }
 
-            else if (statusClass && initialStatus.includes('rejected')) {
+            else if (statusClass && statusClass.includes('rejected')) {
                 showToast("Cannot change status after it's set to 'Rejected'");
                 this.value = `Rejected-${applicantId}`;
-                this.classList.add('applicanttrack-status-rejected');
+                // alert(`Failed to change from rejected ${this.value}`);
                 return;
             }
 
@@ -76,23 +81,32 @@ document.addEventListener('DOMContentLoaded', function() {
             const parts = value.split("-");
             const prefix = parts[0];
             const pk = parts[1];
+            const selectElement = document.querySelector(`select[data-applicant-id="${pk}"]`);
 
             switch(prefix) {
                 case 'Applied':
                     this.classList.add('applicanttrack-status-applied');
                     statusupdate(pk, prefix);
+                    selectElement.dataset.initialStatus = prefix;
+                    selectElement.value = `${prefix}-${pk}`;
                     break;
                 case 'Interview':
                     this.classList.add('applicanttrack-status-interview');
                     statusupdate(pk, prefix);
+                    selectElement.dataset.initialStatus = prefix;
+                    selectElement.value = `${prefix}-${pk}`;
                     break;
                 case 'Offer':
                     this.classList.add('applicanttrack-status-offer');
                     statusupdate(pk, prefix);
+                    selectElement.dataset.initialStatus = prefix;
+                    selectElement.value = `${prefix}-${pk}`;
                     break;
                 case 'Rejected':
                     this.classList.add('applicanttrack-status-rejected');
                     statusupdate(pk, prefix);
+                    selectElement.dataset.initialStatus = prefix;
+                    selectElement.value = `${prefix}-${pk}`;
                     break;
             }
         });

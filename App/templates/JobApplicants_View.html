@@ -99,7 +99,7 @@
                                 </select>
                             </div>
                         </td>
-                        <td>-</td>
+                        <td class="status-message" data-applicant-id="{{ applicant.id }}">{{ applicant.next_step }}</td>
                         <td>
                             <div class="applicanttrack-actions">
                                 <a href="{% url 'jobs_applicant_form' pk=applicant.user.pk  jd=applicant.job.pk %}"><button class="applicanttrack-action-btn applicanttrack-view-btn" title="View Application">

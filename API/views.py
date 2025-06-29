@@ -53,8 +53,8 @@ class JobStatusAPIView(UpdateAPIView):
     def patch(self, request, *args, **kwargs):
         instance = self.get_object()
         status_data = request.data.get("status")
-        print(f"Status data received: {status_data}")
-        print(instance.status)
+        # print(f"Status data received: {status_data}")
+        # print(instance.status)
         if instance.status == "Offer":
             return Response(
                 {"error": "Cannot change status after it's set to '{instance.status}'."},
@@ -90,10 +90,15 @@ class JobStatusAPIView(UpdateAPIView):
             instance.next_step = "Awaiting Response"
             instance.save()
 
+        elif instance.status == "Offer":
+            instance.next_step = "Welcome aboard"
+            instance.save()
+
         else:
             return Response({'error': 'Invalid status'}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({
             "message": "Application status updated",
+            "next_step": instance.next_step,
             "data": response.data
         }, status=response.status_code)
