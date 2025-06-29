@@ -310,3 +310,17 @@
         align-self: center;
     }
 }
+
+#status-toast{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background:rgb(54, 71, 165);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+}

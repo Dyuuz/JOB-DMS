@@ -277,7 +277,7 @@ class TeamManagement(models.Model):
     )
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, related_name='worfforce')
     job = models.ForeignKey(Job, on_delete=models.PROTECT, related_name='company_worforce',null=True, blank=True)
-    joined = models.DateField()
+    joined = models.DateTimeField(auto_now_add=True)
     left = models.DateField(null=True,blank=True)
     status = models.CharField(max_length=20, choices=WORk_STATUS, default=WORk_STATUS[2][0])
 

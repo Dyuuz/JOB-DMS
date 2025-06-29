@@ -74,27 +74,27 @@
                         <td>{{ applicant.submitted_at|date:"F j, Y"}}</td>
                         <td>
                             <div class="applicanttrack-status">
-                                <select class="applicanttrack-status-select applicanttrack-status-{{ applicant.element }}">
+                                <select class="applicanttrack-status-select applicanttrack-status-{{ applicant.element }}" data-initial-status="{{ applicant.element }}" data-applicant-id="{{ applicant.id }}">
                                     {% if applicant.status == 'Applied' %}
-                                    <option value="applied-{{applicant.pk}}" selected>Applied</option>
-                                    <option value="interview-{{applicant.pk}}">Interview</option>
-                                    <option value="offer-{{applicant.pk}}">Offer</option>
-                                    <option value="rejected-{{applicant.pk}}">Rejected</option>
+                                    <option value="Applied-{{applicant.id}}" selected>Applied</option>
+                                    <option value="Interview-{{applicant.pk}}">Interview</option>
+                                    <option value="Offer-{{applicant.pk}}">Offer</option>
+                                    <option value="Rejected-{{applicant.pk}}">Rejected</option>
                                     {% elif applicant.status == 'Interview' %}
-                                    <option value="applied-{{applicant.pk}}">Applied</option>
-                                    <option value="interview-{{applicant.pk}}" selected>Interview</option>
-                                    <option value="offer-{{applicant.pk}}">Offer</option>
-                                    <option value="rejected-{{applicant.pk}}">Rejected</option>
+                                    <option value="Applied-{{applicant.pk}}">Applied</option>
+                                    <option value="Interview-{{applicant.pk}}" selected>Interview</option>
+                                    <option value="Offer-{{applicant.pk}}">Offer</option>
+                                    <option value="Rejected-{{applicant.pk}}">Rejected</option>
                                     {% elif applicant.status == 'Offer' %}
-                                    <option value="applied-{{applicant.pk}}">Applied</option>
-                                    <option value="interview-{{applicant.pk}}">Interview</option>
-                                    <option value="offer-{{applicant.pk}}" selected>Offer</option>
-                                    <option value="rejected-{{applicant.pk}}">Rejected</option>
+                                    <option value="Applied-{{applicant.pk}}">Applied</option>
+                                    <option value="Interview-{{applicant.pk}}">Interview</option>
+                                    <option value="Offer-{{applicant.pk}}" selected>Offer</option>
+                                    <option value="Rejected-{{applicant.pk}}">Rejected</option>
                                     {% elif applicant.status == 'Rejected' %}
-                                    <option value="applied-{{applicant.pk}}">Applied</option>
-                                    <option value="interview-{{applicant.pk}}" >Interview</option>
-                                    <option value="offer-{{applicant.pk}}">Offer</option>
-                                    <option value="rejected-{{applicant.pk}}" selected>Rejected</option>
+                                    <option value="Applied-{{applicant.pk}}">Applied</option>
+                                    <option value="Interview-{{applicant.pk}}" >Interview</option>
+                                    <option value="Offer-{{applicant.pk}}">Offer</option>
+                                    <option value="Rejected-{{applicant.pk}}" selected>Rejected</option>
                                     {% endif %}
                                 </select>
                             </div>
@@ -113,81 +113,13 @@
             </table>
         </div>
     </div>
+    <div id="status-toast"></div>
 
     <script>
-        // In a real application, this would handle status changes and filtering
-        document.addEventListener('DOMContentLoaded', function() {
-            // Status change handler
-            const statusSelects = document.querySelectorAll('.applicanttrack-status-select');
-
-            statusSelects.forEach(select => {
-                select.addEventListener('change', function() {
-                    // Remove all status classes
-                    this.classList.remove(
-                        'applicanttrack-status-applied',
-                        'applicanttrack-status-interview',
-                        'applicanttrack-status-offer',
-                        'applicanttrack-status-rejected'
-                    );
-
-                    // Seperate status and applicant id for the value
-                    value = this.value;
-                    const parts = value.split("-");
-                    const prefix = parts[0];
-                    const pk = parts[1];
-
-                    // Add the appropriate status class
-                    switch(prefix) {
-                        case 'applied':
-                            this.classList.add('applicanttrack-status-applied');
-
-                            break;
-                        case 'interview':
-                            this.classList.add('applicanttrack-status-interview');
-
-                            break;
-                        case 'offer':
-                            this.classList.add('applicanttrack-status-offer');
-
-                            break;
-                        case 'rejected':
-                            this.classList.add('applicanttrack-status-rejected');
-
-                            break;
-                    }
-                });
-            });
-
-            // View button handler
-            const viewButtons = document.querySelectorAll('.applicanttrack-view-btn');
-
-            viewButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const applicantName = this.closest('tr').querySelector('.applicanttrack-applicant-name').textContent;
-                    // alert('Viewing application for:', applicantName);
-                    // In a real app, this would open a modal or navigate to a detail page
-                });
-            });
-
-            // Search and filter functionality
-            const searchInput = document.querySelector('.applicanttrack-search-input');
-            const filterSelects = document.querySelectorAll('.applicanttrack-filter-select');
-
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const rows = document.querySelectorAll('.applicanttrack-table tbody tr');
-
-                rows.forEach(row => {
-                    const name = row.querySelector('.applicanttrack-applicant-name').textContent.toLowerCase();
-                    const email = row.querySelector('.applicanttrack-applicant-email').textContent.toLowerCase();
-
-                    if (name.includes(searchTerm) || email.includes(searchTerm)) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            });
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
         });
     </script>
 </div>

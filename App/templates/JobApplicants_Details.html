@@ -10,10 +10,35 @@
                 <span class="applicantinfo-brand-text"></span>
             </div>
             <div>
-                <span class="applicantinfo-status applicantinfo-status-{{ status }}">
-                    <span class="applicantinfo-status-dot"></span>
-                    {{ applicant.status }}
-                </span>
+                {% comment %} <span class="applicantinfo-status applicantinfo-status-{{ status }}"> {% endcomment %}
+                    <td>
+                    <div class="applicanttrack-status">
+                        <select class="applicanttrack-status-select applicanttrack-status-{{ status }}" data-initial-status="{{ applicant.status|lower }}" data-applicant-id="{{ applicant.id }}">
+                            {% if applicant.status == 'Applied' %}
+                            <option value="Applied-{{applicant.id}}" selected>Applied</option>
+                            <option value="Interview-{{applicant.pk}}">Interview</option>
+                            <option value="Offer-{{applicant.pk}}">Offer</option>
+                            <option value="Rejected-{{applicant.pk}}">Rejected</option>
+                            {% elif applicant.status == 'Interview' %}
+                            <option value="Applied-{{applicant.pk}}">Applied</option>
+                            <option value="Interview-{{applicant.pk}}" selected>Interview</option>
+                            <option value="Offer-{{applicant.pk}}">Offer</option>
+                            <option value="Rejected-{{applicant.pk}}">Rejected</option>
+                            {% elif applicant.status == 'Offer' %}
+                            <option value="Applied-{{applicant.pk}}">Applied</option>
+                            <option value="Interview-{{applicant.pk}}">Interview</option>
+                            <option value="Offer-{{applicant.pk}}" selected>Offer</option>
+                            <option value="Rejected-{{applicant.pk}}">Rejected</option>
+                            {% elif applicant.status == 'Rejected' %}
+                            <option value="Applied-{{applicant.pk}}">Applied</option>
+                            <option value="Interview-{{applicant.pk}}" >Interview</option>
+                            <option value="Offer-{{applicant.pk}}">Offer</option>
+                            <option value="Rejected-{{applicant.pk}}" selected>Rejected</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    </td>
+                {% comment %} </span> {% endcomment %}
             </div>
         </div>
     </header>
@@ -144,53 +169,14 @@
             </div>
         </div>
     </div>
+    <div id="status-toast"></div>
+
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Status change handler
-            const statusSelect = document.querySelector('.applicantinfo-status-select');
-
-            statusSelect.addEventListener('change', function() {
-                const statusBar = document.querySelector('.applicantinfo-status');
-
-                // Remove all status classes
-                statusBar.classList.remove(
-                    'applicantinfo-status-applied',
-                    'applicantinfo-status-interview',
-                    'applicantinfo-status-offer',
-                    'applicantinfo-status-rejected'
-                );
-
-                // Update status text and add appropriate class
-                switch(this.value) {
-                    case 'applied':
-                        statusBar.textContent = 'Applied';
-                        statusBar.classList.add('applicantinfo-status-applied');
-                        break;
-                    case 'interview':
-                        statusBar.innerHTML = '<span class="applicantinfo-status-dot"></span> Interview Stage';
-                        statusBar.classList.add('applicantinfo-status-interview');
-                        break;
-                    case 'offer':
-                        statusBar.innerHTML = '<span class="applicantinfo-status-dot"></span> Offer Extended';
-                        statusBar.classList.add('applicantinfo-status-offer');
-                        break;
-                    case 'rejected':
-                        statusBar.innerHTML = '<span class="applicantinfo-status-dot"></span> Rejected';
-                        statusBar.classList.add('applicantinfo-status-rejected');
-                        break;
-                }
-
-                console.log('Status changed to:', this.value);
-                // In a real app, you would send this update to your backend
-            });
-
-            // Back button functionality
-            const backButton = document.querySelector('.applicantinfo-back-btn');
-            backButton.addEventListener('click', function() {
-                console.log('Navigating back to applicants list');
-                // In a real app, this would navigate back
-            });
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
         });
     </script>
 </div>
