@@ -303,6 +303,16 @@
     gap: 0.5rem;
 }
 
+.jobzen-deadline {
+    color: rgba(0, 0, 0, 0.795);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 998px) {
     /* .jobzen-company-card {

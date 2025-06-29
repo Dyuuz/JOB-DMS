@@ -2,10 +2,6 @@ function statusupdate(applicantId, status) {
     const csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     if (applicantId && status) {
-        // alert(status);
-        // alert(applicantId);
-
-        // Example: send update to server
         axios.patch(`/api/job/${applicantId}/status/`, {
             'status': status,
         }, {

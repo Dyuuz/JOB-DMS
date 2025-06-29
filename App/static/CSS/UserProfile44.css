@@ -19,9 +19,9 @@
 
 /* Header Section */
 .profile-header {
-    background: white;
+    background: linear-gradient(135deg, rgba(3, 54, 20, 0.548), #061d61e1);
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    box-shadow: 10px 8px 20px rgba(0, 0, 0, 0.2);
     padding: 2rem;
     margin-bottom: 2rem;
     display: flex;
@@ -29,6 +29,14 @@
     align-items: center;
     text-align: center;
     position: relative;
+    backdrop-filter: blur(17px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.profile-header:hover {
+  backdrop-filter: blur(16px);
+  transform: scale(1.02);
+  transition: 0.3s ease;
 }
 
 .profile-header-actions {
@@ -104,12 +112,12 @@
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: #04a753cf;
+    color: #ffffffea;
 }
 
 .profile-title {
     font-size: 1.2rem;
-    color: var(--light-text);
+    color: white;
     margin-bottom: 1.2rem;
 }
 
@@ -125,11 +133,12 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--light-text);
+    color: white;
     font-size: 0.95rem;
 }
 
 .contact-text {
+    color: white;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -234,10 +243,13 @@
 
 /* Sidebar */
 .profile-sidebar {
-    background: white;
+    background: #ffffff;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: 2rem;
+    border: 1px solid rgba(28, 177, 77, 0.548);
+    backdrop-filter: blur(17px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .sidebar-section {
@@ -260,6 +272,9 @@
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: 2rem;
+    border: 1px solid rgba(28, 177, 77, 0.548);
+    backdrop-filter: blur(17px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 /* Display Elements */
@@ -342,14 +357,14 @@
 @keyframes pulse-green {
     0% {
         background-color: #04a752; /* Original green */
-        box-shadow: 0 0 0 0 rgba(4, 167, 82, 0.4);
+        box-shadow: 0 0 0 0 rgba(209, 214, 211, 0.842);
     }
     50% {
         background-color: #0bd166; /* Brighter green */
         box-shadow: 0 0 0 4px rgba(11, 209, 102, 0);
     }
     100% {
-        background-color: #04a752; /* Back to original */
+        background-color: #d0d6d3; /* Back to original */
         box-shadow: 0 0 0 0 rgba(4, 167, 82, 0);
     }
 }
