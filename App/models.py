@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
@@ -67,6 +69,7 @@ class CompanyProfile(models.Model):
     )
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    profile_picture = CloudinaryField('image', blank=True, null=True)
     hire_status = models.CharField(max_length=100,choices=STATUS, default='Hiring')
     company_reg_num = models.CharField(max_length=255,unique=True, blank=True, null=True)
     work_mode = models.CharField(max_length=255,choices=WORK_MODE, blank=True, null=True)
@@ -275,14 +278,73 @@ class TeamManagement(models.Model):
         ('Pending Approval', 'Pending Approval'),
         ('Served', 'Served'),
     )
+    COMPANY_STATUS = (
+        ('Active', 'Active'),
+        ('On Leave', 'On Leave'),
+        ('Pending', 'Pending'),
+        ('Served', 'Served'),
+    )
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, related_name='worfforce')
     job = models.ForeignKey(Job, on_delete=models.PROTECT, related_name='company_worforce',null=True, blank=True)
-    joined = models.DateTimeField(auto_now_add=True)
+    employee_ID = models.CharField(max_length=20, unique=True, blank=True)
+    joined = models.DateTimeField(null=True,blank=True)
     left = models.DateField(null=True,blank=True)
-    status = models.CharField(max_length=20, choices=WORk_STATUS, default=WORk_STATUS[2][0])
+    user_status = models.CharField(max_length=20, choices=WORk_STATUS, default=WORk_STATUS[2][0])
+    company_status = models.CharField(max_length=20, choices=COMPANY_STATUS, default=COMPANY_STATUS[2][0])
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'job'], name='unique_user_job_team_management')
+        ]
 
     def __str__(self):
-        return self.user + " - " + self.job
+        return self.employee_ID
+
+    def save(self, *args, **kwargs):
+        if self.pk:  # If updating
+            orig = TeamManagement.objects.get(pk=self.pk)
+            if orig.employee_ID != self.employee_ID:
+                self.employee_ID = orig.employee_ID
+
+            previous = TeamManagement.objects.get(pk=self.pk)
+            if previous.company_status == self.COMPANY_STATUS[3][0] and self.company_status == self.COMPANY_STATUS[0][0]:
+                self.user_status = self.WORk_STATUS[0][0]
+                self.left = None
+
+            elif previous.company_status == self.COMPANY_STATUS[3][0] and self.company_status == self.COMPANY_STATUS[1][0]:
+                raise ValidationError("Cannot change status to On Leave. Please use the appropriate status.")
+
+            elif previous.company_status == self.COMPANY_STATUS[3][0] and self.company_status == self.COMPANY_STATUS[2][0]:
+                raise ValidationError("Cannot change status to Pending. Please use the appropriate status.")
+
+            elif previous.company_status == self.COMPANY_STATUS[2][0] and self.company_status == self.COMPANY_STATUS[1][0]:
+                raise ValidationError("Cannot change status to On Leave. Please use the appropriate status.")
+
+            elif previous.company_status == self.COMPANY_STATUS[2][0] and self.company_status == self.COMPANY_STATUS[3][0]:
+                raise ValidationError("Cannot change status to Served. Please use the appropriate status.")
+
+            elif previous.company_status != self.COMPANY_STATUS[0][0] and self.company_status == self.COMPANY_STATUS[0][0]:
+                self.joined = timezone.localdate()
+                self.user_status = self.WORk_STATUS[0][0]
+
+            elif previous.company_status != self.COMPANY_STATUS[1][0] and self.company_status == self.COMPANY_STATUS[1][0]:
+                self.user_status = self.WORk_STATUS[1][0]
+
+            elif previous.company_status != self.COMPANY_STATUS[2][0] and self.company_status == self.COMPANY_STATUS[2][0]:
+                raise ValidationError("Cannot change status to Pending. Please use the appropriate status.")
+
+            elif previous.company_status != self.COMPANY_STATUS[3][0] and self.company_status == self.COMPANY_STATUS[3][0]:
+                self.user_status = self.WORk_STATUS[3][0]
+                self.left = timezone.localdate()
+
+        else:
+            # On create
+            if not self.employee_ID:
+                last = TeamManagement.objects.order_by('-id').first()
+                last_num = int(last.employee_ID.split('-')[1]) if last and last.employee_ID else 9999
+                self.employee_ID = f"EMP-{last_num + 1}"
+
+        super().save(*args, **kwargs)
 
 # Document model for storing documents uploaded by users and companies
 class Document(models.Model):
