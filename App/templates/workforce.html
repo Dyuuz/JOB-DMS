@@ -21,7 +21,7 @@
                             <i class="fas fa-user-check"></i>
                         </div>
                     </div>
-                    <h2 class="teampulse-stat-value">142</h2>
+                    <h2 class="teampulse-stat-value">{{ active }}</h2>
                     <p class="teampulse-stat-trend up">
                         <i class="fas fa-arrow-up"></i> 8% from last month
                     </p>
@@ -34,9 +34,9 @@
                             <i class="fas fa-sitemap"></i>
                         </div>
                     </div>
-                    <h2 class="teampulse-stat-value">12</h2>
+                    <h2 class="teampulse-stat-value">3</h2>
                     <p class="teampulse-stat-trend up">
-                        <i class="fas fa-arrow-up"></i> 2 new this quarter
+                        <i class="fas fa-arrow-up"></i> 1 new this quarter
                     </p>
                 </div>
 
@@ -47,9 +47,9 @@
                             <i class="fas fa-umbrella-beach"></i>
                         </div>
                     </div>
-                    <h2 class="teampulse-stat-value">7</h2>
+                    <h2 class="teampulse-stat-value">{{ leave }}</h2>
                     <p class="teampulse-stat-trend down">
-                        <i class="fas fa-arrow-down"></i> 3 returning soon
+                        <i class="fas fa-arrow-down"></i> 1 returning soon
                     </p>
                 </div>
 
@@ -60,9 +60,9 @@
                             <i class="fas fa-user-plus"></i>
                         </div>
                     </div>
-                    <h2 class="teampulse-stat-value">15</h2>
+                    <h2 class="teampulse-stat-value">{{ active }}</h2>
                     <p class="teampulse-stat-trend up">
-                        <i class="fas fa-arrow-up"></i> 5 in onboarding
+                        <i class="fas fa-arrow-up"></i> 1 in onboarding
                     </p>
                 </div>
             </div>
@@ -94,34 +94,73 @@
                             <th>Role</th>
                             <th>Department</th>
                             <th>Join Date</th>
+                            <th>Left Date</th>
                             <th class="status-swf">Status</th>
                             <th class="action-awf">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for work in workforce %}
                         <tr>
                             <td>
                                 <div class="teampulse-member">
                                     <div class="teampulse-member-avatar">
-                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                                        <img src="{{ work.user.userprofile.profile_picture.url }}" alt="{{ work.user }}">
                                     </div>
                                     <div class="teampulse-member-info">
-                                        <span class="teampulse-member-name">Sarah Johnson</span>
-                                        <span class="teampulse-member-id">EMP-10045</span>
+                                        <span class="teampulse-member-name">{{ work.user }}</span>
+                                        <span class="teampulse-member-id">{{ work.employee_ID }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="teampulse-member-role">Senior Developer</div>
-                                <div class="teampulse-member-department">Engineering</div>
+                                <div class="teampulse-member-role">{{ work.job.title }}</div>
+                                <div class="teampulse-member-department">{{ work.job.experience_level }}</div>
                             </td>
-                            <td>Engineering</td>
-                            <td>Jun 12, 2020</td>
+
+                            <!-- Joined  -->
+                            <td>{{ work.job.department }}</td>
+                            {% if work.joined %}
+                                <td>{{ work.joined|date:"F j, Y" }}</td>
+                            {% else %}
+                                <td>-</td>
+                            {% endif %}
+
+                            <!-- Joined  -->
+                            {% if work.left %}
+                                <td>{{ work.left|date:"F j, Y" }}</td>
+                            {% elif work.joined and work.left is none %}
+                                <td>Present</td>
+                            {% else %}
+                                <td>-</td>
+                            {% endif %}
+
                             <td>
+                                {% if work.company_status == "Active" %}
+                                <!-- Active Badge -->
                                 <span class="teampulse-status teampulse-status-active">
                                     <span class="teampulse-status-dot"></span>
                                     Active
                                 </span>
+                                {% elif work.company_status == "Pending" %}
+                                <!-- Pending Badge -->
+                                <span class="teampulse-status teampulse-status-inactive">
+                                    <span class="teampulse-status-dot"></span>
+                                    Inactive
+                                </span>
+                                {% elif work.company_status == "On Leave" %}
+                                <!-- On Hold Badge -->
+                                <span class="teampulse-status teampulse-status-onleave">
+                                    <span class="teampulse-status-dot"></span>
+                                    On Leave
+                                </span>
+                                {% elif work.company_status == "Served" %}
+                                <!-- Served Badge -->
+                                <span class="teampulse-status teampulse-status-inactive">
+                                    <span class="teampulse-status-dot"></span>
+                                    Served
+                                </span>
+                                {% endif %}
                             </td>
                             <td>
                                 <div class="teampulse-actions">
@@ -137,7 +176,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        {% endfor %}
+                        <!-- <tr>
                             <td>
                                 <div class="teampulse-member">
                                     <div class="teampulse-member-avatar">
@@ -288,7 +328,7 @@
                                     </button>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

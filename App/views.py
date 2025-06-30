@@ -7,7 +7,7 @@ from django.views import View
 from .models import (
     CustomUser, CompanyProfile,
     UserProfile, Job, Application,
-    Feedback, Document, Employment)
+    Feedback, Document, Employment, TeamManagement)
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
@@ -146,10 +146,23 @@ class WorkforceView(View):
     def get(self, request, *args, **kwargs):
         user = request.user
         name_list = get_company_name(user.full_name)
+        jobs = Job.objects.filter(company=request.user.companyprofile, status='Active')
+        workforce = TeamManagement.objects.filter(job__in=jobs).order_by('-created_at')
+        active = len(TeamManagement.objects.filter(job__in=jobs, user_status='Active'))
+        # department = len(TeamManagement.objects.filter(job=jobs, user_status='On Leave'))
+        leave = len(TeamManagement.objects.filter(job__in=jobs, user_status='On Hold'))
+        served = len(TeamManagement.objects.filter(job__in=jobs, user_status='Served'))
+
+
         return render(request, self.template_name,
         {
             'user': user,
             'company_name': name_list,
+            'workforce': workforce,
+            'active': active,
+            # 'pending': pending,
+            'leave': leave,
+            'served': served
         })
 
 
@@ -160,8 +173,13 @@ class WorkSpaceView(View):
     template_name = 'WorkSpace.html'
 
     def get(self, request, *args, **kwargs):
+        workspace = TeamManagement.objects.filter(user=request.user).order_by('-created_at')
+        active = len(TeamManagement.objects.filter(user=request.user, user_status='Active'))
+        pending = len(TeamManagement.objects.filter(user=request.user, user_status='On Hold'))
+        hold = len(TeamManagement.objects.filter(user=request.user, user_status='Pending Approval'))
+        served = len(TeamManagement.objects.filter(user=request.user, user_status='Served'))
 
-        return render(request, self.template_name)
+        return render(request, self.template_name, locals())
 
 
 class JobsAppliedView(ListView):

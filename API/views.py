@@ -55,50 +55,59 @@ class JobStatusAPIView(UpdateAPIView):
         status_data = request.data.get("status")
         # print(f"Status data received: {status_data}")
         # print(instance.status)
-        if instance.status == "Offer":
-            return Response(
-                {"error": "Cannot change status after it's set to '{instance.status}'."},
-                status=status.HTTP_403_FORBIDDEN
-            )
+        try:
+            if instance.status == "Offer":
+                return Response(
+                    {"error": "Cannot change status after it's set to '{instance.status}'."},
+                    status=status.HTTP_403_FORBIDDEN
+                )
 
-        elif instance.status == "Rejected":
-            return Response(
-                {"error": f"Cannot change status after it's set to '{instance.status}'."},
-                status=status.HTTP_403_FORBIDDEN
-            )
+            elif instance.status == "Rejected":
+                return Response(
+                    {"error": f"Cannot change status after it's set to '{instance.status}'."},
+                    status=status.HTTP_403_FORBIDDEN
+                )
 
-        elif instance.status == "Interview" and status_data == "Applied":
-            return Response(
-                {"error": f"Cannot change status to {status_data} after it's set to {instance.status}."},
-                status=status.HTTP_403_FORBIDDEN
-            )
+            elif instance.status == "Interview" and status_data == "Applied":
+                return Response(
+                    {"error": f"Cannot change status to {status_data} after it's set to {instance.status}."},
+                    status=status.HTTP_403_FORBIDDEN
+                )
 
-        response = super().patch(request, *args, **kwargs)
+            response = super().patch(request, *args, **kwargs)
 
-        instance.refresh_from_db()
+            instance.refresh_from_db()
 
-        # Conditional logic after patching
-        if instance.status == "Rejected":
-            instance.next_step = "N/A"
-            instance.save()
+            # Conditional logic after patching
+            if instance.status == "Rejected":
+                instance.next_step = "N/A"
+                instance.save()
 
-        elif instance.status == "Interview":
-            instance.next_step = "Technical Interview"
-            instance.save()
+            elif instance.status == "Interview":
+                instance.next_step = "Technical Interview"
+                instance.save()
 
-        elif instance.status == "Applied":
-            instance.next_step = "Awaiting Response"
-            instance.save()
+            elif instance.status == "Applied":
+                instance.next_step = "Awaiting Response"
+                instance.save()
 
-        elif instance.status == "Offer":
-            instance.next_step = "Welcome aboard"
-            instance.save()
+            elif instance.status == "Offer":
+                instance.next_step = "Welcome aboard"
+                instance.save()
+                TeamManagement.objects.create(
+                    job=instance.job,
+                    user=instance.user,
+                    company_status='Pending',
+                )
 
-        else:
-            return Response({'error': 'Invalid status'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'error': 'Invalid status'}, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response({
-            "message": "Application status updated",
-            "next_step": instance.next_step,
-            "data": response.data
-        }, status=response.status_code)
+            return Response({
+                "message": "Application status updated",
+                "next_step": instance.next_step,
+                "data": response.data
+            }, status=response.status_code)
+
+        except Exception as e:
+            return Response({'error': 'Error processing request'}, status=status.HTTP_400_BAD_REQUEST)

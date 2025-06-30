@@ -291,6 +291,7 @@ class TeamManagement(models.Model):
     left = models.DateField(null=True,blank=True)
     user_status = models.CharField(max_length=20, choices=WORk_STATUS, default=WORk_STATUS[2][0])
     company_status = models.CharField(max_length=20, choices=COMPANY_STATUS, default=COMPANY_STATUS[2][0])
+    created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         constraints = [
@@ -324,7 +325,7 @@ class TeamManagement(models.Model):
                 raise ValidationError("Cannot change status to Served. Please use the appropriate status.")
 
             elif previous.company_status != self.COMPANY_STATUS[0][0] and self.company_status == self.COMPANY_STATUS[0][0]:
-                self.joined = timezone.localdate()
+                self.joined = timezone.now()
                 self.user_status = self.WORk_STATUS[0][0]
 
             elif previous.company_status != self.COMPANY_STATUS[1][0] and self.company_status == self.COMPANY_STATUS[1][0]:
@@ -335,7 +336,7 @@ class TeamManagement(models.Model):
 
             elif previous.company_status != self.COMPANY_STATUS[3][0] and self.company_status == self.COMPANY_STATUS[3][0]:
                 self.user_status = self.WORk_STATUS[3][0]
-                self.left = timezone.localdate()
+                self.left = timezone.now()
 
         else:
             # On create

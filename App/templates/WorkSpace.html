@@ -9,19 +9,19 @@
 
         <div class="stats-workspace">
             <div class="stat-card">
-                <div class="stat-value-active" id="activeCompanies">2</div>
+                <div class="stat-value-active" id="activeCompanies">{{ active }}</div>
                 <div class="stat-label-active">Active Companies</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value-pend" id="totalProjects">1</div>
+                <div class="stat-value-pend" id="totalProjects">{{ pending }}</div>
                 <div class="stat-label-pend">Pending Approval</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value-hold" id="pendingRequests">1</div>
+                <div class="stat-value-hold" id="pendingRequests">{{ hold }}</div>
                 <div class="stat-label-hold">On Hold</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value-served" id="pendingRequests">1</div>
+                <div class="stat-value-served" id="pendingRequests">{{ served }}</div>
                 <div class="stat-label-served">Served</div>
             </div>
         </div>
@@ -37,47 +37,70 @@
         </div>
 
         <div class="grid" id="companiesGrid">
-            <!-- Company 1 -->
+            {% for work in workspace  %}
             <div class="company-card">
-                <h3 class="company-name">TechNova Solutions</h3>
-                <div class="company-industry">Technology</div>
+                <h3 class="company-name">{{ work.job.company.user }}</h3>
+                <div class="company-industry">{{ work.job.department }}</div>
                 <div class="company-meta">
                     <div class="meta-item">
-                        <i class="fas fa-user-tie"></i> Senior Developer
+                        <i class="fas fa-user-tie"></i> {{ work.job.title }}
                     </div>
                 </div>
                 <div class="status-container">
+                    {% if work.user_status == "Active" %}
                     <!-- Active Badge -->
                     <div class="status-badge badge-active">
                         <i class="fas fa-check"></i>
                         <span>Active</span>
                     </div>
-
+                    {% elif work.user_status == "Pending Approval" %}
                     <!-- Pending Badge -->
-                    <!-- <div class="status-badge badge-pending">
+                    <div class="status-badge badge-pending">
                         <i class="fas fa-clock"></i>
                         <span>Pending</span>
                     </div>
-
-                    <!== On Hold Badge ==>
+                    {% elif work.user_status == "On Hold" %}
+                    <!-- On Hold Badge -->
                     <div class="status-badge badge-onhold">
                         <i class="fas fa-pause"></i>
                         <span>On Hold</span>
-                    </div> -->
+                    </div>
+                    {% elif work.user_status == "Served" %}
+                    <!-- Served Badge -->
+                    <div class="status-badge badge-served">
+                        <i class="fas fa-check"></i>
+                        <span>Served</span>
+                    </div>
+                    {% endif %}
+
                 </div>
                 <div class="company-dates">
                     <div class="date-group">
-                        <div class="date-label">Joined</div>
-                        <div class="date-value">Mar 15, 2022</div>
+                        {% if work.joined %}
+                            <div class="date-label">Joined</div>
+                            <div class="date-value">{{ work.joined|date:"F j, Y" }}</div>
+                        {% else %}
+                            <div class="date-label">Joined</div>
+                            <div class="date-value">-</div>
+                        {% endif %}
                     </div>
                     <div class="date-group">
-                        <div class="date-label">Left</div>
-                        <div class="date-value status-active">Present</div>
+                        {% if work.left %}
+                            <div class="date-label">Left</div>
+                            <div class="date-value">{{ work.left|date:"F j, Y" }}</div>
+                        {% elif work.joined and work.left is none %}
+                            <div class="date-label">Left</div>
+                            <div class="date-value status-active">Present</div>
+                        {% else %}
+                            <div class="date-label">Left</div>
+                            <div class="date-value">-</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
+            {% endfor %}
 
-            <!-- Company 2 -->
+            <!-- <!== Company 2 ==>
             <div class="company-card">
                 <h3 class="company-name">GreenLeaf Finance</h3>
                 <div class="company-industry">Finance</div>
@@ -87,7 +110,7 @@
                     </div>
                 </div>
                 <div class="status-container">
-                    <!-- On Hold Badge -->
+                    <!== On Hold Badge ==>
                     <div class="status-badge badge-onhold">
                         <i class="fas fa-pause"></i>
                         <span>On Hold</span>
@@ -105,7 +128,7 @@
                 </div>
             </div>
 
-            <!-- Company 3 -->
+            <!== Company 3 ==>
             <div class="company-card">
                 <h3 class="company-name">MediCare Health</h3>
                 <div class="company-industry">Healthcare</div>
@@ -115,7 +138,7 @@
                     </div>
                 </div>
                 <div class="status-container">
-                    <!-- Pending Badge -->
+                    <!== Pending Badge ==>
                     <div class="status-badge badge-pending">
                         <i class="fas fa-clock"></i>
                         <span>Pending Approval</span>
@@ -133,7 +156,7 @@
                 </div>
             </div>
 
-            <!-- Company 4 -->
+            <!== Company 4 ==>
             <div class="company-card">
                 <h3 class="company-name">EduFuture Academy</h3>
                 <div class="company-industry">Education</div>
@@ -143,7 +166,7 @@
                     </div>
                 </div>
                 <div class="status-container">
-                    <!-- Active Badge -->
+                    <!== Active Badge ==>
                     <div class="status-badge badge-served">
                         <i class="fas fa-check"></i>
                         <span>Served</span>
@@ -159,7 +182,7 @@
                         <div class="date-value status-former">Dec 15, 2022</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
