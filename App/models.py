@@ -215,7 +215,7 @@ class Job(models.Model):
         ('Draft', 'Draft'),
         ('Closed', 'Closed'),
     )
-    DERPARTMENT = (
+    DEPARTMENT = (
         ('Engineering', 'Engineering'),
         ('Marketing', 'Marketing'),
         ('Sales', 'Sales'),
@@ -251,7 +251,7 @@ class Job(models.Model):
     about = models.TextField(blank=True)
     description = models.TextField(blank=True)
     qualification = models.TextField(blank=True)
-    department = models.CharField(max_length=255, choices=DERPARTMENT, default='Engineering')
+    department = models.CharField(max_length=255, choices=DEPARTMENT, default='Engineering')
     location = models.CharField(max_length=255, null=True, blank=True)
     job_type = models.CharField(max_length=255, choices=EMPLOYMENT_TYPE, default='Full Time')
     min_salary = models.IntegerField(null=True, blank=True)

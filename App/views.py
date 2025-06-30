@@ -149,7 +149,6 @@ class WorkforceView(View):
         jobs = Job.objects.filter(company=request.user.companyprofile, status='Active')
         workforce = TeamManagement.objects.filter(job__in=jobs).order_by('-created_at')
         active = len(TeamManagement.objects.filter(job__in=jobs, user_status='Active'))
-        # department = len(TeamManagement.objects.filter(job=jobs, user_status='On Leave'))
         leave = len(TeamManagement.objects.filter(job__in=jobs, user_status='On Hold'))
         served = len(TeamManagement.objects.filter(job__in=jobs, user_status='Served'))
 
@@ -160,7 +159,7 @@ class WorkforceView(View):
             'company_name': name_list,
             'workforce': workforce,
             'active': active,
-            # 'pending': pending,
+            'department': department,
             'leave': leave,
             'served': served
         })
