@@ -149,6 +149,10 @@ class WorkforceView(View):
         jobs = Job.objects.filter(company=request.user.companyprofile, status='Active')
         workforce = TeamManagement.objects.filter(job__in=jobs).order_by('-created_at')
         active = len(TeamManagement.objects.filter(job__in=jobs, user_status='Active'))
+        departments = [dept[0] for dept in Job.DEPARTMENT]
+        department = len(TeamManagement.objects.filter(job__department__in=Job.DEPARTMENT).distinct('job__department'))
+        # distinct_departments = TeamManagement.objects.values('job__department').distinct()
+        # department = distinct_departments.count()
         leave = len(TeamManagement.objects.filter(job__in=jobs, user_status='On Hold'))
         served = len(TeamManagement.objects.filter(job__in=jobs, user_status='Served'))
 
