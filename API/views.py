@@ -54,7 +54,7 @@ class JobStatusAPIView(UpdateAPIView):
         instance = self.get_object()
         status_data = request.data.get("status")
         # print(f"Status data received: {status_data}")
-        # print(instance.status)
+
         try:
             if instance.status == "Offer":
                 return Response(
