@@ -14,21 +14,17 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 import dj_database_url
+from django.core.exceptions import ImproperlyConfigured
+
 from dotenv import load_dotenv
 
 load_dotenv()
 
-url = os.getenv('DATABASE_URL')
-
-def ImproperlyConfigured(message):
-    raise NotImplementedError
+url = os.getenv('DMS_DATABASE_URL')
 
 if not url:
-    raise ImproperlyConfigured("DATABASE_URL is not set!")
+    raise ImproperlyConfigured("DMS_DATABASE_URL is not set!")
 
-DATABASES = {
-    'default': dj_database_url.parse(url, conn_max_age=600)
-}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -124,7 +120,7 @@ WSGI_APPLICATION = 'DocumentManagementSystem.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
+        default=os.getenv('DMS_DATABASE_URL'),
         conn_max_age=600
     )
 }
