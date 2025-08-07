@@ -18,3 +18,4 @@ supabase==2.15.0
 django-restframework==0.0.1
 djangorestframework==3.16.0
 django_extensions
+django-phonenumber-field[phonenumbers]==8.1.0
