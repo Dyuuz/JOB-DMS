@@ -1,0 +1,435 @@
+:root {
+    --primary-color: #4F46E5;
+    --primary-light: #818CF8;
+    --secondary-color: #10B981;
+    --danger-color: #EF4444;
+    --warning-color: #F59E0B;
+    --dark-color: #1F2937;
+    --light-color: #F9FAFB;
+    --gray-color: #6B7280;
+    --border-color: #E5E7EB;
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+} */
+
+.dash-body {
+    /* background-color: #F3F4F6; */
+    color: var(--dark-color);
+}
+
+/* ===== Main Layout ===== */
+.jobhive-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ===== Header Styles ===== */
+.jobhive-header {
+    background: transparent;
+    padding: 1rem 2rem;
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); */
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    /* margin-bottom: 0; */
+}
+
+.jobhive-brand {
+    display: none;
+    visibility: hidden;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.jobhive-logo {
+    width:fit-content;
+    height: 36px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.jobhive-brandname {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.jobhive-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.jobhive-search {
+    position: relative;
+}
+
+.jobhive-search input {
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 240px;
+    font-size: 0.875rem;
+}
+
+.jobhive-search i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-color);
+}
+
+.jobhive-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.jobhive-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+/* ===== Main Content ===== */
+.jobhive-main {
+    flex: 1;
+    padding: 2rem;
+    padding-top: 0;
+}
+
+.jobhive-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    /* background-color: red; */
+}
+
+.jobhive-section-header .header-dash {
+    justify-self: center;
+    align-self: center;
+}
+
+.jobhive-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.jobhive-subtitle {
+    color: var(--gray-color);
+    margin-top: 0.25rem;
+}
+
+.jobhive-btn {
+    padding: 0.625rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 14px;
+}
+
+.jobhive-btn i{
+    font-size: 12px;
+}
+
+.jobhive-btn-primary {
+    background: linear-gradient(135deg, rgba(22, 165, 56, 0.651), #4862b3);
+    color: white;
+}
+
+.jobhive-btn-primary:hover {
+    background: linear-gradient(135deg, rgba(17, 163, 51, 0.651), #061d61);
+}
+
+/* ===== Stats Cards ===== */
+.jobhive-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 0.4rem;
+    /* padding: 10px; */
+}
+
+.jobhive-stat-card {
+    background: linear-gradient(135deg, rgba(5, 53, 16, 0.651), #061d61);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.jobhive-stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.jobhive-stat-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.jobhive-stat-title {
+    font-size: 0.875rem;
+    color: white;
+    font-weight: 500;
+}
+
+.jobhive-stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jobhive-stat-active .jobhive-stat-icon {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--secondary-color);
+}
+
+.jobhive-stat-applications .jobhive-stat-icon {
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--primary-color);
+}
+
+.jobhive-stat-interviews .jobhive-stat-icon {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+}
+
+.jobhive-stat-drafts .jobhive-stat-icon {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+}
+
+.jobhive-stat-value {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.jobhive-stat-desc {
+    color: rgb(224, 218, 218);
+    font-size: 0.875rem;
+}
+
+/* ===== Job Table ===== */
+.jobhive-table-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.jobhive-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.jobhive-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 500;
+    color: var(--gray-color);
+    font-size: 0.875rem;
+    background: var(--light-color);
+}
+
+tr .status-sdb{
+    padding-left: 25px;
+}
+
+tr .action-adb{
+    padding-left: 30px;
+}
+
+.jobhive-table td {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.jobhive-job-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.jobhive-job-department {
+    font-size: 0.875rem;
+    color: var(--gray-color);
+}
+
+.jobhive-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.jobhive-status-active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--secondary-color);
+}
+
+.jobhive-status-draft {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+}
+
+.jobhive-status-closed {
+    background: rgba(107, 114, 128, 0.1);
+    color: var(--gray-color);
+}
+
+.jobhive-actions-cell {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.jobhive-actions-cell a{
+    text-decoration: none;
+}
+
+.jobhive-action-btn {
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--gray-color);
+    transition: all 0.2s;
+}
+
+.jobhive-action-btn:hover {
+    background: var(--light-color);
+    color: var(--primary-color);
+}
+
+@media (max-width: 1200px) {
+    .jobhive-table-container {
+        overflow-x: auto;
+    }
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 1024px) {
+    .jobhive-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .jobhive-section-header .header-dash{
+        justify-self: center;
+        align-self: center;
+    }
+
+    .jobhive-section-header a{
+        align-self: flex-end;
+    }
+
+    .jobhive-actions {
+        width: 100%;
+        justify-content:flex-end;
+    }
+
+    .jobhive-search input {
+        width: 200px;
+    }
+
+    .jobhive-table-container {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .jobhive-main {
+        padding: 1rem;
+    }
+
+    .jobhive-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .jobhive-section-header .header-dash{
+        justify-self: center;
+        align-self: center;
+    }
+
+    .jobhive-section-header a{
+        align-self: flex-end;
+    }
+
+    .jobhive-actions {
+        width: 100%;
+        justify-content:flex-end;
+    }
+
+    .jobhive-table th,
+    .jobhive-table td {
+        padding: 0.75rem;
+    }
+
+    .jobhive-table-container {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .jobhive-section-header a{
+        align-self: flex-end;
+    }
+
+    .jobhive-section-header .header-dash{
+        justify-self: center;
+        align-self: center;
+    }
+
+    .jobhive-search input {
+        width: 160px;
+    }
+
+    .jobhive-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .jobhive-actions {
+        width: 100%;
+        justify-content:flex-end;
+    }
+}

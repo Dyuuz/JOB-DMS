@@ -1,0 +1,326 @@
+/* ===== Global Variables ===== */
+:root {
+    --primary-500: #6366F1;
+    --primary-600: #4F46E5;
+    --success-500: #1c805e;
+    --warning-500: #F59E0B;
+    --danger-500: #EF4444;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-400: #9CA3AF;
+    --gray-600: #4B5563;
+    --gray-800: #1F2937;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --border-radius: 8px;
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, sans-serif;
+} */
+
+.application-view-body {
+    background-color: var(--gray-100);
+    color: var(--gray-800);
+}
+
+/* ===== Layout ===== */
+.applicanttrack-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ===== Header ===== */
+.applicanttrack-header {
+    background: white;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+}
+
+.applicanttrack-header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.applicanttrack-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.applicanttrack-logo {
+    width: 36px;
+    height: 36px;
+    background: var(--primary-600);
+    color: white;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.applicanttrack-brand-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.applicanttrack-job-title {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* ===== Filter Bar ===== */
+.applicanttrack-filter-bar {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.applicanttrack-search {
+    position: relative;
+    flex-grow: 1;
+}
+
+.applicanttrack-search-input {
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+}
+
+.applicanttrack-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-400);
+}
+
+.applicanttrack-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.applicanttrack-filter-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.applicanttrack-filter-select {
+    padding: 0.5rem;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    background: white;
+}
+
+/* ===== Applicants Table ===== */
+.applicanttrack-applicants {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.applicanttrack-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.applicanttrack-table thead {
+    background: var(--gray-50);
+}
+
+.applicanttrack-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 500;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+
+.applicanttrack-table td {
+    padding: 1rem;
+    border-top: 1px solid var(--gray-200);
+    vertical-align: middle;
+}
+
+.applicanttrack-applicant {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.applicanttrack-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.applicanttrack-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.applicanttrack-applicant-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.applicanttrack-applicant-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.applicanttrack-applicant-email {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.applicanttrack-status {
+    position: relative;
+    display: inline-block;
+}
+
+.applicanttrack-status-select {
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.875rem;
+    border: 1px solid var(--gray-200);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%239CA3AF' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.applicanttrack-status-select:hover {
+    border-color: var(--gray-400);
+}
+
+.applicanttrack-status-applied {
+    background-color: rgba(99, 102, 241, 0.1);
+    color: var(--primary-500);
+}
+
+.applicanttrack-status-interview {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--warning-500);
+}
+
+.applicanttrack-status-offer {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success-500);
+}
+
+.applicanttrack-status-rejected {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--danger-500);
+}
+
+.applicanttrack-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.applicanttrack-action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-600);
+    transition: all 0.2s;
+}
+
+.applicanttrack-action-btn:hover {
+    background: var(--gray-100);
+    color: var(--primary-500);
+}
+
+.applicanttrack-view-btn {
+    color: var(--primary-500);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .applicanttrack-header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .applicanttrack-filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .applicanttrack-search {
+        width: 100%;
+    }
+
+    .applicanttrack-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .applicanttrack-applicant {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .applicanttrack-avatar {
+        align-self: center;
+    }
+}
+
+#status-toast{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background:rgb(54, 71, 165);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+}
