@@ -32,6 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '.railway.app',
     'localhost',
     '127.0.0.1',
     os.getenv('ipadd1'),
