@@ -6,6 +6,12 @@ WORKDIR /app
 # Copy files
 COPY . /app
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
