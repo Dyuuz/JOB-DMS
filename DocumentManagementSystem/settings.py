@@ -114,7 +114,7 @@ WSGI_APPLICATION = 'DocumentManagementSystem.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv("DMS_DATABASE_URL", "sqlite:///dummy.db"),
+        default=os.getenv("DB_URL"),
         conn_max_age=600
     )
 }
