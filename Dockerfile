@@ -24,7 +24,7 @@ RUN rm -rf staticfiles
 RUN python manage.py collectstatic --noinput
 
 # DO NOT run makemigrations here unless you know what you're doing
-# RUN python manage.py makemigrations
+RUN python manage.py makemigrations
 
 # Run migrate and start the app at runtime
 CMD ["sh", "-c", "python manage.py migrate && gunicorn DocumentManagementSystem.wsgi:application --bind 0.0.0.0:8080"]
