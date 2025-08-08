@@ -22,4 +22,4 @@ RUN python manage.py makemigrations
 RUN python manage.py migrate
 
 # Start the app
-CMD gunicorn DocumentManagementSystem.wsgi:application --bind 0.0.0.0:8080
+CMD gunicorn DocumentManagementSystem.wsgi:application --bind 0.0.0.0:7000
