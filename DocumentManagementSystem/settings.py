@@ -20,12 +20,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-url = os.getenv('DMS_DATABASE_URL')
-
-if not url:
-    raise ImproperlyConfigured("DMS_DATABASE_URL is not set!")
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '.railway.app',
@@ -120,7 +114,7 @@ WSGI_APPLICATION = 'DocumentManagementSystem.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DMS_DATABASE_URL'),
+        default=os.getenv("DMS_DATABASE_URL", "sqlite:///dummy.db"),
         conn_max_age=600
     )
 }
