@@ -41,12 +41,6 @@ ALLOWED_HOSTS = [
     os.getenv('ipadd1'),
     os.getenv('ipadd2'),
     os.getenv('ipadd3'),
-    os.getenv('ipadd4'),
-    os.getenv('ipadd5'),
-    os.getenv('ipadd6'),
-    os.getenv('ipadd7'),
-    os.getenv('ipadd8'),
-    os.getenv('ipadd9'),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
