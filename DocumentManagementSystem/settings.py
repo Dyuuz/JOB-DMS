@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '.railway.app',
@@ -48,6 +48,15 @@ ALLOWED_HOSTS = [
     os.getenv('ipadd9'),
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://job-dms-production.up.railway.app",
+    "https://job-dms.up.railway.app",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://job-dms-production.up.railway.app",
+    "https://job-dms.up.railway.app",
+]
 
 # Application definition
 
