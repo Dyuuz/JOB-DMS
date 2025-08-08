@@ -34,6 +34,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
+    'job-dms.onrender.com',
     '.railway.app',
     'localhost',
     '127.0.0.1',
