@@ -1,35 +1,36 @@
 FROM python:3.11-slim
 
-# Set workdir
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-# Copy files
-COPY . /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# System deps first (cache-friendly)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Install Python deps with cache
+COPY requirements.txt /app/
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Collect static and apply migrations
-# Remove old static files
+# Copy project files
+COPY . /app
+
+# Optional: remove previously baked static (if any)
 RUN rm -rf staticfiles
 
-# Collect new static files
+# Build-time static collection (requires STATIC_ROOT set correctly)
 RUN python manage.py collectstatic --noinput
 
-# DO NOT run makemigrations here unless you know what you're doing
-RUN python manage.py makemigrations
+# Start script
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
 
-# Run migrate and start the app at runtime
-# CMD ["sh", "-c", "python manage.py migrate && echo \"Using port: $PORT\" && exec gunicorn DocumentManagementSystem.wsgi:application --bind 0.0.0.0:$PORT"]
+# (Optional) run as non-root
+# RUN useradd -m appuser
+# USER appuser
 
-COPY start.sh ./
-RUN chmod +x ./start.sh
-
-CMD sh ./start.sh
+CMD ["sh", "/app/start.sh"]
