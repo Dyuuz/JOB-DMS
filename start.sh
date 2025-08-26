@@ -1,23 +1,26 @@
 #!/usr/bin/env bash
-set -e
 
-# Fail early if critical envs are missing
+echo "=== Boot: validating environment ==="
+# Change DB_URL to DATABASE_URL if your settings use that
 if [ -z "$DB_URL" ]; then
-  echo "ERROR: DB_URL is not set" >&2
+  echo "ERROR: DB_URL is not set"
   exit 1
 fi
 
-# Apply migrations at runtime (needs DATABASE_URL)
-python manage.py migrate --noinput
-
-# Collect static files
-python manage.py collectstatic --noinput
-
-PORT=${PORT}
-echo "Starting server on port $PORT..."
-
+PORT=${PORT:-8000}
 export PYTHONUNBUFFERED=1
 
-# Start Gunicorn (update project name if different)
+echo "=== Step 1/3: applying migrations ==="
+python manage.py migrate --noinput
+echo "=== Migrations: done ==="
+
+echo "=== Step 2/3: collecting static files ==="
+python manage.py collectstatic --noinput -v 2
+echo "=== Collectstatic: done ==="
+
+echo "=== Step 3/3: starting Gunicorn on 0.0.0.0:${PORT} ==="
 exec gunicorn DocumentManagementSystem.wsgi:application \
-  --bind 0.0.0.0:"$PORT"
+  --bind "0.0.0.0:${PORT}" \
+  --access-logfile - \
+  --error-logfile - \
+  --log-level info
