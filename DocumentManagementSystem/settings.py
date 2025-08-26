@@ -170,6 +170,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+IS_RAILWAY = os.environ.get("RAILWAY_ENVIRONMENT_NAME")
+
+if IS_RAILWAY:
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+            },
+        },
+        "root": {
+            "handlers": ["console"],
+            "level": "INFO",  # change to DEBUG for more output
+        },
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
