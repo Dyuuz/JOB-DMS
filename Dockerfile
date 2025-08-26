@@ -10,8 +10,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+COPY requirements.txt .
+
+# after
+RUN python -m pip install --upgrade pip && \
+    python -m pip install -vv --no-input --no-cache-dir -r requirements.txt
 
 # Copy files
 COPY . .
