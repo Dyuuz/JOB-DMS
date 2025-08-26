@@ -27,4 +27,4 @@ RUN python manage.py collectstatic --noinput
 RUN python manage.py makemigrations
 
 # Run migrate and start the app at runtime
-CMD ["sh", "-c", "python manage.py migrate && gunicorn DocumentManagementSystem.wsgi:application --bind 0.0.0.0:$PORT"]
+CMD ["sh", "-c", "python manage.py migrate && echo \"Using port: $PORT\" && exec gunicorn DocumentManagementSystem.wsgi:application --bind 0.0.0.0:$PORT"]
