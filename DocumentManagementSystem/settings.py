@@ -44,12 +44,12 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://job-dms-production.up.railway.app",
+    "https://job-dms.onrender.com",
     "https://job-dms.up.railway.app",
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://job-dms-production.up.railway.app",
+    "https://job-dms.onrender.com",
     "https://job-dms.up.railway.app",
 ]
 
